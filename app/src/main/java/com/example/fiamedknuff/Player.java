@@ -20,15 +20,17 @@ public class Player {
     }
 
     /**
-     * This set method sets the name of the player
-     *
-     *  @param name takes in a String as name
+     * Sets the name of the player to incoming parameter name
+     * @param name takes in a String as name
      */
     public void setName(String name) {
         this.name = name;
     }
 
-
+    /**
+     * Returns a list of the players pieces
+     * @return a list of pieces
+     */
     public ArrayList<Piece> getPieces() {
         return pieces;
     }
