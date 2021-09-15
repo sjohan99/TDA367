@@ -2,6 +2,13 @@ package com.example.fiamedknuff;
 
 import java.util.ArrayList;
 
+/**
+ * A class Player that creates a player
+ *
+ * Created by
+ * @author Amanda Cyrén
+ */
+
 public class Player {
 
     private final ArrayList<Piece> pieces;
