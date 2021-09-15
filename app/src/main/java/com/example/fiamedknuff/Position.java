@@ -2,10 +2,11 @@ package com.example.fiamedknuff;
 
 public class Position {
 
-    int x;
-    int y;
+    int xPos;
+    int yPos;
 
     public Position(int x, int y) {
-
+        xPos = x;
+        yPos = y;
     }
 }
