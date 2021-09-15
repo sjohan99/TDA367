@@ -6,4 +6,6 @@ public class Board {
 
     int y = 6;
 
+    int z = 7;
+
 }
