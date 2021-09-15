@@ -28,7 +28,15 @@ public class Player {
     }
 
     /**
-     * Returns a list of the players pieces
+     * Gets the name of the player
+     * @return the players name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Gets a list of the players pieces
      * @return a list of pieces
      */
     public ArrayList<Piece> getPieces() {
