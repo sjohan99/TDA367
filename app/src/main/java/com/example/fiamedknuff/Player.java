@@ -17,4 +17,7 @@ public class Player {
         this.pieces = new ArrayList<Piece>(4);
     }
 
+    public ArrayList<Piece> getPieces() {
+        return pieces;
+    }
 }
