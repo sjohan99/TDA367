@@ -9,4 +9,12 @@ public class Position {
         xPos = x;
         yPos = y;
     }
+
+    public int getxPos() {
+        return xPos;
+    }
+
+    public int getyPos() {
+        return yPos;
+    }
 }
