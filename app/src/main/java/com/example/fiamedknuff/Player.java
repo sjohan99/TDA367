@@ -14,7 +14,7 @@ import java.util.List;
 public class Player {
 
     private String name;
-    private final List<Piece> pieces;
+    private final Collection<Piece> pieces;
 
     public Player(String name) {
         this.name = name;
