@@ -15,6 +15,10 @@ public class Position {
         pos = x;
     }
 
+    /**
+     * Returns the position.
+     * @return the position
+     */
     public int getPos() {
         return pos;
     }
