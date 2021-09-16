@@ -1,6 +1,8 @@
 package com.example.fiamedknuff;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * A class Player that creates a player
@@ -12,11 +14,11 @@ import java.util.ArrayList;
 public class Player {
 
     private String name;
-    private final ArrayList<Piece> pieces;
+    private final List<Piece> pieces;
 
     public Player(String name) {
         this.name = name;
-        this.pieces = new ArrayList<Piece>(4);
+        pieces = new ArrayList<Piece>(4);
     }
 
     /**
@@ -39,7 +41,7 @@ public class Player {
      * Gets a list of the players pieces
      * @return a list of pieces
      */
-    public ArrayList<Piece> getPieces() {
+    public Collection<Piece> getPieces() {
         return pieces;
     }
 }
