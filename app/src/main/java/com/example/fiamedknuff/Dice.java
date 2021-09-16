@@ -2,6 +2,13 @@ package com.example.fiamedknuff;
 
 import java.util.Random;
 
+/**
+ * A class Dice that creates a dice
+ *
+ * Created by
+ * @author Emma Stålberg
+ */
+
 public class Dice {
     int valueMax;
     Random rand = new Random();
