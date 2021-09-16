@@ -7,16 +7,13 @@ import java.util.List;
 public class Game {
 
     private Board board;
-    private Dice dice;
     private List<Player> players;
     private int currentPlayerIndex = 0;
 
-    public Game game(int playerCount) {
-        board = new Board;
-        dice = new Dice;
+    public Game(int playerCount) {
+        // board = new Board;
         players = new ArrayList<Player>();
     }
-
 
             // For a new round…
             // roll dice in the dice class. Returns roll.
@@ -26,9 +23,6 @@ public class Game {
             // ...
             // Select new player
 
-
-
-
     private Player getCurrentPlayer() {
         return players.get(currentPlayerIndex);
     }
@@ -36,17 +30,15 @@ public class Game {
     private void selectNextPlayer() {
         currentPlayerIndex++;
     }
-
-    private int rollDice() {
-        return dice.roll();
-    }
-
+/*
     private Collection<Piece> getMovablePieces(Player currentPlayer, int roll) {
-        return board.getMovablePieces(currentPlayer.getPieces(), roll);
+        // return board.getMovablePieces(currentPlayer.getPieces(), roll);
     }
 
-    private move(Piece piece) {
-        board.move(piece);
-    }
+    //private move(Piece piece) {
+        //board.move(piece);
+   //}
+
+ */
 
 }
