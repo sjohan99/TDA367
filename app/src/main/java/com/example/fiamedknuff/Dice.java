@@ -3,7 +3,7 @@ package com.example.fiamedknuff;
 import java.util.Random;
 
 /**
- * A class Dice that creates a dice
+ * A class Dice that creates a dice. A Dice may be rolled.
  *
  * Created by
  * @author Emma Stålberg
