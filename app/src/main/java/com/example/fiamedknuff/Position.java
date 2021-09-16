@@ -1,5 +1,12 @@
 package com.example.fiamedknuff;
 
+/**
+ * The class Position creates a position.
+ *
+ * Created by
+ * @author Emma Stålberg
+ */
+
 public class Position {
 
     int xPos;
@@ -9,6 +16,7 @@ public class Position {
         xPos = x;
         yPos = y;
     }
+
 
     public int getxPos() {
         return xPos;
