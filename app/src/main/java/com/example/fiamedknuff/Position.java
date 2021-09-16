@@ -9,20 +9,14 @@ package com.example.fiamedknuff;
 
 public class Position {
 
-    int xPos;
-    int yPos;
+    int pos;
 
-    public Position(int x, int y) {
-        xPos = x;
-        yPos = y;
+    public Position(int x) {
+        pos = x;
     }
 
-
-    public int getxPos() {
-        return xPos;
+    public int getPos() {
+        return pos;
     }
 
-    public int getyPos() {
-        return yPos;
-    }
 }
