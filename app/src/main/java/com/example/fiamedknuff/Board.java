@@ -1,11 +1,18 @@
 package com.example.fiamedknuff;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class Board {
 
-    int x = 5;
+    private List<Position> positions;
+    private HashMap<Piece, Position> piecePositionHashMap;
 
-    int y = 6;
+    public Board() {
 
-    int z = 7;
+    }
 
+    private void populatePositions(List<Integer> xCoordinates, List<Integer> yCoordinates) {
+
+    }
 }
