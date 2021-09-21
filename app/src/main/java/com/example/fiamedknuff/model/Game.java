@@ -20,6 +20,9 @@ public class Game {
 
     private void selectNextPlayer() {
         currentPlayerIndex++;
+        if (currentPlayerIndex >= players.size()) {
+            currentPlayerIndex = 0;
+        }
     }
 /*
     private Collection<Piece> getMovablePieces(Player currentPlayer, int roll) {
