@@ -47,6 +47,12 @@ public class Game {
         return dice.rollDice();
     }
 
+    public void move(Piece piece, int diceValue) {
+        // move the piece
+        // check for knockout
+        // check for if finished
+    }
+
  /*
     //private move(Piece piece) {
         //board.move(piece);
