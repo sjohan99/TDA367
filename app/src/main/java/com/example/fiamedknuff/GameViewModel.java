@@ -15,7 +15,7 @@ public class GameViewModel {
             // Get current player
             // roll dice
             // Get player pieces for current player
-            // check wich pieces are movable
+            // check and get which pieces are movable
             // show result of rolled dice
             while () {
                 // Wait for player input
