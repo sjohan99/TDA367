@@ -13,6 +13,7 @@ public class Game {
     public Game(int playerCount) {
         // board = new Board;
         players = new ArrayList<Player>();
+        dice = new Dice();
     }
 
     public Player getCurrentPlayer() {
