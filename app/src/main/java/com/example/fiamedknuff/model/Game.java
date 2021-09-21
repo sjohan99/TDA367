@@ -1,6 +1,7 @@
 package com.example.fiamedknuff.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Game {
@@ -33,7 +34,9 @@ public class Game {
         }
     }
 
-
+    private Collection<Piece> getPlayerPieces(Player player) {
+        return player.getPieces();
+    }
 
 /*
     private Collection<Piece> getMovablePieces(Player currentPlayer, int roll) {
