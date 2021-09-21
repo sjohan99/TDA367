@@ -1,20 +1,26 @@
 package com.example.fiamedknuff.model;
 
+/**
+ * The class Position creates a position.
+ *
+ * Created by
+ * @author Emma Stålberg
+ */
+
 public class Position {
 
-    int xPos;
-    int yPos;
+    int pos;
 
-    public Position(int x, int y) {
-        xPos = x;
-        yPos = y;
+    public Position(int x) {
+        pos = x;
     }
 
-    public int getxPos() {
-        return xPos;
+    /**
+     * Returns the position.
+     * @return the position
+     */
+    public int getPos() {
+        return pos;
     }
 
-    public int getyPos() {
-        return yPos;
-    }
 }
