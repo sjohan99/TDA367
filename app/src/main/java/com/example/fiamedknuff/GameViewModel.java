@@ -1,5 +1,7 @@
 package com.example.fiamedknuff;
 
+import com.example.fiamedknuff.model.Game;
+
 /**
  * A class gameViewModel that ...
  *
@@ -8,6 +10,12 @@ package com.example.fiamedknuff;
  */
 
 public class GameViewModel {
+
+    Game game;
+
+    private void init() {
+        game = new Game();
+    }
 
     public void play() {
         while() {
