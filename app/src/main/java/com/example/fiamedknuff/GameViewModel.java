@@ -1,6 +1,7 @@
 package com.example.fiamedknuff;
 
 import com.example.fiamedknuff.model.Game;
+import com.example.fiamedknuff.model.Player;
 
 /**
  * A class gameViewModel that ...
@@ -12,9 +13,13 @@ import com.example.fiamedknuff.model.Game;
 public class GameViewModel {
 
     Game game;
+    int playerCount;
+    Player currentPlayer;
 
     private void init() {
-        game = new Game();
+        playerCount = 4; //TODO senare, input
+
+        game = new Game(playerCount);
     }
 
     public void play() {
