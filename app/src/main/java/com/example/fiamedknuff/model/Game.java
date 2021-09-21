@@ -16,6 +16,12 @@ public class Game {
         dice = new Dice();
     }
 
+    public Game(int playerCount, int maxValueDice) {
+        // board = new Board;
+        players = new ArrayList<Player>();
+        dice = new Dice(maxValueDice);
+    }
+
     public Player getCurrentPlayer() {
         return players.get(currentPlayerIndex);
     }
