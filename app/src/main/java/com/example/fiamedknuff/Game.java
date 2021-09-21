@@ -15,14 +15,6 @@ public class Game {
         players = new ArrayList<Player>();
     }
 
-            // For a new round…
-            // roll dice in the dice class. Returns roll.
-            // Get player pieces for current player
-            // Wait for player input
-            // Move selected player piece
-            // ...
-            // Select new player
-
     private Player getCurrentPlayer() {
         return players.get(currentPlayerIndex);
     }
