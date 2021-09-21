@@ -20,6 +20,7 @@ public class GameViewModel {
     Player currentPlayer;
     int diceValue;
     Collection<Piece> movablePieces;
+    Piece selectedPiece;
 
     private void init() {
         playerCount = 4; //TODO senare, input
@@ -32,15 +33,18 @@ public class GameViewModel {
             // For a new round...
             currentPlayer = game.getCurrentPlayer();
             diceValue = game.rollDice();
-            // Get player pieces for current player - unnecessary??
+            // TODO Get player pieces for current player - unnecessary??
             movablePieces = game.getMovablePieces(currentPlayer, diceValue);
-            // show result of rolled dice
+            // TODO show result of rolled dice
             while () {
-                // Wait for player input
+                // TODO Wait for player input, and update variable selectedPiece
                 // Check if selected piece is movable
-                // If it´s movable, move selected piece
-                // break
-                // Else, give feedback that it is not movable
+                if (movablePieces.contains(selectedPiece)) {
+                    game.move(selectedPiece, diceValue);
+                    break;
+                } else {
+                    // TODO give feedback that it is not movable
+                }
             }
             // Check if the player won/finished
             // if it won/finished - call method playerFinished
