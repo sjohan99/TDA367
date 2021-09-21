@@ -57,4 +57,20 @@ public class Player {
 
     }
 
+    boolean isMovable (Piece piece, int roll) {
+        if (piece.getIndex() == 0) {
+            if (roll == 1 || roll == 6) {
+                return true;
+            }
+        }
+        int posP = piece.getIndex() + roll;
+        for (Piece p : pieces) {
+            if (posP == p.getIndex()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 }
