@@ -33,11 +33,14 @@ public class GameViewModel {
     }
 
     public void play() {
-        while() {
+        while(game.getCurrentPlayerIndex() != -1) {
             // For a new round...
             currentPlayer = game.getCurrentPlayer();
-            diceValue = game.rollDice();
-            // TODO Get player pieces for current player - unnecessary??
+            // TODO move dice to current player
+            // TODO maybe not a while-loop, but we need to wait for player input to roll dice
+            while() {
+                diceValue = game.rollDice();
+            }
             movablePieces = game.getMovablePieces(currentPlayer, diceValue);
             // TODO show result of rolled dice
             while () {
@@ -50,10 +53,8 @@ public class GameViewModel {
                     // TODO give feedback that it is not movable
                 }
             }
-
-            // Select next player
+            game.selectNextPlayer();
         }
-        // TODO skriv in villkor för while-satsen att när det inte är någon spelar kvar så bryt
     }
 
 }
