@@ -8,6 +8,7 @@ public class Game {
     private Board board;
     private List<Player> players;
     private int currentPlayerIndex = 0;
+    private Dice dice;
 
     public Game(int playerCount) {
         // board = new Board;
@@ -24,6 +25,9 @@ public class Game {
             currentPlayerIndex = 0;
         }
     }
+
+
+
 /*
     private Collection<Piece> getMovablePieces(Player currentPlayer, int roll) {
         // return board.getMovablePieces(currentPlayer.getPieces(), roll);
