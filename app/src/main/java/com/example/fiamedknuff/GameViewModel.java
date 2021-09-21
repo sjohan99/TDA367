@@ -21,11 +21,14 @@ public class GameViewModel {
     int diceValue;
     Collection<Piece> movablePieces;
     Piece selectedPiece;
+    String[] playerNames;
+    Piece.Color[] colors;
 
     private void init() {
-        playerCount = 4; //TODO senare, input
 
-        game = new Game(playerCount);
+        // TODO game skall skapas av gamefactory, skickar med input från annan controllerklass (den
+        //  som jobbar med spelinput inför ett spel)
+        game = GameFactory.createNewGame(playerNames, colors);
     }
 
     public void play() {

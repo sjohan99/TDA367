@@ -50,7 +50,7 @@ public class Game {
     public void move(Piece piece, int diceValue) {
         // move the piece
         // check for knockout
-        // check for if finished
+        // check if finished piece - hide
     }
 
  /*
