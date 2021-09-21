@@ -9,21 +9,10 @@ public class Game {
     private List<Player> players;
     private int currentPlayerIndex = 0;
 
-    public Game(int playerCount) throws Exception {
-        if (playerCount >= 2 && playerCount <= 4) {
-            // Valid player amount.
-            players = new ArrayList<>(playerCount);
-        } else throw new Exception();
-        board = new Board(playerCount);
+    public Game(List<Player> players) {
+        this.players = players;
+        board = new Board();
     }
-
-            // For a new round…
-            // roll dice in the dice class. Returns roll.
-            // Get player pieces for current player
-            // Wait for player input
-            // Move selected player piece
-            // ...
-            // Select new player
 
     private Player getCurrentPlayer() {
         return players.get(currentPlayerIndex);
@@ -33,6 +22,8 @@ public class Game {
         currentPlayerIndex++;
     }
 
+    /*
+
     private Collection<Piece> getMovablePieces(Player currentPlayer, int roll) {
         return board.getMovablePieces(currentPlayer.getPieces(), roll);
     }
@@ -40,5 +31,7 @@ public class Game {
     private move(Piece piece) {
         board.move(piece);
     }
+
+     */
 
 }

@@ -15,9 +15,12 @@ public class Player {
     private String name;
     private final Collection<Piece> pieces;
 
-    public Player(String name) {
+    public Player(String name, Color color) {
         this.name = name;
-        pieces = new ArrayList<Piece>(4);
+        pieces = new ArrayList<>(4);
+        for (int i = 0; i < 4; i++) {
+            pieces.add(new Piece(color));
+        }
     }
 
     /**
