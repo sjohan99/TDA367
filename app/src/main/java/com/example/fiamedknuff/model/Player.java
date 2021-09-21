@@ -12,7 +12,10 @@ import java.util.Collection;
 
 public class Player {
 
+    // A variable for the players name
     private String name;
+
+    // A collection of the players pieces
     private final Collection<Piece> pieces;
 
     public Player(String name) {
