@@ -1,4 +1,4 @@
-package com.example.fiamedknuff;
+package com.example.fiamedknuff.model;
 
 import java.util.HashMap;
 import java.util.List;

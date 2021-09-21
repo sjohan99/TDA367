@@ -1,7 +1,6 @@
-package com.example.fiamedknuff;
+package com.example.fiamedknuff.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Game {
