@@ -48,11 +48,16 @@ public class Game {
         return dice.rollDice();
     }
 
+    private void finishedPlayer(Player player) {
+        activePlayers.remove(player);
+        finishedPlayers.add(player);
+    }
+
     public void move(Piece piece, int diceValue) {
         // move the piece
         // check for knockout
         // check if finished piece - hide
-        // check if player is finished - move to finishedPlayers and delete in activePlayers
+        // check if player is finished - call finishedPlayer
     }
 
  /*

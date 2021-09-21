@@ -29,7 +29,7 @@ public class GameViewModel {
         // TODO game skall skapas av gamefactory, skickar med input från annan controllerklass (den
         //  som jobbar med spelinput inför ett spel)
         game = GameFactory.createNewGame(playerNames, colors);
-        
+
     }
 
     public void play() {
@@ -50,8 +50,7 @@ public class GameViewModel {
                     // TODO give feedback that it is not movable
                 }
             }
-            // Check if the player won/finished
-            // if it won/finished - call method playerFinished
+
             // Select next player
         }
         // TODO skriv in villkor för while-satsen att när det inte är någon spelar kvar så bryt
