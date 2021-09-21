@@ -43,4 +43,18 @@ public class Player {
     public Collection<Piece> getPieces() {
         return pieces;
     }
+
+
+    Collection<Piece> getMovablePieces(Collection<Piece> pieces, int roll) {
+        Collection<Piece> movablePieces = new ArrayList<Piece>();
+
+        for (Piece piece : pieces) {
+            if (isMovable(piece, roll)) {
+                movablePieces.add(piece);
+            }
+        }
+        return movablePieces;
+
+    }
+
 }
