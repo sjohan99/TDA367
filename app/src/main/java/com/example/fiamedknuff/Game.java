@@ -10,9 +10,12 @@ public class Game {
     private List<Player> players;
     private int currentPlayerIndex = 0;
 
-    public Game(int playerCount) {
-        // board = new Board;
-        players = new ArrayList<Player>();
+    public Game(int playerCount) throws Exception {
+        if (playerCount >= 2 && playerCount <= 4) {
+            // Valid player amount.
+            players = new ArrayList<>(playerCount);
+        } else throw new Exception();
+        board = new Board(playerCount);
     }
 
             // For a new round…
@@ -30,15 +33,13 @@ public class Game {
     private void selectNextPlayer() {
         currentPlayerIndex++;
     }
-/*
+
     private Collection<Piece> getMovablePieces(Player currentPlayer, int roll) {
-        // return board.getMovablePieces(currentPlayer.getPieces(), roll);
+        return board.getMovablePieces(currentPlayer.getPieces(), roll);
     }
 
-    //private move(Piece piece) {
-        //board.move(piece);
-   //}
-
- */
+    private move(Piece piece) {
+        board.move(piece);
+    }
 
 }
