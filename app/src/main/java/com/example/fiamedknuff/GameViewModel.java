@@ -14,7 +14,7 @@ public class GameViewModel {
             // For a new round…
             // Get current player
             // roll dice
-            // Get player pieces for current player
+            // Get player pieces for current player - unnecessary??
             // check and get which pieces are movable
             // show result of rolled dice
             while () {

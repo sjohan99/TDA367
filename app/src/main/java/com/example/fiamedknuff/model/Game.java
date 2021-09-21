@@ -38,17 +38,12 @@ public class Game {
         return player.getPieces();
     }
 
-    private Collection<Piece> getMovablePieces(Collection<Piece> pieces, int rolledValue) {
-        //Collection<Piece> movablePieces;
-        //anropa Board
+    private Collection<Piece> getMovablePieces(Player player, int rolledValue) {
+        //return board.getMovablePieces(player.getPieces(), rolledValue);
         return null;
     }
 
 /*
-    private Collection<Piece> getMovablePieces(Player currentPlayer, int roll) {
-        // return board.getMovablePieces(currentPlayer.getPieces(), roll);
-    }
-
     //private move(Piece piece) {
         //board.move(piece);
    //}
