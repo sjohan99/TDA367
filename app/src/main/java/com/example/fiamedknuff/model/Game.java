@@ -7,29 +7,30 @@ import java.util.List;
 public class Game {
 
     private Board board;
-    private List<Player> players;
+    private List<Player> activePlayers;
     private int currentPlayerIndex = 0;
     private Dice dice;
+    private List<Player> finishedPlayers = new ArrayList<Player>();
 
     public Game(int playerCount) {
         // board = new Board;
-        players = new ArrayList<Player>();
+        activePlayers = new ArrayList<Player>();
         dice = new Dice();
     }
 
     public Game(int playerCount, int maxValueDice) {
         // board = new Board;
-        players = new ArrayList<Player>();
+        activePlayers = new ArrayList<Player>();
         dice = new Dice(maxValueDice);
     }
 
     public Player getCurrentPlayer() {
-        return players.get(currentPlayerIndex);
+        return activePlayers.get(currentPlayerIndex);
     }
 
     private void selectNextPlayer() {
         currentPlayerIndex++;
-        if (currentPlayerIndex >= players.size()) {
+        if (currentPlayerIndex >= activePlayers.size()) {
             currentPlayerIndex = 0;
         }
     }
@@ -51,6 +52,7 @@ public class Game {
         // move the piece
         // check for knockout
         // check if finished piece - hide
+        // check if player is finished - move to finishedPlayers and delete in activePlayers
     }
 
  /*
