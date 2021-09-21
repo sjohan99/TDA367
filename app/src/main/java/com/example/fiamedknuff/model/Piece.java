@@ -2,10 +2,6 @@ package com.example.fiamedknuff.model;
 
 public class Piece {
 
-    public enum Color {
-        BLUE, RED, GREEN, YELLOW, PINK, BLACK
-    }
-
     private int index;
     private Color color;
 

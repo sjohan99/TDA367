@@ -9,18 +9,10 @@ public class Game {
     private List<Player> players;
     private int currentPlayerIndex = 0;
 
-    public Game(int playerCount) {
-        // board = new Board;
-        players = new ArrayList<Player>();
+    public Game(List<Player> players) {
+        this.players = players;
+        board = new Board();
     }
-
-            // For a new round…
-            // roll dice in the dice class. Returns roll.
-            // Get player pieces for current player
-            // Wait for player input
-            // Move selected player piece
-            // ...
-            // Select new player
 
     private Player getCurrentPlayer() {
         return players.get(currentPlayerIndex);
@@ -29,15 +21,17 @@ public class Game {
     private void selectNextPlayer() {
         currentPlayerIndex++;
     }
-/*
+
+    /*
+
     private Collection<Piece> getMovablePieces(Player currentPlayer, int roll) {
-        // return board.getMovablePieces(currentPlayer.getPieces(), roll);
+        return board.getMovablePieces(currentPlayer.getPieces(), roll);
     }
 
-    //private move(Piece piece) {
-        //board.move(piece);
-   //}
+    private move(Piece piece) {
+        board.move(piece);
+    }
 
- */
+     */
 
 }
