@@ -13,7 +13,7 @@ public class GameViewModel {
         while() {
             // For a new round…
             // Get current player
-            // roll dice in the dice class. Returns roll.
+            // roll dice
             // Get player pieces for current player
             // check wich pieces are movable
             // show result of rolled dice
