@@ -1,4 +1,4 @@
-package com.example.fiamedknuff;
+package com.example.fiamedknuff.model;
 
 /**
  * The class Position creates a position.
