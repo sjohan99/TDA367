@@ -15,6 +15,7 @@ public class GameViewModel {
     Game game;
     int playerCount;
     Player currentPlayer;
+    int diceValue;
 
     private void init() {
         playerCount = 4; //TODO senare, input
@@ -25,7 +26,8 @@ public class GameViewModel {
     public void play() {
         while() {
             // For a new round…
-            // Get current player
+            currentPlayer = game.getCurrentPlayer();
+
             // roll dice
             // Get player pieces for current player - unnecessary??
             // check and get which pieces are movable

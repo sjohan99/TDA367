@@ -43,6 +43,10 @@ public class Game {
         return null;
     }
 
+    public int rollDice(Dice dice) {
+        return dice.rollDice();
+    }
+
  /*
     //private move(Piece piece) {
         //board.move(piece);
