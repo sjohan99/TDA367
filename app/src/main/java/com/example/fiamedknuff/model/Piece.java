@@ -13,4 +13,8 @@ public class Piece {
         this.color = color;
         index = 0;      // index = 0 innebär att pjäsen sätts i boet
     }
+
+    public int getIndex() {
+        return index;
+    }
 }
