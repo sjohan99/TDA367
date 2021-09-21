@@ -29,10 +29,17 @@ public class Game {
     }
 
     private void selectNextPlayer() {
+        if (activePlayers.size() == 0) {
+            // currentPlayerIndex is set to -1 when there is no active players left
+            currentPlayerIndex = -1;
+        }
+
+
         currentPlayerIndex++;
         if (currentPlayerIndex >= activePlayers.size()) {
             currentPlayerIndex = 0;
         }
+
     }
 
     private Collection<Piece> getPlayerPieces(Player player) {
