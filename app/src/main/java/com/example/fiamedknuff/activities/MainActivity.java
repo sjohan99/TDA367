@@ -1,8 +1,10 @@
-package com.example.fiamedknuff;
+package com.example.fiamedknuff.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.fiamedknuff.R;
 
 public class MainActivity extends AppCompatActivity {
 
