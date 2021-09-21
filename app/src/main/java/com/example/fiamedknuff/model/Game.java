@@ -12,33 +12,26 @@ public class Game {
     private Dice dice;
     private List<Player> finishedPlayers = new ArrayList<Player>();
 
-    public Game(int playerCount) {
-        // board = new Board;
+    public Game(List<Player> players) {
+        this.players = players;
+        board = new Board();
         activePlayers = new ArrayList<Player>();
         dice = new Dice();
     }
-
-    public Game(int playerCount, int maxValueDice) {
-        // board = new Board;
-        activePlayers = new ArrayList<Player>();
-        dice = new Dice(maxValueDice);
-    }
-
+  
     public Player getCurrentPlayer() {
         return activePlayers.get(currentPlayerIndex);
     }
-
+ 
     public void selectNextPlayer() {
         if (activePlayers.size() == 0) {
             // currentPlayerIndex is set to -1 when there is no active players left
             currentPlayerIndex = -1;
         }
-
         currentPlayerIndex++;
         if (currentPlayerIndex >= activePlayers.size()) {
             currentPlayerIndex = 0;
         }
-
     }
 
     public int getCurrentPlayerIndex() {
@@ -70,11 +63,9 @@ public class Game {
         // check if player is finished - call finishedPlayer
     }
 
- /*
+   /*
     //private move(Piece piece) {
         //board.move(piece);
-   //}
-
- */
+   */
 
 }
