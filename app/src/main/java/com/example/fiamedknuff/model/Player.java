@@ -44,7 +44,12 @@ public class Player {
         return pieces;
     }
 
-
+    /**
+     * Finds out which pieces that are movable in the current move
+     * @param pieces is the collection of pieces of the current player
+     * @param roll is the value from the latest diceroll
+     * @return which pieces that are able to move
+     */
     Collection<Piece> getMovablePieces(Collection<Piece> pieces, int roll) {
         Collection<Piece> movablePieces = new ArrayList<Piece>();
 
@@ -57,6 +62,12 @@ public class Player {
 
     }
 
+    /**
+     * Finds out if one piece is allowed to move or not
+     * @param piece is one of the current players pieces
+     * @param roll is the value from the latest diceroll
+     * @return if the piece is movable or not
+     */
     boolean isMovable (Piece piece, int roll) {
         if (piece.getIndex() == 0) {
             if (roll == 1 || roll == 6) {
@@ -71,6 +82,4 @@ public class Player {
         }
         return true;
     }
-
-
 }
