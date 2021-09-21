@@ -22,11 +22,24 @@
         android:id="@+id/rule_book_title"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
+        android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background"
         app:srcCompat="@drawable/rule_book_title" />
+
+    <ImageView
+        android:id="@+id/rule_book_holder"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rule_book_title"
+        app:srcCompat="@drawable/rule_book_holder" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
