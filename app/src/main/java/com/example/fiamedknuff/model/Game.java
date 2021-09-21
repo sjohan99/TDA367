@@ -38,12 +38,12 @@ public class Game {
         return player.getPieces();
     }
 
-    private Collection<Piece> getMovablePieces(Player player, int rolledValue) {
+    public Collection<Piece> getMovablePieces(Player player, int rolledValue) {
         //return board.getMovablePieces(player.getPieces(), rolledValue);
         return null;
     }
 
-    public int rollDice(Dice dice) {
+    public int rollDice() {
         return dice.rollDice();
     }
 

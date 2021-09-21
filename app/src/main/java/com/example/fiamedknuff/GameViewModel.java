@@ -1,7 +1,10 @@
 package com.example.fiamedknuff;
 
 import com.example.fiamedknuff.model.Game;
+import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Player;
+
+import java.util.Collection;
 
 /**
  * A class gameViewModel that ...
@@ -16,6 +19,7 @@ public class GameViewModel {
     int playerCount;
     Player currentPlayer;
     int diceValue;
+    Collection<Piece> movablePieces;
 
     private void init() {
         playerCount = 4; //TODO senare, input
@@ -25,12 +29,11 @@ public class GameViewModel {
 
     public void play() {
         while() {
-            // For a new round…
+            // For a new round...
             currentPlayer = game.getCurrentPlayer();
-
-            // roll dice
+            diceValue = game.rollDice();
             // Get player pieces for current player - unnecessary??
-            // check and get which pieces are movable
+            movablePieces = game.getMovablePieces(currentPlayer, diceValue);
             // show result of rolled dice
             while () {
                 // Wait for player input
