@@ -15,7 +15,7 @@ public class Game {
         players = new ArrayList<Player>();
     }
 
-    private Player getCurrentPlayer() {
+    public Player getCurrentPlayer() {
         return players.get(currentPlayerIndex);
     }
 
