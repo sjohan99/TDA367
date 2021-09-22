@@ -23,5 +23,7 @@ public class Piece {
         return index == 0;
     }
 
-
+    public int getHomeNumber() {
+        return homeNumber;
+    }
 }
