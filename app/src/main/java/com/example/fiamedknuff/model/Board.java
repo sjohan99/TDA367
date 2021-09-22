@@ -18,7 +18,6 @@ public class Board {
             this.positions = createPositionsList(playerCount);
             this.piecePositionHashMap = initPiecePositionHashmap(pieces);
         }
-
     }
 
     private ArrayList<Position> createPositionsList(int playerCount) {
