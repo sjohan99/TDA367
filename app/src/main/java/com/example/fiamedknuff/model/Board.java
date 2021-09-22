@@ -1,5 +1,8 @@
 package com.example.fiamedknuff.model;
 
+import android.content.res.Resources;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,4 +47,15 @@ public class Board {
     public HashMap<Piece, Position> getPiecePositionHashMap() {
         return piecePositionHashMap;
     }
+
+    boolean isOccupied(Position pos) {
+        for (Position p: piecePositionHashMap.values()) {
+            if (p.equals(pos)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
