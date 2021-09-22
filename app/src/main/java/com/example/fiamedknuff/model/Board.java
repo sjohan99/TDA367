@@ -81,8 +81,8 @@ public class Board {
                 return piece;
             }
         }
-        throw new Exception(Resources.NotFoundException);
-        // throw Exception NotFound??; // kommer aldrig att hända om isOccupied anropas innan
+        throw new Resources.NotFoundException();
+        // kommer aldrig att hända om isOccupied anropas innan
     }
 
     boolean isOccupied(Position pos) {
