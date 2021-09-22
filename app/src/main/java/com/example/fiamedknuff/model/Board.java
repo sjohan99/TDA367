@@ -51,6 +51,25 @@ public class Board {
     //Bara preliminärt för att få koden att kompilera, används i metoden knockout nedan
     Position homePos = new Position(0);
 
+    void movePiece(int roll, Piece piece) {
+        Position p;
+        if (piece.isHome()) {
+            p = new Position(10 + roll);    //ytterst preliminärt
+        }
+        else {
+            p = new Position(piecePositionHashMap.get(piece).getPos() + roll);
+        }
+
+        piecePositionHashMap.remove(piece);
+        piece.setIndex(piece.getIndex() + roll);
+
+        if (isOccupied(p)) {
+            knockout(p);
+        }
+
+        piecePositionHashMap.put(piece,p);
+    }
+
     Piece pieceAtposition(Position pos) {
         for (Piece piece : piecePositionHashMap.keySet()) {
             if (piecePositionHashMap.get(piece) == pos) {
