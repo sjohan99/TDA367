@@ -13,7 +13,7 @@ public class Game {
     private List<Player> finishedPlayers = new ArrayList<Player>();
 
     public Game(List<Player> players) {
-        this.players = players;
+        this.activePlayers = players;
         board = new Board();
         activePlayers = new ArrayList<Player>();
         dice = new Dice();
