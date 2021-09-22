@@ -26,12 +26,10 @@ public class GameViewModel {
     String[] playerNames;
     Color[] colors;
 
-    private void init() {
-
+    private void init(String[] playerNames, Color[] colors) {
         // TODO game skall skapas av gamefactory, skickar med input från annan controllerklass (den
         //  som jobbar med spelinput inför ett spel)
         game = GameFactory.createNewGame(playerNames, colors);
-
     }
 
     public void play() {

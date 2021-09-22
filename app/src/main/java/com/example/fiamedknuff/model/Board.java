@@ -1,5 +1,8 @@
 package com.example.fiamedknuff.model;
 
+import android.content.res.Resources;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +18,6 @@ public class Board {
             this.positions = createPositionsList(playerCount);
             this.piecePositionHashMap = initPiecePositionHashmap(pieces);
         }
-
     }
 
     private ArrayList<Position> createPositionsList(int playerCount) {
@@ -44,4 +46,60 @@ public class Board {
     public HashMap<Piece, Position> getPiecePositionHashMap() {
         return piecePositionHashMap;
     }
+
+    //Bara preliminärt för att få koden att kompilera, används i metoden knockout nedan
+    Position homePos = new Position(0);
+
+    /**
+     * Moves Piece forward with the amount of the dice roll
+     * @param roll is the value from the latest dice roll
+     * @param piece is the piece to be moved
+     */
+    void movePiece(int roll, Piece piece) {
+        Position p;
+        if (piece.isHome()) {
+            p = new Position(10 + roll);    //ytterst preliminärt
+        }
+        else {
+            p = new Position(piecePositionHashMap.get(piece).getPos() + roll);
+        }
+
+        piecePositionHashMap.remove(piece);
+        piece.setIndex(piece.getIndex() + roll);
+
+        if (isOccupied(p)) {
+            knockout(p);
+        }
+
+        piecePositionHashMap.put(piece,p);
+    }
+
+    Piece pieceAtposition(Position pos) {
+        for (Piece piece : piecePositionHashMap.keySet()) {
+            if (piecePositionHashMap.get(piece) == pos) {
+                return piece;
+            }
+        }
+        throw new Resources.NotFoundException();
+        // kommer aldrig att hända om isOccupied anropas innan
+    }
+
+    boolean isOccupied(Position pos) {
+        for (Position p: piecePositionHashMap.values()) {
+            if (p.equals(pos)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void knockout(Position p) {
+        Piece piece = pieceAtposition(p);
+        piecePositionHashMap.remove(piece);
+        piece.setIndex(0);
+        piecePositionHashMap.put(piece,homePos);  // homePos = "0"
+
+    }
+
+
 }
