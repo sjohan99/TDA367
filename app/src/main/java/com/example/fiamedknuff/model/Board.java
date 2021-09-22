@@ -48,6 +48,16 @@ public class Board {
         return piecePositionHashMap;
     }
 
+    Piece pieceAtposition(Position pos) {
+        for (Piece piece : piecePositionHashMap.keySet()) {
+            if (piecePositionHashMap.get(piece) == pos) {
+                return piece;
+            }
+        }
+        throw new Exception(Resources.NotFoundException);
+        // throw Exception NotFound??; // kommer aldrig att hända om isOccupied anropas innan
+    }
+
     boolean isOccupied(Position pos) {
         for (Position p: piecePositionHashMap.values()) {
             if (p.equals(pos)) {
