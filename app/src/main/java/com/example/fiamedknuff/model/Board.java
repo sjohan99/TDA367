@@ -48,6 +48,9 @@ public class Board {
         return piecePositionHashMap;
     }
 
+    //Bara preliminärt för att få koden att kompilera, används i metoden knockout nedan
+    Position homePos = new Position(0);
+
     Piece pieceAtposition(Position pos) {
         for (Piece piece : piecePositionHashMap.keySet()) {
             if (piecePositionHashMap.get(piece) == pos) {
