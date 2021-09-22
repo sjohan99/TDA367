@@ -21,4 +21,8 @@ public class Piece {
     public void setIndex(int index) {
         this.index = index;
     }
+
+    boolean isHome () {
+        return index == 0;
+    }
 }
