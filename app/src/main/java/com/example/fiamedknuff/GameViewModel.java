@@ -1,6 +1,8 @@
 package com.example.fiamedknuff;
 
+import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.model.Game;
+import com.example.fiamedknuff.model.GameFactory;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Player;
 
@@ -22,7 +24,7 @@ public class GameViewModel {
     Collection<Piece> movablePieces;
     Piece selectedPiece;
     String[] playerNames;
-    Piece.Color[] colors;
+    Color[] colors;
 
     private void init() {
 
