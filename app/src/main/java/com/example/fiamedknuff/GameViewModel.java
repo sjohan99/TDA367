@@ -24,7 +24,7 @@ public class GameViewModel {
     Collection<Piece> movablePieces;
     Piece selectedPiece;
 
-    private void init(String[] playerNames, Color[] colors) {
+    private void init(String[] playerNames, Color[] colors) throws NotImplementedException {
         // TODO game skall skapas av gamefactory, skickar med input från annan controllerklass (den
         //  som jobbar med spelinput inför ett spel)
         game = GameFactory.createNewGame(playerNames, colors);
