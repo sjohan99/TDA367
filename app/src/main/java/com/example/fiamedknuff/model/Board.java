@@ -67,5 +67,13 @@ public class Board {
         return false;
     }
 
+    void knockout(Position p) {
+        Piece piece = pieceAtposition(p);
+        piecePositionHashMap.remove(piece);
+        piece.setIndex(0);
+        piecePositionHashMap.put(piece,homePos);  // homePos = "0"
+
+    }
+
 
 }
