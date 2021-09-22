@@ -1,5 +1,6 @@
-package com.example.fiamedknuff;
+package com.example.fiamedknuff.ViewModels;
 
+import com.example.fiamedknuff.NotImplementedException;
 import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.model.Game;
 import com.example.fiamedknuff.model.GameFactory;
