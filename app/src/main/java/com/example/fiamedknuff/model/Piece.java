@@ -4,6 +4,7 @@ public class Piece {
 
     private int index;
     private Color color;
+    private int homeNumber;
 
     public Piece(Color color) {
         this.color = color;
@@ -20,5 +21,9 @@ public class Piece {
 
     boolean isHome () {
         return index == 0;
+    }
+
+    public int getHomeNumber() {
+        return homeNumber;
     }
 }
