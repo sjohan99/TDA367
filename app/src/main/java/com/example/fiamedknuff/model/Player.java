@@ -77,13 +77,11 @@ public class Player {
      */
     boolean isMovable (Piece piece, int roll) {
         if (piece.getIndex() == 0) {
-            if (roll == 1 || roll == 6) {
-                return true;
-            }
+            return roll == 1 || roll == 6;
         }
-        int posP = piece.getIndex() + roll;
+        int newIndex = piece.getIndex() + roll;
         for (Piece p : pieces) {
-            if (posP == p.getIndex()) {
+            if (newIndex == p.getIndex()) {
                 return false;
             }
         }
