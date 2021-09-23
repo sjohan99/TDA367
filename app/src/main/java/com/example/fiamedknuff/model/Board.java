@@ -1,5 +1,7 @@
 package com.example.fiamedknuff.model;
 
+import com.example.fiamedknuff.NotImplementedException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
