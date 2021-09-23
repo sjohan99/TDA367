@@ -1,5 +1,6 @@
-package com.example.fiamedknuff;
+package com.example.fiamedknuff.ViewModels;
 
+import com.example.fiamedknuff.NotImplementedException;
 import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.model.Game;
 import com.example.fiamedknuff.model.GameFactory;
@@ -24,7 +25,7 @@ public class GameViewModel {
     Collection<Piece> movablePieces;
     Piece selectedPiece;
 
-    private void init(String[] playerNames, Color[] colors) {
+    private void init(String[] playerNames, Color[] colors) throws NotImplementedException {
         // TODO game skall skapas av gamefactory, skickar med input från annan controllerklass (den
         //  som jobbar med spelinput inför ett spel)
         game = GameFactory.createNewGame(playerNames, colors);
