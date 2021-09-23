@@ -75,7 +75,7 @@ public class Player {
      * @param roll is the value from the latest diceroll
      * @return if the piece is movable or not
      */
-    boolean isMovable (Piece piece, int roll) {
+    public boolean isMovable (Piece piece, int roll) {
         if (piece.getIndex() == 0) {
             return roll == 1 || roll == 6;
         }

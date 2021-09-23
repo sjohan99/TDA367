@@ -6,7 +6,7 @@ import com.example.fiamedknuff.model.*;
 import org.junit.Before;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class PlayerUnitTest {
 
@@ -23,8 +23,13 @@ public class PlayerUnitTest {
     }
 
     @Test
+    public void testIstMovable() {
+        assertTrue(player.isMovable(player.getPieces().get(0), 6));
+    }
+
+    @Test
     public void testIsNotMovable() {
-        //assertFalse(player.isMovable(player.getPieces().get(0), 3));
+        assertFalse(player.isMovable(player.getPieces().get(0), 3));
     }
 
 }
