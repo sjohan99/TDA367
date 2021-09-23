@@ -13,23 +13,34 @@ public class PlayerUnitTest {
     Player player;
     String name;
     Color color;
+    Piece piece;
 
     @Before
     public void createPlayer() {
         name = "TestPerson";
         color = Color.BLUE;
         player = new Player(name, color);
+        piece = player.getPieces().get(0);
 
     }
 
     @Test
-    public void testIstMovable() {
-        assertTrue(player.isMovable(player.getPieces().get(0), 6));
+    public void testIstMovableInHome() {
+        assertTrue(player.isMovable(piece, 6));
     }
 
     @Test
-    public void testIsNotMovable() {
-        assertFalse(player.isMovable(player.getPieces().get(0), 3));
+    public void testIsNotMovableInHome() {
+        assertFalse(player.isMovable(piece, 3));
     }
+
+    @Test
+    public void testIsMovableWhenPieceIsOnBoard() {
+        piece.setIndex(12);
+        for (int i = 1; i < 7; i++) {
+            assertTrue(player.isMovable(piece, i));
+        }
+    }
+
 
 }
