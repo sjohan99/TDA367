@@ -1,4 +1,4 @@
-package com.example.fiamedknuff;
+package com.example.fiamedknuff.model;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -6,10 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import com.example.fiamedknuff.model.Board;
-import com.example.fiamedknuff.model.Color;
-import com.example.fiamedknuff.model.Piece;
-import com.example.fiamedknuff.model.Position;
+import com.example.fiamedknuff.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +17,6 @@ import java.util.List;
 
 public class BoardUnitTest {
 
-    //private static Board board4p;
     Board board4p;
     ArrayList<Piece> pieces;
 

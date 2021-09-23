@@ -1,11 +1,7 @@
-package com.example.fiamedknuff;
+package com.example.fiamedknuff.model;
 
-import com.example.fiamedknuff.model.Color;
-import com.example.fiamedknuff.model.Game;
-import com.example.fiamedknuff.model.GameFactory;
-import com.example.fiamedknuff.model.Player;
+import com.example.fiamedknuff.NotImplementedException;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
