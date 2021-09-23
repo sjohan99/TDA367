@@ -42,5 +42,16 @@ public class PlayerUnitTest {
         }
     }
 
+    @Test
+    public void testIsNotMovableWhenPieceIsOnBoard() {
+        piece.setIndex(12);
+        Piece piece2 = player.getPieces().get(1);
+        for (int i = 1; i < 7; i++) {
+            piece2.setIndex(12+i);
+            assertFalse(player.isMovable(piece, i));
+        }
+
+    }
+
 
 }
