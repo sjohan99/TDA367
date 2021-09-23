@@ -7,6 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import com.example.fiamedknuff.model.Board;
+import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Position;
 
@@ -24,22 +25,27 @@ public class BoardUnitTest {
     ArrayList<Piece> pieces;
 
     @Before
-    public void createBoard() {
+    public void createBoard() throws NotImplementedException {
         int playerCount = 4;
         pieces = new ArrayList<>();
         for (int i = 0; i < playerCount; i++) {
-            pieces.add(new Piece(Piece.Color.RED));
+            pieces.add(new Piece(Color.RED));
         }
         for (int i = 0; i < playerCount; i++) {
-            pieces.add(new Piece(Piece.Color.GREEN));
+            pieces.add(new Piece(Color.GREEN));
         }
         for (int i = 0; i < playerCount; i++) {
-            pieces.add(new Piece(Piece.Color.BLUE));
+            pieces.add(new Piece(Color.BLUE));
         }
         for (int i = 0; i < playerCount; i++) {
-            pieces.add(new Piece(Piece.Color.YELLOW));
+            pieces.add(new Piece(Color.YELLOW));
         }
         board4p = new Board(playerCount, pieces);
+    }
+
+    @Test(expected = NotImplementedException.class)
+    public void boardPlayerAmountNotImplemented() throws NotImplementedException {
+        Board board = new Board(6, new ArrayList<Piece>());
     }
 
     @Test

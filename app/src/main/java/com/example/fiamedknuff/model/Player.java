@@ -2,6 +2,7 @@ package com.example.fiamedknuff.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * A class Player that creates a player
@@ -15,8 +16,8 @@ public class Player {
     // A variable for the players name
     private String name;
 
-    // A collection of the players pieces
-    private final Collection<Piece> pieces;
+    // A list of the players pieces
+    private final List<Piece> pieces;
 
     public Player(String name, Color color) {
         this.name = name;
@@ -46,7 +47,7 @@ public class Player {
      * Gets a list of the players pieces
      * @return a list of pieces
      */
-    public Collection<Piece> getPieces() {
+    public List<Piece> getPieces() {
         return pieces;
     }
 
@@ -57,7 +58,7 @@ public class Player {
      * @return which pieces that are able to move
      */
     Collection<Piece> getMovablePieces(Collection<Piece> pieces, int roll) {
-        Collection<Piece> movablePieces = new ArrayList<Piece>();
+        Collection<Piece> movablePieces = new ArrayList<>();
 
         for (Piece piece : pieces) {
             if (isMovable(piece, roll)) {
@@ -76,13 +77,11 @@ public class Player {
      */
     boolean isMovable (Piece piece, int roll) {
         if (piece.getIndex() == 0) {
-            if (roll == 1 || roll == 6) {
-                return true;
-            }
+            return roll == 1 || roll == 6;
         }
-        int posP = piece.getIndex() + roll;
+        int newIndex = piece.getIndex() + roll;
         for (Piece p : pieces) {
-            if (posP == p.getIndex()) {
+            if (newIndex == p.getIndex()) {
                 return false;
             }
         }

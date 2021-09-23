@@ -1,6 +1,9 @@
-package com.example.fiamedknuff;
+package com.example.fiamedknuff.ViewModels;
 
+import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.model.Game;
+import com.example.fiamedknuff.model.GameFactory;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Player;
 
@@ -21,17 +24,14 @@ public class GameViewModel {
     int diceValue;
     Collection<Piece> movablePieces;
     Piece selectedPiece;
-    String[] playerNames;
-    Piece.Color[] colors;
 
-    private void init() {
-
+    private void init(String[] playerNames, Color[] colors) throws NotImplementedException {
         // TODO game skall skapas av gamefactory, skickar med input från annan controllerklass (den
         //  som jobbar med spelinput inför ett spel)
         game = GameFactory.createNewGame(playerNames, colors);
-
     }
 
+    /*
     public void play() {
         while(game.getCurrentPlayerIndex() != -1) {
             // For a new round...
@@ -56,5 +56,6 @@ public class GameViewModel {
             game.selectNextPlayer();
         }
     }
+     */
 
 }
