@@ -24,6 +24,8 @@ public class GameViewModel {
     int diceValue;
     Collection<Piece> movablePieces;
     Piece selectedPiece;
+    String[] playerNames;
+    Color[] colors;
 
     private void init(String[] playerNames, Color[] colors) throws NotImplementedException {
         // TODO game skall skapas av gamefactory, skickar med input från annan controllerklass (den
@@ -31,7 +33,6 @@ public class GameViewModel {
         game = GameFactory.createNewGame(playerNames, colors);
     }
 
-    /*
     public void play() {
         while(game.getCurrentPlayerIndex() != -1) {
             // For a new round...
@@ -56,6 +57,5 @@ public class GameViewModel {
             game.selectNextPlayer();
         }
     }
-     */
 
 }
