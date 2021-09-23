@@ -39,12 +39,12 @@ public class GameViewModel {
             currentPlayer = game.getCurrentPlayer();
             // TODO move dice to current player
             // TODO maybe not a while-loop, but we need to wait for player input to roll dice
-            while() {
+            // while() {
                 diceValue = game.rollDice();
-            }
+            // }
             movablePieces = game.getMovablePieces(currentPlayer, diceValue);
             // TODO show result of rolled dice
-            while () {
+            // while () {
                 // TODO Wait for player input, and update variable selectedPiece
                 // Check if selected piece is movable
                 if (movablePieces.contains(selectedPiece)) {
@@ -53,7 +53,7 @@ public class GameViewModel {
                 } else {
                     // TODO give feedback that it is not movable
                 }
-            }
+            // }
             game.selectNextPlayer();
         }
     }

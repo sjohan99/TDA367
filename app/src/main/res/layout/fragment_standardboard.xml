@@ -20,8 +20,8 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingLeft="260dp"
+        android:paddingRight="260dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:weightSum="11">
@@ -30,70 +30,70 @@
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardPos"
+            android:src="@drawable/ic_standardpos"
             android:layout_weight="1"/>
 
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardPos"
+            android:src="@drawable/ic_standardpos"
             android:layout_weight="1"/>
 
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardPos"
+            android:src="@drawable/ic_standardpos"
             android:layout_weight="1"/>
 
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardPos"
+            android:src="@drawable/ic_standardpos"
             android:layout_weight="1"/>
 
         <ImageView
             android:id="@+id/imageView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardPos"
+            android:src="@drawable/ic_standardpos"
             android:layout_weight="1"/>
 
         <ImageView
             android:id="@+id/imageView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardPos"
+            android:src="@drawable/ic_standardpos"
             android:layout_weight="1"/>
 
         <ImageView
             android:id="@+id/imageView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardPos"
+            android:src="@drawable/ic_standardpos"
             android:layout_weight="1"/>
 
         <ImageView
             android:id="@+id/imageView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardPos"
+            android:src="@drawable/ic_standardpos"
             android:layout_weight="1"/>
 
         <ImageView
             android:id="@+id/imageView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardPos"
+            android:src="@drawable/ic_standardpos"
             android:layout_weight="1"/>
 
         <ImageView
             android:id="@+id/imageView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardPos"
+            android:src="@drawable/ic_standardpos"
             android:layout_weight="1"/>
 
     </LinearLayout>
