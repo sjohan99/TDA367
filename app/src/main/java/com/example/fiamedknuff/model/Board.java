@@ -84,7 +84,7 @@ public class Board {
                 return piece;
             }
         }
-
+        throw new Exception(); // -> skriv in rätt Exception här?
     }
 
     boolean isOccupied(Position pos) {
@@ -97,17 +97,17 @@ public class Board {
     }
 
 
-    int indexOfHomeNumber(Piece piece) {
+    int indexOfHomeNumber(Piece piece) throws Exception {
         for (Position p : positions) {
             if (p.equals(piece.getHomeNumber())) {
                 return positions.indexOf(p);
             }
         }
-        // -> skriv in rätt Exception här.
+        throw new Exception(); // -> skriv in rätt Exception här?
     }
 
     void knockout(Position p) throws Exception {
-        Piece piece = pieceAtposition(p);
+        Piece piece = pieceAtPosition(p);
         piecePositionHashMap.remove(piece);
         piece.setIndex(0);
         piecePositionHashMap.put(piece, positions.get(indexOfHomeNumber(piece)));
