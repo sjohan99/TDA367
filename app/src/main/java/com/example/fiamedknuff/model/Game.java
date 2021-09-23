@@ -52,8 +52,7 @@ public class Game {
     }
 
     public Collection<Piece> getMovablePieces(Player player, int rolledValue) {
-        //return board.getMovablePieces(player.getPieces(), rolledValue);
-        return null;
+        return player.getMovablePieces(player.getPieces(), rolledValue);
     }
 
     public int rollDice() {
