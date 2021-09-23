@@ -57,7 +57,7 @@ public class Player {
      * @param roll is the value from the latest diceroll
      * @return which pieces that are able to move
      */
-    Collection<Piece> getMovablePieces(Collection<Piece> pieces, int roll) {
+    public Collection<Piece> getMovablePieces(Collection<Piece> pieces, int roll) {
         Collection<Piece> movablePieces = new ArrayList<>();
 
         for (Piece piece : pieces) {
