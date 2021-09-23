@@ -8,9 +8,9 @@ import java.util.List;
 
 public class Board {
 
-    private List<Position> positions;
-    private HashMap<Piece, Position> piecePositionHashMap;
-    private final int[] numberOfPositions = {0, 0, 0, 57, 0, 0, 0};
+    private List<Position> positions; // List of all positions on the board including home-positions
+    private HashMap<Piece, Position> piecePositionHashMap; // Maps the pieces to their positions
+    private final int[] numberOfPositions = {0, 0, 0, 57, 0, 0, 0}; // Number of positions for each board size
 
     public Board(int playerCount, List<Piece> pieces) throws NotImplementedException {
         if (playerCount == 4) {
@@ -22,6 +22,13 @@ public class Board {
         }
     }
 
+    /**
+     * Generates the position list with Position-indices ranging from (-4 * playerCount) to (the amount of
+     * positions on the board excluding home-positions - 1). playerCount = 4 would give Positions with
+     * indices -16 to 56.
+     * @param playerCount number of players playing.
+     * @return list with Positions with indices (-4 * playerCount) to (numberOfPositions - 1).
+     */
     private ArrayList<Position> createPositionsList(int playerCount) {
         int negativeIndices = playerCount * -4;
         int positiveIndices = numberOfPositions[playerCount - 1];
