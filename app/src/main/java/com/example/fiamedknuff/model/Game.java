@@ -1,5 +1,7 @@
 package com.example.fiamedknuff.model;
 
+import com.example.fiamedknuff.NotImplementedException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -12,9 +14,9 @@ public class Game {
     private Dice dice;
     private List<Player> finishedPlayers = new ArrayList<>();
 
-    public Game(List<Player> players) {
+    public Game(List<Player> players) throws NotImplementedException {
+        activePlayers = players;
         board = new Board(players.size(), getAllPlayerPieces());
-        this.activePlayers = players;
         dice = new Dice();
     }
   
