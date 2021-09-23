@@ -8,6 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * A class leaderboardFragment that ...
+ *
+ * Created by
+ * @author Emma Stålberg
+ */
+
 public class leaderboardFragment extends Fragment {
 
     @Override

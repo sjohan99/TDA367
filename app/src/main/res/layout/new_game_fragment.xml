@@ -20,8 +20,8 @@
 
     <ImageView
         android:id="@+id/new_game_holder"
-        android:layout_width="500"
-        android:layout_height="500"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
 
     <ImageView
         android:id="@+id/new_game_title"
-        android:layout_width="200"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/new_game_title"
         tools:layout_editor_absoluteX="380dp"
