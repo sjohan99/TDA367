@@ -8,6 +8,10 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 public class PlayerUnitTest {
 
     Player player;
@@ -51,6 +55,25 @@ public class PlayerUnitTest {
             assertFalse(player.isMovable(piece, i));
         }
 
+    }
+
+    @Test
+    public void testGetMovablePiecesTwoPieces() {
+        List<Piece> pieces = player.getPieces();
+        pieces.get(0).setIndex(1);
+        pieces.get(1).setIndex(11);
+        for (int i = 2; i < 6; i++) {
+            assertEquals(2, player.getMovablePieces(pieces, i).size());
+        }
+    }
+
+    @Test
+    public void testGetMovablePiecesAllPieces() {
+        List<Piece> pieces = player.getPieces();
+        pieces.get(0).setIndex(1);
+        pieces.get(1).setIndex(11);
+        assertEquals(4, player.getMovablePieces(pieces, 1).size());
+        assertEquals(4, player.getMovablePieces(pieces, 6).size());
     }
 
 
