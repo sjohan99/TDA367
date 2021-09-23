@@ -94,12 +94,20 @@ public class Board {
         return false;
     }
 
+    int indexOfHomeNumber(Piece piece) {
+        for (Position p : positions) {
+            if (p.equals(piece.getHomeNumber())) {
+                return positions.indexOf(p);
+            }
+        }
+        // -> skriv in rätt Exception här.
+    }
+
     void knockout(Position p) {
         Piece piece = pieceAtposition(p);
         piecePositionHashMap.remove(piece);
         piece.setIndex(0);
-        piecePositionHashMap.put(piece,homePos);  // homePos = "0"
-
+        piecePositionHashMap.put(piece, positions.get(indexOfHomeNumber(piece)));
     }
 
 
