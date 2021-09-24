@@ -19,12 +19,17 @@ public class Player {
     // A list of the players pieces
     private final List<Piece> pieces;
 
+    // An object CPU that a computer player can access
+    private CPU cpu;
+
     public Player(String name, Color color) {
         this.name = name;
         pieces = new ArrayList<>(4);
         for (int i = 0; i < 4; i++) {
             pieces.add(new Piece(color));
         }
+        // check if computer player
+        // then make a CPU object
     }
 
     /**
