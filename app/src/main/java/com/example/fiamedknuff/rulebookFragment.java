@@ -1,5 +1,7 @@
 package com.example.fiamedknuff;
 
+import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 
 import java.util.List;
@@ -18,5 +20,10 @@ public class rulebookFragment extends Fragment {
 
     // A PageCurlView that creates a page curl effect when turning pages
     //PageCurlView pageCurlView;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
 }
