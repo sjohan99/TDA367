@@ -8,11 +8,8 @@ package com.example.fiamedknuff.model;
  */
 public class CPU {
 
-    // A variable for the player object connected to the CPU
-    private final Player player;
-
-    public CPU(Player player) {
-        this.player = player;
+    
+    public CPU() {
     }
 
 }
