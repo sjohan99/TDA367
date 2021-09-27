@@ -315,7 +315,7 @@
                     android:id="@+id/imageView33"
                     android:layout_width="44dp"
                     android:layout_height="44dp"
-                    android:src="@drawable/ic_standardpos" />
+                    android:src="@drawable/ic_goalpos" />
 
                 <ImageView
                     android:id="@+id/imageView34"
