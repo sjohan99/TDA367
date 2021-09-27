@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * A class rulebookFragment that handles the GUI for the rule book
@@ -36,20 +37,42 @@ public class rulebookFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_rule_book, container, false);
 
+        setPageCurlView(view);
+
+        return view;
+    }
+
+    private void setPageCurlView(View view) {
         // Sets up the PageCurlView
         //pageCurlView = (PageCurlView) view.findViewById(R.id.pagecurlView);
 
         // Initialize an list with images to display in the rule book
         images = new ArrayList<>();
-        images.add(R.drawable.pages); // First Image
-        images.add(R.drawable.pages); // Second Image
-        images.add(R.drawable.pages); // Third Image
+
+        // Set up rules depending on language
+        if (Locale.getDefault().getLanguage().equals("sv")) {
+            languageSwedish();
+        }
+        else {
+            languageEnglish();
+        }
 
         // Adds the images to the PageCurlView and sets the speed of the page curl
         //pageCurlView.setCurlView(images);
         //pageCurlView.setCurlSpeed(600); // Set the speed in ms
+    }
 
-        return view;
+    private void languageSwedish() {
+        images.add(R.drawable.rules_first_pages_sv);
+        images.add(R.drawable.rules_second_pages_sv);
+        images.add(R.drawable.rules_third_pages_sv);
+    }
+
+    // Rules in english not yet implemented
+    private void languageEnglish() {
+        images.add(R.drawable.pages);
+        images.add(R.drawable.pages);
+        images.add(R.drawable.pages);
     }
 
 }
