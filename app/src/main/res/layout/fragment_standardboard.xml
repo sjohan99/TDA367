@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="@dimensStandardboard/sbWidth"
-            android:layout_height="@dimensStandardboard/sbHeight"
+            android:layout_height="500dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
@@ -31,6 +31,10 @@
             app:layout_constraintEnd_toEndOf="@+id/imageView2"
             app:layout_constraintStart_toStartOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/imageView2">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
             <TableRow
                 android:layout_width="match_parent"
@@ -258,7 +262,169 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="44dp"
+                    android:layout_height="44dp" />
+
+                <Space
+                    android:layout_width="44dp"
+                    android:layout_height="44dp" />
+
+                <Space
+                    android:layout_width="44dp"
+                    android:layout_height="44dp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/imageView37"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/imageView38"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/imageView39"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_standardpos" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="44dp"
+                    android:layout_height="44dp" />
+
+                <Space
+                    android:layout_width="44dp"
+                    android:layout_height="44dp" />
+
+                <Space
+                    android:layout_width="44dp"
+                    android:layout_height="44dp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/imageView40"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/imageView41"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/imageView42"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_standardpos" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="44dp"
+                    android:layout_height="44dp" />
+
+                <Space
+                    android:layout_width="44dp"
+                    android:layout_height="44dp" />
+
+                <Space
+                    android:layout_width="44dp"
+                    android:layout_height="44dp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/imageView43"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/imageView44"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/imageView45"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_standardpos" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="44dp"
+                    android:layout_height="44dp" />
+
+                <Space
+                    android:layout_width="44dp"
+                    android:layout_height="44dp" />
+
+                <Space
+                    android:layout_width="44dp"
+                    android:layout_height="44dp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/imageView46"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/imageView47"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/imageView48"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_standardpos" />
+
+            </TableRow>
+
         </TableLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
