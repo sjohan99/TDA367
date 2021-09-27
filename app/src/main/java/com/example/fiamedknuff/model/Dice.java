@@ -10,8 +10,8 @@ import java.util.Random;
  */
 
 public class Dice {
-    int valueMax;
-    Random rand = new Random();
+    private int valueMax;
+    private Random rand = new Random();
 
     public Dice(int valueMax) {
         this.valueMax = valueMax;
