@@ -387,7 +387,7 @@
                     android:id="@+id/imageView24"
                     android:layout_width="44dp"
                     android:layout_height="44dp"
-                    android:src="@drawable/ic_standardpos" />
+                    android:src="@drawable/ic_bluepos" />
 
                 <ImageView
                     android:id="@+id/imageView23"
@@ -452,7 +452,7 @@
                     android:id="@+id/imageView38"
                     android:layout_width="44dp"
                     android:layout_height="44dp"
-                    android:src="@drawable/ic_standardpos" />
+                    android:src="@drawable/ic_bluepos" />
 
                 <ImageView
                     android:id="@+id/imageView39"
@@ -494,7 +494,7 @@
                     android:id="@+id/imageView41"
                     android:layout_width="44dp"
                     android:layout_height="44dp"
-                    android:src="@drawable/ic_standardpos" />
+                    android:src="@drawable/ic_bluepos" />
 
                 <ImageView
                     android:id="@+id/imageView42"
@@ -535,7 +535,7 @@
                     android:id="@+id/imageView44"
                     android:layout_width="44dp"
                     android:layout_height="44dp"
-                    android:src="@drawable/ic_standardpos" />
+                    android:src="@drawable/ic_bluepos" />
 
                 <ImageView
                     android:id="@+id/imageView45"
@@ -570,7 +570,7 @@
                     android:id="@+id/imageView46"
                     android:layout_width="44dp"
                     android:layout_height="44dp"
-                    android:src="@drawable/ic_standardpos" />
+                    android:src="@drawable/ic_bluepos" />
 
                 <ImageView
                     android:id="@+id/imageView47"
