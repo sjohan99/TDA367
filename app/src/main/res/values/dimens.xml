@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="sbWidth">500dp</dimen>
-    <dimen name="sbHeight">500dp</dimen>
+
 </resources>
