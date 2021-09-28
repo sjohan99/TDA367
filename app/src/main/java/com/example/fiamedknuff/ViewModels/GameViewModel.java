@@ -56,6 +56,7 @@ public class GameViewModel {
             // }
 
             // if you rolled a six, it´s your turn again
+            // TODO if a player made a six and finished, it should be the next players turn...
             if (diceValue != 6) {
                 game.selectNextPlayer();
             }
