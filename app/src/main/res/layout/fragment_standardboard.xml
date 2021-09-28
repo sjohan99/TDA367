@@ -445,19 +445,19 @@
                     android:layout_height="wrap_content" />
 
                 <ImageView
-                    android:id="@+id/imageView37"
+                    android:id="@+id/pos3"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView38"
+                    android:id="@+id/pos42"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_bluepos" />
 
                 <ImageView
-                    android:id="@+id/imageView39"
+                    android:id="@+id/pos35"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
@@ -487,19 +487,19 @@
                     android:layout_height="wrap_content" />
 
                 <ImageView
-                    android:id="@+id/imageView40"
+                    android:id="@+id/pos2"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView41"
+                    android:id="@+id/pos41"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_bluepos" />
 
                 <ImageView
-                    android:id="@+id/imageView42"
+                    android:id="@+id/pos36"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
@@ -528,19 +528,19 @@
                     android:layout_height="wrap_content" />
 
                 <ImageView
-                    android:id="@+id/imageView43"
+                    android:id="@+id/pos1"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView44"
+                    android:id="@+id/pos40"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_bluepos" />
 
                 <ImageView
-                    android:id="@+id/imageView45"
+                    android:id="@+id/pos37"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
@@ -569,19 +569,19 @@
                     android:layout_height="wrap_content" />
 
                 <ImageView
-                    android:id="@+id/imageView46"
+                    android:id="@+id/pos0"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_bluepos" />
 
                 <ImageView
-                    android:id="@+id/imageView47"
+                    android:id="@+id/pos39"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView48"
+                    android:id="@+id/pos38"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
