@@ -591,11 +591,12 @@
         </TableLayout>
 
         <TableLayout
-            android:layout_width="229dp"
-            android:layout_height="599dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintEnd_toEndOf="@+id/imageView2"
-            app:layout_constraintStart_toStartOf="@+id/imageView2">
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2">
 
             <TableRow
                 android:layout_width="match_parent"
