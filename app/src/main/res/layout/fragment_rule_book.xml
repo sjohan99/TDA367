@@ -53,14 +53,25 @@
 
 
     <LinearLayout
-        android:layout_width="550dp"
-        android:layout_height="360dp"
+        android:layout_width="600dp"
+        android:layout_height="380dp"
         android:layout_marginTop="15dp"
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="@+id/rule_book_holder"
         app:layout_constraintStart_toStartOf="@+id/rule_book_holder"
         app:layout_constraintTop_toTopOf="@+id/rule_book_holder"
-        tools:context=".MainActivity"/>
+        tools:context=".MainActivity">
+
+        <app.num.numandroidpagecurleffect.PageCurlView
+            android:id="@+id/pagecurlView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/rule_book_holder"
+            app:layout_constraintStart_toStartOf="@+id/rule_book_holder"
+            app:layout_constraintTop_toTopOf="@+id/rule_book_holder" />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
