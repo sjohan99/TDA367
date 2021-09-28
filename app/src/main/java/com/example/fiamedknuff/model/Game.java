@@ -67,7 +67,7 @@ public class Game {
     public void move(Piece piece, int diceValue) {
         // move the piece
         // check for knockout
-        // check if finished piece - hide
+        // check if finished piece - "hide"
         // check if player is finished - call finishedPlayer
     }
 
