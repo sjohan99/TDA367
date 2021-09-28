@@ -4,4 +4,6 @@
     <dimen name="sbHeight">500dp</dimen>
     <dimen name="sbPosWidth">44dp</dimen>
     <dimen name="sbPosHeight">44dp</dimen>
+    <dimen name="sbHomeWidth">90dp</dimen>
+    <dimen name="sbHomeHeight">90dp</dimen>
 </resources>
