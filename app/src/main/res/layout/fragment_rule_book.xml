@@ -20,9 +20,9 @@
 
     <ImageView
         android:id="@+id/rule_book_title"
-        android:layout_width="200dp"
+        android:layout_width="@dimen/rulebookTitle"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/rulebookMarginTop"
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -32,9 +32,9 @@
 
     <ImageView
         android:id="@+id/rule_book_holder"
-        android:layout_width="600dp"
+        android:layout_width="@dimen/rulebookHolder"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/rulebookMarginTop"
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,8 +43,8 @@
 
 
     <LinearLayout
-        android:layout_width="600dp"
-        android:layout_height="380dp"
+        android:layout_width="@dimen/pageCurlViewContainerWidth"
+        android:layout_height="@dimen/pageCurlViewContainerHeight"
         android:layout_marginTop="15dp"
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="@+id/rule_book_holder"
@@ -54,8 +54,8 @@
 
         <app.num.numandroidpagecurleffect.PageCurlView
             android:id="@+id/pagecurlView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/pageCurlViewWidth"
+            android:layout_height="@dimen/pageCurlViewHeight"
             android:layout_gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/rule_book_holder"
             app:layout_constraintStart_toStartOf="@+id/rule_book_holder"
