@@ -66,7 +66,7 @@ public class Game {
 
     private void removeFinishedPiece(Piece piece) {
         board.getPiecePositionHashMap().remove(piece);
-        //player.removePiece(piece);
+        player.removePiece(piece);
     }
 
     private boolean isFinishedPlayer(Player player) {
