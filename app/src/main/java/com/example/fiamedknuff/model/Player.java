@@ -1,5 +1,6 @@
 package com.example.fiamedknuff.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  * @author Amanda Cyrén
  */
 
-public class Player {
+public class Player implements Serializable {
 
     // A variable for the players name
     private String name;
