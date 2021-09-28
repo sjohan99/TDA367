@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import app.num.numandroidpagecurleffect.PageCurlView;
+
 /**
  * A class rulebookFragment that handles the GUI for the rule book
  *
@@ -25,7 +27,7 @@ public class rulebookFragment extends Fragment implements View.OnClickListener {
     List<Integer> images;
 
     // A PageCurlView that creates a page curl effect when turning pages
-    //PageCurlView pageCurlView;
+    PageCurlView pageCurlView;
 
     // An ImageButton for resuming to previous activity/fragment
     ImageButton imageButton;
@@ -73,8 +75,8 @@ public class rulebookFragment extends Fragment implements View.OnClickListener {
         }
 
         // Adds the images to the PageCurlView and sets the speed of the page curl
-        //pageCurlView.setCurlView(images);
-        //pageCurlView.setCurlSpeed(600); // Set the speed in ms
+        pageCurlView.setCurlView(images);
+        pageCurlView.setCurlSpeed(600); // Set the speed in ms
     }
 
     private void languageSwedish() {
