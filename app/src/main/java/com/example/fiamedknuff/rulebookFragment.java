@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 
@@ -23,11 +22,13 @@ import app.num.numandroidpagecurleffect.PageCurlView;
 
 public class rulebookFragment extends Fragment {
 
-    // A list that holds the images to be displayed in the rule book
-    List<Integer> images;
+    View view;
 
     // A PageCurlView that creates a page curl effect when turning pages
     PageCurlView pageCurlView;
+
+    // A list that holds the images to be displayed in the rule book
+    List<Integer> images;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class rulebookFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_rule_book, container, false);
+        view = inflater.inflate(R.layout.fragment_rule_book, container, false);
 
         setPageCurlView(view);
 
@@ -47,7 +48,7 @@ public class rulebookFragment extends Fragment {
 
     private void setPageCurlView(View view) {
         // Sets up the PageCurlView
-        //pageCurlView = (PageCurlView) view.findViewById(R.id.pagecurlView);
+        pageCurlView = view.findViewById(R.id.pagecurlView);
 
         // Initialize an list with images to display in the rule book
         images = new ArrayList<>();
