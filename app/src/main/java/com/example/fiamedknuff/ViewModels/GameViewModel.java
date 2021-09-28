@@ -18,14 +18,14 @@ import java.util.Collection;
 
 public class GameViewModel {
 
-    Game game;
-    int playerCount;
-    Player currentPlayer;
-    int diceValue;
-    Collection<Piece> movablePieces;
-    Piece selectedPiece;
-    String[] playerNames;
-    Color[] colors;
+    private Game game;
+    private int playerCount;
+    private Player currentPlayer;
+    private int diceValue;
+    private Collection<Piece> movablePieces;
+    private Piece selectedPiece;
+    private String[] playerNames;
+    private Color[] colors;
 
     private void init(String[] playerNames, Color[] colors) throws NotImplementedException {
         // TODO game skall skapas av gamefactory, skickar med input från annan controllerklass (den
