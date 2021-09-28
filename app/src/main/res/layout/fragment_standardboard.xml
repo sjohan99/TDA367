@@ -39,16 +39,16 @@
                 android:orientation="vertical">
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -56,20 +56,20 @@
 
                 <ImageView
                     android:id="@+id/imageView49"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView50"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView51"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_redpos" />
 
             </TableRow>
@@ -81,16 +81,16 @@
                 android:orientation="vertical">
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -98,20 +98,20 @@
 
                 <ImageView
                     android:id="@+id/imageView52"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView53"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_redpos" />
 
                 <ImageView
                     android:id="@+id/imageView54"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
             </TableRow>
@@ -122,16 +122,16 @@
                 android:orientation="vertical">
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -139,20 +139,20 @@
 
                 <ImageView
                     android:id="@+id/imageView55"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView56"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_redpos" />
 
                 <ImageView
                     android:id="@+id/imageView57"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
             </TableRow>
@@ -163,16 +163,16 @@
                 android:orientation="vertical">
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -180,20 +180,20 @@
 
                 <ImageView
                     android:id="@+id/imageView58"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView59"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_redpos" />
 
                 <ImageView
                     android:id="@+id/imageView60"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
             </TableRow>
@@ -204,72 +204,72 @@
 
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
                     android:id="@+id/imageView13"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView10"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView29"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView30"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_redpos" />
 
                 <ImageView
                     android:id="@+id/imageView28"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView32"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView20"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView31"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView15"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
             </TableRow>
 
@@ -279,73 +279,73 @@
 
                 <ImageView
                     android:id="@+id/imageView12"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView7"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
                     android:id="@+id/imageView6"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
                     android:id="@+id/imageView11"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
                     android:id="@+id/imageView8"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
                     android:id="@+id/imageView33"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_goalpos" />
 
                 <ImageView
                     android:id="@+id/imageView34"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_greenpos" />
 
                 <ImageView
                     android:id="@+id/imageView21"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_greenpos" />
 
                 <ImageView
                     android:id="@+id/imageView19"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_greenpos" />
 
                 <ImageView
                     android:id="@+id/imageView14"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_greenpos" />
 
                 <ImageView
                     android:id="@+id/imageView9"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_standardpos" />
             </TableRow>
@@ -356,68 +356,68 @@
 
                 <ImageView
                     android:id="@+id/imageView16"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView18"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView27"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView26"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView25"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView24"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_bluepos" />
 
                 <ImageView
                     android:id="@+id/imageView23"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView36"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView22"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView35"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView17"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_greenpos" />
 
             </TableRow>
@@ -428,16 +428,16 @@
                 android:orientation="vertical">
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -445,20 +445,20 @@
 
                 <ImageView
                     android:id="@+id/imageView37"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView38"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_bluepos" />
 
                 <ImageView
                     android:id="@+id/imageView39"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
             </TableRow>
@@ -470,16 +470,16 @@
                 android:orientation="vertical">
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -487,20 +487,20 @@
 
                 <ImageView
                     android:id="@+id/imageView40"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView41"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_bluepos" />
 
                 <ImageView
                     android:id="@+id/imageView42"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
             </TableRow>
@@ -511,16 +511,16 @@
                 android:orientation="vertical">
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -528,20 +528,20 @@
 
                 <ImageView
                     android:id="@+id/imageView43"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView44"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_bluepos" />
 
                 <ImageView
                     android:id="@+id/imageView45"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
             </TableRow>
@@ -552,16 +552,16 @@
                 android:orientation="vertical">
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
-                    android:layout_width="44dp"
-                    android:layout_height="44dp" />
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -569,20 +569,20 @@
 
                 <ImageView
                     android:id="@+id/imageView46"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_bluepos" />
 
                 <ImageView
                     android:id="@+id/imageView47"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/imageView48"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
             </TableRow>
