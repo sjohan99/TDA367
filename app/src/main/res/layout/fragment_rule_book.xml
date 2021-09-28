@@ -18,16 +18,6 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/background" />
 
-    <ImageButton
-        android:id="@+id/arrow_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="#0000"
-        android:src="@drawable/arrow_back"
-        app:layout_constraintStart_toStartOf="@+id/rule_book_holder"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/rule_book_title"
         android:layout_width="200dp"

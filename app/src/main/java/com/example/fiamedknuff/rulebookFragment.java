@@ -21,16 +21,13 @@ import app.num.numandroidpagecurleffect.PageCurlView;
  * @author Amanda Cyrén
  */
 
-public class rulebookFragment extends Fragment implements View.OnClickListener {
+public class rulebookFragment extends Fragment {
 
     // A list that holds the images to be displayed in the rule book
     List<Integer> images;
 
     // A PageCurlView that creates a page curl effect when turning pages
     PageCurlView pageCurlView;
-
-    // An ImageButton for resuming to previous activity/fragment
-    ImageButton imageButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,20 +40,9 @@ public class rulebookFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_rule_book, container, false);
 
-        // Button for resuming to previous activity/fragment
-        imageButton = view.findViewById(R.id.arrow_back);
-        imageButton.setOnClickListener(this);
-
         setPageCurlView(view);
 
         return view;
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (view.getId()==R.id.arrow_back) {
-            // Return to previous activity/fragment
-        }
     }
 
     private void setPageCurlView(View view) {
