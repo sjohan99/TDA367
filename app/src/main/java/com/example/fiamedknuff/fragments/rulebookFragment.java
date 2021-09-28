@@ -54,7 +54,6 @@ public class rulebookFragment extends Fragment {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private void setPageCurlView(View view) {
-        // Sets up the PageCurlView
         pageCurlView = view.findViewById(R.id.pagecurlView);
 
         rulebookTitle = view.findViewById(R.id.rule_book_title);
@@ -62,7 +61,7 @@ public class rulebookFragment extends Fragment {
         // Initialize an list with images to display in the rule book
         images = new ArrayList<>();
 
-        // Set up rules depending on language
+        // Set up rules and title depending on language
         if (Locale.getDefault().getLanguage().equals("sv")) {
             languageSwedish();
             rulebookTitle.setImageDrawable(getResources().getDrawable(R.drawable.rule_book_title_sv));
