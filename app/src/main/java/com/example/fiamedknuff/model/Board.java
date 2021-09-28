@@ -67,7 +67,6 @@ public class Board implements Serializable {
      */
 
     void movePiece(int roll, Piece piece) throws Exception {
-
         Position p;
         if (piece.isHome()) {
             p = new Position(10 + roll);    //ytterst preliminärt
@@ -82,10 +81,8 @@ public class Board implements Serializable {
         if (isOccupied(p)) {
             knockout(p);
         }
-
         piecePositionHashMap.put(piece,p);
     }
-
 
     Piece pieceAtPosition(Position pos) throws Exception {
 
@@ -123,6 +120,4 @@ public class Board implements Serializable {
         piecePositionHashMap.put(piece, positions.get(indexOfHomeNumber(piece)));
 
     }
-
-
 }

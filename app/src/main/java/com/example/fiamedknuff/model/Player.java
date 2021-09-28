@@ -88,4 +88,12 @@ public class Player implements Serializable {
         }
         return true;
     }
+
+    /**
+     * Removes a specific piece from the players list of pieces
+     * @param piece specifies which piece to remove
+     */
+    void removePiece(Piece piece) {
+        pieces.remove(piece);
+    }
 }
