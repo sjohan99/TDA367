@@ -609,14 +609,24 @@
                     android:src="@drawable/ic_yellowhome" />
 
                 <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="@dimen/sbHomeSpace"
+                    android:layout_height="@dimen/sbHomeSpace" />
 
                 <ImageView
                     android:id="@+id/imageView61"
                     android:layout_width="@dimen/sbHomeWidth"
                     android:layout_height="@dimen/sbHomeHeight"
                     android:src="@drawable/ic_redhome" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <Space
+                    android:layout_width="@dimen/sbHomeSpace"
+                    android:layout_height="@dimen/sbHomeSpace" />
             </TableRow>
 
             <TableRow
@@ -630,8 +640,8 @@
                     android:src="@drawable/ic_bluehome" />
 
                 <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="@dimen/sbHomeSpace"
+                    android:layout_height="@dimen/sbHomeSpace" />
 
                 <ImageView
                     android:id="@+id/imageView64"
