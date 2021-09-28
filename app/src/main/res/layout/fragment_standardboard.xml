@@ -204,71 +204,71 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/pos10"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
-                    android:id="@+id/imageView13"
+                    android:id="@+id/pos11"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView10"
+                    android:id="@+id/pos12"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView5"
+                    android:id="@+id/pos13"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView29"
+                    android:id="@+id/pos14"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView30"
+                    android:id="@+id/pos51"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_redpos" />
 
                 <ImageView
-                    android:id="@+id/imageView28"
+                    android:id="@+id/pos24"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView32"
+                    android:id="@+id/pos25"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView20"
+                    android:id="@+id/pos26"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView31"
+                    android:id="@+id/pos27"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView15"
+                    android:id="@+id/pos28"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
@@ -279,72 +279,72 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView12"
+                    android:id="@+id/pos9"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView7"
+                    android:id="@+id/pos44"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
-                    android:id="@+id/imageView6"
+                    android:id="@+id/pos45"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
-                    android:id="@+id/imageView11"
+                    android:id="@+id/pos46"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
-                    android:id="@+id/imageView8"
+                    android:id="@+id/pos47"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
-                    android:id="@+id/imageView33"
+                    android:id="@+id/pos56"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_goalpos" />
 
                 <ImageView
-                    android:id="@+id/imageView34"
+                    android:id="@+id/pos55"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_greenpos" />
 
                 <ImageView
-                    android:id="@+id/imageView21"
+                    android:id="@+id/pos54"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_greenpos" />
 
                 <ImageView
-                    android:id="@+id/imageView19"
+                    android:id="@+id/pos53"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_greenpos" />
 
                 <ImageView
-                    android:id="@+id/imageView14"
+                    android:id="@+id/pos52"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_greenpos" />
 
                 <ImageView
-                    android:id="@+id/imageView9"
+                    android:id="@+id/pos29"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:layout_weight="1"
@@ -356,67 +356,67 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView16"
+                    android:id="@+id/pos8"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView18"
+                    android:id="@+id/pos7"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView27"
+                    android:id="@+id/pos6"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView26"
+                    android:id="@+id/pos5"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView25"
+                    android:id="@+id/pos4"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView24"
+                    android:id="@+id/pos43"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_bluepos" />
 
                 <ImageView
-                    android:id="@+id/imageView23"
+                    android:id="@+id/pos34"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView36"
+                    android:id="@+id/pos33"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView22"
+                    android:id="@+id/pos32"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView35"
+                    android:id="@+id/pos31"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
-                    android:id="@+id/imageView17"
+                    android:id="@+id/pos30"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
                     android:src="@drawable/ic_greenpos" />
