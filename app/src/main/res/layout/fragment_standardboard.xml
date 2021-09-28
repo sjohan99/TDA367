@@ -603,14 +603,14 @@
 
                 <ImageView
                     android:id="@+id/imageView63"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/sbHomeWidth"
+                    android:layout_height="@dimen/sbHomeHeight"
                     android:src="@drawable/ic_yellowhome" />
 
                 <ImageView
                     android:id="@+id/imageView61"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/sbHomeWidth"
+                    android:layout_height="@dimen/sbHomeHeight"
                     android:src="@drawable/ic_redhome" />
             </TableRow>
 
@@ -620,14 +620,14 @@
 
                 <ImageView
                     android:id="@+id/imageView62"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/sbHomeWidth"
+                    android:layout_height="@dimen/sbHomeHeight"
                     android:src="@drawable/ic_bluehome" />
 
                 <ImageView
                     android:id="@+id/imageView64"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/sbHomeWidth"
+                    android:layout_height="@dimen/sbHomeHeight"
                     android:src="@drawable/ic_greenhome" />
             </TableRow>
 
