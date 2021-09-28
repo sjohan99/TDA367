@@ -56,9 +56,6 @@ public class Board {
         return piecePositionHashMap;
     }
 
-    //Bara preliminärt för att få koden att kompilera, används i metoden knockout nedan
-    Position homePos = new Position(0);
-
     /**
      * Moves Piece forward with the amount of the dice roll
      * @param roll is the value from the latest dice roll
