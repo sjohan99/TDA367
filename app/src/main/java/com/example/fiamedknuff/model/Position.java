@@ -9,7 +9,7 @@ package com.example.fiamedknuff.model;
 
 public class Position {
 
-    int pos;
+    private int pos;
 
     public Position(int x) {
         pos = x;
