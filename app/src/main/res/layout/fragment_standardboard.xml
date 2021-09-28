@@ -608,6 +608,10 @@
                     android:layout_height="@dimen/sbHomeHeight"
                     android:src="@drawable/ic_yellowhome" />
 
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
                 <ImageView
                     android:id="@+id/imageView61"
                     android:layout_width="@dimen/sbHomeWidth"
@@ -624,6 +628,10 @@
                     android:layout_width="@dimen/sbHomeWidth"
                     android:layout_height="@dimen/sbHomeHeight"
                     android:src="@drawable/ic_bluehome" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <ImageView
                     android:id="@+id/imageView64"
