@@ -610,7 +610,7 @@
 
                 <Space
                     android:layout_width="@dimen/sbHomeSpace"
-                    android:layout_height="@dimen/sbHomeSpace" />
+                    android:layout_height="@dimen/sbHomeHeight" />
 
                 <ImageView
                     android:id="@+id/imageView61"
@@ -625,7 +625,7 @@
                 android:layout_height="match_parent" >
 
                 <Space
-                    android:layout_width="@dimen/sbHomeSpace"
+                    android:layout_width="@dimen/sbHomeWidth"
                     android:layout_height="@dimen/sbHomeSpace" />
             </TableRow>
 
@@ -641,7 +641,7 @@
 
                 <Space
                     android:layout_width="@dimen/sbHomeSpace"
-                    android:layout_height="@dimen/sbHomeSpace" />
+                    android:layout_height="@dimen/sbHomeHeight" />
 
                 <ImageView
                     android:id="@+id/imageView64"
