@@ -2,4 +2,6 @@
 <resources>
     <dimen name="sbWidth">500dp</dimen>
     <dimen name="sbHeight">500dp</dimen>
+    <dimen name="sbPosWidth">44dp</dimen>
+    <dimen name="sbPosHeight">44dp</dimen>
 </resources>
