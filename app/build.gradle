@@ -37,5 +37,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     testImplementation("org.assertj:assertj-core:3.11.1")
     implementation 'org.apache.commons:commons-lang3:3.5'
+    implementation 'app.num.numandroidpagecurleffect:numandroidpagecurleffect:1.0'
 
 }
