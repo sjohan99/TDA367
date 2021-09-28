@@ -64,10 +64,27 @@ public class Game {
         finishedPlayers.add(player);
     }
 
-    public void move(Piece piece, int diceValue) {
+    private void removeFinishedPiece(Piece piece) {
+        board.getPiecePositionHashMap().remove(piece);
+        player.removePiece(piece);
+    }
+
+    private boolean isFinishedPlayer(Player player) {
+        return player.getPieces().size() == 0;
+    }
+
+    public void move(int diceValue, Piece piece) throws Exception {
+        board.movePiece(diceValue, piece);
+        if (piece.getIndex() == 45) {
+            removeFinishedPiece(piece);
+        }
+        if (isFinishedPlayer(getCurrentPlayer())) {
+            finishedPlayer(getCurrentPlayer());
+        }
+
         // move the piece
         // check for knockout
-        // check if finished piece - hide
+        // check if finished piece - take away
         // check if player is finished - call finishedPlayer
     }
 
