@@ -54,7 +54,11 @@ public class GameViewModel {
                     // TODO give feedback that it is not movable
                 }
             // }
-            game.selectNextPlayer();
+
+            // if you rolled a six, it´s your turn again
+            if (diceValue != 6) {
+                game.selectNextPlayer();
+            }
         }
     }
 
