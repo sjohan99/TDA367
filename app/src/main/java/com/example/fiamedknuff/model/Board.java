@@ -112,7 +112,7 @@ public class Board {
 
     int indexOfHomeNumber(Piece piece) throws Exception {
         for (Position p : positions) {
-            if (p.equals(piece.getHomeNumber())) {
+            if (p.getPos() == (piece.getHomeNumber())) {
                 return positions.indexOf(p);
             }
         }
