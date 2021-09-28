@@ -64,7 +64,6 @@ public class Board {
      * @param roll is the value from the latest dice roll
      * @param piece is the piece to be moved
      */
-
     void movePiece(int roll, Piece piece) throws Exception {
         Position p;
         if (piece.isHome()) {
@@ -83,6 +82,12 @@ public class Board {
         piecePositionHashMap.put(piece,p);
     }
 
+    /**
+     * Finds out which piece that are standing on a certain position
+     * @param pos is the position to be checked
+     * @return the piece at the incoming position
+     * @throws Exception if the method is called incorrectly
+     */
     Piece pieceAtPosition(Position pos) throws Exception {
 
         for (Piece piece : piecePositionHashMap.keySet()) {
@@ -93,6 +98,11 @@ public class Board {
         throw new Exception(); // -> skriv in rätt Exception här?
     }
 
+    /**
+     * Checks if a position is occupied with another piece
+     * @param pos is the position to be checked
+     * @return true if the position is occupied
+     */
     boolean isOccupied(Position pos) {
         for (Position p: piecePositionHashMap.values()) {
             if (p.equals(pos)) {
@@ -112,6 +122,11 @@ public class Board {
         throw new Exception(); // -> skriv in rätt Exception här?
     }
 
+    /**
+     * Knocks out a piece at a position if another piece is moving to the same position
+     * @param p is the position
+     * @throws Exception if the method is called incorrectly
+     */
     void knockout(Position p) throws Exception {
         Piece piece = pieceAtPosition(p);
         piecePositionHashMap.remove(piece);
