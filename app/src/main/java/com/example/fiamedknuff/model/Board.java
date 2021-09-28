@@ -66,7 +66,6 @@ public class Board {
      */
 
     void movePiece(int roll, Piece piece) throws Exception {
-
         Position p;
         if (piece.isHome()) {
             p = new Position(10 + roll);    //ytterst preliminärt
@@ -81,10 +80,8 @@ public class Board {
         if (isOccupied(p)) {
             knockout(p);
         }
-
         piecePositionHashMap.put(piece,p);
     }
-
 
     Piece pieceAtPosition(Position pos) throws Exception {
 
@@ -122,6 +119,4 @@ public class Board {
         piecePositionHashMap.put(piece, positions.get(indexOfHomeNumber(piece)));
 
     }
-
-
 }
