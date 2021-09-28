@@ -2,6 +2,7 @@ package com.example.fiamedknuff.model;
 
 import com.example.fiamedknuff.NotImplementedException;
 
+import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Before;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
@@ -40,6 +41,14 @@ public class GameUnitTest {
             assertThat(game.getCurrentPlayer()).isEqualTo(players.get(game.getCurrentPlayerIndex()));
             game.selectNextPlayer();
         }
+    }
+
+    @Test
+    public void testSerializing() {
+        game.selectNextPlayer();
+        byte[] data = SerializationUtils.serialize(game);
+        Game g2 = SerializationUtils.deserialize(data);
+        assertThat(g2.getCurrentPlayer().getName()).isEqualTo(game.getCurrentPlayer().getName());
     }
 
 }

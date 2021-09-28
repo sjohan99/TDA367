@@ -2,11 +2,12 @@ package com.example.fiamedknuff.model;
 
 import com.example.fiamedknuff.NotImplementedException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class Game {
+public class Game implements Serializable {
 
     private Board board;
     private List<Player> activePlayers;
