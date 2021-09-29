@@ -2,11 +2,12 @@ package com.example.fiamedknuff.model;
 
 import com.example.fiamedknuff.NotImplementedException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class Game {
+public class Game implements Serializable {
 
     private Board board;
     private List<Player> activePlayers;
@@ -66,7 +67,7 @@ public class Game {
 
     private void removeFinishedPiece(Piece piece) {
         board.getPiecePositionHashMap().remove(piece);
-        player.removePiece(piece);
+        getCurrentPlayer().removePiece(piece);
     }
 
     private boolean isFinishedPlayer(Player player) {

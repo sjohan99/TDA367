@@ -2,11 +2,12 @@ package com.example.fiamedknuff.model;
 
 import com.example.fiamedknuff.NotImplementedException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Board {
+public class Board implements Serializable {
 
     private List<Position> positions; // List of all positions on the board including home-positions
     private HashMap<Piece, Position> piecePositionHashMap; // Maps the pieces to their positions

@@ -1,6 +1,8 @@
 package com.example.fiamedknuff.model;
 
-public class Piece {
+import java.io.Serializable;
+
+public class Piece implements Serializable {
 
     private int index;
     private Color color;
