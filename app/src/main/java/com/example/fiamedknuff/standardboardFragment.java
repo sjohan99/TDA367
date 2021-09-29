@@ -19,8 +19,6 @@ import android.widget.ImageView;
 
 public class standardboardFragment extends Fragment {
     View view;
-    int[] refPosIds;
-    ImageView[] posIds;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,12 +26,7 @@ public class standardboardFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_standardboard, container, false);
 
-        Group group = view.findViewById(R.id.positions);
-        refPosIds = group.getReferencedIds();
 
-        for (int i = 0; i < refPosIds.length; i++) {
-            posIds[i] =view.findViewById(refPosIds[i]);
-        }
 
         return view;
     }
