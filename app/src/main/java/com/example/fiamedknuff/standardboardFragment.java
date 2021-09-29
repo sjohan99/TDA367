@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 /**
  * A class standardboardFragment that ...
@@ -18,6 +19,8 @@ import android.view.ViewGroup;
 
 public class standardboardFragment extends Fragment {
     View view;
+    int[] refPosIds;
+    ImageView[] posIds;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,7 +29,11 @@ public class standardboardFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_standardboard, container, false);
 
         Group group = view.findViewById(R.id.positions);
-        int refIds[] = group.getReferencedIds();
+        refPosIds = group.getReferencedIds();
+
+        for (int i = 0; i < refPosIds.length; i++) {
+            posIds[i] =view.findViewById(refPosIds[i]);
+        }
 
         return view;
     }
