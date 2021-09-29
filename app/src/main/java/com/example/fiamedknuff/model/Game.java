@@ -73,7 +73,7 @@ public class Game implements Serializable {
      * Get the current players movable pieces
      * @return all the players movable pieces in a collection
      */
-    public Collection<Piece> getMovablePieces(Player player, int rolledValue) {
+    public ArrayList<Piece> getMovablePieces(Player player, int rolledValue) {
         return player.getMovablePieces(player.getPieces(), rolledValue);
     }
 
