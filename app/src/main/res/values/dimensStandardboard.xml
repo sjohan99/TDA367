@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sbWidth">500dp</dimen>
+    <dimen name="sbHeight">500dp</dimen>
+    <dimen name="sbPosWidth">44dp</dimen>
+    <dimen name="sbPosHeight">44dp</dimen>
+    <dimen name="sbHomeWidth">130dp</dimen>
+    <dimen name="sbHomeHeight">130dp</dimen>
+    <dimen name="sbHomeSpace">170dp</dimen>
+</resources>
