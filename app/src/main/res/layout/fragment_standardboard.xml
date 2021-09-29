@@ -4,99 +4,656 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.standardboardFragment">
+    tools:context=".standardboardFragment"
+    tools:ignore="ContentDescription">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:layout_marginBottom="@dimen/standardboardVerticalMargin"
-        android:layout_marginTop="@dimen/standardboardVerticalMargin"
-        android:layout_gravity="center"
-        android:src="@drawable/board_background_vec" />
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="260dp"
-        android:paddingRight="260dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:weightSum="11">
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imageView2"
+            android:layout_width="@dimen/sbWidth"
+            android:layout_height="@dimen/sbHeight"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/board_background_vec"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TableLayout
+            android:id="@+id/tableLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardpos"
-            android:layout_weight="1"/>
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2">
 
-        <ImageView
-            android:id="@+id/imageView5"
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/pos18"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos19"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos20"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_redpos" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/pos17"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos48"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_redpos" />
+
+                <ImageView
+                    android:id="@+id/pos21"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/pos16"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos49"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_redpos" />
+
+                <ImageView
+                    android:id="@+id/pos22"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/pos15"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos50"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_redpos" />
+
+                <ImageView
+                    android:id="@+id/pos23"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/pos10"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_yellowpos" />
+
+                <ImageView
+                    android:id="@+id/pos11"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos12"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos13"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos14"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos51"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_redpos" />
+
+                <ImageView
+                    android:id="@+id/pos24"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos25"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos26"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos27"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos28"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/pos9"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos44"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_yellowpos" />
+
+                <ImageView
+                    android:id="@+id/pos45"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_yellowpos" />
+
+                <ImageView
+                    android:id="@+id/pos46"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_yellowpos" />
+
+                <ImageView
+                    android:id="@+id/pos47"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_yellowpos" />
+
+                <ImageView
+                    android:id="@+id/pos56"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_goalpos" />
+
+                <ImageView
+                    android:id="@+id/pos55"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_greenpos" />
+
+                <ImageView
+                    android:id="@+id/pos54"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_greenpos" />
+
+                <ImageView
+                    android:id="@+id/pos53"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_greenpos" />
+
+                <ImageView
+                    android:id="@+id/pos52"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_greenpos" />
+
+                <ImageView
+                    android:id="@+id/pos29"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_standardpos" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/pos8"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos7"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos6"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos5"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos4"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos43"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_bluepos" />
+
+                <ImageView
+                    android:id="@+id/pos34"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos33"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos32"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos31"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos30"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_greenpos" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/pos3"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos42"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_bluepos" />
+
+                <ImageView
+                    android:id="@+id/pos35"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/pos2"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos41"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_bluepos" />
+
+                <ImageView
+                    android:id="@+id/pos36"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/pos1"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos40"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_bluepos" />
+
+                <ImageView
+                    android:id="@+id/pos37"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/pos0"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_bluepos" />
+
+                <ImageView
+                    android:id="@+id/pos39"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+                <ImageView
+                    android:id="@+id/pos38"
+                    android:layout_width="@dimen/sbPosWidth"
+                    android:layout_height="@dimen/sbPosHeight"
+                    android:src="@drawable/ic_standardpos" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardpos"
-            android:layout_weight="1"/>
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2">
 
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardpos"
-            android:layout_weight="1"/>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardpos"
-            android:layout_weight="1"/>
+                <ImageView
+                    android:id="@+id/imageView63"
+                    android:layout_width="@dimen/sbHomeWidth"
+                    android:layout_height="@dimen/sbHomeHeight"
+                    android:src="@drawable/ic_yellowhome" />
 
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardpos"
-            android:layout_weight="1"/>
+                <Space
+                    android:layout_width="@dimen/sbHomeSpace"
+                    android:layout_height="@dimen/sbHomeHeight" />
 
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardpos"
-            android:layout_weight="1"/>
+                <ImageView
+                    android:id="@+id/imageView61"
+                    android:layout_width="@dimen/sbHomeWidth"
+                    android:layout_height="@dimen/sbHomeHeight"
+                    android:src="@drawable/ic_redhome" />
 
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardpos"
-            android:layout_weight="1"/>
+            </TableRow>
 
-        <ImageView
-            android:id="@+id/imageView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardpos"
-            android:layout_weight="1"/>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-        <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardpos"
-            android:layout_weight="1"/>
+                <Space
+                    android:layout_width="@dimen/sbHomeWidth"
+                    android:layout_height="@dimen/sbHomeSpace" />
+            </TableRow>
 
-        <ImageView
-            android:id="@+id/imageView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_standardpos"
-            android:layout_weight="1"/>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    </LinearLayout>
+                <ImageView
+                    android:id="@+id/imageView62"
+                    android:layout_width="@dimen/sbHomeWidth"
+                    android:layout_height="@dimen/sbHomeHeight"
+                    android:src="@drawable/ic_bluehome" />
+
+                <Space
+                    android:layout_width="@dimen/sbHomeSpace"
+                    android:layout_height="@dimen/sbHomeHeight" />
+
+                <ImageView
+                    android:id="@+id/imageView64"
+                    android:layout_width="@dimen/sbHomeWidth"
+                    android:layout_height="@dimen/sbHomeHeight"
+                    android:src="@drawable/ic_greenhome" />
+            </TableRow>
+
+        </TableLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </FrameLayout>
