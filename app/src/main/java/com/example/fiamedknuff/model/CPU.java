@@ -6,13 +6,13 @@ package com.example.fiamedknuff.model;
  * Created by
  * @author Amanda Cyrén
  */
-public class CPU {
+public class CPU extends Player {
 
-    // A variable for the player object connected to the CPU
-    private final Player player;
-
-    public CPU(Player player) {
-        this.player = player;
+    /**
+     * Constructor for the class CPU which calls the superclass Players constructor
+     * */
+    public CPU(String name, Color color) {
+        super(name, color);
     }
 
 }

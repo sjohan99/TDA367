@@ -20,6 +20,11 @@ public class Player implements Serializable {
     // A list of the players pieces
     private final List<Piece> pieces;
 
+    /**
+     * Constructor that initiates a player
+     * @param name is the name of player
+     * @param color is the players color
+     */
     public Player(String name, Color color) {
         this.name = name;
         pieces = new ArrayList<>(4);
