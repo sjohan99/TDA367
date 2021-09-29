@@ -1,16 +1,21 @@
-package com.example.fiamedknuff;
+package com.example.fiamedknuff.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.fiamedknuff.R;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import app.num.numandroidpagecurleffect.PageCurlView;
 
 /**
  * A class rulebookFragment that handles the GUI for the rule book
@@ -19,16 +24,17 @@ import java.util.Locale;
  * @author Amanda Cyrén
  */
 
-public class rulebookFragment extends Fragment implements View.OnClickListener {
+public class rulebookFragment extends Fragment {
+
+    View view;
+
+    ImageView rulebookTitle;
+
+    // A PageCurlView that creates a page curl effect when turning pages
+    PageCurlView pageCurlView;
 
     // A list that holds the images to be displayed in the rule book
     List<Integer> images;
-
-    // A PageCurlView that creates a page curl effect when turning pages
-    //PageCurlView pageCurlView;
-
-    // An ImageButton for resuming to previous activity/fragment
-    ImageButton imageButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,42 +45,35 @@ public class rulebookFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_rule_book, container, false);
-
-        // Button for resuming to previous activity/fragment
-        imageButton = view.findViewById(R.id.arrow_back);
-        imageButton.setOnClickListener(this);
+        view = inflater.inflate(R.layout.fragment_rule_book, container, false);
 
         setPageCurlView(view);
 
         return view;
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view.getId()==R.id.arrow_back) {
-            // Return to previous activity/fragment
-        }
-    }
-
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void setPageCurlView(View view) {
-        // Sets up the PageCurlView
-        //pageCurlView = (PageCurlView) view.findViewById(R.id.pagecurlView);
+        pageCurlView = view.findViewById(R.id.pagecurlView);
+
+        rulebookTitle = view.findViewById(R.id.rule_book_title);
 
         // Initialize an list with images to display in the rule book
         images = new ArrayList<>();
 
-        // Set up rules depending on language
+        // Set up rules and title depending on language
         if (Locale.getDefault().getLanguage().equals("sv")) {
             languageSwedish();
+            rulebookTitle.setImageDrawable(getResources().getDrawable(R.drawable.rule_book_title_sv));
         }
         else {
             languageEnglish();
+            rulebookTitle.setImageDrawable(getResources().getDrawable(R.drawable.rule_book_title_en));
         }
 
         // Adds the images to the PageCurlView and sets the speed of the page curl
-        //pageCurlView.setCurlView(images);
-        //pageCurlView.setCurlSpeed(600); // Set the speed in ms
+        pageCurlView.setCurlView(images);
+        pageCurlView.setCurlSpeed(600); // Set the speed in ms
     }
 
     private void languageSwedish() {
@@ -83,7 +82,7 @@ public class rulebookFragment extends Fragment implements View.OnClickListener {
         images.add(R.drawable.rules_third_pages_sv);
     }
 
-    // Rules in english not yet implemented
+    // TODO add rules in english
     private void languageEnglish() {
         images.add(R.drawable.pages);
         images.add(R.drawable.pages);
