@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--
     <ImageView
         android:id="@+id/background"
         android:layout_width="wrap_content"
@@ -207,5 +208,6 @@
         android:text="Menu"
         tools:layout_editor_absoluteX="433dp"
         tools:layout_editor_absoluteY="494dp" />
+        -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

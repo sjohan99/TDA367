@@ -1,5 +1,7 @@
 package com.example.fiamedknuff.ViewModels;
 
+import androidx.lifecycle.ViewModel;
+
 import com.example.fiamedknuff.NotImplementedException;
 import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.model.Game;
@@ -16,7 +18,7 @@ import java.util.Collection;
  * @author Emma Stålberg
  */
 
-public class GameViewModel {
+public class GameViewModel extends ViewModel {
 
     Game game;
     int playerCount;
