@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_leaderboard" />
     <fragment
         android:id="@+id/RulebookFragment"
-        android:name="com.example.fiamedknuff.RulebookFragment"
+        android:name="com.example.fiamedknuff.fragments.RulebookFragment"
         android:label="RulebookFragment" />
     <fragment
         android:id="@+id/gameSetupFragment"
