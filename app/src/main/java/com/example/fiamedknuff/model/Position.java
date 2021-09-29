@@ -1,5 +1,7 @@
 package com.example.fiamedknuff.model;
 
+import java.io.Serializable;
+
 /**
  * The class Position creates a position.
  *
@@ -7,7 +9,7 @@ package com.example.fiamedknuff.model;
  * @author Emma Stålberg
  */
 
-public class Position {
+public class Position implements Serializable {
 
     private int pos;
 

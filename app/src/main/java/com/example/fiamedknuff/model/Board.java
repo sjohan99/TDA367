@@ -2,11 +2,12 @@ package com.example.fiamedknuff.model;
 
 import com.example.fiamedknuff.NotImplementedException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Board {
+public class Board implements Serializable {
 
     private List<Position> positions; // List of all positions on the board including home-positions
     private HashMap<Piece, Position> piecePositionHashMap; // Maps the pieces to their positions
@@ -66,7 +67,6 @@ public class Board {
      */
 
     void movePiece(int roll, Piece piece) throws Exception {
-
         Position p;
         if (piece.isHome()) {
             p = new Position(10 + roll);    //ytterst preliminärt
@@ -81,10 +81,8 @@ public class Board {
         if (isOccupied(p)) {
             knockout(p);
         }
-
         piecePositionHashMap.put(piece,p);
     }
-
 
     Piece pieceAtPosition(Position pos) throws Exception {
 
@@ -122,6 +120,4 @@ public class Board {
         piecePositionHashMap.put(piece, positions.get(indexOfHomeNumber(piece)));
 
     }
-
-
 }

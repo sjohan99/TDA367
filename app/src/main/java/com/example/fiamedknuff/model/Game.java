@@ -2,11 +2,12 @@ package com.example.fiamedknuff.model;
 
 import com.example.fiamedknuff.NotImplementedException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class Game {
+public class Game implements Serializable {
 
     private Board board;
     private List<Player> activePlayers;
@@ -19,11 +20,15 @@ public class Game {
         board = new Board(players.size(), getAllPlayerPieces());
         dice = new Dice();
     }
-  
+
+    /**
+     * Get the current player
+     * @return the current player
+     */
     public Player getCurrentPlayer() {
         return activePlayers.get(currentPlayerIndex);
     }
- 
+
     public void selectNextPlayer() {
         if (activePlayers.size() == 0) {
             // currentPlayerIndex is set to -1 when there is no active players left
@@ -35,14 +40,27 @@ public class Game {
         }
     }
 
+    /**
+     * Get the current players index
+     * @return the current players index
+     */
     public int getCurrentPlayerIndex() {
         return currentPlayerIndex;
     }
 
+    /**
+     * Get the current players pieces
+     * @param player specifies the current player
+     * @return the current players pieces
+     */
     private List<Piece> getPlayerPieces(Player player) {
         return player.getPieces();
     }
 
+    /**
+     * Get all the players pieces
+     * @return all the players pieces in a list
+     */
     private List<Piece> getAllPlayerPieces() {
         List<Piece> pieces = new ArrayList<>();
         for (Player player : activePlayers) {
@@ -51,10 +69,18 @@ public class Game {
         return pieces;
     }
 
+    /**
+     * Get the current players movable pieces
+     * @return all the players movable pieces in a collection
+     */
     public Collection<Piece> getMovablePieces(Player player, int rolledValue) {
         return player.getMovablePieces(player.getPieces(), rolledValue);
     }
 
+    /**
+     * Rolls the dice
+     * @return the value of the rolled dice
+     */
     public int rollDice() {
         return dice.rollDice();
     }
@@ -64,7 +90,24 @@ public class Game {
         finishedPlayers.add(player);
     }
 
-    public void move(Piece piece, int diceValue) {
+    private void removeFinishedPiece(Piece piece) {
+        board.getPiecePositionHashMap().remove(piece);
+        getCurrentPlayer().removePiece(piece);
+    }
+
+    private boolean isFinishedPlayer(Player player) {
+        return player.getPieces().size() == 0;
+    }
+
+    public void move(int diceValue, Piece piece) throws Exception {
+        board.movePiece(diceValue, piece);
+        if (piece.getIndex() == 45) {
+            removeFinishedPiece(piece);
+        }
+        if (isFinishedPlayer(getCurrentPlayer())) {
+            finishedPlayer(getCurrentPlayer());
+        }
+
         // move the piece
         // check for knockout
         // check if finished piece - "hide"
