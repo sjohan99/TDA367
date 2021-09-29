@@ -15,7 +15,7 @@
             app:destination="@id/leaderboardFragment" />
         <action
             android:id="@+id/action_mainMenuFragment_to_rulebookFragment"
-            app:destination="@id/rulebookFragment" />
+            app:destination="@id/RulebookFragment" />
         <action
             android:id="@+id/action_mainMenuFragment_to_gameSetupFragment"
             app:destination="@id/gameSetupFragment" />
@@ -26,9 +26,9 @@
         android:label="fragment_leaderboard"
         tools:layout="@layout/fragment_leaderboard" />
     <fragment
-        android:id="@+id/rulebookFragment"
-        android:name="com.example.fiamedknuff.rulebookFragment"
-        android:label="rulebookFragment" />
+        android:id="@+id/RulebookFragment"
+        android:name="com.example.fiamedknuff.RulebookFragment"
+        android:label="RulebookFragment" />
     <fragment
         android:id="@+id/gameSetupFragment"
         android:name="com.example.fiamedknuff.fragments.GameSetupFragment"
@@ -42,4 +42,5 @@
         android:name="com.example.fiamedknuff.fragments.GameViewFragment"
         android:label="fragment_game_view"
         tools:layout="@layout/fragment_game_view" />
+
 </navigation>

@@ -24,7 +24,7 @@ import app.num.numandroidpagecurleffect.PageCurlView;
  * @author Amanda Cyrén
  */
 
-public class rulebookFragment extends Fragment {
+public class RulebookFragment extends Fragment {
 
     View view;
 
