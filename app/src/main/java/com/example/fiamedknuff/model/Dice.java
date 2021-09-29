@@ -1,5 +1,6 @@
 package com.example.fiamedknuff.model;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
@@ -9,9 +10,11 @@ import java.util.Random;
  * @author Emma Stålberg
  */
 
+
 public class Dice {
     private int valueMax;
     private Random rand = new Random();
+
 
     public Dice(int valueMax) {
         this.valueMax = valueMax;

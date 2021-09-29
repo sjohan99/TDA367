@@ -33,7 +33,7 @@ public class GameViewModel {
         game = GameFactory.createNewGame(playerNames, colors);
     }
 
-    public void play() {
+    public void play() throws Exception{
         while(game.getCurrentPlayerIndex() != -1) {
             // For a new round...
             currentPlayer = game.getCurrentPlayer();
@@ -48,7 +48,7 @@ public class GameViewModel {
                 // TODO Wait for player input, and update variable selectedPiece
                 // Check if selected piece is movable
                 if (movablePieces.contains(selectedPiece)) {
-                    game.move(selectedPiece, diceValue);
+                    game.move(diceValue, selectedPiece);
                     break;
                 } else {
                     // TODO give feedback that it is not movable

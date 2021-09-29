@@ -1,5 +1,6 @@
 package com.example.fiamedknuff.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  * @author Amanda Cyrén
  */
 
-public class Player {
+public class Player implements Serializable {
 
     // A variable for the players name
     private String name;
@@ -86,5 +87,13 @@ public class Player {
             }
         }
         return true;
+    }
+
+    /**
+     * Removes a specific piece from the players list of pieces
+     * @param piece specifies which piece to remove
+     */
+    void removePiece(Piece piece) {
+        pieces.remove(piece);
     }
 }
