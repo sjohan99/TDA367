@@ -91,7 +91,7 @@ public class Game implements Serializable {
     }
 
     private void removeFinishedPiece(Piece piece) {
-        board.getPiecePositionHashMap().remove(piece);
+        board.removePieceFromBoard(piece);
         getCurrentPlayer().removePiece(piece);
     }
 

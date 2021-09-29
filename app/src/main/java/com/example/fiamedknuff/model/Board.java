@@ -57,6 +57,10 @@ public class Board implements Serializable {
         return piecePositionHashMap;
     }
 
+    void removePieceFromBoard(Piece piece) {
+        piecePositionHashMap.remove(piece);
+    }
+
     //Bara preliminärt för att få koden att kompilera, används i metoden knockout nedan
     Position homePos = new Position(0);
 
