@@ -90,6 +90,11 @@ public class Game implements Serializable {
         finishedPlayers.add(player);
     }
 
+    /**
+     * Removes the given piece from the piece-position hashmap and the current player's
+     * piece list, effectively removing it from the game
+     * @param piece The piece to be removed
+     */
     private void removeFinishedPiece(Piece piece) {
         board.removePieceFromBoard(piece);
         getCurrentPlayer().removePiece(piece);

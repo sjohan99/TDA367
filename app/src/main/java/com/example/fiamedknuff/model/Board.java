@@ -57,6 +57,10 @@ public class Board implements Serializable {
         return piecePositionHashMap;
     }
 
+    /**
+     * Removes a piece from the piecePositionHashMap
+     * @param piece The piece to be removed
+     */
     void removePieceFromBoard(Piece piece) {
         piecePositionHashMap.remove(piece);
     }
