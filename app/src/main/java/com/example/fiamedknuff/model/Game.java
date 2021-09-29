@@ -110,7 +110,7 @@ public class Game implements Serializable {
 
         // move the piece
         // check for knockout
-        // check if finished piece - take away
+        // check if finished piece - "hide"
         // check if player is finished - call finishedPlayer
     }
 
