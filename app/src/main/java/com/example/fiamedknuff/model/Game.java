@@ -34,9 +34,11 @@ public class Game implements Serializable {
             // currentPlayerIndex is set to -1 when there is no active players left
             currentPlayerIndex = -1;
         }
-        currentPlayerIndex++;
-        if (currentPlayerIndex >= activePlayers.size()) {
-            currentPlayerIndex = 0;
+        else {
+            currentPlayerIndex++;
+            if (currentPlayerIndex >= activePlayers.size()) {
+                currentPlayerIndex = 0;
+            }
         }
     }
 
