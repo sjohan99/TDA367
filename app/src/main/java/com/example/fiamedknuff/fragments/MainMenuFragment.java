@@ -2,6 +2,7 @@ package com.example.fiamedknuff.fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
@@ -16,8 +17,8 @@ import com.example.fiamedknuff.R;
 
 public class MainMenuFragment extends Fragment {
 
-    NavController navController;
-    Button newGameBtn, leaderboardBtn, rulebookBtn;
+    private NavController navController;
+    private Button newGameBtn, leaderboardBtn, rulebookBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,17 +34,14 @@ public class MainMenuFragment extends Fragment {
         newGameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO
-                /*
                 navController.navigate(
-                        R.id.action_mainMenu_to_newGameSetup,
+                        R.id.action_mainMenuFragment_to_gameSetupFragment,
                         null,
                         new NavOptions.Builder()
                                 .setEnterAnim(android.R.animator.fade_in)
                                 .setExitAnim(android.R.animator.fade_out)
                                 .build()
                 );
-                 */
             }
         });
 
