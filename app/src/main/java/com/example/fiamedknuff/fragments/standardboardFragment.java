@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.example.fiamedknuff.R;
 
@@ -39,29 +40,37 @@ public class standardboardFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_standardboard, container, false);
 
         initPositions();
+        testingPieceMovement();
 
         return view;
     }
 
+    private void testingPieceMovement() {
+        yellowpiece1 = view.findViewById(R.id.yellowpiece1);
+        yellowpiece1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "yellowpiece left: " + yellowpiece1.getLeft());
+                Log.d(TAG, "yellowpiece top: " + yellowpiece1.getTop());
+                Log.d(TAG, "pos0: " + pos0.getLeft());
+                Log.d(TAG, "pos30: " + pos30.getLeft());
 
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(yellowpiece1.getLayoutParams());
+                Log.d(TAG, "yellowpiece left: " + yellowpiece1.getLayoutParams());
+
+                layoutParams.leftMargin = pos0.getLeft();
+                layoutParams.leftMargin = pos0.getTop();
+                yellowpiece1.setLayoutParams(layoutParams);
+                yellowpiece1.bringToFront();
+                Log.d(TAG, "yellowpiece left: " + yellowpiece1.getLeft());
+                Log.d(TAG, "yellowpiece top: " + yellowpiece1.getTop());
+
+            }
+        });
+    }
 
     private void initPositions() {
         pos0 = view.findViewById(R.id.pos0);
-        yellowpiece1 = view.findViewById(R.id.yellowpiece1);
-        pos0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "onClick: " + yellowpiece1.getLeft());
-                yellowpiece1.setLeft(pos0.getLeft());
-                yellowpiece1.setTop(pos0.getTop());
-                yellowpiece1.bringToFront();
-                Log.d(TAG, "onClick: " + yellowpiece1.getLeft());
-            }
-        });
-
-
-
-
         pos1 = view.findViewById(R.id.pos1);
         pos2 = view.findViewById(R.id.pos2);
         pos3 = view.findViewById(R.id.pos3);
