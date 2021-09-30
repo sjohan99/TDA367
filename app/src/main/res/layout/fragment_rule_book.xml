@@ -52,14 +52,14 @@
         app:layout_constraintTop_toTopOf="@+id/rule_book_holder"
         tools:context=".MainActivity">
 
-        <app.num.numandroidpagecurleffect.PageCurlView
-            android:id="@+id/pagecurlView"
-            android:layout_width="@dimen/pageCurlViewWidth"
-            android:layout_height="@dimen/pageCurlViewHeight"
-            android:layout_gravity="center"
-            app:layout_constraintEnd_toEndOf="@+id/rule_book_holder"
-            app:layout_constraintStart_toStartOf="@+id/rule_book_holder"
-            app:layout_constraintTop_toTopOf="@+id/rule_book_holder" />
+    <app.num.numandroidpagecurleffect.PageCurlView
+        android:id="@+id/pagecurlView"
+        android:layout_width="@dimen/pageCurlViewWidth"
+        android:layout_height="@dimen/pageCurlViewHeight"
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/rule_book_holder"
+        app:layout_constraintStart_toStartOf="@+id/rule_book_holder"
+        app:layout_constraintTop_toTopOf="@+id/rule_book_holder" />
 
     </LinearLayout>
 

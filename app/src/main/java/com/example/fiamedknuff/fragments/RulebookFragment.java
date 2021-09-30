@@ -24,7 +24,7 @@ import app.num.numandroidpagecurleffect.PageCurlView;
  * @author Amanda Cyrén
  */
 
-public class rulebookFragment extends Fragment {
+public class RulebookFragment extends Fragment {
 
     View view;
 
@@ -47,13 +47,13 @@ public class rulebookFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_rule_book, container, false);
 
-        setPageCurlView(view);
+        setUpRulebook(view);
 
         return view;
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    private void setPageCurlView(View view) {
+    private void setUpRulebook(View view) {
         pageCurlView = view.findViewById(R.id.pagecurlView);
 
         rulebookTitle = view.findViewById(R.id.rule_book_title);

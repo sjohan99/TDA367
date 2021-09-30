@@ -63,8 +63,8 @@ public class Player implements Serializable {
      * @param roll is the value from the latest diceroll
      * @return which pieces that are able to move
      */
-    Collection<Piece> getMovablePieces(Collection<Piece> pieces, int roll) {
-        Collection<Piece> movablePieces = new ArrayList<>();
+    ArrayList<Piece> getMovablePieces(Collection<Piece> pieces, int roll) {
+        ArrayList<Piece> movablePieces = new ArrayList<>();
 
         for (Piece piece : pieces) {
             if (isMovable(piece, roll)) {
@@ -78,21 +78,27 @@ public class Player implements Serializable {
     /**
      * Finds out if one piece is allowed to move or not
      * @param piece is one of the current players pieces
-     * @param roll is the value from the latest diceroll
+     * @param roll is the value from the latest dice roll
      * @return if the piece is movable or not
      */
     boolean isMovable (Piece piece, int roll) {
-        if (piece.getIndex() == 0) {
-            return roll == 1 || roll == 6;
-        }
-        int newIndex = piece.getIndex() + roll;
-        for (Piece p : pieces) {
-            if (newIndex == p.getIndex()) {
-                return false;
-            }
-        }
+        if (targetPositionOccupiedBySelf(piece.getIndex() + roll)) return false;
+        if (piece.isHome()) return roll == 1 || roll == 6;
         return true;
     }
+
+    /**
+     * Checks if the given index is already occupied by one of this player's pieces
+     * @param targetIndex Index to be checked
+     * @return if the position is occupied by self
+     */
+    private boolean targetPositionOccupiedBySelf(int targetIndex) {
+        for (Piece p : pieces) {
+            if (targetIndex == p.getIndex()) return true;
+        }
+        return false;
+    }
+
 
     /**
      * Removes a specific piece from the players list of pieces
