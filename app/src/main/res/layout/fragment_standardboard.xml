@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.standardboardFragment"
-    tools:ignore="ContentDescription">
+    tools:ignore="ContentDescription"
+    android:id="@+id/relLayout">
 
     <ImageView
         android:id="@+id/yellowpiece1"
@@ -276,28 +277,24 @@
                     android:id="@+id/pos10"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
-                    android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
                     android:id="@+id/pos11"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
-                    android:layout_weight="1"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/pos12"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
-                    android:layout_weight="1"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/pos13"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
-                    android:layout_weight="1"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
@@ -351,35 +348,30 @@
                     android:id="@+id/pos9"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
-                    android:layout_weight="1"
                     android:src="@drawable/ic_standardpos" />
 
                 <ImageView
                     android:id="@+id/pos44"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
-                    android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
                     android:id="@+id/pos45"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
-                    android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
                     android:id="@+id/pos46"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
-                    android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
                     android:id="@+id/pos47"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
-                    android:layout_weight="1"
                     android:src="@drawable/ic_yellowpos" />
 
                 <ImageView
@@ -416,7 +408,6 @@
                     android:id="@+id/pos29"
                     android:layout_width="@dimen/sbPosWidth"
                     android:layout_height="@dimen/sbPosHeight"
-                    android:layout_weight="1"
                     android:src="@drawable/ic_standardpos" />
             </TableRow>
 
