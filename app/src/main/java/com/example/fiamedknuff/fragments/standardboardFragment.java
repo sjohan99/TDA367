@@ -3,7 +3,8 @@ package com.example.fiamedknuff.fragments;
 import android.os.Bundle;
 import static android.content.ContentValues.TAG;
 
-import androidx.constraintlayout.widget.Group;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -12,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.example.fiamedknuff.R;
 
@@ -33,7 +33,7 @@ public class standardboardFragment extends Fragment {
     ImageView pos51, pos52, pos53, pos54, pos55, pos56;
 
     ImageView yellowpiece1;
-    FrameLayout frameLayoutYellowpiece1;
+    ConstraintLayout constraintLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,30 +49,20 @@ public class standardboardFragment extends Fragment {
 
     private void testingPieceMovement() {
         yellowpiece1 = view.findViewById(R.id.yellowpiece1);
-        frameLayoutYellowpiece1 = view.findViewById(R.id.frameLayoutYellowpiece1);
+        constraintLayout = view.findViewById(R.id.constraintLayout);
 
         yellowpiece1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "yellowpiece X: " + yellowpiece1.getX());
-                Log.d(TAG, "fl x: " + frameLayoutYellowpiece1.getX());
-                Log.d(TAG, "pos0 x: " + pos0.getX());
-                Log.d(TAG, "pos0 y: " + pos0.getTop());
-                Log.d(TAG, "pos30 x: " + pos30.getX());
-                Log.d(TAG, "pos30 y: " + pos30.getY());
-
-
-                /*RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(yellowpiece1.getLayoutParams());
-                Log.d(TAG, "yellowpiece left: " + yellowpiece1.getLayoutParams());
-                layoutParams.leftMargin = pos0.getLeft();
-                layoutParams.leftMargin = pos0.getTop();
-                yellowpiece1.setLayoutParams(layoutParams);*/
-                frameLayoutYellowpiece1.setX(pos0.getX());
-                frameLayoutYellowpiece1.setY(pos0.getTop());
+                ConstraintSet constraintSet = new ConstraintSet();
+                constraintSet.clone(constraintLayout);
+                constraintSet.connect(yellowpiece1.getId(), ConstraintSet.START, pos10.getId(), ConstraintSet.START);
+                constraintSet.connect(yellowpiece1.getId(), ConstraintSet.END, pos10.getId(), ConstraintSet.END);
+                constraintSet.connect(yellowpiece1.getId(), ConstraintSet.TOP, pos10.getId(), ConstraintSet.TOP);
+                constraintSet.connect(yellowpiece1.getId(), ConstraintSet.BOTTOM, pos10.getId(), ConstraintSet.BOTTOM);
+                constraintSet.applyTo(constraintLayout);
 
                 yellowpiece1.bringToFront();
-                Log.d(TAG, "fl x: " + frameLayoutYellowpiece1.getX());
-                Log.d(TAG, "fl y: " + frameLayoutYellowpiece1.getY());
 
             }
         });
@@ -118,7 +108,7 @@ public class standardboardFragment extends Fragment {
         pos36 = view.findViewById(R.id.pos36);
         pos37 = view.findViewById(R.id.pos37);
         pos38 = view.findViewById(R.id.pos38);
-        pos39 = view.findViewById(R.id.pos39);
+        pos39 = view.findViewById(R.id.pos28);
         pos0 = view.findViewById(R.id.pos40);
         pos41 = view.findViewById(R.id.pos41);
         pos42 = view.findViewById(R.id.pos42);
@@ -175,7 +165,7 @@ public class standardboardFragment extends Fragment {
         pos36 = view.findViewById(R.id.pos36);
         pos37 = view.findViewById(R.id.pos37);
         pos38 = view.findViewById(R.id.pos38);
-        pos39 = view.findViewById(R.id.pos39);
+        pos39 = view.findViewById(R.id.pos28);
         pos0 = view.findViewById(R.id.pos40);
         pos41 = view.findViewById(R.id.pos41);
         pos42 = view.findViewById(R.id.pos42);
