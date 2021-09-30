@@ -60,4 +60,18 @@ public class GameUnitTest {
         assertThat(currentPlayer.getPieces().size()).isEqualTo(3);
     }
 
+    @Test
+    public void testRemoveSeveralFinishedPieces() throws Exception {
+        Player currentPlayer = players.get(0);
+
+        // Remove all pieces except for one
+        for (int i = 0; i < 3; i++) {
+            Piece piece = currentPlayer.getPieces().get(0);
+            currentPlayer.removePiece(piece);
+        }
+        Piece piece = currentPlayer.getPieces().get(0);
+        piece.setIndex(44);
+        game.move(1, piece);
+        assertThat(currentPlayer.getPieces().size()).isEqualTo(0);
+    }
 }
