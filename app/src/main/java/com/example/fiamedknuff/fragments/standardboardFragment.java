@@ -57,6 +57,10 @@ public class standardboardFragment extends Fragment {
                 Log.d(TAG, "yellowpiece X: " + yellowpiece1.getX());
                 Log.d(TAG, "fl x: " + frameLayoutYellowpiece1.getX());
                 Log.d(TAG, "pos0 x: " + pos0.getX());
+                Log.d(TAG, "pos0 y: " + pos0.getTop());
+                Log.d(TAG, "pos30 x: " + pos30.getX());
+                Log.d(TAG, "pos30 y: " + pos30.getY());
+
 
                 /*RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(yellowpiece1.getLayoutParams());
                 Log.d(TAG, "yellowpiece left: " + yellowpiece1.getLayoutParams());
@@ -64,10 +68,11 @@ public class standardboardFragment extends Fragment {
                 layoutParams.leftMargin = pos0.getTop();
                 yellowpiece1.setLayoutParams(layoutParams);*/
                 frameLayoutYellowpiece1.setX(pos0.getX());
-                frameLayoutYellowpiece1.setY(pos0.getY());
+                frameLayoutYellowpiece1.setY(pos0.getTop());
 
                 yellowpiece1.bringToFront();
                 Log.d(TAG, "fl x: " + frameLayoutYellowpiece1.getX());
+                Log.d(TAG, "fl y: " + frameLayoutYellowpiece1.getY());
 
             }
         });
