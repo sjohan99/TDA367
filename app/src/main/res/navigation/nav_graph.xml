@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_rulebookFragment"
             app:destination="@id/rulebookFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_standardboardFragment"
+            app:destination="@id/standardboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/leaderboardFragment"
@@ -24,6 +27,11 @@
         tools:layout="@layout/fragment_leaderboard" />
     <fragment
         android:id="@+id/rulebookFragment"
-        android:name="com.example.fiamedknuff.rulebookFragment"
+        android:name="com.example.fiamedknuff.fragments.rulebookFragment"
         android:label="rulebookFragment" />
+    <fragment
+        android:id="@+id/standardboardFragment"
+        android:name="com.example.fiamedknuff.fragments.standardboardFragment"
+        android:label="fragment_standardboard"
+        tools:layout="@layout/fragment_standardboard" />
 </navigation>
