@@ -30,8 +30,8 @@ public class Game implements Serializable {
     }
 
     public void selectNextPlayer() {
-        if (activePlayers.size() == 0) {
-            // currentPlayerIndex is set to -1 when there is no active players left
+        if (activePlayers.size() <= 1) {
+            // currentPlayerIndex is set to -1 when there is one or less players left
             currentPlayerIndex = -1;
         }
         else {
