@@ -41,6 +41,7 @@ public class MainMenuFragment extends Fragment {
                                 .setExitAnim(android.R.animator.fade_out)
                                 .build()
                 );
+
             }
         });
 
