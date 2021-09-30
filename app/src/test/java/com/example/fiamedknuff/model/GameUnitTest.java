@@ -51,4 +51,13 @@ public class GameUnitTest {
         assertThat(g2.getCurrentPlayer().getName()).isEqualTo(game.getCurrentPlayer().getName());
     }
 
+    @Test
+    public void testRemoveFinishedPiece() throws Exception {
+        Player currentPlayer = players.get(0);
+        Piece piece = currentPlayer.getPieces().get(0);
+        piece.setIndex(44);
+        game.move(1, piece);
+        assertThat(currentPlayer.getPieces().size()).isEqualTo(3);
+    }
+
 }
