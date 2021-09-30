@@ -8,6 +8,7 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameUnitTest {
 
@@ -74,4 +75,22 @@ public class GameUnitTest {
         game.move(1, piece);
         assertThat(currentPlayer.getPieces().size()).isEqualTo(0);
     }
+
+    @Test
+    public void testFinishedPlayer() throws Exception {
+        List<Player> activePlayers = players;
+        Player currentPlayer = players.get(0);
+
+        // Remove all pieces except for one
+        for (int i = 0; i < 3; i++) {
+            Piece piece = currentPlayer.getPieces().get(0);
+            currentPlayer.removePiece(piece);
+        }
+        Piece piece = currentPlayer.getPieces().get(0);
+        piece.setIndex(44);
+        game.move(1, piece);
+        assertThat(activePlayers.size()).isEqualTo(3);
+    }
+
+
 }
