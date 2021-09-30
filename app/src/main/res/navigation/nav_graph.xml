@@ -41,6 +41,10 @@
         android:id="@+id/gameView"
         android:name="com.example.fiamedknuff.fragments.GameViewFragment"
         android:label="fragment_game_view"
-        tools:layout="@layout/fragment_game_view" />
+        tools:layout="@layout/fragment_game_view" >
+        <action
+            android:id="@+id/action_gameView_to_RulebookFragment"
+            app:destination="@id/RulebookFragment" />
+    </fragment>
 
 </navigation>
