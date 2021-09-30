@@ -1,10 +1,12 @@
 package com.example.fiamedknuff.fragments;
 
 import android.os.Bundle;
+import static android.content.ContentValues.TAG;
 
 import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,8 @@ public class standardboardFragment extends Fragment {
     ImageView pos41, pos42, pos43, pos44, pos45, pos46, pos47, pos48, pos49, pos50;
     ImageView pos51, pos52, pos53, pos54, pos55, pos56;
 
+    ImageView yellowpiece1;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,8 +43,25 @@ public class standardboardFragment extends Fragment {
         return view;
     }
 
+
+
     private void initPositions() {
         pos0 = view.findViewById(R.id.pos0);
+        yellowpiece1 = view.findViewById(R.id.yellowpiece1);
+        pos0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: " + yellowpiece1.getLeft());
+                yellowpiece1.setLeft(pos0.getLeft());
+                yellowpiece1.setTop(pos0.getTop());
+                yellowpiece1.bringToFront();
+                Log.d(TAG, "onClick: " + yellowpiece1.getLeft());
+            }
+        });
+
+
+
+
         pos1 = view.findViewById(R.id.pos1);
         pos2 = view.findViewById(R.id.pos2);
         pos3 = view.findViewById(R.id.pos3);
