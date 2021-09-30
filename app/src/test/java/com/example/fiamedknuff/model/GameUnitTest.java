@@ -123,5 +123,15 @@ public class GameUnitTest {
         assertThat(activePlayers.size()).isEqualTo(2);
     }
 
+    @Test
+    public void testSelectNextPlayer() {
+        List<Player> activePlayers = players;
+        for (int i = 0; i <= 3; i++) {
+            activePlayers.remove(0);
+        }
+        assertThat(activePlayers.size()).isEqualTo(0);
+        game.selectNextPlayer();
+        assertThat(game.getCurrentPlayerIndex()).isEqualTo(-1);
+    }
 
 }
