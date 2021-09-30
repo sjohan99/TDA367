@@ -80,16 +80,47 @@ public class GameUnitTest {
     public void testFinishedPlayer() throws Exception {
         List<Player> activePlayers = players;
         Player currentPlayer = players.get(0);
+        Piece piece;
 
         // Remove all pieces except for one
         for (int i = 0; i < 3; i++) {
-            Piece piece = currentPlayer.getPieces().get(0);
+            piece = currentPlayer.getPieces().get(0);
             currentPlayer.removePiece(piece);
         }
-        Piece piece = currentPlayer.getPieces().get(0);
+        // Go out with last piece for current player
+        piece = currentPlayer.getPieces().get(0);
         piece.setIndex(44);
         game.move(1, piece);
         assertThat(activePlayers.size()).isEqualTo(3);
+    }
+
+    @Test
+    public void testSeveralFinishedPlayer() throws Exception {
+        List<Player> activePlayers = players;
+        Player finishedPlayer = players.get(0);
+        Player currentPlayer = players.get(1);
+        Piece piece;
+
+        // Remove all pieces except for one for finished player
+        for (int i = 0; i < 3; i++) {
+            piece = finishedPlayer.getPieces().get(0);
+            finishedPlayer.removePiece(piece);
+        }
+        // Go out with last piece for finished player
+        piece = finishedPlayer.getPieces().get(0);
+        piece.setIndex(40);
+        game.move(5, piece);
+
+        // Remove all pieces except for one for current player
+        for (int i = 0; i < 3; i++) {
+            piece = currentPlayer.getPieces().get(0);
+            currentPlayer.removePiece(piece);
+        }
+        // Go out with last piece for current player
+        piece = currentPlayer.getPieces().get(0);
+        piece.setIndex(39);
+        game.move(6, piece);
+        assertThat(activePlayers.size()).isEqualTo(2);
     }
 
 
