@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.standardboardFragment"
     tools:ignore="ContentDescription">
+
+    <ImageView
+        android:id="@+id/yellowpiece1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_yellowpiece" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -24,6 +30,68 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView63"
+                    android:layout_width="@dimen/sbHomeWidth"
+                    android:layout_height="@dimen/sbHomeHeight"
+                    android:src="@drawable/ic_yellowhome" />
+
+                <Space
+                    android:layout_width="@dimen/sbHomeSpace"
+                    android:layout_height="@dimen/sbHomeHeight" />
+
+                <ImageView
+                    android:id="@+id/imageView61"
+                    android:layout_width="@dimen/sbHomeWidth"
+                    android:layout_height="@dimen/sbHomeHeight"
+                    android:src="@drawable/ic_redhome" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Space
+                    android:layout_width="@dimen/sbHomeWidth"
+                    android:layout_height="@dimen/sbHomeSpace" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView62"
+                    android:layout_width="@dimen/sbHomeWidth"
+                    android:layout_height="@dimen/sbHomeHeight"
+                    android:src="@drawable/ic_bluehome" />
+
+                <Space
+                    android:layout_width="@dimen/sbHomeSpace"
+                    android:layout_height="@dimen/sbHomeHeight" />
+
+                <ImageView
+                    android:id="@+id/imageView64"
+                    android:layout_width="@dimen/sbHomeWidth"
+                    android:layout_height="@dimen/sbHomeHeight"
+                    android:src="@drawable/ic_greenhome" />
+            </TableRow>
+
+        </TableLayout>
 
         <TableLayout
             android:id="@+id/tableLayout"
@@ -591,69 +659,7 @@
 
         </TableLayout>
 
-        <TableLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintEnd_toEndOf="@+id/imageView2"
-            app:layout_constraintStart_toStartOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/imageView63"
-                    android:layout_width="@dimen/sbHomeWidth"
-                    android:layout_height="@dimen/sbHomeHeight"
-                    android:src="@drawable/ic_yellowhome" />
-
-                <Space
-                    android:layout_width="@dimen/sbHomeSpace"
-                    android:layout_height="@dimen/sbHomeHeight" />
-
-                <ImageView
-                    android:id="@+id/imageView61"
-                    android:layout_width="@dimen/sbHomeWidth"
-                    android:layout_height="@dimen/sbHomeHeight"
-                    android:src="@drawable/ic_redhome" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Space
-                    android:layout_width="@dimen/sbHomeWidth"
-                    android:layout_height="@dimen/sbHomeSpace" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/imageView62"
-                    android:layout_width="@dimen/sbHomeWidth"
-                    android:layout_height="@dimen/sbHomeHeight"
-                    android:src="@drawable/ic_bluehome" />
-
-                <Space
-                    android:layout_width="@dimen/sbHomeSpace"
-                    android:layout_height="@dimen/sbHomeHeight" />
-
-                <ImageView
-                    android:id="@+id/imageView64"
-                    android:layout_width="@dimen/sbHomeWidth"
-                    android:layout_height="@dimen/sbHomeHeight"
-                    android:src="@drawable/ic_greenhome" />
-            </TableRow>
-
-        </TableLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</FrameLayout>
+</RelativeLayout>
