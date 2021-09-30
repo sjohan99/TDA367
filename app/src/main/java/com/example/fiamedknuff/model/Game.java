@@ -34,9 +34,11 @@ public class Game implements Serializable {
             // currentPlayerIndex is set to -1 when there is no active players left
             currentPlayerIndex = -1;
         }
-        currentPlayerIndex++;
-        if (currentPlayerIndex >= activePlayers.size()) {
-            currentPlayerIndex = 0;
+        else {
+            currentPlayerIndex++;
+            if (currentPlayerIndex >= activePlayers.size()) {
+                currentPlayerIndex = 0;
+            }
         }
     }
 
@@ -73,7 +75,7 @@ public class Game implements Serializable {
      * Get the current players movable pieces
      * @return all the players movable pieces in a collection
      */
-    public Collection<Piece> getMovablePieces(Player player, int rolledValue) {
+    public ArrayList<Piece> getMovablePieces(Player player, int rolledValue) {
         return player.getMovablePieces(player.getPieces(), rolledValue);
     }
 
@@ -90,8 +92,14 @@ public class Game implements Serializable {
         finishedPlayers.add(player);
     }
 
+
+    /**
+     * Removes the given piece from the piece-position hashmap and the current player's
+     * piece list, effectively removing it from the game
+     * @param piece The piece to be removed
+     */
     private void removeFinishedPiece(Piece piece) {
-        board.getPiecePositionHashMap().remove(piece);
+        board.removePieceFromBoard(piece);
         getCurrentPlayer().removePiece(piece);
     }
 
