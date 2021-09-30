@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -32,6 +33,7 @@ public class standardboardFragment extends Fragment {
     ImageView pos51, pos52, pos53, pos54, pos55, pos56;
 
     ImageView yellowpiece1;
+    FrameLayout frameLayoutYellowpiece1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,23 +49,25 @@ public class standardboardFragment extends Fragment {
 
     private void testingPieceMovement() {
         yellowpiece1 = view.findViewById(R.id.yellowpiece1);
+        frameLayoutYellowpiece1 = view.findViewById(R.id.frameLayoutYellowpiece1);
+
         yellowpiece1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "yellowpiece left: " + yellowpiece1.getLeft());
-                Log.d(TAG, "yellowpiece top: " + yellowpiece1.getTop());
-                Log.d(TAG, "pos0: " + pos0.getLeft());
-                Log.d(TAG, "pos30: " + pos30.getLeft());
+                Log.d(TAG, "yellowpiece X: " + yellowpiece1.getX());
+                Log.d(TAG, "fl x: " + frameLayoutYellowpiece1.getX());
+                Log.d(TAG, "pos0 x: " + pos0.getX());
 
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(yellowpiece1.getLayoutParams());
+                /*RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(yellowpiece1.getLayoutParams());
                 Log.d(TAG, "yellowpiece left: " + yellowpiece1.getLayoutParams());
-
                 layoutParams.leftMargin = pos0.getLeft();
                 layoutParams.leftMargin = pos0.getTop();
-                yellowpiece1.setLayoutParams(layoutParams);
+                yellowpiece1.setLayoutParams(layoutParams);*/
+                frameLayoutYellowpiece1.setX(pos0.getX());
+                frameLayoutYellowpiece1.setY(pos0.getY());
+
                 yellowpiece1.bringToFront();
-                Log.d(TAG, "yellowpiece left: " + yellowpiece1.getLeft());
-                Log.d(TAG, "yellowpiece top: " + yellowpiece1.getTop());
+                Log.d(TAG, "fl x: " + frameLayoutYellowpiece1.getX());
 
             }
         });
