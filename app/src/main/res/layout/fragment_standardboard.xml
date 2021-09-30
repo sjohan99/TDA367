@@ -8,11 +8,17 @@
     tools:ignore="ContentDescription"
     android:id="@+id/relLayout">
 
-    <ImageView
-        android:id="@+id/yellowpiece1"
+    <FrameLayout
+        android:id="@+id/frameLayoutYellowpiece1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_yellowpiece" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/yellowpiece1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_yellowpiece" />
+    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
