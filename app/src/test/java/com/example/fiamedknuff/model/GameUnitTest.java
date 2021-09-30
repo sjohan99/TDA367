@@ -126,9 +126,7 @@ public class GameUnitTest {
     @Test
     public void testSelectNextPlayer() {
         List<Player> activePlayers = players;
-        for (int i = 0; i <= 3; i++) {
-            activePlayers.remove(0);
-        }
+        activePlayers.subList(0, 4).clear();
         assertThat(activePlayers.size()).isEqualTo(0);
         game.selectNextPlayer();
         assertThat(game.getCurrentPlayerIndex()).isEqualTo(-1);
