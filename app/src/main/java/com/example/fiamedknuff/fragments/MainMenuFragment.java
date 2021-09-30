@@ -34,16 +34,16 @@ public class MainMenuFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //TODO
-                /*
+
                 navController.navigate(
-                        R.id.action_mainMenu_to_newGameSetup,
+                        R.id.action_mainMenuFragment_to_standardboardFragment,
                         null,
                         new NavOptions.Builder()
                                 .setEnterAnim(android.R.animator.fade_in)
                                 .setExitAnim(android.R.animator.fade_out)
                                 .build()
                 );
-                 */
+
             }
         });
 
