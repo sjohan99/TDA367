@@ -6,6 +6,7 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Before;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,6 +131,28 @@ public class GameUnitTest {
         assertThat(activePlayers.size()).isEqualTo(1);
         game.selectNextPlayer();
         assertThat(game.getCurrentPlayerIndex()).isEqualTo(-1);
+    }
+
+
+    @Test
+    public void testGetMovablePiecesTwoPieces() {
+        Player player = players.get(0);
+        List<Piece> pieces = player.getPieces();
+        pieces.get(0).setIndex(1);
+        pieces.get(1).setIndex(11);
+        for (int i = 2; i < 6; i++) {
+            assertEquals(2, game.getMovablePieces(player, i).size());
+        }
+    }
+
+    @Test
+    public void testGetMovablePiecesAllPieces() {
+        Player player = players.get(0);
+        List<Piece> pieces = player.getPieces();
+        pieces.get(0).setIndex(1);
+        pieces.get(1).setIndex(11);
+        assertEquals(2, game.getMovablePieces(player, 1).size());
+        assertEquals(4, game.getMovablePieces(player, 6).size());
     }
 
 }

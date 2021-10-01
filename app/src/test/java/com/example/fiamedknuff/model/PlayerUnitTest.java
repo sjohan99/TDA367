@@ -70,5 +70,16 @@ public class PlayerUnitTest {
         assertEquals(4, player.getMovablePieces(pieces, 6).size());
     }
 
+    @Test
+    public void testGetName() {
+        assertEquals(player.getName(),"TestPerson");
+    }
+
+    @Test
+    public void testSetName() {
+        player.setName("newNamePerson");
+        assertEquals(player.getName(),"newNamePerson");
+    }
+
 
 }
