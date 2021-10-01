@@ -22,16 +22,16 @@
     </fragment>
     <fragment
         android:id="@+id/leaderboardFragment"
-        android:name="com.example.fiamedknuff.fragments.leaderboardFragment"
+        android:name="com.example.fiamedknuff.fragments.LeaderboardFragment"
         android:label="fragment_leaderboard"
         tools:layout="@layout/fragment_leaderboard" />
     <fragment
         android:id="@+id/rulebookFragment"
-        android:name="com.example.fiamedknuff.fragments.rulebookFragment"
+        android:name="com.example.fiamedknuff.fragments.RulebookFragment"
         android:label="rulebookFragment" />
     <fragment
         android:id="@+id/standardboardFragment"
-        android:name="com.example.fiamedknuff.fragments.standardboardFragment"
+        android:name="com.example.fiamedknuff.fragments.StandardboardFragment"
         android:label="fragment_standardboard"
         tools:layout="@layout/fragment_standardboard" />
 </navigation>

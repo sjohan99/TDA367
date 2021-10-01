@@ -17,7 +17,7 @@ import com.example.fiamedknuff.R;
  * @author Emma Stålberg
  */
 
-public class leaderboardFragment extends Fragment {
+public class LeaderboardFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

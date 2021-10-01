@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.ViewModels;
+package com.example.fiamedknuff.viewModels;
 
 import com.example.fiamedknuff.NotImplementedException;
 import com.example.fiamedknuff.model.Color;
