@@ -12,11 +12,16 @@ import java.util.List;
  */
 public class CPU extends Player {
 
+    // A CPU must have a board to access the game logic
+    private final Board board;
+
     /**
-     * Constructor for the class CPU which calls the superclass Players constructor
+     * Constructor for the class CPU which calls the superclass Players constructor and
+     * couples the variable board with the incoming parameter board
      * */
-    public CPU(String name, Color color) {
+    public CPU(String name, Color color, Board board) {
         super(name, color);
+        this.board = board;
     }
 
     void makeMove(int roll) {
