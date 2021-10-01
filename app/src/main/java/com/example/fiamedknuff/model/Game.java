@@ -29,9 +29,13 @@ public class Game implements Serializable {
         return activePlayers.get(currentPlayerIndex);
     }
 
+    /**
+     * Checks if there are more than one active player left in the game and if so, increments
+     * the current player index to select next player
+     */
     public void selectNextPlayer() {
-        if (activePlayers.size() == 0) {
-            // currentPlayerIndex is set to -1 when there is no active players left
+        if (activePlayers.size() <= 1) {
+            // currentPlayerIndex is set to -1 when there is one or less players left
             currentPlayerIndex = -1;
         }
         else {
