@@ -614,5 +614,36 @@
         app:layout_constraintStart_toStartOf="@+id/pos28"
         app:layout_constraintTop_toTopOf="@+id/pos28" />
 
+    <ImageView
+        android:id="@+id/yellowHomepos0"
+        android:layout_width="@dimen/sbPosWidth"
+        android:layout_height="@dimen/sbPosHeight"
+        android:layout_marginEnd="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/yellowHomepos1"
+        tools:layout_editor_absoluteY="98dp" />
+
+    <ImageView
+        android:id="@+id/yellowHomepos1"
+        android:layout_width="@dimen/sbPosWidth"
+        android:layout_height="@dimen/sbPosHeight"
+        app:layout_constraintEnd_toEndOf="@+id/yellowHomepos3"
+        tools:layout_editor_absoluteY="98dp" />
+
+    <ImageView
+        android:id="@+id/yellowHomepos2"
+        android:layout_width="@dimen/sbPosWidth"
+        android:layout_height="@dimen/sbPosHeight"
+        android:layout_marginEnd="3dp"
+        app:layout_constraintEnd_toStartOf="@+id/yellowHomepos3"
+        app:layout_constraintStart_toStartOf="@+id/yellowHomepos0"
+        tools:layout_editor_absoluteY="142dp" />
+
+    <ImageView
+        android:id="@+id/yellowHomepos3"
+        android:layout_width="@dimen/sbPosWidth"
+        android:layout_height="@dimen/sbPosHeight"
+        tools:layout_editor_absoluteX="322dp"
+        tools:layout_editor_absoluteY="142dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
