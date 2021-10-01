@@ -15,10 +15,10 @@ import java.util.List;
 public class Player implements Serializable {
 
     // A variable for the players name
-    protected String name;
+    private String name;
 
     // A list of the players pieces
-    protected final List<Piece> pieces;
+    private final List<Piece> pieces;
 
     /**
      * Constructor that initiates a player

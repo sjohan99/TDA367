@@ -21,7 +21,7 @@ public class CPU extends Player {
 
     void makeMove(int roll) {
         Collection<Piece> movablePieces = new ArrayList<>();
-        movablePieces = getMovablePieces(pieces, roll);
+        movablePieces = getMovablePieces(getPieces(), roll);
         //... HashMap?
     }
 
