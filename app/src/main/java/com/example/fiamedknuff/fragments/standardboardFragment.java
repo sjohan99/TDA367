@@ -42,13 +42,19 @@ public class standardboardFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_standardboard, container, false);
 
         initPositions();
+        initPieces();
         testingPieceMovement();
 
         return view;
     }
 
-    private void testingPieceMovement() {
+    private void initPieces() {
         yellowpiece1 = view.findViewById(R.id.yellowpiece1);
+
+    }
+
+
+    private void testingPieceMovement() {
         constraintLayout = view.findViewById(R.id.constraintLayout);
 
         yellowpiece1.setOnClickListener(new View.OnClickListener() {
