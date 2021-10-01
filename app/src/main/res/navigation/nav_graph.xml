@@ -15,23 +15,42 @@
             app:destination="@id/leaderboardFragment" />
         <action
             android:id="@+id/action_mainMenuFragment_to_rulebookFragment"
-            app:destination="@id/rulebookFragment" />
+            app:destination="@id/RulebookFragment" />
         <action
-            android:id="@+id/action_mainMenuFragment_to_standardboardFragment"
-            app:destination="@id/standardboardFragment" />
+            android:id="@+id/action_mainMenuFragment_to_gameSetupFragment"
+            app:destination="@id/gameSetupFragment" />
     </fragment>
     <fragment
         android:id="@+id/leaderboardFragment"
         android:name="com.example.fiamedknuff.fragments.LeaderboardFragment"
         android:label="fragment_leaderboard"
         tools:layout="@layout/fragment_leaderboard" />
-    <fragment
-        android:id="@+id/rulebookFragment"
-        android:name="com.example.fiamedknuff.fragments.RulebookFragment"
-        android:label="rulebookFragment" />
+
     <fragment
         android:id="@+id/standardboardFragment"
         android:name="com.example.fiamedknuff.fragments.StandardboardFragment"
         android:label="fragment_standardboard"
         tools:layout="@layout/fragment_standardboard" />
+    <fragment
+        android:id="@+id/RulebookFragment"
+        android:name="com.example.fiamedknuff.fragments.RulebookFragment"
+        android:label="RulebookFragment" />
+    <fragment
+        android:id="@+id/gameSetupFragment"
+        android:name="com.example.fiamedknuff.fragments.GameSetupFragment"
+        android:label="GameSetupFragment" >
+        <action
+            android:id="@+id/action_gameSetupFragment_to_gameView"
+            app:destination="@id/gameView" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameView"
+        android:name="com.example.fiamedknuff.fragments.GameViewFragment"
+        android:label="fragment_game_view"
+        tools:layout="@layout/fragment_game_view" >
+        <action
+            android:id="@+id/action_gameView_to_RulebookFragment"
+            app:destination="@id/RulebookFragment" />
+    </fragment>
+
 </navigation>

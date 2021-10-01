@@ -66,8 +66,19 @@ public class PlayerUnitTest {
         List<Piece> pieces = player.getPieces();
         pieces.get(0).setIndex(1);
         pieces.get(1).setIndex(11);
-        assertEquals(4, player.getMovablePieces(pieces, 1).size());
+        assertEquals(2, player.getMovablePieces(pieces, 1).size());
         assertEquals(4, player.getMovablePieces(pieces, 6).size());
+    }
+
+    @Test
+    public void testGetName() {
+        assertEquals(player.getName(),"TestPerson");
+    }
+
+    @Test
+    public void testSetName() {
+        player.setName("newNamePerson");
+        assertEquals(player.getName(),"newNamePerson");
     }
 
 

@@ -6,8 +6,10 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Before;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameUnitTest {
 
@@ -49,6 +51,108 @@ public class GameUnitTest {
         byte[] data = SerializationUtils.serialize(game);
         Game g2 = SerializationUtils.deserialize(data);
         assertThat(g2.getCurrentPlayer().getName()).isEqualTo(game.getCurrentPlayer().getName());
+    }
+
+    @Test
+    public void testRemoveFinishedPiece() throws Exception {
+        Player currentPlayer = players.get(0);
+        Piece piece = currentPlayer.getPieces().get(0);
+        piece.setIndex(44);
+        game.move(1, piece);
+        assertThat(currentPlayer.getPieces().size()).isEqualTo(3);
+    }
+
+    @Test
+    public void testRemoveSeveralFinishedPieces() throws Exception {
+        Player currentPlayer = players.get(0);
+
+        // Remove all pieces except for one
+        for (int i = 0; i < 3; i++) {
+            Piece piece = currentPlayer.getPieces().get(0);
+            currentPlayer.removePiece(piece);
+        }
+        Piece piece = currentPlayer.getPieces().get(0);
+        piece.setIndex(44);
+        game.move(1, piece);
+        assertThat(currentPlayer.getPieces().size()).isEqualTo(0);
+    }
+
+    @Test
+    public void testFinishedPlayer() throws Exception {
+        List<Player> activePlayers = players;
+        Player currentPlayer = players.get(0);
+        Piece piece;
+
+        // Remove all pieces except for one
+        for (int i = 0; i < 3; i++) {
+            piece = currentPlayer.getPieces().get(0);
+            currentPlayer.removePiece(piece);
+        }
+        // Go out with last piece for current player
+        piece = currentPlayer.getPieces().get(0);
+        piece.setIndex(44);
+        game.move(1, piece);
+        assertThat(activePlayers.size()).isEqualTo(3);
+    }
+
+    @Test
+    public void testSeveralFinishedPlayer() throws Exception {
+        List<Player> activePlayers = players;
+        Player finishedPlayer = players.get(0);
+        Player currentPlayer = players.get(1);
+        Piece piece;
+
+        // Remove all pieces except for one for finished player
+        for (int i = 0; i < 3; i++) {
+            piece = finishedPlayer.getPieces().get(0);
+            finishedPlayer.removePiece(piece);
+        }
+        // Go out with last piece for finished player
+        piece = finishedPlayer.getPieces().get(0);
+        piece.setIndex(40);
+        game.move(5, piece);
+
+        // Remove all pieces except for one for current player
+        for (int i = 0; i < 3; i++) {
+            piece = currentPlayer.getPieces().get(0);
+            currentPlayer.removePiece(piece);
+        }
+        // Go out with last piece for current player
+        piece = currentPlayer.getPieces().get(0);
+        piece.setIndex(39);
+        game.move(6, piece);
+        assertThat(activePlayers.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void testSelectNextPlayer() {
+        List<Player> activePlayers = players;
+        activePlayers.subList(0, 3).clear();
+        assertThat(activePlayers.size()).isEqualTo(1);
+        game.selectNextPlayer();
+        assertThat(game.getCurrentPlayerIndex()).isEqualTo(-1);
+    }
+
+
+    @Test
+    public void testGetMovablePiecesTwoPieces() {
+        Player player = players.get(0);
+        List<Piece> pieces = player.getPieces();
+        pieces.get(0).setIndex(1);
+        pieces.get(1).setIndex(11);
+        for (int i = 2; i < 6; i++) {
+            assertEquals(2, game.getMovablePieces(player, i).size());
+        }
+    }
+
+    @Test
+    public void testGetMovablePiecesAllPieces() {
+        Player player = players.get(0);
+        List<Piece> pieces = player.getPieces();
+        pieces.get(0).setIndex(1);
+        pieces.get(1).setIndex(11);
+        assertEquals(2, game.getMovablePieces(player, 1).size());
+        assertEquals(4, game.getMovablePieces(player, 6).size());
     }
 
 }

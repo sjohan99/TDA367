@@ -57,15 +57,11 @@ public class Board implements Serializable {
         return piecePositionHashMap;
     }
 
-    //Bara preliminärt för att få koden att kompilera, används i metoden knockout nedan
-    Position homePos = new Position(0);
-
     /**
      * Moves Piece forward with the amount of the dice roll
      * @param roll is the value from the latest dice roll
      * @param piece is the piece to be moved
      */
-
     void movePiece(int roll, Piece piece) throws Exception {
         Position p;
         if (piece.isHome()) {
@@ -84,6 +80,12 @@ public class Board implements Serializable {
         piecePositionHashMap.put(piece,p);
     }
 
+    /**
+     * Finds out which piece that are standing on a certain position
+     * @param pos is the position to be checked
+     * @return the piece at the incoming position
+     * @throws Exception if the method is called incorrectly
+     */
     Piece pieceAtPosition(Position pos) throws Exception {
 
         for (Piece piece : piecePositionHashMap.keySet()) {
@@ -94,6 +96,11 @@ public class Board implements Serializable {
         throw new Exception(); // -> skriv in rätt Exception här?
     }
 
+    /**
+     * Checks if a position is occupied with another piece
+     * @param pos is the position to be checked
+     * @return true if the position is occupied
+     */
     boolean isOccupied(Position pos) {
         for (Position p: piecePositionHashMap.values()) {
             if (p.equals(pos)) {
@@ -106,18 +113,31 @@ public class Board implements Serializable {
 
     int indexOfHomeNumber(Piece piece) throws Exception {
         for (Position p : positions) {
-            if (p.equals(piece.getHomeNumber())) {
+            if (p.getPos() == (piece.getHomeNumber())) {
                 return positions.indexOf(p);
             }
         }
         throw new Exception(); // -> skriv in rätt Exception här?
     }
 
+    /**
+     * Knocks out a piece at a position if another piece is moving to the same position
+     * @param p is the position
+     * @throws Exception if the method is called incorrectly
+     */
     void knockout(Position p) throws Exception {
         Piece piece = pieceAtPosition(p);
         piecePositionHashMap.remove(piece);
         piece.setIndex(0);
         piecePositionHashMap.put(piece, positions.get(indexOfHomeNumber(piece)));
 
+    }
+
+    /**
+     * Removes a piece from the piecePositionHashMap
+     * @param piece The piece to be removed
+     */
+    void removePieceFromBoard(Piece piece) {
+        piecePositionHashMap.remove(piece);
     }
 }
