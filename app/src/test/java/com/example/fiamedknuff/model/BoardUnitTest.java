@@ -61,5 +61,13 @@ public class BoardUnitTest {
         }
     }
 
+    @Test
+    public void boardGivesPiecesCorrectOffsets() {
+        var hm = board4p.getPiecePositionHashMap();
+        for (Piece piece : pieces) {
+            System.out.println("offset: " + piece.getOffset() + "   homeNumber: " + piece.getHomeNumber());
+        }
+    }
+
 
 }
