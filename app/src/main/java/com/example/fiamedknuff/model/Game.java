@@ -41,6 +41,14 @@ public class Game implements Serializable {
     }
 
     /**
+     * For testing purposes only right now
+     * @return all active players
+     */
+    public List<Player> getActivePlayers() {
+        return activePlayers;
+    }
+
+    /**
      * Get the current players index
      * @return the current players index
      */
@@ -106,7 +114,10 @@ public class Game implements Serializable {
     }
 
     public void move(int diceValue, Piece piece) throws Exception {
-        board.movePiece(diceValue, piece);
+        for (int i = 0; i < diceValue; i++) {
+            board.movePiece(piece);
+        }
+        board.knockOutPieceIfOccupied(piece);
         if (piece.getIndex() == 45) {
             removeFinishedPiece(piece);
         }
@@ -118,6 +129,14 @@ public class Game implements Serializable {
         // check for knockout
         // check if finished piece - "hide"
         // check if player is finished - call finishedPlayer
+    }
+
+    /**
+     * For testing purposes only currently
+     * @return
+     */
+    Board getBoard() {
+        return this.board;
     }
 
    /*
