@@ -28,9 +28,9 @@ public class GameplayUnitTest {
 
         Color[] playerColors = {
                 Color.BLUE,
+                Color.YELLOW,
                 Color.RED,
-                Color.GREEN,
-                Color.YELLOW};
+                Color.GREEN};
 
         game = GameFactory.createNewGame(names, playerColors);
     }
@@ -46,7 +46,8 @@ public class GameplayUnitTest {
 
         game.move(diceRoll, movablePieces.get(0));
         assertThat(movablePieces.get(0).getIndex()).isEqualTo(1);
-
+        var ppHashMap = game.getBoard().getPiecePositionHashMap();
+        assertThat(ppHashMap.get(movablePieces.get(0)).getPos()).isEqualTo(game.getBoard().getPositions().get(15+1).getPos());
 
 
         // Test if there's only one movable piece when 3 are home and one is at the first position
@@ -63,19 +64,51 @@ public class GameplayUnitTest {
         assertThat(movablePieces.size()).isEqualTo(getPlayersPieces().size());
         game.move(diceRoll, movablePieces.get(0));
         assertThat(movablePieces.get(0).getIndex()).isEqualTo(6);
+        assertThat(ppHashMap.get(movablePieces.get(0)).getPos()).isEqualTo(game.getBoard().getPositions().get(10+15+6).getPos());
 
         // Test that only the already moved piece is movable, since the pieces at home will
         // otherwise end up at the same position
         movablePieces = getPlayersMovablePieces(diceRoll);
         assertThat(movablePieces.size()).isEqualTo(1);
+
+
+        //
+        game.selectNextPlayer();
+        diceRoll = 6;
+        movablePieces = getPlayersMovablePieces(diceRoll);
+        game.move(diceRoll, movablePieces.get(1));
+
+
+        // Test if piece laps correctly and knocks out player one's piece at position 0.
+        game.selectNextPlayer();
+        movablePieces = getPlayersMovablePieces(diceRoll);
+        game.move(diceRoll, movablePieces.get(0));
+        game.move(5, movablePieces.get(0));
+        printAllPieceLocations();
+        Piece currentPiece = movablePieces.get(0);
+        assertThat(game.getBoard().getPiecePositionHashMap().get(currentPiece).getPos()).isEqualTo(0);
+        game.selectNextPlayer();
+        assertThat(getPlayersPieces().get(0).getIndex()).isEqualTo(0);
+        Piece pieceThatShouldBeKnockedOut = getPlayersPieces().get(0);
+        assertThat(game.getBoard().getPiecePositionHashMap().get(pieceThatShouldBeKnockedOut).getPos()).isEqualTo(pieceThatShouldBeKnockedOut.getHomeNumber());
     }
 
+
+    // Helper methods below
     private ArrayList<Piece> getPlayersMovablePieces(int roll) {
         return game.getMovablePieces(game.getCurrentPlayer(), roll);
     }
 
     private List<Piece> getPlayersPieces() {
         return game.getCurrentPlayer().getPieces();
+    }
+
+    private void printAllPieceLocations() {
+        for (Player player : game.getActivePlayers()) {
+            for (Piece piece : player.getPieces()) {
+                System.out.println("Index: " + piece.getIndex() + ", Position: " + game.getBoard().getPositionOutsideHomeOf(piece).getPos() + ", Home: " + piece.getHomeNumber());
+            }
+        }
     }
 
 
