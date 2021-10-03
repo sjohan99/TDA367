@@ -15,6 +15,12 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
+import com.example.fiamedknuff.model.Piece;
+import com.example.fiamedknuff.viewModels.GameViewModel;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A class standardboardFragment that ...
@@ -34,6 +40,9 @@ public class StandardboardFragment extends Fragment {
 
     ImageView yellowpiece1;
     ConstraintLayout constraintLayout;
+    GameViewModel gameViewModel;
+    List<ImageView> pieces;
+    List<ImageView> positions;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,40 +50,46 @@ public class StandardboardFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_standardboard, container, false);
 
+        gameViewModel = new GameViewModel();
+
         initPositions();
+
         initPieces();
-        testingPieceMovement();
+        //testingPieceMovement();
 
         return view;
     }
 
     private void initPieces() {
+        connectPiecesIds();
+        initListOfPieces();
+    }
+
+    private void connectPiecesIds() {
         yellowpiece1 = view.findViewById(R.id.yellowpiece1);
-
+        // TODO
     }
 
-
-    private void testingPieceMovement() {
-        constraintLayout = view.findViewById(R.id.constraintLayout);
-
-        yellowpiece1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ConstraintSet constraintSet = new ConstraintSet();
-                constraintSet.clone(constraintLayout);
-                constraintSet.connect(yellowpiece1.getId(), ConstraintSet.START, pos10.getId(), ConstraintSet.START);
-                constraintSet.connect(yellowpiece1.getId(), ConstraintSet.END, pos10.getId(), ConstraintSet.END);
-                constraintSet.connect(yellowpiece1.getId(), ConstraintSet.TOP, pos10.getId(), ConstraintSet.TOP);
-                constraintSet.connect(yellowpiece1.getId(), ConstraintSet.BOTTOM, pos10.getId(), ConstraintSet.BOTTOM);
-                constraintSet.applyTo(constraintLayout);
-
-                yellowpiece1.bringToFront();
-
-            }
-        });
+    private void initListOfPieces() {
+        pieces = new ArrayList<>();
+        // TODO
+        // maybe here is the place to call for method in GameViewModel and get
+        // information about which pieces should be created?
     }
 
+    /**
+     * Calls the methods connectPositionIds and initListOfPositions.
+     */
     private void initPositions() {
+        connectPositionIds();
+        initListOfPositions();
+        addPiecesOnClickListeners();
+    }
+
+    /**
+     * Connects every position to its equivalent ImageView.
+     */
+    private void connectPositionIds() {
         pos0 = view.findViewById(R.id.pos0);
         pos1 = view.findViewById(R.id.pos1);
         pos2 = view.findViewById(R.id.pos2);
@@ -133,5 +148,64 @@ public class StandardboardFragment extends Fragment {
         pos55 = view.findViewById(R.id.pos55);
         pos56 = view.findViewById(R.id.pos56);
     }
+
+    /**
+     * Initiates the List with all positions.
+     */
+    private void initListOfPositions() {
+        positions = new ArrayList<ImageView>();
+
+        positions.addAll(new ArrayList<ImageView>(Arrays.asList
+                (pos0, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10)));
+        positions.addAll(new ArrayList<ImageView>(Arrays.asList
+                (pos11, pos12, pos13, pos14, pos15, pos16, pos17, pos18, pos19, pos20)));
+        positions.addAll(new ArrayList<ImageView>(Arrays.asList
+                (pos21, pos22, pos23, pos24, pos25, pos26, pos27, pos28, pos29, pos30)));
+        positions.addAll(new ArrayList<ImageView>(Arrays.asList
+                (pos31, pos32, pos33, pos34, pos35, pos36, pos37, pos38, pos39, pos40)));
+        positions.addAll(new ArrayList<ImageView>(Arrays.asList
+                (pos41, pos42, pos43, pos44, pos45, pos46, pos47, pos48, pos49, pos50)));
+        positions.addAll(new ArrayList<ImageView>(Arrays.asList
+                (pos51, pos52, pos53, pos54, pos55, pos56)));
+    }
+
+    /**
+     * Adds OnClickListeners on all pieces. When a piece is clicked, the method pieceClicked in
+     * gameViewModel should be called.
+     */
+    //TODO method pieceClicked should have a parameter as well.
+    private void addPiecesOnClickListeners() {
+        for (ImageView piece : pieces) {
+            piece.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    gameViewModel.pieceClicked();
+                }
+            });
+        }
+    }
+
+
+
+
+    /*private void testingPieceMovement() {
+    constraintLayout = view.findViewById(R.id.constraintLayout);
+
+    yellowpiece1.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            ConstraintSet constraintSet = new ConstraintSet();
+            constraintSet.clone(constraintLayout);
+            constraintSet.connect(yellowpiece1.getId(), ConstraintSet.START, pos10.getId(), ConstraintSet.START);
+            constraintSet.connect(yellowpiece1.getId(), ConstraintSet.END, pos10.getId(), ConstraintSet.END);
+            constraintSet.connect(yellowpiece1.getId(), ConstraintSet.TOP, pos10.getId(), ConstraintSet.TOP);
+            constraintSet.connect(yellowpiece1.getId(), ConstraintSet.BOTTOM, pos10.getId(), ConstraintSet.BOTTOM);
+            constraintSet.applyTo(constraintLayout);
+
+            yellowpiece1.bringToFront();
+
+        }
+    });
+    }*/
 
 }
