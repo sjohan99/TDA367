@@ -63,4 +63,12 @@ public class GameViewModel {
         }
     }
 
+    //TODO
+    //should have a parameter with the piece or index of piece or something ??
+    public void pieceClicked() {
+        // check if it belongs to the current player
+        // check if its movable
+        // move
+        // lock other pieces so you can´t move two of your pieces ??
+    }
 }
