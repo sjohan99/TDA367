@@ -2,6 +2,7 @@ package com.example.fiamedknuff.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -24,9 +25,23 @@ public class CPU extends Player {
         this.board = board;
     }
 
-    void makeMove(int roll) {
-        Collection<Piece> movablePieces = new ArrayList<>();
-        movablePieces = getMovablePieces(getPieces(), roll);
+    Piece makeMove(int roll) throws Exception {
+        Collection<Piece> movablePieces = getMovablePieces(getPieces(), roll);
+        HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
+        Position pos;
+        for (Piece piece : movablePieces) {
+            pos = new Position(piecePositionHashMap.get(piece).getPos() + roll);
+            if (board.isOccupied(pos)) {
+                return piece;
+            }
+        }
+        for (Piece piece : movablePieces) {
+            pos = new Position(piecePositionHashMap.get(piece).getPos() + roll);
+            if (piece.getIndex() + roll == 45) {
+                return piece;
+            }
+        }
+        return null;
         //... HashMap?
     }
 
