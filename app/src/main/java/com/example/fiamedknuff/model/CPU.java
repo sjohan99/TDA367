@@ -23,8 +23,12 @@ public class CPU extends Player {
         this.board = board;
     }
 
-
-    public Piece makeMove(int roll) throws Exception {
+    /**
+     * Decides which move a CPU wants to make by ranking different moves
+     * @param roll is the value from the latest roll
+     * @return the piece to be moved
+     */
+    public Piece makeMove(int roll) {
         List<Piece> movablePieces = getMovablePieces(getPieces(), roll);
         HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
         Position pos;
