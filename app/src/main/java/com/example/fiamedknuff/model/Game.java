@@ -121,7 +121,8 @@ public class Game implements Serializable {
         return player.getPieces().size() == 0;
     }
 
-    public void move(int diceValue, Piece piece) throws Exception {
+    public void move(Piece piece) throws Exception {
+        int diceValue = dice.getRolledValue();
         if (pieceWillMovePastGoal(diceValue, piece)) {
             movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
         }
