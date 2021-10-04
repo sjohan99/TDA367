@@ -23,6 +23,7 @@ public class CPU extends Player {
         this.board = board;
     }
 
+
     public Piece makeMove(int roll) throws Exception {
         List<Piece> movablePieces = getMovablePieces(getPieces(), roll);
         HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
@@ -37,7 +38,6 @@ public class CPU extends Player {
             }
         }
         for (Piece piece : movablePieces) {
-            pos = new Position(piecePositionHashMap.get(piece).getPos() + roll);
             if (piece.getIndex() + roll == 45) {
                 return piece;
             }
@@ -47,16 +47,19 @@ public class CPU extends Player {
                 return piece;
             }
         }
-        Piece leadingPiece = movablePieces.get(0);
-        int tmpIndex = leadingPiece.getIndex();
-        for (Piece piece : movablePieces) {
-            if (piece.getIndex() > tmpIndex) {
-                tmpIndex = piece.getIndex();
-                leadingPiece = piece;
+        return leadingPiece(movablePieces);
+    }
+
+    private Piece leadingPiece(List<Piece> movablePieces) {
+        Piece piece = movablePieces.get(0);
+        int tmpIndex = piece.getIndex();
+        for (Piece p : movablePieces) {
+            if (p.getIndex() > tmpIndex) {
+                tmpIndex = p.getIndex();
+                piece = p;
             }
         }
-        return leadingPiece;
-
+        return piece;
     }
 
     /*
