@@ -79,16 +79,15 @@ public class Game implements Serializable {
      * Get the current players movable pieces
      * @return all the players movable pieces in a collection
      */
-    public ArrayList<Piece> getMovablePieces(Player player, int rolledValue) {
-        return player.getMovablePieces(player.getPieces(), rolledValue);
+    public ArrayList<Piece> getMovablePieces(Player player) {
+        return player.getMovablePieces(player.getPieces(), dice.getRolledValue());
     }
 
     /**
      * Rolls the dice
-     * @return the value of the rolled dice
      */
-    public int rollDice() {
-        return dice.rollDice();
+    public void rollDice() {
+        dice.rollDice();
     }
 
     private void finishedPlayer(Player player) {
