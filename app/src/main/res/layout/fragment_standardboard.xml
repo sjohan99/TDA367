@@ -732,4 +732,14 @@
         app:layout_constraintStart_toEndOf="@+id/greenHomepos2"
         app:layout_constraintTop_toBottomOf="@+id/greenHomepos1" />
 
+    <ImageView
+        android:id="@+id/diceImage"
+        android:layout_width="@dimen/sbDiceSize"
+        android:layout_height="@dimen/sbDiceSize"
+        android:src="@drawable/dice1"
+        app:layout_constraintBottom_toBottomOf="@+id/yellowHome"
+        app:layout_constraintEnd_toStartOf="@+id/yellowHome"
+        android:layout_marginEnd="@dimen/sbDiceMarginHorizontal"
+        android:layout_marginBottom="@dimen/sbDiceMarginVertical"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
