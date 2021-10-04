@@ -1,5 +1,6 @@
 package com.example.fiamedknuff.fragments;
 
+import android.media.Image;
 import android.os.Bundle;
 import static android.content.ContentValues.TAG;
 
@@ -11,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -21,6 +24,7 @@ import com.example.fiamedknuff.viewModels.GameViewModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A class standardboardFragment that ...
@@ -45,6 +49,7 @@ public class StandardboardFragment extends Fragment {
     List<ImageView> positions;
 
     ImageView diceImage;
+    List<Integer> diceImages;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,6 +71,8 @@ public class StandardboardFragment extends Fragment {
 
     private void initDice() {
         diceImage = view.findViewById(R.id.diceImage);
+        initDiceImages();
+
         diceImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,8 +84,20 @@ public class StandardboardFragment extends Fragment {
         });
     }
 
+    private void initDiceImages() {
+        diceImages = new ArrayList<>();
+        diceImages.add(R.drawable.dice1);
+        diceImages.add(R.drawable.dice2);
+        diceImages.add(R.drawable.dice3);
+        diceImages.add(R.drawable.dice4);
+        diceImages.add(R.drawable.dice5);
+        diceImages.add(R.drawable.dice6);
+    }
+
     private void rotateDice(int rolledValue) {
-        //TODO
+        Animation anim = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.rotate);
+        diceImage.startAnimation(anim); // animate the roll of the dice
+        diceImage.setImageResource(diceImages.get(rolledValue - 1)); // sets the rolled value
     }
 
     private void initPieces() {
