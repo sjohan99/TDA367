@@ -27,10 +27,10 @@ public class GameplayUnitTest {
                 "Player four"};
 
         Color[] playerColors = {
-                Color.BLUE,
                 Color.YELLOW,
                 Color.RED,
-                Color.GREEN};
+                Color.GREEN,
+                Color.BLUE};
 
         game = GameFactory.createNewGame(names, playerColors);
     }
@@ -84,13 +84,40 @@ public class GameplayUnitTest {
         movablePieces = getPlayersMovablePieces(diceRoll);
         game.move(diceRoll, movablePieces.get(0));
         game.move(5, movablePieces.get(0));
-        printAllPieceLocations();
         Piece currentPiece = movablePieces.get(0);
         assertThat(game.getBoard().getPiecePositionHashMap().get(currentPiece).getPos()).isEqualTo(0);
         game.selectNextPlayer();
         assertThat(getPlayersPieces().get(0).getIndex()).isEqualTo(0);
         Piece pieceThatShouldBeKnockedOut = getPlayersPieces().get(0);
         assertThat(game.getBoard().getPiecePositionHashMap().get(pieceThatShouldBeKnockedOut).getPos()).isEqualTo(pieceThatShouldBeKnockedOut.getHomeNumber());
+
+
+        // TODO: 2021-10-04 Add asserts below 
+        game.selectNextPlayer();
+        game.selectNextPlayer();
+        movablePieces = getPlayersMovablePieces(6);
+        game.move(6, movablePieces.get(0));
+        game.move(6, movablePieces.get(0));
+        game.move(6, movablePieces.get(0));
+        game.move(6, movablePieces.get(0));
+        game.move(6, movablePieces.get(0));
+        game.move(6, movablePieces.get(0));
+
+
+        game.selectNextPlayer();
+        movablePieces = getPlayersMovablePieces(6);
+        game.move(6, movablePieces.get(0));
+        game.move(6, movablePieces.get(0));
+        game.move(6, movablePieces.get(0));
+        game.move(6, movablePieces.get(0));
+        game.move(6, movablePieces.get(0));
+        printAllPieceLocations();
+        game.move(6, movablePieces.get(0));
+        game.move(1, movablePieces.get(0));
+        game.move(6, movablePieces.get(0));
+
+        printAllPieceLocations();
+
     }
 
 
@@ -104,9 +131,13 @@ public class GameplayUnitTest {
     }
 
     private void printAllPieceLocations() {
+        String p = "";
+        int x = 0;
         for (Player player : game.getActivePlayers()) {
+            p = game.getActivePlayers().get(x).getName();
+            x++;
             for (Piece piece : player.getPieces()) {
-                System.out.println("Index: " + piece.getIndex() + ", Position: " + game.getBoard().getPositionOutsideHomeOf(piece).getPos() + ", Home: " + piece.getHomeNumber());
+                System.out.println(p + ": " + "Index: " + piece.getIndex() + ", Position: " + game.getBoard().getPositionOutsideHomeOf(piece).getPos() + ", Home: " + piece.getHomeNumber());
             }
         }
     }
