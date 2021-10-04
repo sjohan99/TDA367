@@ -29,6 +29,10 @@ public class Game implements Serializable {
         return activePlayers.get(currentPlayerIndex);
     }
 
+    public Dice getDice() {
+        return dice;
+    }
+
     /**
      * Checks if there are more than one active player left in the game and if so, increments
      * the current player index to select next player
