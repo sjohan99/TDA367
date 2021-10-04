@@ -71,7 +71,7 @@ public class Game implements Serializable {
      * Get all the players pieces
      * @return all the players pieces in a list
      */
-    private List<Piece> getAllPlayerPieces() {
+    public List<Piece> getAllPlayerPieces() {
         List<Piece> pieces = new ArrayList<>();
         for (Player player : activePlayers) {
             pieces.addAll(getPlayerPieces(player));
@@ -114,8 +114,8 @@ public class Game implements Serializable {
         return player.getPieces().size() == 0;
     }
 
-    public void move(int diceValue, Piece piece) throws Exception {
-        board.movePiece(diceValue, piece);
+    public void move(Piece piece) throws Exception {
+        board.movePiece(dice.getRolledValue(), piece);
         if (piece.getIndex() == 45) {
             removeFinishedPiece(piece);
         }
