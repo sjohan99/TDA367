@@ -179,14 +179,24 @@ public class StandardboardFragment extends Fragment {
             piece.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    setPiecesClickable(false);
                     gameViewModel.pieceClicked();
+                    setPiecesClickable(true);
                 }
             });
         }
     }
 
-
-
+    /**
+     * Either sets all the pieces to clickable, or to non-clickable, depending on the param
+     * @param isClickable is true if the pieces should be set to clickable, and
+     *                    false if the pieces should be set to non-clickable
+     */
+    private void setPiecesClickable(Boolean isClickable) {
+        for (ImageView piece : pieces) {
+            piece.setClickable(isClickable);
+        }
+    }
 
     /*private void testingPieceMovement() {
     constraintLayout = view.findViewById(R.id.constraintLayout);
