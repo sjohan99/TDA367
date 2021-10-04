@@ -113,7 +113,7 @@ public class Game implements Serializable {
 
     public void move(int diceValue, Piece piece) throws Exception {
         board.movePiece(diceValue, piece);
-        if (piece.getIndex() == 45) {
+        if (piece.getIndex() == 56) {
             removeFinishedPiece(piece);
         }
         if (isFinishedPlayer(getCurrentPlayer())) {
