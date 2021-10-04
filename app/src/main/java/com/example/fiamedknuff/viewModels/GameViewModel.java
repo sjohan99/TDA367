@@ -8,6 +8,7 @@ import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Player;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * A class gameViewModel that ...
@@ -33,7 +34,7 @@ public class GameViewModel {
         game = GameFactory.createNewGame(playerNames, colors);
     }
 
-    public void play() throws Exception{
+    /*public void play() throws Exception{
         while(game.getCurrentPlayerIndex() != -1) {
             // For a new round...
             currentPlayer = game.getCurrentPlayer();
@@ -61,14 +62,30 @@ public class GameViewModel {
                 game.selectNextPlayer();
             }
         }
-    }
+    }*/
 
     //TODO
     //should have a parameter with the piece or index of piece or something ??
+    // update so that it works for when a player has finished - or maybe it already does??
     public void pieceClicked() {
-        // check if it belongs to the current player
-        // check if its movable
-        // move
-        // lock other pieces so you can´t move two of your pieces ??
+        // if the rolled dice is already used, we can´t move any piece before another roll has
+        // been made
+        if (!game.getDice().getIsUsed()) {
+            // check if its movable
+            List<Piece> movablePieces = game.getMovablePieces(game.getCurrentPlayer());
+            // TODO how to compare a piece with the respective imageview?
+            // if (movablePieces.contains the piece)
+            if(true) {
+                //move
+                game.getDice().setIsUsed(true);
+            }
+            moveToNextPlayer();
+        }
+    }
+
+    private void moveToNextPlayer() {
+        game.selectNextPlayer();
+        // check if game finished - finish
+        // move dice to the next player
     }
 }
