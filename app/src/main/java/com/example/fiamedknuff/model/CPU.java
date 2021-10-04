@@ -1,7 +1,5 @@
 package com.example.fiamedknuff.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,10 +23,13 @@ public class CPU extends Player {
         this.board = board;
     }
 
-    Piece makeMove(int roll) throws Exception {
-        Collection<Piece> movablePieces = getMovablePieces(getPieces(), roll);
+    public Piece makeMove(int roll) throws Exception {
+        List<Piece> movablePieces = getMovablePieces(getPieces(), roll);
         HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
         Position pos;
+        if (movablePieces.size() == 0) {
+           return null;
+        }
         for (Piece piece : movablePieces) {
             pos = new Position(piecePositionHashMap.get(piece).getPos() + roll);
             if (board.isOccupied(pos)) {
@@ -41,8 +42,21 @@ public class CPU extends Player {
                 return piece;
             }
         }
-        return null;
-        //... HashMap?
+        for (Piece piece : movablePieces) {
+            if (piece.isHome()) {
+                return piece;
+            }
+        }
+        Piece leadingPiece = movablePieces.get(0);
+        int tmpIndex = leadingPiece.getIndex();
+        for (Piece piece : movablePieces) {
+            if (piece.getIndex() > tmpIndex) {
+                tmpIndex = piece.getIndex();
+                leadingPiece = piece;
+            }
+        }
+        return leadingPiece;
+
     }
 
     /*
@@ -51,7 +65,7 @@ public class CPU extends Player {
     * 1. Om isOccupied -> knockput
     * 2. Gå ut med en pjäs
     * 3. Gå ut från bo med pjäs -> 1a eller 6a
-    * 4. Inget speciellt, bara gå antal steg på tärningen framåt. Slumpa mellan dessa om det finns fler?
+    * 4. Inget speciellt, bara gå antal steg på tärningen framåt. Ta första bästa. (Slumpa mellan dessa om det finns fler?)
     *
     * Välja vilken pjäs -> Flytta den
     *
