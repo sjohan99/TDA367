@@ -13,10 +13,12 @@ import java.util.Random;
 
 public class Dice {
     private int valueMax;
-    private Random rand = new Random();
+    private final Random rand = new Random();
 
     // set to true when used and are waiting to be rolled, false if it is rolled and not used yet
     private Boolean isUsed;
+
+    private int rolledValue;
 
     public Dice(int valueMax) {
         this.valueMax = valueMax;
@@ -36,6 +38,10 @@ public class Dice {
         this.isUsed = isUsed;
     }
 
+    public int getRolledValue() {
+        return rolledValue;
+    }
+
     /**
      * Rolls the dice and returns the value of the rolled dice. The value
      * is between 1 and the maximum value of the dice. Sets the variable isUsed to false.
@@ -43,7 +49,8 @@ public class Dice {
      */
     int rollDice() {
         isUsed = false;
-        return rand.nextInt(valueMax) + 1;
+        rolledValue = rand.nextInt(valueMax) + 1;
+        return rolledValue;
     }
 
 
