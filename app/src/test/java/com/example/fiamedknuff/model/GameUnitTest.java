@@ -57,7 +57,7 @@ public class GameUnitTest {
     public void testRemoveFinishedPiece() throws Exception {
         Player currentPlayer = players.get(0);
         Piece piece = currentPlayer.getPieces().get(0);
-        piece.setIndex(55);
+        piece.setIndex(44);
         game.move(1, piece);
         assertThat(currentPlayer.getPieces().size()).isEqualTo(3);
     }
@@ -72,7 +72,7 @@ public class GameUnitTest {
             currentPlayer.removePiece(piece);
         }
         Piece piece = currentPlayer.getPieces().get(0);
-        piece.setIndex(55);
+        piece.setIndex(44);
         game.move(1, piece);
         assertThat(currentPlayer.getPieces().size()).isEqualTo(0);
     }
@@ -90,7 +90,7 @@ public class GameUnitTest {
         }
         // Go out with last piece for current player
         piece = currentPlayer.getPieces().get(0);
-        piece.setIndex(55);
+        piece.setIndex(44);
         game.move(1, piece);
         assertThat(activePlayers.size()).isEqualTo(3);
     }
@@ -109,8 +109,8 @@ public class GameUnitTest {
         }
         // Go out with last piece for finished player
         piece = finishedPlayer.getPieces().get(0);
-        piece.setIndex(50);
-        game.move(6, piece);
+        piece.setIndex(40);
+        game.move(5, piece);
 
         // Remove all pieces except for one for current player
         for (int i = 0; i < 3; i++) {
@@ -119,8 +119,8 @@ public class GameUnitTest {
         }
         // Go out with last piece for current player
         piece = currentPlayer.getPieces().get(0);
-        piece.setIndex(51);
-        game.move(5, piece);
+        piece.setIndex(39);
+        game.move(6, piece);
         assertThat(activePlayers.size()).isEqualTo(2);
     }
 
