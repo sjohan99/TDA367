@@ -11,7 +11,7 @@ import java.util.Random;
  */
 
 
-public class Dice {
+public class Dice implements Serializable{
     private int valueMax;
     private final Random rand = new Random();
 

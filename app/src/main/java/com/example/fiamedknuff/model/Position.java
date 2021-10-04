@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 public class Position implements Serializable {
 
-    private int pos;
+    private final int pos;
 
     public Position(int x) {
         pos = x;
