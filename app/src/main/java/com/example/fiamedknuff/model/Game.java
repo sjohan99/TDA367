@@ -4,7 +4,6 @@ import com.example.fiamedknuff.NotImplementedException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Game implements Serializable {
@@ -114,8 +113,11 @@ public class Game implements Serializable {
     }
 
     public void move(int diceValue, Piece piece) throws Exception {
-        for (int i = 0; i < diceValue; i++) {
-            board.movePiece(piece);
+        if (pieceWillMovePastGoal(diceValue, piece)) {
+            movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
+        }
+        else {
+            movePieceNormally(diceValue, piece);
         }
         board.knockOutPieceIfOccupied(piece);
         if (piece.getIndex() == 45) {
@@ -129,6 +131,27 @@ public class Game implements Serializable {
         // check for knockout
         // check if finished piece - "hide"
         // check if player is finished - call finishedPlayer
+    }
+
+    private void movePieceNormally(int diceValue, Piece piece) throws Exception {
+        for (int i = 0; i < diceValue; i++) {
+            board.movePiece(piece);
+        }
+    }
+
+    private boolean pieceWillMovePastGoal(int diceValue, Piece piece) {
+        return piece.getIndex() + diceValue > 45;
+    }
+
+    private void movePieceAndMoveBackwardsAfterMiddle(int diceValue, Piece piece) throws Exception {
+        int forwardSteps = 45 - piece.getIndex();
+        int backwardSteps = diceValue - forwardSteps;
+        for (int i = forwardSteps; i > 0; i--) {
+            board.movePiece(piece);
+        }
+        for (int i = backwardSteps; i > 0; i--) {
+            board.movePieceBackwards(piece);
+        }
     }
 
     /**

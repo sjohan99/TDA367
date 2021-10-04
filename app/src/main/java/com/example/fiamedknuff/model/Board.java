@@ -13,7 +13,7 @@ public class Board implements Serializable {
     private HashMap<Piece, Position> piecePositionHashMap; // Maps the pieces to their positions
     private final int[] numberOfPositions = {0, 0, 0, 57, 0, 0, 0}; // Number of positions for each board size
     private final int[] walkOutOffset = {0, 0, 0, 10, 0, 0, 0};
-    private final int[] lapLength = {0, 0, 0, 39, 0, 0, 0};
+    private final int[] lapLength = {0, 0, 0, 40, 0, 0, 0};
     private final int playerCount;
 
     public Board(int playerCount, List<Piece> pieces) throws NotImplementedException {
@@ -105,6 +105,37 @@ public class Board implements Serializable {
         piece.setIndex(piece.getIndex() + 1);
     }
 
+    void movePieceBackwards(Piece piece) {
+        Position p;
+        if (pieceAboutToExitMiddlePath(piece)) {
+            p = getPieceLastPositionBeforeMiddlePath(piece);
+        }
+        else {
+            p = decrementPositionOf(piece);
+        }
+        piecePositionHashMap.put(piece, p); // Updates value of key
+        piece.setIndex(piece.getIndex() - 1);
+    }
+
+    private Position getPieceLastPositionBeforeMiddlePath(Piece piece) {
+        Position p;
+        if (piece.getOffset() > 0) {
+            p = positions.get((4*playerCount) + piece.getOffset() - 1); // Start-position minus 1
+        }
+        else {
+            p = positions.get((4 * playerCount) + lapLength[playerCount-1] - 1); // For player 1
+        }
+        return p;
+    }
+
+    private boolean pieceAboutToExitMiddlePath(Piece piece) {
+        return piece.getIndex() == lapLength[playerCount - 1] + 1;
+    }
+
+    private Position decrementPositionOf(Piece piece) {
+        return positions.get((4 * playerCount) + piecePositionHashMap.get(piece).getPos() - 1);
+    }
+
     private Position IncrementPositionOf(Piece piece) {
         return positions.get((4 * playerCount) + piecePositionHashMap.get(piece).getPos() + 1);
     }
@@ -115,9 +146,9 @@ public class Board implements Serializable {
 
     private Position getFirstInwardPositionOf(Piece piece) {
         Position p;
-        int posIndex = (4*playerCount) + piecePositionHashMap.get(piece).getPos();
-        posIndex = getPieceJumpAmount(piece, posIndex);
-        p = positions.get(posIndex);
+        int posIndex = lapLength[playerCount-1];
+        posIndex += getPieceJumpAmount(piece);
+        p = positions.get((4*playerCount)+posIndex);
         return p;
     }
 
@@ -126,19 +157,20 @@ public class Board implements Serializable {
     }
 
     private boolean pieceAboutToLap(Piece piece) {
-        return piecePositionHashMap.get(piece) == positions.get((4 * playerCount) + lapLength[playerCount-1]);
+        return piecePositionHashMap.get(piece) == positions.get((4 * playerCount) + lapLength[playerCount-1] - 1);
     }
 
     private boolean pieceWantsToGoInward(Piece piece) {
         return piece.getIndex() == lapLength[playerCount-1];
     }
 
-    private int getPieceJumpAmount(Piece piece, int posIndex) {
-        double indicator = Math.abs(piece.getHomeNumber()) / 4;
-        indicator = Math.ceil(indicator);
-        int jump = (int) ((indicator * 4) - 4);
-        posIndex += jump;
-        return posIndex;
+    private int getPieceJumpAmount(Piece piece) {
+        double absHomeNum = Math.abs(piece.getHomeNumber());
+        double b = absHomeNum / 4;
+        double c = Math.abs(b - playerCount);
+
+        int indicator = (int) Math.floor(c);
+        return 4 * indicator;
     }
 
     /**
