@@ -44,6 +44,8 @@ public class StandardboardFragment extends Fragment {
     List<ImageView> pieces;
     List<ImageView> positions;
 
+    ImageView diceImage;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,12 +59,32 @@ public class StandardboardFragment extends Fragment {
         initPieces();
         //testingPieceMovement();
 
+        initDice();
+
         return view;
+    }
+
+    private void initDice() {
+        diceImage = view.findViewById(R.id.diceImage);
+        diceImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int rolledValue = gameViewModel.rollDice();
+                if (rolledValue != -1) {
+                    rotateDice(rolledValue);
+                }
+            }
+        });
+    }
+
+    private void rotateDice(int rolledValue) {
+        //TODO
     }
 
     private void initPieces() {
         connectPiecesIds();
         initListOfPieces();
+        addPiecesOnClickListeners();
     }
 
     private void connectPiecesIds() {
@@ -83,7 +105,6 @@ public class StandardboardFragment extends Fragment {
     private void initPositions() {
         connectPositionIds();
         initListOfPositions();
-        addPiecesOnClickListeners();
     }
 
     /**
@@ -173,14 +194,13 @@ public class StandardboardFragment extends Fragment {
      * Adds OnClickListeners on all pieces. When a piece is clicked, the method pieceClicked in
      * gameViewModel should be called.
      */
-    //TODO method pieceClicked should have a parameter as well.
     private void addPiecesOnClickListeners() {
         for (ImageView piece : pieces) {
             piece.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     setPiecesClickable(false);
-                    gameViewModel.pieceClicked();
+                    gameViewModel.pieceClicked(pieces.indexOf(piece));
                     setPiecesClickable(true);
                 }
             });
