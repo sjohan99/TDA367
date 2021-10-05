@@ -56,7 +56,7 @@ public class RulebookFragment extends Fragment {
     private void setUpRulebook(View view) {
         pageCurlView = view.findViewById(R.id.pagecurlView);
 
-        rulebookTitle = view.findViewById(R.id.rule_book_title);
+        rulebookTitle = view.findViewById(R.id.rulebook_title);
 
         // Initialize an list with images to display in the rule book
         images = new ArrayList<>();
