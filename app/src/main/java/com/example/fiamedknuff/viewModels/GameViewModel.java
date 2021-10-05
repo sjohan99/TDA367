@@ -8,6 +8,7 @@ import com.example.fiamedknuff.model.Game;
 import com.example.fiamedknuff.model.GameFactory;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Player;
+import com.example.fiamedknuff.model.Position;
 
 import java.util.Collection;
 import java.util.List;
@@ -139,4 +140,13 @@ public class GameViewModel extends ViewModel {
     public List<Piece> getPieces() {
         return game.getAllPlayerPieces();
     }
+
+    /**
+     * Returns the positions from the board.
+     * @return the positions from the board.
+     */
+    public List<Position> getPositions() {
+        return game.getPositions();
+    }
+
 }

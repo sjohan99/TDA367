@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.model.Piece;
+import com.example.fiamedknuff.model.Position;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 
 import java.util.ArrayList;
@@ -37,6 +38,8 @@ public class StandardboardFragment extends Fragment {
     ImageView pos31, pos32, pos33, pos34, pos35, pos36, pos37, pos38, pos39, pos40;
     ImageView pos41, pos42, pos43, pos44, pos45, pos46, pos47, pos48, pos49, pos50;
     ImageView pos51, pos52, pos53, pos54, pos55, pos56;
+    List<ImageView> positions;
+    HashMap<ImageView, Position> imageViewPositionHashMap;
 
     ImageView yellowpiece0, yellowpiece1, yellowpiece2, yellowpiece3;
     ImageView redpiece0, redpiece1, redpiece2, redpiece3;
@@ -47,7 +50,6 @@ public class StandardboardFragment extends Fragment {
 
     ConstraintLayout constraintLayout;
     GameViewModel gameViewModel;
-    List<ImageView> positions;
 
     ImageView diceImage;
     List<Integer> diceImages;
@@ -178,6 +180,20 @@ public class StandardboardFragment extends Fragment {
     private void initPositions() {
         connectPositionIds();
         initListOfPositions();
+        initPositionsHashmap();
+    }
+
+    // TODO off by 1?
+    /**
+     * Initiates the hashmap imageViewPositionHashMap. Gets the positions from gameViewModel
+     * and connects them with the equivalent imageView.
+     */
+    private void initPositionsHashmap() {
+        imageViewPositionHashMap = new HashMap<>();
+        List<Position> positionsModel = gameViewModel.getPositions();
+        for (int i = 0; i < positionsModel.size(); i++) {
+            imageViewPositionHashMap.put(positions.get(i), positionsModel.get(i));
+        }
     }
 
     /**

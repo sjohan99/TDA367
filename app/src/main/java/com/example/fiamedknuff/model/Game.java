@@ -201,4 +201,12 @@ public class Game implements Serializable {
         //board.move(piece);
    */
 
+    /**
+     * Returns the positions from the board.
+     * @return the positions from the board.
+     */
+    public List<Position> getPositions () {
+        return this.board.getPositions();
+    }
+
 }
