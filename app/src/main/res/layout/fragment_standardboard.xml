@@ -599,6 +599,16 @@
         app:srcCompat="@drawable/ic_yellowhome" />
 
     <ImageView
+        android:id="@+id/yellowpiece0"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_yellowpiece"
+        app:layout_constraintBottom_toBottomOf="@+id/yellowHomepos0"
+        app:layout_constraintEnd_toEndOf="@+id/yellowHomepos0"
+        app:layout_constraintStart_toStartOf="@+id/yellowHomepos0" />
+
+    <ImageView
         android:id="@+id/yellowpiece1"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/sbPieceHeight"
@@ -606,7 +616,148 @@
         android:src="@drawable/ic_yellowpiece"
         app:layout_constraintBottom_toBottomOf="@+id/yellowHomepos1"
         app:layout_constraintEnd_toEndOf="@+id/yellowHomepos1"
-        app:layout_constraintStart_toEndOf="@+id/yellowHomepos0" />
+        app:layout_constraintStart_toStartOf="@+id/yellowHomepos1" />
+
+    <ImageView
+        android:id="@+id/yellowpiece2"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_yellowpiece"
+        app:layout_constraintBottom_toBottomOf="@+id/yellowHomepos2"
+        app:layout_constraintEnd_toEndOf="@+id/yellowHomepos2"
+        app:layout_constraintStart_toStartOf="@+id/yellowHomepos2" />
+
+    <ImageView
+        android:id="@+id/yellowpiece3"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_yellowpiece"
+        app:layout_constraintBottom_toBottomOf="@+id/yellowHomepos3"
+        app:layout_constraintEnd_toEndOf="@+id/yellowHomepos3"
+        app:layout_constraintStart_toStartOf="@+id/yellowHomepos3" />
+
+    <ImageView
+        android:id="@+id/redpiece0"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_redpiece"
+        app:layout_constraintBottom_toBottomOf="@+id/redHomepos0"
+        app:layout_constraintEnd_toEndOf="@+id/redHomepos0"
+        app:layout_constraintStart_toStartOf="@+id/redHomepos0" />
+
+    <ImageView
+        android:id="@+id/redpiece1"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_redpiece"
+        app:layout_constraintBottom_toBottomOf="@+id/redHomepos1"
+        app:layout_constraintEnd_toEndOf="@+id/redHomepos1"
+        app:layout_constraintStart_toStartOf="@+id/redHomepos1" />
+
+    <ImageView
+        android:id="@+id/redpiece2"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_redpiece"
+        app:layout_constraintBottom_toBottomOf="@+id/redHomepos2"
+        app:layout_constraintEnd_toEndOf="@+id/redHomepos2"
+        app:layout_constraintStart_toStartOf="@+id/redHomepos2" />
+
+    <ImageView
+        android:id="@+id/redpiece3"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_redpiece"
+        app:layout_constraintBottom_toBottomOf="@+id/redHomepos3"
+        app:layout_constraintEnd_toEndOf="@+id/redHomepos3"
+        app:layout_constraintStart_toStartOf="@+id/redHomepos3" />
+
+    <ImageView
+        android:id="@+id/bluepiece0"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_bluepiece"
+        app:layout_constraintBottom_toBottomOf="@+id/blueHomepos0"
+        app:layout_constraintEnd_toEndOf="@+id/blueHomepos0"
+        app:layout_constraintStart_toStartOf="@+id/blueHomepos0" />
+
+    <ImageView
+        android:id="@+id/bluepiece1"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_bluepiece"
+        app:layout_constraintBottom_toBottomOf="@+id/blueHomepos1"
+        app:layout_constraintEnd_toEndOf="@+id/blueHomepos1"
+        app:layout_constraintStart_toStartOf="@+id/blueHomepos1" />
+
+    <ImageView
+        android:id="@+id/bluepiece2"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_bluepiece"
+        app:layout_constraintBottom_toBottomOf="@+id/blueHomepos2"
+        app:layout_constraintEnd_toEndOf="@+id/blueHomepos2"
+        app:layout_constraintStart_toStartOf="@+id/blueHomepos2" />
+
+    <ImageView
+        android:id="@+id/bluepiece3"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_bluepiece"
+        app:layout_constraintBottom_toBottomOf="@+id/blueHomepos3"
+        app:layout_constraintEnd_toEndOf="@+id/blueHomepos3"
+        app:layout_constraintStart_toStartOf="@+id/blueHomepos3" />
+
+    <ImageView
+        android:id="@+id/greenpiece0"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_greenpiece"
+        app:layout_constraintBottom_toBottomOf="@+id/greenHomepos0"
+        app:layout_constraintEnd_toEndOf="@+id/greenHomepos0"
+        app:layout_constraintStart_toStartOf="@+id/greenHomepos0" />
+
+    <ImageView
+        android:id="@+id/greenpiece1"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_greenpiece"
+        app:layout_constraintBottom_toBottomOf="@+id/greenHomepos1"
+        app:layout_constraintEnd_toEndOf="@+id/greenHomepos1"
+        app:layout_constraintStart_toStartOf="@+id/greenHomepos1" />
+
+    <ImageView
+        android:id="@+id/greenpiece2"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_greenpiece"
+        app:layout_constraintBottom_toBottomOf="@+id/greenHomepos2"
+        app:layout_constraintEnd_toEndOf="@+id/greenHomepos2"
+        app:layout_constraintStart_toStartOf="@+id/greenHomepos2" />
+
+    <ImageView
+        android:id="@+id/greenpiece3"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sbPieceHeight"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_greenpiece"
+        app:layout_constraintBottom_toBottomOf="@+id/greenHomepos3"
+        app:layout_constraintEnd_toEndOf="@+id/greenHomepos3"
+        app:layout_constraintStart_toStartOf="@+id/greenHomepos3" />
+
 
     <ImageView
         android:id="@+id/yellowHomepos0"
