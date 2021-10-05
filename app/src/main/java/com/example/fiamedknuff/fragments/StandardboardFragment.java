@@ -61,10 +61,7 @@ public class StandardboardFragment extends Fragment {
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
 
         initPositions();
-
         initPieces();
-        //testingPieceMovement();
-
         initDice();
 
         return view;
@@ -95,6 +92,10 @@ public class StandardboardFragment extends Fragment {
         diceImages.add(R.drawable.dice6);
     }
 
+    /**
+     * Method that rotates the dice and sets the new rolled value.
+     * @param rolledValue is the rolled value
+     */
     private void rotateDice(int rolledValue) {
         Animation anim = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.rotate);
         diceImage.startAnimation(anim); // animate the roll of the dice
@@ -109,6 +110,9 @@ public class StandardboardFragment extends Fragment {
         addPiecesOnClickListeners();
     }
 
+    /**
+     * Connects the pieces id:s with its equivalent imageview.
+     */
     private void connectPiecesIds() {
         yellowpiece0 = view.findViewById(R.id.yellowpiece0);
         yellowpiece1 = view.findViewById(R.id.yellowpiece1);
@@ -128,6 +132,9 @@ public class StandardboardFragment extends Fragment {
         greenpiece3 = view.findViewById(R.id.greenpiece3);
     }
 
+    /**
+     * Initiates the list piecesImageViews with all ImageViews of the pieces.
+     */
     private void initListOfAllPieces() {
         piecesImageViews = new ArrayList<ImageView>();
         piecesImageViews.addAll(new ArrayList<ImageView>(Arrays.asList(
@@ -141,6 +148,10 @@ public class StandardboardFragment extends Fragment {
     }
 
     // TODO off by 1?
+    /**
+     * Initiates the hashmap imageViewPieceHashMap. Gets the active pieces from gameViewModel
+     * and connects them with the equivalent imageView.
+     */
     private void initPiecesHashmap() {
         imageViewPieceHashMap = new HashMap<>();
         List<Piece> activePieces = gameViewModel.getPieces();
@@ -150,7 +161,11 @@ public class StandardboardFragment extends Fragment {
     }
 
     // TODO off by 1?
-    // the pieces in the list "pieces" that is not used should be invisible
+    /**
+     * The pieces that should be visible are connected in the imageViewPieceHashMap. The
+     * rest of the pieces in the list piecesImageViews should be invisible, and that is
+     * what happens in this method.
+     */
     private void makeInactivePiecesInvisible() {
         for (int i = imageViewPieceHashMap.size(); i < piecesImageViews.size(); i++) {
             piecesImageViews.get(i).setVisibility(View.INVISIBLE);
