@@ -82,11 +82,10 @@ public class RulebookFragment extends Fragment {
         images.add(R.drawable.rules_third_pages_sv);
     }
 
-    // TODO add rules in english
     private void languageEnglish() {
-        images.add(R.drawable.pages);
-        images.add(R.drawable.pages);
-        images.add(R.drawable.pages);
+        images.add(R.drawable.rules_first_pages_en);
+        images.add(R.drawable.rules_second_pages_en);
+        images.add(R.drawable.rules_third_pages_en);
     }
 
 }
