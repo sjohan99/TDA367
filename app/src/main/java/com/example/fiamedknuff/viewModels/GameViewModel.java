@@ -1,5 +1,7 @@
 package com.example.fiamedknuff.viewModels;
 
+import androidx.lifecycle.ViewModel;
+
 import com.example.fiamedknuff.NotImplementedException;
 import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.model.Game;
@@ -9,7 +11,6 @@ import com.example.fiamedknuff.model.Player;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 
 /**
  * A class gameViewModel that ...
@@ -18,7 +19,7 @@ import java.util.Random;
  * @author Emma Stålberg
  */
 
-public class GameViewModel {
+public class GameViewModel extends ViewModel {
 
     private Game game;
     private int playerCount;
@@ -65,23 +66,20 @@ public class GameViewModel {
         }
     }*/
 
-    //TODO - is the code in the model correct so the lists are corresponding?
-    // update so that it works for when a player has finished - or probably it already does??
+    // TODO update so that it works for when a player has finished with the new method
     /**
      * TODO
-     * @param indexOfPiece is the index of the piece in the list of pieces in the view, which
-     *                     corresponds to the index of the piece in the list of pieces in the model
+     * @param clickedPiece is the clicked piece
      */
-    public void pieceClicked(int indexOfPiece) {
+    public void pieceClicked(Piece clickedPiece) {
         // if the rolled dice is already used, we can´t move any piece before another roll has
         // been made
         if (!game.getDice().getIsUsed()) {
             List<Piece> movablePieces = game.getMovablePieces(game.getCurrentPlayer());
-            Piece clickedPiece = game.getAllPlayerPieces().get(indexOfPiece);
             //checks if the clicked piece is movable
             if(movablePieces.contains(clickedPiece)) {
                 move(clickedPiece);
-                checkIfRemoved(clickedPiece);
+                checkIfRemoved(clickedPiece); // TODO change! see above
             }
             moveToNextPlayer();
         }
@@ -131,5 +129,9 @@ public class GameViewModel {
             return game.getDice().getRolledValue();
         }
         return -1;
+    }
+
+    public List<Piece> getPieces() {
+        return game.getAllPlayerPieces();
     }
 }
