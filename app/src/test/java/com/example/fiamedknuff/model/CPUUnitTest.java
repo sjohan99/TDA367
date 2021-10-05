@@ -19,16 +19,17 @@ public class CPUUnitTest {
 
     @Before
     public void createGame() throws NotImplementedException {
+        CPU = new CPU("2", Color.RED);
 
         players = new ArrayList<>();
         players.add(new Player("1", Color.BLUE));
-        players.add(new Player("2", Color.RED));
+        players.add(CPU);
         players.add(new Player("3", Color.YELLOW));
         players.add(new Player("4", Color.GREEN));
         game = new Game(players);
 
-        //board = game.board;
-        CPU = new CPU("2", Color.RED, board);
+        board = game.getBoard();
+        CPU.setBoard(board);
     }
 
     @Test
