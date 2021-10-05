@@ -88,10 +88,22 @@ public class Game implements Serializable {
 
     /**
      * Get the current players movable pieces
+     * @param player gets the movable pieces of this player
      * @return all the players movable pieces in a collection
      */
     public ArrayList<Piece> getMovablePieces(Player player) {
         return player.getMovablePieces(player.getPieces(), dice.getRolledValue());
+    }
+
+    /**
+     * Mock method.
+     * Get the current players movable pieces
+     * @param player gets the movable pieces of this player
+     * @param rolledValue the rolled value
+     * @return all the players movable pieces in a collection
+     */
+    public ArrayList<Piece> getMovablePieces(Player player, int rolledValue) {
+        return player.getMovablePieces(player.getPieces(), rolledValue);
     }
 
     /**
@@ -136,11 +148,23 @@ public class Game implements Serializable {
         if (isFinishedPlayer(getCurrentPlayer())) {
             finishedPlayer(getCurrentPlayer());
         }
+    }
 
-        // move the piece
-        // check for knockout
-        // check if finished piece - "hide"
-        // check if player is finished - call finishedPlayer
+    // Used only for tests
+    public void move(int diceValue, Piece piece) throws Exception {
+        if (pieceWillMovePastGoal(diceValue, piece)) {
+            movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
+        }
+        else {
+            movePieceNormally(diceValue, piece);
+        }
+        board.knockOutPieceIfOccupied(piece);
+        if (piece.getIndex() == 45) {
+            removeFinishedPiece(piece);
+        }
+        if (isFinishedPlayer(getCurrentPlayer())) {
+            finishedPlayer(getCurrentPlayer());
+        }
     }
 
     private void movePieceNormally(int diceValue, Piece piece) throws Exception {
