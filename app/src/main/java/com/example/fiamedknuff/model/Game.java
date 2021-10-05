@@ -4,12 +4,11 @@ import com.example.fiamedknuff.NotImplementedException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Game implements Serializable {
 
-    private Board board;
+    public Board board;
     private List<Player> activePlayers;
     private int currentPlayerIndex = 0;
     private Dice dice;
@@ -19,6 +18,14 @@ public class Game implements Serializable {
         activePlayers = players;
         board = new Board(players.size(), getAllPlayerPieces());
         dice = new Dice();
+    }
+
+    /**
+     * Get the board
+     * @return board
+     */
+    public Board getBoard() {
+        return board;
     }
 
     /**
@@ -44,6 +51,14 @@ public class Game implements Serializable {
                 currentPlayerIndex = 0;
             }
         }
+    }
+
+    /**
+     * For testing purposes only right now
+     * @return all active players
+     */
+    public List<Player> getActivePlayers() {
+        return activePlayers;
     }
 
     /**
@@ -112,7 +127,13 @@ public class Game implements Serializable {
     }
 
     public void move(int diceValue, Piece piece) throws Exception {
-        board.movePiece(diceValue, piece);
+        if (pieceWillMovePastGoal(diceValue, piece)) {
+            movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
+        }
+        else {
+            movePieceNormally(diceValue, piece);
+        }
+        board.knockOutPieceIfOccupied(piece);
         if (piece.getIndex() == 45) {
             removeFinishedPiece(piece);
         }
@@ -124,6 +145,35 @@ public class Game implements Serializable {
         // check for knockout
         // check if finished piece - "hide"
         // check if player is finished - call finishedPlayer
+    }
+
+    private void movePieceNormally(int diceValue, Piece piece) throws Exception {
+        for (int i = 0; i < diceValue; i++) {
+            board.movePiece(piece);
+        }
+    }
+
+    private boolean pieceWillMovePastGoal(int diceValue, Piece piece) {
+        return piece.getIndex() + diceValue > 45;
+    }
+
+    private void movePieceAndMoveBackwardsAfterMiddle(int diceValue, Piece piece) throws Exception {
+        int forwardSteps = 45 - piece.getIndex();
+        int backwardSteps = diceValue - forwardSteps;
+        for (int i = forwardSteps; i > 0; i--) {
+            board.movePiece(piece);
+        }
+        for (int i = backwardSteps; i > 0; i--) {
+            board.movePieceBackwards(piece);
+        }
+    }
+
+    /**
+     * For testing purposes only currently
+     * @return
+     */
+    Board getBoard() {
+        return this.board;
     }
 
    /*

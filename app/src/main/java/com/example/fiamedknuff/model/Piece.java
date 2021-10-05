@@ -7,6 +7,7 @@ public class Piece implements Serializable {
     private int index;
     private Color color;
     private int homeNumber;
+    private int offset;
 
     public Piece(Color color) {
         this.color = color;
@@ -27,5 +28,17 @@ public class Piece implements Serializable {
 
     public int getHomeNumber() {
         return homeNumber;
+    }
+
+    public void setHomeNumber(int homeNumber) {
+        this.homeNumber = homeNumber;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
+
+    public int getOffset() {
+        return this.offset;
     }
 }
