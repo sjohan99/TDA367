@@ -4,7 +4,7 @@
     <dimen name="rulebookTitle">200dp</dimen>
     <dimen name="rulebookHolder">600dp</dimen>
     <dimen name="pageCurlViewContainerWidth">540dp</dimen>
-    <dimen name="pageCurlViewContainerHeight">350dp</dimen>
+    <dimen name="pageCurlViewContainerHeight">365dp</dimen>
     <dimen name="pageCurlViewWidth">542dp</dimen>
     <dimen name="pageCurlViewHeight">370dp</dimen>
 </resources>
