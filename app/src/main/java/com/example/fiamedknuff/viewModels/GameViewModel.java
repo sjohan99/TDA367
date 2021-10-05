@@ -9,6 +9,7 @@ import com.example.fiamedknuff.model.Player;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 /**
  * A class gameViewModel that ...
@@ -65,8 +66,7 @@ public class GameViewModel {
     }*/
 
     //TODO - is the code in the model correct so the lists are corresponding?
-    //should have a parameter with the piece or index of piece or something ??
-    // update so that it works for when a player has finished - or maybe it already does??
+    // update so that it works for when a player has finished - or probably it already does??
     /**
      * TODO
      * @param indexOfPiece is the index of the piece in the list of pieces in the view, which
