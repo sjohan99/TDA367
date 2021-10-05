@@ -1,5 +1,9 @@
 package com.example.fiamedknuff.ViewModels;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+
 import com.example.fiamedknuff.NotImplementedException;
 import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.model.Game;
@@ -7,6 +11,7 @@ import com.example.fiamedknuff.model.GameFactory;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Player;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 /**
@@ -16,7 +21,7 @@ import java.util.Collection;
  * @author Emma Stålberg
  */
 
-public class GameViewModel {
+public class GameViewModel extends ViewModel {
 
     private Game game;
     private int playerCount;
@@ -24,17 +29,18 @@ public class GameViewModel {
     private int diceValue;
     private Collection<Piece> movablePieces;
     private Piece selectedPiece;
-    private String[] playerNames;
+    private MutableLiveData<String[]> playerNames = new MutableLiveData<>();
     private Color[] colors;
 
-    private void init(String[] playerNames, Color[] colors) throws NotImplementedException {
+    public void init(String[] playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
         // TODO game skall skapas av gamefactory, skickar med input från annan controllerklass (den
         //  som jobbar med spelinput inför ett spel)
-        game = GameFactory.createNewGame(playerNames, colors);
+        game = GameFactory.createNewGame(playerNames, colors, selectedCPU);
+        this.playerNames.setValue(playerNames);
     }
 
     public void play() throws Exception{
-        while(game.getCurrentPlayerIndex() != -1) {
+        while (game.getCurrentPlayerIndex() != -1) {
             // For a new round...
             currentPlayer = game.getCurrentPlayer();
             // TODO move dice to current player
@@ -63,4 +69,7 @@ public class GameViewModel {
         }
     }
 
+    public LiveData<String[]> getNames() {
+        return playerNames;
+    }
 }
