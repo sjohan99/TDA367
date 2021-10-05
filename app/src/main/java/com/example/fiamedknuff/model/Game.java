@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Game implements Serializable {
 
-    private Board board;
+    public Board board;
     private List<Player> activePlayers;
     private int currentPlayerIndex = 0;
     private Dice dice;
@@ -18,6 +18,14 @@ public class Game implements Serializable {
         activePlayers = players;
         board = new Board(players.size(), getAllPlayerPieces());
         dice = new Dice();
+    }
+
+    /**
+     * Get the board
+     * @return board
+     */
+    public Board getBoard() {
+        return board;
     }
 
     /**

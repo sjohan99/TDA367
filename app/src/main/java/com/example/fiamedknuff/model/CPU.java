@@ -12,15 +12,25 @@ import java.util.List;
 public class CPU extends Player {
 
     // A CPU must have a board to access the game logic
-    private final Board board;
+    private Board board;
 
     /**
      * Constructor for the class CPU which calls the superclass Players constructor and
      * couples the variable board with the incoming parameter board
      * */
-    public CPU(String name, Color color, Board board) {
+    public CPU(String name, Color color) {
         super(name, color);
-        this.board = board;
+    }
+
+    /**
+     * Set the board to incoming parameter of board, if board is already initialized,
+     * do nothing
+     * @param board is the specific board to be...?
+     */
+    public void setBoard(Board board) {
+        if (this.board == null) {
+            this.board = board;
+        }
     }
 
     /**
