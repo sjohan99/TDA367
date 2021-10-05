@@ -86,6 +86,7 @@ public class GameViewModel extends ViewModel {
     }
 
     /**
+     * TODO - should be erased and replaced
      * Checks if the piece is removed from the board in the model. If so, the piece
      * should be removed from the view as well.
      * @param piece is the piece that should be checked.
@@ -93,7 +94,6 @@ public class GameViewModel extends ViewModel {
     private void checkIfRemoved(Piece piece) {
         if (!game.getAllPlayerPieces().contains(piece)) {
             // remove piece from view
-            // TODO how?? pieceClicked return true or false?? Dependency??
         }
     }
 
@@ -104,12 +104,13 @@ public class GameViewModel extends ViewModel {
     private void move(Piece piece) {
         try {
             game.move(piece);
-            // TODO move piece in the view!!
+            // TODO move piece in the view!! (maybe new method... is coming)
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    // TODO
     private void moveToNextPlayer() {
         game.selectNextPlayer();
         // check if game finished - finish
@@ -131,6 +132,10 @@ public class GameViewModel extends ViewModel {
         return -1;
     }
 
+    /**
+     * Returns all player pieces from game.
+     * @return all player pieces
+     */
     public List<Piece> getPieces() {
         return game.getAllPlayerPieces();
     }
