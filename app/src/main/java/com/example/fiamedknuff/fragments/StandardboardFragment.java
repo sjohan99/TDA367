@@ -1,20 +1,16 @@
 package com.example.fiamedknuff.fragments;
 
-import android.media.Image;
 import android.os.Bundle;
-import static android.content.ContentValues.TAG;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
@@ -23,8 +19,8 @@ import com.example.fiamedknuff.viewModels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * A class standardboardFragment that ...
@@ -42,10 +38,15 @@ public class StandardboardFragment extends Fragment {
     ImageView pos41, pos42, pos43, pos44, pos45, pos46, pos47, pos48, pos49, pos50;
     ImageView pos51, pos52, pos53, pos54, pos55, pos56;
 
-    ImageView yellowpiece1;
+    ImageView yellowpiece0, yellowpiece1, yellowpiece2, yellowpiece3;
+    ImageView redpiece0, redpiece1, redpiece2, redpiece3;
+    ImageView bluepiece0, bluepiece1, bluepiece2, bluepiece3;
+    ImageView greenpiece0, greenpiece1, greenpiece2, greenpiece3;
+    HashMap<ImageView, Piece> imageViewPieceHashMap;
+    List<ImageView> piecesImageViews;
+
     ConstraintLayout constraintLayout;
     GameViewModel gameViewModel;
-    List<ImageView> pieces;
     List<ImageView> positions;
 
     ImageView diceImage;
@@ -57,7 +58,7 @@ public class StandardboardFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_standardboard, container, false);
 
-        gameViewModel = new GameViewModel();
+        gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
 
         initPositions();
 
@@ -102,20 +103,58 @@ public class StandardboardFragment extends Fragment {
 
     private void initPieces() {
         connectPiecesIds();
-        initListOfPieces();
+        initListOfAllPieces();
+        initPiecesHashmap();
+        makeInactivePiecesInvisible();
         addPiecesOnClickListeners();
     }
 
     private void connectPiecesIds() {
+        yellowpiece0 = view.findViewById(R.id.yellowpiece0);
         yellowpiece1 = view.findViewById(R.id.yellowpiece1);
-        // TODO
+        yellowpiece2 = view.findViewById(R.id.yellowpiece2);
+        yellowpiece3 = view.findViewById(R.id.yellowpiece3);
+        redpiece0 = view.findViewById(R.id.redpiece0);
+        redpiece1 = view.findViewById(R.id.redpiece1);
+        redpiece2 = view.findViewById(R.id.redpiece2);
+        redpiece3 = view.findViewById(R.id.redpiece3);
+        bluepiece0 = view.findViewById(R.id.bluepiece0);
+        bluepiece1 = view.findViewById(R.id.bluepiece1);
+        bluepiece2 = view.findViewById(R.id.bluepiece2);
+        bluepiece3 = view.findViewById(R.id.bluepiece3);
+        greenpiece0 = view.findViewById(R.id.greenpiece0);
+        greenpiece1 = view.findViewById(R.id.greenpiece1);
+        greenpiece2 = view.findViewById(R.id.greenpiece2);
+        greenpiece3 = view.findViewById(R.id.greenpiece3);
     }
 
-    private void initListOfPieces() {
-        pieces = new ArrayList<>();
-        // TODO
-        // maybe here is the place to call for method in GameViewModel and get
-        // information about which pieces should be created?
+    private void initListOfAllPieces() {
+        piecesImageViews = new ArrayList<ImageView>();
+        piecesImageViews.addAll(new ArrayList<ImageView>(Arrays.asList(
+                yellowpiece0, yellowpiece1, yellowpiece2, yellowpiece3)));
+        piecesImageViews.addAll(new ArrayList<ImageView>(Arrays.asList(
+                redpiece0, redpiece1, redpiece2, redpiece3)));
+        piecesImageViews.addAll(new ArrayList<ImageView>(Arrays.asList(
+                bluepiece0, bluepiece1, bluepiece2, bluepiece3)));
+        piecesImageViews.addAll(new ArrayList<ImageView>(Arrays.asList(
+                greenpiece0, greenpiece1, greenpiece2, greenpiece3)));
+    }
+
+    // TODO off by 1?
+    private void initPiecesHashmap() {
+        imageViewPieceHashMap = new HashMap<>();
+        List<Piece> activePieces = gameViewModel.getPieces();
+        for (int i = 0; i < activePieces.size(); i++) {
+            imageViewPieceHashMap.put(piecesImageViews.get(i), activePieces.get(i));
+        }
+    }
+
+    // TODO off by 1?
+    // the pieces in the list "pieces" that is not used should be invisible
+    private void makeInactivePiecesInvisible() {
+        for (int i = imageViewPieceHashMap.size(); i < piecesImageViews.size(); i++) {
+            piecesImageViews.get(i).setVisibility(View.INVISIBLE);
+        }
     }
 
     /**
@@ -214,12 +253,12 @@ public class StandardboardFragment extends Fragment {
      * gameViewModel should be called.
      */
     private void addPiecesOnClickListeners() {
-        for (ImageView piece : pieces) {
+        for (ImageView piece : piecesImageViews) {
             piece.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     setPiecesClickable(false);
-                    gameViewModel.pieceClicked(pieces.indexOf(piece));
+                    gameViewModel.pieceClicked(imageViewPieceHashMap.get(piece));
                     setPiecesClickable(true);
                 }
             });
@@ -232,7 +271,7 @@ public class StandardboardFragment extends Fragment {
      *                    false if the pieces should be set to non-clickable
      */
     private void setPiecesClickable(Boolean isClickable) {
-        for (ImageView piece : pieces) {
+        for (ImageView piece : piecesImageViews) {
             piece.setClickable(isClickable);
         }
     }
