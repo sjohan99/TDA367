@@ -28,7 +28,20 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background"
-        app:srcCompat="@drawable/rule_book_title_en" />
+        app:srcCompat="@drawable/title_holder" />
+
+    <TextView
+        android:id="@+id/rulebook_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rulebook_title"
+        android:fontFamily="@font/titlefont"
+        android:textSize="@dimen/rulebookTitleText"
+        android:textColor="#5A4A3E"
+        app:layout_constraintBottom_toBottomOf="@+id/rule_book_title"
+        app:layout_constraintEnd_toEndOf="@+id/rule_book_title"
+        app:layout_constraintStart_toStartOf="@+id/rule_book_title"
+        app:layout_constraintTop_toTopOf="@+id/rule_book_title" />
 
     <ImageView
         android:id="@+id/rule_book_holder"
@@ -62,6 +75,5 @@
         app:layout_constraintTop_toTopOf="@+id/rule_book_holder" />
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

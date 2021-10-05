@@ -2,6 +2,7 @@
 <resources>
     <dimen name="rulebookMarginTop">20dp</dimen>
     <dimen name="rulebookTitle">200dp</dimen>
+    <dimen name="rulebookTitleText">25sp</dimen>
     <dimen name="rulebookHolder">600dp</dimen>
     <dimen name="pageCurlViewContainerWidth">540dp</dimen>
     <dimen name="pageCurlViewContainerHeight">365dp</dimen>

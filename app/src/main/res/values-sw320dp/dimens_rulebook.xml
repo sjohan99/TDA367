@@ -2,9 +2,10 @@
 <resources>
     <dimen name="rulebookMarginTop">20dp</dimen>
     <dimen name="rulebookTitle">150dp</dimen>
+    <dimen name="rulebookTitleText">18sp</dimen>
     <dimen name="rulebookHolder">380dp</dimen>
     <dimen name="pageCurlViewContainerWidth">340dp</dimen>
-    <dimen name="pageCurlViewContainerHeight">230dp</dimen>
+    <dimen name="pageCurlViewContainerHeight">220dp</dimen>
     <dimen name="pageCurlViewWidth">341dp</dimen>
     <dimen name="pageCurlViewHeight">235dp</dimen>
 </resources>

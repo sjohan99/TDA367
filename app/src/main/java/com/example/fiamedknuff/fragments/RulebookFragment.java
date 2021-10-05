@@ -61,14 +61,12 @@ public class RulebookFragment extends Fragment {
         // Initialize an list with images to display in the rule book
         images = new ArrayList<>();
 
-        // Set up rules and title depending on language
+        // Set up rules depending on language
         if (Locale.getDefault().getLanguage().equals("sv")) {
             languageSwedish();
-            rulebookTitle.setImageDrawable(getResources().getDrawable(R.drawable.rule_book_title_sv));
         }
         else {
             languageEnglish();
-            rulebookTitle.setImageDrawable(getResources().getDrawable(R.drawable.rule_book_title_en));
         }
 
         // Adds the images to the PageCurlView and sets the speed of the page curl
