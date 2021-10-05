@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/background" />
 
     <ImageView
-        android:id="@+id/rule_book_title"
+        android:id="@+id/rulebook_title"
         android:layout_width="@dimen/rulebookTitle"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/rulebookMarginTop"
@@ -28,17 +28,30 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background"
-        app:srcCompat="@drawable/rule_book_title_en" />
+        app:srcCompat="@drawable/title_holder" />
+
+    <TextView
+        android:id="@+id/rulebook_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rulebook_title"
+        android:fontFamily="@font/titlefont"
+        android:textSize="@dimen/rulebookTitleText"
+        android:textColor="#5A4A3E"
+        app:layout_constraintBottom_toBottomOf="@+id/rulebook_title"
+        app:layout_constraintEnd_toEndOf="@+id/rulebook_title"
+        app:layout_constraintStart_toStartOf="@+id/rulebook_title"
+        app:layout_constraintTop_toTopOf="@+id/rulebook_title" />
 
     <ImageView
-        android:id="@+id/rule_book_holder"
+        android:id="@+id/rulebook_holder"
         android:layout_width="@dimen/rulebookHolder"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/rulebookMarginTop"
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rule_book_title"
+        app:layout_constraintTop_toBottomOf="@+id/rulebook_title"
         app:srcCompat="@drawable/rule_book_holder" />
 
 
@@ -47,21 +60,20 @@
         android:layout_height="@dimen/pageCurlViewContainerHeight"
         android:layout_marginTop="15dp"
         android:adjustViewBounds="true"
-        app:layout_constraintEnd_toEndOf="@+id/rule_book_holder"
-        app:layout_constraintStart_toStartOf="@+id/rule_book_holder"
-        app:layout_constraintTop_toTopOf="@+id/rule_book_holder"
+        app:layout_constraintEnd_toEndOf="@+id/rulebook_holder"
+        app:layout_constraintStart_toStartOf="@+id/rulebook_holder"
+        app:layout_constraintTop_toTopOf="@+id/rulebook_holder"
         tools:context=".MainActivity">
 
-        <app.num.numandroidpagecurleffect.PageCurlView
-            android:id="@+id/pagecurlView"
-            android:layout_width="@dimen/pageCurlViewWidth"
-            android:layout_height="@dimen/pageCurlViewHeight"
-            android:layout_gravity="center"
-            app:layout_constraintEnd_toEndOf="@+id/rule_book_holder"
-            app:layout_constraintStart_toStartOf="@+id/rule_book_holder"
-            app:layout_constraintTop_toTopOf="@+id/rule_book_holder" />
+    <app.num.numandroidpagecurleffect.PageCurlView
+        android:id="@+id/pagecurlView"
+        android:layout_width="@dimen/pageCurlViewWidth"
+        android:layout_height="@dimen/pageCurlViewHeight"
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/rulebook_holder"
+        app:layout_constraintStart_toStartOf="@+id/rulebook_holder"
+        app:layout_constraintTop_toTopOf="@+id/rulebook_holder" />
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

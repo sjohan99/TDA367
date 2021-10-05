@@ -2,7 +2,6 @@ package com.example.fiamedknuff.fragments;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
@@ -42,6 +41,7 @@ public class MainMenuFragment extends Fragment {
                                 .setExitAnim(android.R.animator.fade_out)
                                 .build()
                 );
+
             }
         });
 

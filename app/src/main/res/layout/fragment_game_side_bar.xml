@@ -9,78 +9,71 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ImageView
-        android:id="@+id/foreground"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_sidebar_holder"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="ImageContrastCheck" />
-
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_sidebar_holder"
         android:gravity="center"
         android:orientation="vertical"
-        app:barrierMargin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/homeButton"
+        <Button
+            android:id="@+id/homeBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_home_button" />
+            android:background="#00FFFFFF"
+            android:drawableTop="@android:mipmap/sym_def_app_icon"
+            android:text="Home"
+            android:textColor="#000000"
+            android:textSize="10sp" />
 
-        <ImageButton
-            android:id="@+id/settingsButton"
+        <Button
+            android:id="@+id/settingsBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_settings_button" />
+            android:background="#00FFFFFF"
+            android:drawableTop="@android:mipmap/sym_def_app_icon"
+            android:text="Settings"
+            android:textColor="#000000"
+            android:textSize="10sp" />
 
-        <ImageButton
-            android:id="@+id/soundButton"
+        <Button
+            android:id="@+id/rulebookBtn2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_sound_button" />
+            android:background="#00FFFFFF"
+            android:drawableTop="@android:mipmap/sym_def_app_icon"
+            android:text="Rules"
+            android:textColor="#000000"
+            android:textSize="10sp" />
 
-        <ImageButton
-            android:id="@+id/helpButton"
+        <Button
+            android:id="@+id/soundBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_help_button" />
+            android:background="#00FFFFFF"
+            android:drawableTop="@android:mipmap/sym_def_app_icon"
+            android:text="Sound"
+            android:textColor="#000000"
+            android:textSize="10sp" />
 
-        <ImageButton
-            android:id="@+id/replayButton"
+        <Button
+            android:id="@+id/replayBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_replay_button" />
-
-        <ImageButton
-            android:id="@+id/exitButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_exit_button" />
+            android:background="#00FFFFFF"
+            android:drawableTop="@android:mipmap/sym_def_app_icon"
+            android:text="Replay"
+            android:textColor="#000000"
+            android:textSize="10sp" />
 
     </LinearLayout>
 

@@ -5,13 +5,18 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.fiamedknuff.R;
+import com.example.fiamedknuff.ViewModels.GameViewModel;
+
+import java.util.Arrays;
 
 /**
  * UI controller for the game view layout.
@@ -27,9 +32,13 @@ public class GameViewFragment extends Fragment {
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
+    private GameViewModel gameViewModel;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game_view, container, false);
+
+        gameViewModel = new ViewModelProvider(this).get(GameViewModel.class);
 
         initLabels(view);
         initFragments();

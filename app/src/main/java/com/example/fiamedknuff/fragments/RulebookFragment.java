@@ -47,28 +47,26 @@ public class RulebookFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_rule_book, container, false);
 
-        setPageCurlView(view);
+        setUpRulebook(view);
 
         return view;
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    private void setPageCurlView(View view) {
+    private void setUpRulebook(View view) {
         pageCurlView = view.findViewById(R.id.pagecurlView);
 
-        rulebookTitle = view.findViewById(R.id.rule_book_title);
+        rulebookTitle = view.findViewById(R.id.rulebook_title);
 
         // Initialize an list with images to display in the rule book
         images = new ArrayList<>();
 
-        // Set up rules and title depending on language
+        // Set up rules depending on language
         if (Locale.getDefault().getLanguage().equals("sv")) {
             languageSwedish();
-            rulebookTitle.setImageDrawable(getResources().getDrawable(R.drawable.rule_book_title_sv));
         }
         else {
             languageEnglish();
-            rulebookTitle.setImageDrawable(getResources().getDrawable(R.drawable.rule_book_title_en));
         }
 
         // Adds the images to the PageCurlView and sets the speed of the page curl
@@ -82,11 +80,10 @@ public class RulebookFragment extends Fragment {
         images.add(R.drawable.rules_third_pages_sv);
     }
 
-    // TODO add rules in english
     private void languageEnglish() {
-        images.add(R.drawable.pages);
-        images.add(R.drawable.pages);
-        images.add(R.drawable.pages);
+        images.add(R.drawable.rules_first_pages_en);
+        images.add(R.drawable.rules_second_pages_en);
+        images.add(R.drawable.rules_third_pages_en);
     }
 
 }
