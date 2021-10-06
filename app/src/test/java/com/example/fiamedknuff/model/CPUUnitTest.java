@@ -143,8 +143,6 @@ public class CPUUnitTest {
 
     @Test
     public void testChoosePieceToMoveInHomePath() {
-        HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
-
         Player cpu = players.get(1);
 
         // Set position for a CPU-piece
@@ -156,6 +154,12 @@ public class CPUUnitTest {
         cpuSecondPiece.setIndex(42);
 
         assertThat(CPU.choosePieceToMove(2)).isEqualTo(cpuFirstPiece);
+    }
+
+    @Test
+    public void testChoosePieceToMoveNoMovablePieces() {
+        Player cpu = players.get(1);
+        assertThat(CPU.choosePieceToMove(3)).isEqualTo(null);
     }
 
 }
