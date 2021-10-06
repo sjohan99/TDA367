@@ -69,7 +69,7 @@ public class GameViewModel extends ViewModel {
         }
     }
 
-    public LiveData<String[]> getNames(int index) {
+    public LiveData<String[]> getNames() {
         return playerNames;
     }
 }
