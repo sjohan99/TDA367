@@ -14,9 +14,6 @@ public class Game implements Serializable {
     private Dice dice;
     private List<Player> finishedPlayers = new ArrayList<>();
 
-    // Index for last square where a piece finishes and disappears
-    private final int[] finishIndex = {0, 0, 0, 45, 0, 0, 0};
-
     public Game(List<Player> players) throws NotImplementedException {
         activePlayers = players;
         board = new Board(players.size(), getAllPlayerPieces());
@@ -176,7 +173,7 @@ public class Game implements Serializable {
      */
 
     boolean removePieceIfFinished(Piece piece) {
-        if (piece.getIndex() == finishIndex[board.getPlayerCount() - 1]) {
+        if (piece.getIndex() == board.getFinishIndex()) {
             removeFinishedPiece(piece);
             return true;
         }
