@@ -289,11 +289,49 @@ public class StandardboardFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     setPiecesClickable(false);
-                    gameViewModel.pieceClicked(imageViewPieceHashMap.get(piece));
+                    makeTurn(piece);
                     setPiecesClickable(true);
                 }
             });
         }
+    }
+
+    //
+    private void makeTurn(ImageView piece) {
+        boolean isMoved = gameViewModel.move(imageViewPieceHashMap.get(piece));
+        if (isMoved) {
+            // move in view
+            boolean playerIsFinished = removePieceAndPlayerIfFinished(piece);
+            // select next player ... se to do document
+
+        }
+    }
+
+    private boolean removePieceAndPlayerIfFinished(ImageView piece) {
+        if (removePieceIfFinished(piece)) {
+            return removePlayerIfFinished();
+        }
+        return false;
+    }
+
+    private boolean removePieceIfFinished(ImageView piece) {
+        if (pieceIsFinished(piece)) {
+            // remove piece from the view
+            return true;
+        }
+        return false;
+    }
+
+    private boolean pieceIsFinished(ImageView piece) {
+        return gameViewModel.removePieceIfFinished(imageViewPieceHashMap.get(piece));
+    }
+
+    private boolean removePlayerIfFinished() {
+        if (gameViewModel.removePlayerIfFinished()) {
+            // remove player from view
+            return true;
+        }
+        return false;
     }
 
     /**
