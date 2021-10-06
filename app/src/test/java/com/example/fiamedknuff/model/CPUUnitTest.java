@@ -138,7 +138,28 @@ public class CPUUnitTest {
         Position cpuThirdPos = new Position(34);
         piecePositionHashMap.put(cpuThirdPiece, cpuThirdPos);
 
-        assertThat(CPU.choosePieceToMove(4)).isEqualTo(cpuThirdPiece);
+        assertThat(CPU.choosePieceToMove(4)).isEqualTo(cpuSecondPiece);
+    }
+
+    @Test
+    public void testChoosePieceToMoveInHomePath() {
+        Player cpu = players.get(1);
+
+        // Set position for a CPU-piece
+        Piece cpuFirstPiece = CPU.getPieces().get(0);
+        cpuFirstPiece.setIndex(41);
+
+        // Set position for a second cpu-piece
+        Piece cpuSecondPiece = cpu.getPieces().get(1);
+        cpuSecondPiece.setIndex(42);
+
+        assertThat(CPU.choosePieceToMove(2)).isEqualTo(cpuFirstPiece);
+    }
+
+    @Test
+    public void testChoosePieceToMoveNoMovablePieces() {
+        Player cpu = players.get(1);
+        assertThat(CPU.choosePieceToMove(3)).isEqualTo(null);
     }
 
 }

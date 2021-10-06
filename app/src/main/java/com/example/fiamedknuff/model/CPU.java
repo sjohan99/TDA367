@@ -68,6 +68,10 @@ public class CPU extends Player {
         Piece piece = movablePieces.get(0);
         int tmpIndex = piece.getIndex();
         for (Piece p : movablePieces) {
+            // If piece is in home path, don't prioritize moving that piece
+            if (p.getIndex() > 41) {
+                continue;
+            }
             if (p.getIndex() > tmpIndex) {
                 tmpIndex = p.getIndex();
                 piece = p;
