@@ -3,6 +3,7 @@ package com.example.fiamedknuff.fragments;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -61,6 +62,8 @@ public class StandardboardFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_standardboard, container, false);
 
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
+
+        constraintLayout = view.findViewById(R.id.constraintLayout);
 
         initPositions();
         initPieces();
@@ -149,7 +152,6 @@ public class StandardboardFragment extends Fragment {
                 greenpiece0, greenpiece1, greenpiece2, greenpiece3)));
     }
 
-    // TODO off by 1?
     /**
      * Initiates the hashmap imageViewPieceHashMap. Gets the active pieces from gameViewModel
      * and connects them with the equivalent imageView.
@@ -162,7 +164,6 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
-    // TODO off by 1?
     /**
      * The pieces that should be visible are connected in the imageViewPieceHashMap. The
      * rest of the pieces in the list piecesImageViews should be invisible, and that is
@@ -183,7 +184,6 @@ public class StandardboardFragment extends Fragment {
         initPositionsHashmap();
     }
 
-    // TODO off by 1?
     /**
      * Initiates the hashmap imageViewPositionHashMap. Gets the positions from gameViewModel
      * and connects them with the equivalent imageView.
@@ -353,24 +353,26 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
-    /*private void testingPieceMovement() {
-    constraintLayout = view.findViewById(R.id.constraintLayout);
+    /**
+     * Makes the first parameter, movingImageView, have the same constraints as the second
+     * parameter, target. I.e. it moves the "movingImageView" to the same place as the "target".
+     * @param movingImageView is the ImageView that should be moved
+     * @param target is the place where the movingImageView should be moved to
+     */
+    private void moveImageView(ImageView movingImageView, ImageView target) {
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(constraintLayout);
+        constraintSet.connect(
+                movingImageView.getId(), ConstraintSet.START, target.getId(), ConstraintSet.START);
+        constraintSet.connect(
+                movingImageView.getId(), ConstraintSet.END, target.getId(), ConstraintSet.END);
+        constraintSet.connect(
+                movingImageView.getId(), ConstraintSet.TOP, target.getId(), ConstraintSet.TOP);
+        constraintSet.connect(
+                movingImageView.getId(), ConstraintSet.BOTTOM, target.getId(), ConstraintSet.BOTTOM);
+        constraintSet.applyTo(constraintLayout);
 
-    yellowpiece1.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            ConstraintSet constraintSet = new ConstraintSet();
-            constraintSet.clone(constraintLayout);
-            constraintSet.connect(yellowpiece1.getId(), ConstraintSet.START, pos10.getId(), ConstraintSet.START);
-            constraintSet.connect(yellowpiece1.getId(), ConstraintSet.END, pos10.getId(), ConstraintSet.END);
-            constraintSet.connect(yellowpiece1.getId(), ConstraintSet.TOP, pos10.getId(), ConstraintSet.TOP);
-            constraintSet.connect(yellowpiece1.getId(), ConstraintSet.BOTTOM, pos10.getId(), ConstraintSet.BOTTOM);
-            constraintSet.applyTo(constraintLayout);
-
-            yellowpiece1.bringToFront();
-
-        }
-    });
-    }*/
+        movingImageView.bringToFront();
+    }
 
 }
