@@ -297,14 +297,27 @@ public class StandardboardFragment extends Fragment {
     }
 
     // TODO - some of the logic which is going to be implemented is right now just comments
+    //  or not written here at all
     private void makeTurn(ImageView piece) {
         boolean isMoved = gameViewModel.move(imageViewPieceHashMap.get(piece));
         if (isMoved) {
-            // move in view
+            move(piece);
             boolean playerIsFinished = removePieceAndPlayerIfFinished(piece);
-            // select next player ... se to do document
-
+            if (isNextPlayer(playerIsFinished)) {
+                gameViewModel.selectNextPlayer();
+            }
+            // check if game is finished --> finish...
+            // move dice in view to the next player
+            gameViewModel.diceIsUsed();
         }
+    }
+
+    private boolean isNextPlayer(boolean playerIsFinished) {
+        return !((gameViewModel.getDiceValue() == 6) && !playerIsFinished);
+    }
+
+    private void move(ImageView piece) {
+        //move in view, not implemented yet
     }
 
     /**
