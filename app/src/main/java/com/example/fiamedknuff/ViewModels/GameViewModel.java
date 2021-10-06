@@ -13,6 +13,7 @@ import com.example.fiamedknuff.model.Player;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * A class gameViewModel that ...
@@ -29,10 +30,10 @@ public class GameViewModel extends ViewModel {
     private int diceValue;
     private Collection<Piece> movablePieces;
     private Piece selectedPiece;
-    private MutableLiveData<String[]> playerNames = new MutableLiveData<>();
+    private MutableLiveData<List<String>> playerNames = new MutableLiveData<>();
     private Color[] colors;
 
-    public void init(String[] playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
+    public void init(List<String> playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
         // TODO game skall skapas av gamefactory, skickar med input från annan controllerklass (den
         //  som jobbar med spelinput inför ett spel)
         game = GameFactory.createNewGame(playerNames, colors, selectedCPU);
@@ -69,7 +70,7 @@ public class GameViewModel extends ViewModel {
         }
     }
 
-    public LiveData<String[]> getNames() {
-        return playerNames;
+    public LiveData<String> getPlayerName(int index) {
+        return new MutableLiveData<>(playerNames.getValue().get(index));
     }
 }

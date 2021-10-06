@@ -23,6 +23,9 @@ import com.example.fiamedknuff.ViewModels.GameViewModel;
 import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.model.GameFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameSetupFragment extends Fragment {
 
     private NavController navController;
@@ -99,13 +102,13 @@ public class GameSetupFragment extends Fragment {
         };
     }
 
-    private String[] getPlayerNames() {
-        return new String[] {
-                player1Name.getText().toString(),
-                player2Name.getText().toString(),
-                player3Name.getText().toString(),
-                player4Name.getText().toString()
-        };
+    private List<String> getPlayerNames() {
+        List<String> list = new ArrayList<>();
+        list.add(player1Name.getText().toString());
+        list.add(player1Name.getText().toString());
+        list.add(player1Name.getText().toString());
+        list.add(player1Name.getText().toString());
+        return list;
     }
 
     private void initWidgets(View view) {
