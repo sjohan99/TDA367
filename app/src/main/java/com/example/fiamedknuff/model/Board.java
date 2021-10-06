@@ -20,6 +20,7 @@ public class Board implements Serializable {
     private final int[] numberOfPositions = {0, 0, 0, 57, 0, 0, 0}; // Number of positions for each board size
     private final int[] walkOutOffset = {0, 0, 0, 10, 0, 0, 0}; // Walk out offset-multiplier for the pieces for each board size
     private final int[] lapLength = {0, 0, 0, 40, 0, 0, 0}; // The amount of steps to walk around the path
+    private final int[] finishIndex = {0, 0, 0, 45, 0, 0, 0}; // Index for last square where a piece finishes and disappears
     private final int playerCount; // amount of players
 
     /**
@@ -104,11 +105,11 @@ public class Board implements Serializable {
     }
 
     /**
-     * Get number of players
-     * @return player count
+     * Get the finish index for the specific board
+     * @return the finish index
      */
-    public int getPlayerCount() {
-        return playerCount;
+    public int getFinishIndex() {
+        return finishIndex[playerCount - 1];
     }
 
     /**
