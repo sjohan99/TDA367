@@ -104,6 +104,14 @@ public class Board implements Serializable {
     }
 
     /**
+     * Get number of players
+     * @return player count
+     */
+    public int getPlayerCount() {
+        return playerCount;
+    }
+
+    /**
      * Moves Piece step forward and increments its index. If the piece is home, about to go into the
      * middle path, or pass the lap line then the correct position will instead by calculated.
      * @param piece the piece to be moved
