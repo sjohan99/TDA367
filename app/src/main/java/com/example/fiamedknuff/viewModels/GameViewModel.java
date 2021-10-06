@@ -116,14 +116,24 @@ public class GameViewModel extends ViewModel {
         return game.getPositions();
     }
 
+    /**
+     * Returns the dicevalue.
+     * @return the dicevalue.
+     */
     public int getDiceValue() {
         return game.getDice().getRolledValue();
     }
 
+    /**
+     * Selects the next player in the model.
+     */
     public void selectNextPlayer() {
         game.selectNextPlayer();
     }
 
+    /**
+     * Sets the dice to used.
+     */
     public void diceIsUsed() {
         game.getDice().setIsUsed(true);
     }

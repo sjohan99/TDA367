@@ -87,6 +87,9 @@ public class StandardboardFragment extends Fragment {
         });
     }
 
+    /**
+     * Initiates the diceimages and puts them in a list "diceImages".
+     */
     private void initDiceImages() {
         diceImages = new ArrayList<>();
         diceImages.add(R.drawable.dice1);
@@ -107,6 +110,11 @@ public class StandardboardFragment extends Fragment {
         diceImage.setImageResource(diceImages.get(rolledValue - 1)); // sets the rolled value
     }
 
+    /**
+     * Initiates the pieces by connecting the pieces ids, initiates the list of the pieces,
+     * initiates the hashmap with the pieces, makes the inactive pieces invisible and adds
+     * onClickListeners to the pieces.
+     */
     private void initPieces() {
         connectPiecesIds();
         initListOfAllPieces();
@@ -298,6 +306,16 @@ public class StandardboardFragment extends Fragment {
 
     // TODO - some of the logic which is going to be implemented is right now just comments
     //  or not written here at all
+    /**
+     * Makes a turn with the parameter piece. First, it is moved in the model (if possible). If
+     * it is not movable, the method is done here. Otherwise, the piece is moved in the view.
+     * If the piece is finished it is removed from the model and view. If a player rolls a six
+     * and is not finished, it is their turn again. Otherwise, the next player is selected.
+     * If the game is finished, another method should be called here (not implemented yet).
+     * If not, the dice in the view is moved to the next player and the dice´s value is
+     * set to used.
+     * @param piece is the piece which is about to move
+     */
     private void makeTurn(ImageView piece) {
         boolean isMoved = gameViewModel.move(imageViewPieceHashMap.get(piece));
         if (isMoved) {
@@ -312,10 +330,20 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
+    /**
+     * If a player rolls a six and is not finished, it is their turn again. Otherwise,
+     * it is the next player´s turn.
+     * @param playerIsFinished is true if the player is finished, otherwise false.
+     * @return true if it is the next player´s turn, otherwise false.
+     */
     private boolean isNextPlayer(boolean playerIsFinished) {
         return !((gameViewModel.getDiceValue() == 6) && !playerIsFinished);
     }
 
+    /**
+     * Should move the piece in the view (not implemented yet).
+     * @param piece is the piece that should be moved.
+     */
     private void move(ImageView piece) {
         //move in view, not implemented yet
     }
@@ -347,10 +375,19 @@ public class StandardboardFragment extends Fragment {
         return false;
     }
 
+    /**
+     * Checks if piece is finished.
+     * @param piece is the piece that is checked
+     * @return true if the piece is finished, false otherwise.
+     */
     private boolean pieceIsFinished(ImageView piece) {
         return gameViewModel.removePieceIfFinished(imageViewPieceHashMap.get(piece));
     }
 
+    /**
+     * Checks if the current player is finished.
+     * @return true if the player is finished, false otherwise.
+     */
     private boolean removePlayerIfFinished() {
         return gameViewModel.removePlayerIfFinished();
     }
