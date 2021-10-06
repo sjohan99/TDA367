@@ -133,6 +133,11 @@ public class Game implements Serializable {
         return player.getPieces().size() == 0;
     }
 
+    /**
+     * Moves the piece according to diceValue
+     * @param piece the piece to be moved
+     * @throws Exception if a piece is to be knocked out but can't be found
+     */
     public void move(Piece piece) throws Exception {
         int diceValue = dice.getRolledValue();
         if (pieceWillMovePastGoal(diceValue, piece)) {
@@ -142,15 +147,15 @@ public class Game implements Serializable {
             movePieceNormally(diceValue, piece);
         }
         board.knockOutPieceIfOccupied(piece);
-        if (piece.getIndex() == 45) {
-            removeFinishedPiece(piece);
-        }
-        if (isFinishedPlayer(getCurrentPlayer())) {
-            finishedPlayer(getCurrentPlayer());
-        }
     }
 
-    // Used only for tests
+    /**
+     * Mock method.
+     * Moves the piece according to diceValue
+     * @param diceValue amount of steps to be taken
+     * @param piece the piece to be moved
+     * @throws Exception if a piece is to be knocked out but can't be found
+     */
     public void move(int diceValue, Piece piece) throws Exception {
         if (pieceWillMovePastGoal(diceValue, piece)) {
             movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
@@ -159,12 +164,31 @@ public class Game implements Serializable {
             movePieceNormally(diceValue, piece);
         }
         board.knockOutPieceIfOccupied(piece);
+    }
+
+    /**
+     * Removes the given piece from the game if it is at the goal-index
+     * @param piece the piece to be checked
+     * @return True if the piece was removed, else False
+     */
+    public boolean removePieceIfFinished(Piece piece) {
         if (piece.getIndex() == 45) {
             removeFinishedPiece(piece);
+            return true;
         }
+        return false;
+    }
+
+    /**
+     * Removes the current player from the game if it has no more active pieces
+     * @return True if the player was removed, else False
+     */
+    public boolean removePlayerIfFinished() {
         if (isFinishedPlayer(getCurrentPlayer())) {
             finishedPlayer(getCurrentPlayer());
+            return true;
         }
+        return false;
     }
 
     private void movePieceNormally(int diceValue, Piece piece) throws Exception {
