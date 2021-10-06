@@ -84,4 +84,61 @@ public class CPUUnitTest {
        assertThat(CPU.choosePieceToMove(2)).isEqualTo(cpuThirdPiece);
    }
 
+   @Test
+    public void testChoosePieceToMoveOutOfHome() {
+       HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
+
+       Player cpu = players.get(1);
+
+       // Set position for a CPU-piece
+       Piece cpuFirstPiece = CPU.getPieces().get(0);
+       cpuFirstPiece.setIndex(13);
+       Position cpuFirstPos = new Position(4);
+       piecePositionHashMap.put(cpuFirstPiece, cpuFirstPos);
+
+       // Set position for a second cpu-piece
+       Piece cpuSecondPiece = cpu.getPieces().get(1);
+       cpuSecondPiece.setIndex(30);
+       Position cpuSecondPos= new Position(21);
+       piecePositionHashMap.put(cpuSecondPiece, cpuSecondPos);
+
+       // Set position for third CPU-piece
+       Piece cpuThirdPiece = CPU.getPieces().get(2);
+       cpuThirdPiece.setIndex(43);
+       Position cpuThirdPos = new Position(34);
+       piecePositionHashMap.put(cpuThirdPiece, cpuThirdPos);
+
+       // Set position for fourth CPU-piece
+       Piece cpuFourthPiece = CPU.getPieces().get(3);
+
+       assertThat(CPU.choosePieceToMove(1)).isEqualTo(cpuFourthPiece);
+   }
+
+    @Test
+    public void testChooseLeadingPieceToMove() {
+        HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
+
+        Player cpu = players.get(1);
+
+        // Set position for a CPU-piece
+        Piece cpuFirstPiece = CPU.getPieces().get(0);
+        cpuFirstPiece.setIndex(13);
+        Position cpuFirstPos = new Position(4);
+        piecePositionHashMap.put(cpuFirstPiece, cpuFirstPos);
+
+        // Set position for a second cpu-piece
+        Piece cpuSecondPiece = cpu.getPieces().get(1);
+        cpuSecondPiece.setIndex(30);
+        Position cpuSecondPos= new Position(21);
+        piecePositionHashMap.put(cpuSecondPiece, cpuSecondPos);
+
+        // Set position for third CPU-piece
+        Piece cpuThirdPiece = CPU.getPieces().get(2);
+        cpuThirdPiece.setIndex(43);
+        Position cpuThirdPos = new Position(34);
+        piecePositionHashMap.put(cpuThirdPiece, cpuThirdPos);
+
+        assertThat(CPU.choosePieceToMove(4)).isEqualTo(cpuThirdPiece);
+    }
+
 }
