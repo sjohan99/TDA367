@@ -41,7 +41,7 @@ public class GameSetupFragment extends Fragment {
                              Bundle savedInstanceState) {
         navController = NavHostFragment.findNavController(this);
 
-        gameViewModel = new ViewModelProvider(this).get(GameViewModel.class);
+        gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
 
         View view = inflater.inflate(R.layout.fragment_game_setup, container, false);
 
@@ -105,9 +105,9 @@ public class GameSetupFragment extends Fragment {
     private List<String> getPlayerNames() {
         List<String> list = new ArrayList<>();
         list.add(player1Name.getText().toString());
-        list.add(player1Name.getText().toString());
-        list.add(player1Name.getText().toString());
-        list.add(player1Name.getText().toString());
+        list.add(player2Name.getText().toString());
+        list.add(player3Name.getText().toString());
+        list.add(player4Name.getText().toString());
         return list;
     }
 

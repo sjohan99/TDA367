@@ -30,14 +30,16 @@ public class GameViewModel extends ViewModel {
     private int diceValue;
     private Collection<Piece> movablePieces;
     private Piece selectedPiece;
-    private MutableLiveData<List<String>> playerNames = new MutableLiveData<>();
+    // private MutableLiveData<List<String>> playerNames = new MutableLiveData<>();
+    private List<String> playerNames;
     private Color[] colors;
 
     public void init(List<String> playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
         // TODO game skall skapas av gamefactory, skickar med input från annan controllerklass (den
         //  som jobbar med spelinput inför ett spel)
+        // this.playerNames.setValue(playerNames);
+        this.playerNames = playerNames;
         game = GameFactory.createNewGame(playerNames, colors, selectedCPU);
-        this.playerNames.setValue(playerNames);
     }
 
     public void play() throws Exception{
@@ -71,6 +73,9 @@ public class GameViewModel extends ViewModel {
     }
 
     public LiveData<String> getPlayerName(int index) {
-        return new MutableLiveData<>(playerNames.getValue().get(index));
+        //return new MutableLiveData<String>().setValue(playerNames.getValue().get(index));
+        MutableLiveData<String> data = new MutableLiveData<>();
+        data.setValue(playerNames.get(index));
+        return data;
     }
 }

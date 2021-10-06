@@ -38,12 +38,11 @@ public class GameViewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
         View view = inflater.inflate(R.layout.fragment_game_view, container, false);
 
-        gameViewModel = new ViewModelProvider(this).get(GameViewModel.class);
 
         initLabels(view);
-        observeLiveData();
         initFragments();
 
         showFragment(R.id.boardFrame, boardFragment);
@@ -58,22 +57,10 @@ public class GameViewFragment extends Fragment {
         player3Label = view.findViewById(R.id.player3Label);
         player4Label = view.findViewById(R.id.player4Label);
 
-        //player1Label.setText("Player 1");
-        player2Label.setText("Player 2");
-        player3Label.setText("Player 3");
-        player4Label.setText("Player 4");
-    }
-
-    // observes livedata from current activity
-    public void observeLiveData(){
-        gameViewModel
-                .getPlayerName(0)
-                .observe(getViewLifecycleOwner(), new Observer<String>() {
-                    @Override
-                    public void onChanged(String playerNames) {
-                        player1Label.setText(playerNames.toString());
-                    }
-                });
+        player1Label.setText(gameViewModel.getPlayerName(0).getValue());
+        player2Label.setText(gameViewModel.getPlayerName(1).getValue());
+        player3Label.setText(gameViewModel.getPlayerName(2).getValue());
+        player4Label.setText(gameViewModel.getPlayerName(3).getValue());
     }
 
     private void initFragments() {
