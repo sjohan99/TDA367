@@ -38,7 +38,7 @@ public class CPU extends Player {
      * @param roll is the value from the latest roll
      * @return the piece to be moved
      */
-    public Piece makeMove(int roll) {
+    public Piece choosePieceToMove(int roll) {
         List<Piece> movablePieces = getMovablePieces(getPieces(), roll);
         HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
         Position pos;

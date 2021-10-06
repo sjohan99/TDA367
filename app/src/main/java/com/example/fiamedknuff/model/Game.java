@@ -188,14 +188,6 @@ public class Game implements Serializable {
         }
     }
 
-    /**
-     * For testing purposes only currently
-     * @return
-     */
-    Board getBoard() {
-        return this.board;
-    }
-
    /*
     //private move(Piece piece) {
         //board.move(piece);
