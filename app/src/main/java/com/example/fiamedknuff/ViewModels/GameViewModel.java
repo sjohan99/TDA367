@@ -30,7 +30,6 @@ public class GameViewModel extends ViewModel {
     private int diceValue;
     private Collection<Piece> movablePieces;
     private Piece selectedPiece;
-    // private MutableLiveData<List<String>> playerNames = new MutableLiveData<>();
     private List<String> playerNames;
     private Color[] colors;
 
@@ -73,7 +72,6 @@ public class GameViewModel extends ViewModel {
     }
 
     public LiveData<String> getPlayerName(int index) {
-        //return new MutableLiveData<String>().setValue(playerNames.getValue().get(index));
         MutableLiveData<String> data = new MutableLiveData<>();
         data.setValue(playerNames.get(index));
         return data;
