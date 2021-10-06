@@ -70,46 +70,52 @@ public class GameViewModel extends ViewModel {
 
     // TODO update so that it works for when a player has finished with the new method
     /**
-     * TODO
+     * Moves the clicked piece.
      * @param clickedPiece is the clicked piece
+     * @return returns true if the piece if moved, and false if it can´t be moved.
      */
-    public void pieceClicked(Piece clickedPiece) {
+    public boolean move(Piece clickedPiece) {
         // if the rolled dice is already used, we can´t move any piece before another roll has
         // been made
         if (!game.getDice().getIsUsed()) {
             List<Piece> movablePieces = game.getMovablePieces(game.getCurrentPlayer());
             //checks if the clicked piece is movable
             if(movablePieces.contains(clickedPiece)) {
-                move(clickedPiece);
-                checkIfRemoved(clickedPiece); // TODO change! see above
+                movePiece(clickedPiece);
+                return true;
             }
             moveToNextPlayer();
         }
+        return false;
     }
 
     /**
-     * TODO - should be erased and replaced
-     * Checks if the piece is removed from the board in the model. If so, the piece
-     * should be removed from the view as well.
-     * @param piece is the piece that should be checked.
-     */
-    private void checkIfRemoved(Piece piece) {
-        if (!game.getAllPlayerPieces().contains(piece)) {
-            // remove piece from view
-        }
-    }
-
-    /**
-     * Moves the piece and tells the dice it has been used.
+     * Moves the piece.
      * @param piece is the piece that should be moved
      */
-    private void move(Piece piece) {
+    private void movePiece(Piece piece) {
         try {
             game.move(piece);
-            // TODO move piece in the view!! (maybe new method... is coming)
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Removes the piece from the model if it is finished.
+     * @param piece is the piece that might be finished
+     * @return true if the piece is finished, false if it is not
+     */
+    public boolean removePieceIfFinished(Piece piece) {
+        return game.removePieceIfFinished(piece);
+    }
+
+    /**
+     * Removes the current player from the model if it is finished.
+     * @return true if the player is finished, and false otherwise.
+     */
+    public boolean removePlayerIfFinished() {
+        return game.removePlayerIfFinished();
     }
 
     // TODO
