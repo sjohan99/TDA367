@@ -138,14 +138,14 @@ public class StandardboardFragment extends Fragment {
      * Initiates the list piecesImageViews with all ImageViews of the pieces.
      */
     private void initListOfAllPieces() {
-        piecesImageViews = new ArrayList<ImageView>();
-        piecesImageViews.addAll(new ArrayList<ImageView>(Arrays.asList(
+        piecesImageViews = new ArrayList<>();
+        piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
                 yellowpiece0, yellowpiece1, yellowpiece2, yellowpiece3)));
-        piecesImageViews.addAll(new ArrayList<ImageView>(Arrays.asList(
+        piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
                 redpiece0, redpiece1, redpiece2, redpiece3)));
-        piecesImageViews.addAll(new ArrayList<ImageView>(Arrays.asList(
+        piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
                 bluepiece0, bluepiece1, bluepiece2, bluepiece3)));
-        piecesImageViews.addAll(new ArrayList<ImageView>(Arrays.asList(
+        piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
                 greenpiece0, greenpiece1, greenpiece2, greenpiece3)));
     }
 
@@ -263,19 +263,19 @@ public class StandardboardFragment extends Fragment {
      * Initiates the List with all positions.
      */
     private void initListOfPositions() {
-        positions = new ArrayList<ImageView>();
+        positions = new ArrayList<>();
 
-        positions.addAll(new ArrayList<ImageView>(Arrays.asList
+        positions.addAll(new ArrayList<>(Arrays.asList
                 (pos0, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10)));
-        positions.addAll(new ArrayList<ImageView>(Arrays.asList
+        positions.addAll(new ArrayList<>(Arrays.asList
                 (pos11, pos12, pos13, pos14, pos15, pos16, pos17, pos18, pos19, pos20)));
-        positions.addAll(new ArrayList<ImageView>(Arrays.asList
+        positions.addAll(new ArrayList<>(Arrays.asList
                 (pos21, pos22, pos23, pos24, pos25, pos26, pos27, pos28, pos29, pos30)));
-        positions.addAll(new ArrayList<ImageView>(Arrays.asList
+        positions.addAll(new ArrayList<>(Arrays.asList
                 (pos31, pos32, pos33, pos34, pos35, pos36, pos37, pos38, pos39, pos40)));
-        positions.addAll(new ArrayList<ImageView>(Arrays.asList
+        positions.addAll(new ArrayList<>(Arrays.asList
                 (pos41, pos42, pos43, pos44, pos45, pos46, pos47, pos48, pos49, pos50)));
-        positions.addAll(new ArrayList<ImageView>(Arrays.asList
+        positions.addAll(new ArrayList<>(Arrays.asList
                 (pos51, pos52, pos53, pos54, pos55, pos56)));
     }
 

@@ -31,10 +31,11 @@ public class GameViewModel extends ViewModel {
     private String[] playerNames;
     private Color[] colors;
 
-    private void init(String[] playerNames, Color[] colors) throws NotImplementedException {
+    private void init(String[] playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
         // TODO game skall skapas av gamefactory, skickar med input från annan controllerklass (den
         //  som jobbar med spelinput inför ett spel)
-        game = GameFactory.createNewGame(playerNames, colors);
+
+        game = GameFactory.createNewGame(playerNames, colors, selectedCPU);
     }
 
     /*public void play() throws Exception{
