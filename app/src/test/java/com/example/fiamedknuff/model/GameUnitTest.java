@@ -29,7 +29,7 @@ public class GameUnitTest {
     @Test
     public void testDiceRoll() {
         for (int i = 0; i < 50; i++) {
-            assertThat(game.getRollDice()).isBetween(0, 6);
+            assertThat(game.rollAndGetDiceValue()).isBetween(0, 6);
         }
     }
 
