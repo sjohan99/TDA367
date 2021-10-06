@@ -25,10 +25,10 @@
         android:name="com.example.fiamedknuff.fragments.LeaderboardFragment"
         android:label="fragment_leaderboard"
         tools:layout="@layout/fragment_leaderboard" />
-    
+
     <fragment
         android:id="@+id/standardboardFragment"
-        android:name="com.example.fiamedknuff.fragments.standardboardFragment"
+        android:name="com.example.fiamedknuff.fragments.StandardboardFragment"
         android:label="fragment_standardboard"
         tools:layout="@layout/fragment_standardboard" />
     <fragment
