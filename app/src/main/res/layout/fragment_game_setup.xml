@@ -17,13 +17,6 @@
         app:srcCompat="@drawable/background"
         tools:ignore="ImageContrastCheck" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Game Setup"
-        android:textSize="60sp"
-        android:textColor="@color/black"/>
-
     <Button
         android:id="@+id/createGameBtn"
         android:layout_width="wrap_content"
@@ -34,5 +27,139 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Player Amount:"
+                android:textSize="30sp" />
+
+            <Spinner
+                android:id="@+id/playerAmountSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/player1Name"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_yellowpiece_icon"
+                android:drawablePadding="15dp"
+                android:ems="10"
+                android:hint="@string/player_name_input"
+                android:paddingStart="25dp"
+                android:textSize="25sp" />
+
+            <CheckBox
+                android:id="@+id/CPUCheckBox1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="CPU" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/player2Name"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_redpiece_icon"
+                android:drawablePadding="15dp"
+                android:ems="10"
+                android:hint="@string/player_name_input"
+                android:paddingStart="25dp"
+                android:textSize="25sp" />
+
+            <CheckBox
+                android:id="@+id/CPUCheckBox2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="CPU" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/player3Name"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_greenpiece_icon"
+                android:drawablePadding="15dp"
+                android:ems="10"
+                android:hint="@string/player_name_input"
+                android:paddingStart="25dp"
+                android:textSize="25sp" />
+
+            <CheckBox
+                android:id="@+id/CPUCheckBox3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="CPU" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/player4Name"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_bluepiece_icon"
+                android:drawablePadding="15dp"
+                android:ems="10"
+                android:hint="@string/player_name_input"
+                android:paddingStart="25dp"
+                android:textSize="25sp" />
+
+            <CheckBox
+                android:id="@+id/CPUCheckBox4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="CPU" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

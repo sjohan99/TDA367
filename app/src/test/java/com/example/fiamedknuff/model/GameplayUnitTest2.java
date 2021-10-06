@@ -14,13 +14,13 @@ import java.util.List;
 
 public class GameplayUnitTest2 {
 
-    static Game game;
+    Game game;
     Player currentPlayer;
     int pc = 4;
     List<Piece> currentPlayerPieces;
 
-    @BeforeClass
-    public static void setup() throws NotImplementedException {
+    @Before
+    public void setup() throws NotImplementedException {
         String[] names = {
                 "Player one",
                 "Player two",
