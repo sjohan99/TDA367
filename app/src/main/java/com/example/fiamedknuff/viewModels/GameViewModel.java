@@ -38,37 +38,6 @@ public class GameViewModel extends ViewModel {
         game = GameFactory.createNewGame(playerNames, colors, selectedCPU);
     }
 
-    /*public void play() throws Exception{
-        while(game.getCurrentPlayerIndex() != -1) {
-            // For a new round...
-            currentPlayer = game.getCurrentPlayer();
-            // TODO move dice to current player
-            // TODO maybe not a while-loop, but we need to wait for player input to roll dice
-            // while() {
-                diceValue = game.rollDice();
-            // }
-            movablePieces = game.getMovablePieces(currentPlayer, diceValue);
-            // TODO show result of rolled dice
-            // while () {
-                // TODO Wait for player input, and update variable selectedPiece
-                // Check if selected piece is movable
-                if (movablePieces.contains(selectedPiece)) {
-                    game.move(diceValue, selectedPiece);
-                    break;
-                } else {
-                    // TODO give feedback that it is not movable
-                }
-            // }
-
-            // if you rolled a six, it´s your turn again
-            // TODO if a player made a six and finished, it should be the next players turn...
-            if (diceValue != 6) {
-                game.selectNextPlayer();
-            }
-        }
-    }*/
-
-    // TODO update so that it works for when a player has finished with the new method
     /**
      * Moves the clicked piece.
      * @param clickedPiece is the clicked piece
@@ -84,7 +53,6 @@ public class GameViewModel extends ViewModel {
                 movePiece(clickedPiece);
                 return true;
             }
-            moveToNextPlayer();
         }
         return false;
     }
@@ -118,14 +86,6 @@ public class GameViewModel extends ViewModel {
         return game.removePlayerIfFinished();
     }
 
-    // TODO
-    private void moveToNextPlayer() {
-        game.selectNextPlayer();
-        // check if game finished - finish
-        // move dice to the next player
-        game.getDice().setIsUsed(true);
-    }
-
     /**
      * If the dice is ready to be rolled (i.e. is used), the dice is rolled.
      * @return the value of the rolled dice (if it´s ready to be rolled), or -1 if
@@ -156,4 +116,15 @@ public class GameViewModel extends ViewModel {
         return game.getPositions();
     }
 
+    public int getDiceValue() {
+        return game.getDice().getRolledValue();
+    }
+
+    public void selectNextPlayer() {
+        game.selectNextPlayer();
+    }
+
+    public void diceIsUsed() {
+        game.getDice().setIsUsed(true);
+    }
 }
