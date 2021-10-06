@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Game implements Serializable {
 
-    public Board board;
+    private Board board;
     private List<Player> activePlayers;
     private int currentPlayerIndex = 0;
     private Dice dice;
@@ -21,19 +21,15 @@ public class Game implements Serializable {
     }
 
     /**
-     * Get the board
-     * @return board
-     */
-    public Board getBoard() {
-        return board;
-    }
-
-    /**
      * Get the current player
      * @return the current player
      */
     public Player getCurrentPlayer() {
         return activePlayers.get(currentPlayerIndex);
+    }
+
+    public Dice getDice() {
+        return dice;
     }
 
     /**
@@ -82,7 +78,7 @@ public class Game implements Serializable {
      * Get all the players pieces
      * @return all the players pieces in a list
      */
-    private List<Piece> getAllPlayerPieces() {
+    public List<Piece> getAllPlayerPieces() {
         List<Piece> pieces = new ArrayList<>();
         for (Player player : activePlayers) {
             pieces.addAll(getPlayerPieces(player));
@@ -92,6 +88,18 @@ public class Game implements Serializable {
 
     /**
      * Get the current players movable pieces
+     * @param player gets the movable pieces of this player
+     * @return all the players movable pieces in a collection
+     */
+    public ArrayList<Piece> getMovablePieces(Player player) {
+        return player.getMovablePieces(player.getPieces(), dice.getRolledValue());
+    }
+
+    /**
+     * Mock method.
+     * Get the current players movable pieces
+     * @param player gets the movable pieces of this player
+     * @param rolledValue the rolled value
      * @return all the players movable pieces in a collection
      */
     public ArrayList<Piece> getMovablePieces(Player player, int rolledValue) {
@@ -100,10 +108,9 @@ public class Game implements Serializable {
 
     /**
      * Rolls the dice
-     * @return the value of the rolled dice
      */
-    public int rollDice() {
-        return dice.rollDice();
+    public void rollDice() {
+        dice.rollDice();
     }
 
     private void finishedPlayer(Player player) {
@@ -126,12 +133,24 @@ public class Game implements Serializable {
         return player.getPieces().size() == 0;
     }
 
-    /**
-     * Moves the piece according to diceValue
-     * @param diceValue amount of steps to be taken
-     * @param piece the piece to be moved
-     * @throws Exception if a piece is to be knocked out but can't be found
-     */
+    public void move(Piece piece) throws Exception {
+        int diceValue = dice.getRolledValue();
+        if (pieceWillMovePastGoal(diceValue, piece)) {
+            movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
+        }
+        else {
+            movePieceNormally(diceValue, piece);
+        }
+        board.knockOutPieceIfOccupied(piece);
+        if (piece.getIndex() == 45) {
+            removeFinishedPiece(piece);
+        }
+        if (isFinishedPlayer(getCurrentPlayer())) {
+            finishedPlayer(getCurrentPlayer());
+        }
+    }
+
+    // Used only for tests
     public void move(int diceValue, Piece piece) throws Exception {
         if (pieceWillMovePastGoal(diceValue, piece)) {
             movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
@@ -140,31 +159,12 @@ public class Game implements Serializable {
             movePieceNormally(diceValue, piece);
         }
         board.knockOutPieceIfOccupied(piece);
-    }
-
-    /**
-     * Removes the given piece from the game if it is at the goal-index
-     * @param piece the piece to be checked
-     * @return True if the piece was removed, else False
-     */
-    boolean removePieceIfFinished(Piece piece) {
         if (piece.getIndex() == 45) {
             removeFinishedPiece(piece);
-            return true;
         }
-        return false;
-    }
-
-    /**
-     * Removes the current player from the game if it has no more active pieces
-     * @return True if the player was removed, else False
-     */
-    boolean removePlayerIfFinished() {
         if (isFinishedPlayer(getCurrentPlayer())) {
             finishedPlayer(getCurrentPlayer());
-            return true;
         }
-        return false;
     }
 
     private void movePieceNormally(int diceValue, Piece piece) throws Exception {
@@ -192,5 +192,13 @@ public class Game implements Serializable {
     //private move(Piece piece) {
         //board.move(piece);
    */
+
+    /**
+     * Returns the positions from the board.
+     * @return the positions from the board.
+     */
+    public List<Position> getPositions () {
+        return this.board.getPositions();
+    }
 
 }
