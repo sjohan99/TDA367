@@ -32,7 +32,14 @@ public class GameplayUnitTest {
                 Color.GREEN,
                 Color.BLUE};
 
-        game = GameFactory.createNewGame(names, playerColors);
+        boolean[] isCPU = {
+                false,
+                false,
+                false,
+                false
+        };
+
+        game = GameFactory.createNewGame(names, playerColors, isCPU);
     }
 
     @Test
@@ -111,12 +118,12 @@ public class GameplayUnitTest {
         game.move(6, movablePieces.get(0));
         game.move(6, movablePieces.get(0));
         game.move(6, movablePieces.get(0));
-        printAllPieceLocations();
+        //printAllPieceLocations();
         game.move(6, movablePieces.get(0));
         game.move(1, movablePieces.get(0));
         game.move(6, movablePieces.get(0));
 
-        printAllPieceLocations();
+        //printAllPieceLocations();
 
     }
 

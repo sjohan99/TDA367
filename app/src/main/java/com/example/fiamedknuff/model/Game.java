@@ -113,6 +113,10 @@ public class Game implements Serializable {
         dice.rollDice();
     }
 
+    public int getRollDice() {
+        return dice.rollDice();
+    }
+
     private void finishedPlayer(Player player) {
         activePlayers.remove(player);
         finishedPlayers.add(player);
@@ -224,6 +228,10 @@ public class Game implements Serializable {
      */
     public List<Position> getPositions () {
         return this.board.getPositions();
+    }
+
+    public Board getBoard() {
+        return this.board;
     }
 
 }
