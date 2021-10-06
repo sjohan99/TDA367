@@ -21,6 +21,14 @@ public class Game implements Serializable {
     }
 
     /**
+     * Get the board
+     * @return board
+     */
+    public Board getBoard() {
+        return board;
+    }
+
+    /**
      * Get the current player
      * @return the current player
      */
