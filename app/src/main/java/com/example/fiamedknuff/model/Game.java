@@ -179,8 +179,9 @@ public class Game implements Serializable {
      * @param piece the piece to be checked
      * @return True if the piece was removed, else False
      */
-    public boolean removePieceIfFinished(Piece piece) {
-        if (piece.getIndex() == 45) {
+
+    boolean removePieceIfFinished(Piece piece) {
+        if (piece.getIndex() == board.getFinishIndex()) {
             removeFinishedPiece(piece);
             return true;
         }
