@@ -20,24 +20,43 @@ public class Dice implements Serializable{
 
     private int rolledValue;
 
+    /**
+     * Creates a dice with possible numbers from 1 to valueMax value.
+     * @param valueMax
+     */
     public Dice(int valueMax) {
         this.valueMax = valueMax;
         this.isUsed = true;
     }
 
+    /**
+     * Creates a dice with possible numbers from 1 to 6
+     */
     public Dice() {
         this.valueMax = 6;
         this.isUsed = true;
     }
 
+    /**
+     * Gets the isUsed boolean value
+     * @return true if dice has been used, else false
+     */
     public Boolean getIsUsed() {
         return this.isUsed;
     }
 
+    /**
+     * Sets isUsed variable according to argument
+     * @param isUsed the boolean value isUsed variable to be changed to
+     */
     public void setIsUsed(Boolean isUsed) {
         this.isUsed = isUsed;
     }
 
+    /**
+     * Returns the number rolled by the dice
+     * @return rolled number
+     */
     public int getRolledValue() {
         return rolledValue;
     }
