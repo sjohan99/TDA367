@@ -280,8 +280,8 @@ public class StandardboardFragment extends Fragment {
     }
 
     /**
-     * Adds OnClickListeners on all pieces. When a piece is clicked, the method pieceClicked in
-     * gameViewModel should be called.
+     * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
+     * should be called.
      */
     private void addPiecesOnClickListeners() {
         for (ImageView piece : piecesImageViews) {
@@ -296,7 +296,7 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
-    //
+    // TODO - some of the logic which is going to be implemented is right now just comments
     private void makeTurn(ImageView piece) {
         boolean isMoved = gameViewModel.move(imageViewPieceHashMap.get(piece));
         if (isMoved) {
@@ -307,6 +307,12 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
+    /**
+     * Checks if either the piece or the player is finished. If they are, they are removed
+     * from the board.
+     * @param piece is the piece that should be checked
+     * @return true if the player has finished, and false otherwise
+     */
     private boolean removePieceAndPlayerIfFinished(ImageView piece) {
         if (removePieceIfFinished(piece)) {
             return removePlayerIfFinished();
@@ -314,9 +320,15 @@ public class StandardboardFragment extends Fragment {
         return false;
     }
 
+    /**
+     * If the selected piece is finished, it is removed in the model and also in the view (it is
+     * made invisible).
+     * @param piece is the piece that should be checked
+     * @return true if the piece is finished, and false otherwise
+     */
     private boolean removePieceIfFinished(ImageView piece) {
         if (pieceIsFinished(piece)) {
-            // remove piece from the view
+            piece.setVisibility(View.INVISIBLE);
             return true;
         }
         return false;
@@ -327,11 +339,7 @@ public class StandardboardFragment extends Fragment {
     }
 
     private boolean removePlayerIfFinished() {
-        if (gameViewModel.removePlayerIfFinished()) {
-            // remove player from view
-            return true;
-        }
-        return false;
+        return gameViewModel.removePlayerIfFinished();
     }
 
     /**

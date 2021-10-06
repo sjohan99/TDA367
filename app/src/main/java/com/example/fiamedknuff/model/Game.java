@@ -180,7 +180,7 @@ public class Game implements Serializable {
      * @return True if the piece was removed, else False
      */
 
-    boolean removePieceIfFinished(Piece piece) {
+    public boolean removePieceIfFinished(Piece piece) {
         if (piece.getIndex() == board.getFinishIndex()) {
             removeFinishedPiece(piece);
             return true;
