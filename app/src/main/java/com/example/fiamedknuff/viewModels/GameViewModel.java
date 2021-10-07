@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.ViewModels;
+package com.example.fiamedknuff.viewModels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -11,7 +11,6 @@ import com.example.fiamedknuff.model.GameFactory;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Player;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
