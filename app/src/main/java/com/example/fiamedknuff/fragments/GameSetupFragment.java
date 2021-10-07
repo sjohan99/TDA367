@@ -19,9 +19,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.fiamedknuff.NotImplementedException;
 import com.example.fiamedknuff.R;
-import com.example.fiamedknuff.ViewModels.GameViewModel;
+import com.example.fiamedknuff.viewModels.GameViewModel;
 import com.example.fiamedknuff.model.Color;
-import com.example.fiamedknuff.model.GameFactory;
 
 import java.util.ArrayList;
 import java.util.List;

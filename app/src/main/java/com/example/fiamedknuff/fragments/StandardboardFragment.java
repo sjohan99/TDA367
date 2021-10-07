@@ -3,6 +3,7 @@ package com.example.fiamedknuff.fragments;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,7 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
-import com.example.fiamedknuff.ViewModels.GameViewModel;
+import com.example.fiamedknuff.viewModels.GameViewModel;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Position;
 
@@ -62,6 +63,8 @@ public class StandardboardFragment extends Fragment {
 
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
 
+        constraintLayout = view.findViewById(R.id.constraintLayout);
+
         initPositions();
         initPieces();
         initDice();
@@ -84,6 +87,9 @@ public class StandardboardFragment extends Fragment {
         });
     }
 
+    /**
+     * Initiates the diceimages and puts them in a list "diceImages".
+     */
     private void initDiceImages() {
         diceImages = new ArrayList<>();
         diceImages.add(R.drawable.dice1);
@@ -104,6 +110,11 @@ public class StandardboardFragment extends Fragment {
         diceImage.setImageResource(diceImages.get(rolledValue - 1)); // sets the rolled value
     }
 
+    /**
+     * Initiates the pieces by connecting the pieces ids, initiates the list of the pieces,
+     * initiates the hashmap with the pieces, makes the inactive pieces invisible and adds
+     * onClickListeners to the pieces.
+     */
     private void initPieces() {
         connectPiecesIds();
         initListOfAllPieces();
@@ -149,7 +160,6 @@ public class StandardboardFragment extends Fragment {
                 greenpiece0, greenpiece1, greenpiece2, greenpiece3)));
     }
 
-    // TODO off by 1?
     /**
      * Initiates the hashmap imageViewPieceHashMap. Gets the active pieces from gameViewModel
      * and connects them with the equivalent imageView.
@@ -162,7 +172,6 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
-    // TODO off by 1?
     /**
      * The pieces that should be visible are connected in the imageViewPieceHashMap. The
      * rest of the pieces in the list piecesImageViews should be invisible, and that is
@@ -183,7 +192,6 @@ public class StandardboardFragment extends Fragment {
         initPositionsHashmap();
     }
 
-    // TODO off by 1?
     /**
      * Initiates the hashmap imageViewPositionHashMap. Gets the positions from gameViewModel
      * and connects them with the equivalent imageView.
@@ -280,8 +288,8 @@ public class StandardboardFragment extends Fragment {
     }
 
     /**
-     * Adds OnClickListeners on all pieces. When a piece is clicked, the method pieceClicked in
-     * gameViewModel should be called.
+     * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
+     * should be called.
      */
     private void addPiecesOnClickListeners() {
         for (ImageView piece : piecesImageViews) {
@@ -289,11 +297,99 @@ public class StandardboardFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     setPiecesClickable(false);
-                    gameViewModel.pieceClicked(imageViewPieceHashMap.get(piece));
+                    makeTurn(piece);
                     setPiecesClickable(true);
                 }
             });
         }
+    }
+
+    // TODO - some of the logic which is going to be implemented is right now just comments
+    //  or not written here at all
+    /**
+     * Makes a turn with the parameter piece. First, it is moved in the model (if possible). If
+     * it is not movable, the method is done here. Otherwise, the piece is moved in the view.
+     * If the piece is finished it is removed from the model and view. If a player rolls a six
+     * and is not finished, it is their turn again. Otherwise, the next player is selected.
+     * If the game is finished, another method should be called here (not implemented yet).
+     * If not, the dice in the view is moved to the next player and the dice´s value is
+     * set to used.
+     * @param piece is the piece which is about to move
+     */
+    private void makeTurn(ImageView piece) {
+        boolean isMoved = gameViewModel.move(imageViewPieceHashMap.get(piece));
+        if (isMoved) {
+            move(piece);
+            boolean playerIsFinished = removePieceAndPlayerIfFinished(piece);
+            if (isNextPlayer(playerIsFinished)) {
+                gameViewModel.selectNextPlayer();
+            }
+            // check if game is finished --> finish...
+            // move dice in view to the next player
+            gameViewModel.diceIsUsed();
+        }
+    }
+
+    /**
+     * If a player rolls a six and is not finished, it is their turn again. Otherwise,
+     * it is the next player´s turn.
+     * @param playerIsFinished is true if the player is finished, otherwise false.
+     * @return true if it is the next player´s turn, otherwise false.
+     */
+    private boolean isNextPlayer(boolean playerIsFinished) {
+        return !((gameViewModel.getDiceValue() == 6) && !playerIsFinished);
+    }
+
+    /**
+     * Should move the piece in the view (not implemented yet).
+     * @param piece is the piece that should be moved.
+     */
+    private void move(ImageView piece) {
+        //move in view, not implemented yet
+    }
+
+    /**
+     * Checks if either the piece or the player is finished. If they are, they are removed
+     * from the board.
+     * @param piece is the piece that should be checked
+     * @return true if the player has finished, and false otherwise
+     */
+    private boolean removePieceAndPlayerIfFinished(ImageView piece) {
+        if (removePieceIfFinished(piece)) {
+            return removePlayerIfFinished();
+        }
+        return false;
+    }
+
+    /**
+     * If the selected piece is finished, it is removed in the model and also in the view (it is
+     * made invisible).
+     * @param piece is the piece that should be checked
+     * @return true if the piece is finished, and false otherwise
+     */
+    private boolean removePieceIfFinished(ImageView piece) {
+        if (pieceIsFinished(piece)) {
+            piece.setVisibility(View.INVISIBLE);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Checks if piece is finished.
+     * @param piece is the piece that is checked
+     * @return true if the piece is finished, false otherwise.
+     */
+    private boolean pieceIsFinished(ImageView piece) {
+        return gameViewModel.removePieceIfFinished(imageViewPieceHashMap.get(piece));
+    }
+
+    /**
+     * Checks if the current player is finished.
+     * @return true if the player is finished, false otherwise.
+     */
+    private boolean removePlayerIfFinished() {
+        return gameViewModel.removePlayerIfFinished();
     }
 
     /**
@@ -307,24 +403,26 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
-    /*private void testingPieceMovement() {
-    constraintLayout = view.findViewById(R.id.constraintLayout);
+    /**
+     * Makes the first parameter, movingImageView, have the same constraints as the second
+     * parameter, target. I.e. it moves the "movingImageView" to the same place as the "target".
+     * @param movingImageView is the ImageView that should be moved
+     * @param target is the place where the movingImageView should be moved to
+     */
+    private void moveImageView(ImageView movingImageView, ImageView target) {
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(constraintLayout);
+        constraintSet.connect(
+                movingImageView.getId(), ConstraintSet.START, target.getId(), ConstraintSet.START);
+        constraintSet.connect(
+                movingImageView.getId(), ConstraintSet.END, target.getId(), ConstraintSet.END);
+        constraintSet.connect(
+                movingImageView.getId(), ConstraintSet.TOP, target.getId(), ConstraintSet.TOP);
+        constraintSet.connect(
+                movingImageView.getId(), ConstraintSet.BOTTOM, target.getId(), ConstraintSet.BOTTOM);
+        constraintSet.applyTo(constraintLayout);
 
-    yellowpiece1.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            ConstraintSet constraintSet = new ConstraintSet();
-            constraintSet.clone(constraintLayout);
-            constraintSet.connect(yellowpiece1.getId(), ConstraintSet.START, pos10.getId(), ConstraintSet.START);
-            constraintSet.connect(yellowpiece1.getId(), ConstraintSet.END, pos10.getId(), ConstraintSet.END);
-            constraintSet.connect(yellowpiece1.getId(), ConstraintSet.TOP, pos10.getId(), ConstraintSet.TOP);
-            constraintSet.connect(yellowpiece1.getId(), ConstraintSet.BOTTOM, pos10.getId(), ConstraintSet.BOTTOM);
-            constraintSet.applyTo(constraintLayout);
-
-            yellowpiece1.bringToFront();
-
-        }
-    });
-    }*/
+        movingImageView.bringToFront();
+    }
 
 }

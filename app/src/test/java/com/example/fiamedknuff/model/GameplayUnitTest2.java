@@ -21,11 +21,11 @@ public class GameplayUnitTest2 {
 
     @Before
     public void setup() throws NotImplementedException {
-        String[] names = {
-                "Player one",
-                "Player two",
-                "Player three",
-                "Player four"};
+        ArrayList<String> names = new ArrayList<>();
+        names.add("Player one");
+        names.add("Player two");
+        names.add("Player three");
+        names.add("Player four");
 
         Color[] playerColors = {
                 Color.YELLOW,

@@ -20,6 +20,7 @@ public class Game implements Serializable {
 
     /**
      * Creates a game
+     *
      * @param players the players who will play the game
      * @throws NotImplementedException if an unsupported amount of players is given
      */
@@ -30,7 +31,16 @@ public class Game implements Serializable {
     }
 
     /**
+     * Get the board
+     * @return board
+     */
+    public Board getBoard() {
+        return board;
+    }
+
+    /**
      * Get the current player
+     *
      * @return the current player
      */
     public Player getCurrentPlayer() {
@@ -39,6 +49,7 @@ public class Game implements Serializable {
 
     /**
      * gets the dice
+     *
      * @return the dice
      */
     public Dice getDice() {
@@ -53,8 +64,7 @@ public class Game implements Serializable {
         if (activePlayers.size() <= 1) {
             // currentPlayerIndex is set to -1 when there is one or less players left
             currentPlayerIndex = -1;
-        }
-        else {
+        } else {
             currentPlayerIndex++;
             if (currentPlayerIndex >= activePlayers.size()) {
                 currentPlayerIndex = 0;
@@ -64,6 +74,7 @@ public class Game implements Serializable {
 
     /**
      * For testing purposes only right now
+     *
      * @return all active players
      */
     public List<Player> getActivePlayers() {
@@ -72,6 +83,7 @@ public class Game implements Serializable {
 
     /**
      * Get the current players index
+     *
      * @return the current players index
      */
     public int getCurrentPlayerIndex() {
@@ -80,6 +92,7 @@ public class Game implements Serializable {
 
     /**
      * Get the current players pieces
+     *
      * @param player specifies the current player
      * @return the current players pieces
      */
@@ -89,6 +102,7 @@ public class Game implements Serializable {
 
     /**
      * Get all the players pieces
+     *
      * @return all the players pieces in a list
      */
     public List<Piece> getAllPlayerPieces() {
@@ -101,6 +115,7 @@ public class Game implements Serializable {
 
     /**
      * Get the current players movable pieces
+     *
      * @param player gets the movable pieces of this player
      * @return all the players movable pieces in a collection
      */
@@ -111,7 +126,8 @@ public class Game implements Serializable {
     /**
      * Mock method.
      * Get the current players movable pieces
-     * @param player gets the movable pieces of this player
+     *
+     * @param player      gets the movable pieces of this player
      * @param rolledValue the rolled value
      * @return all the players movable pieces in a collection
      */
@@ -126,6 +142,9 @@ public class Game implements Serializable {
         dice.rollDice();
     }
 
+    public int getDiceValue() {
+        return dice.getRolledValue();
+    }
     /**
      * Getter for the dice's rolled value. Only used for testing purposes.
      * @return the dice's rolled value
@@ -192,7 +211,7 @@ public class Game implements Serializable {
      * @param piece the piece to be checked
      * @return True if the piece was removed, else False
      */
-    boolean removePieceIfFinished(Piece piece) {
+    public boolean removePieceIfFinished(Piece piece) {
         if (piece.getIndex() == board.getFinishIndex()) {
             removeFinishedPiece(piece);
             return true;
