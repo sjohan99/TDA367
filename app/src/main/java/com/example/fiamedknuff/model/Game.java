@@ -31,6 +31,14 @@ public class Game implements Serializable {
     }
 
     /**
+     * Get the board
+     * @return board
+     */
+    public Board getBoard() {
+        return board;
+    }
+
+    /**
      * Get the current player
      *
      * @return the current player
@@ -203,7 +211,7 @@ public class Game implements Serializable {
      * @param piece the piece to be checked
      * @return True if the piece was removed, else False
      */
-    boolean removePieceIfFinished(Piece piece) {
+    public boolean removePieceIfFinished(Piece piece) {
         if (piece.getIndex() == board.getFinishIndex()) {
             removeFinishedPiece(piece);
             return true;
