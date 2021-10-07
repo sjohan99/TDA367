@@ -14,9 +14,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
+import com.example.fiamedknuff.ViewModels.GameViewModel;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Position;
-import com.example.fiamedknuff.viewModels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;

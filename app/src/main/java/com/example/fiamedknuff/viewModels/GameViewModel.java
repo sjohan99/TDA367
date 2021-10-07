@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.viewModels;
+package com.example.fiamedknuff.ViewModels;
 
 import androidx.lifecycle.ViewModel;
 
@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * A class gameViewModel that ...
+ * A class responsible for communicating the model to whatever view is interested
  *
  * Created by
  * @author Emma Stålberg
@@ -31,7 +31,7 @@ public class GameViewModel extends ViewModel {
     private String[] playerNames;
     private Color[] colors;
 
-    private void init(String[] playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
+    public void init(String[] playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
         // TODO game skall skapas av gamefactory, skickar med input från annan controllerklass (den
         //  som jobbar med spelinput inför ett spel)
 
