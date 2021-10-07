@@ -20,11 +20,11 @@ public class GameplayUnitTest {
 
     @BeforeClass
     public static void setup() throws NotImplementedException {
-        String[] names = {
-                "Player one",
-                "Player two",
-                "Player three",
-                "Player four"};
+        ArrayList<String> names = new ArrayList<>();
+        names.add("Player one");
+        names.add("Player two");
+        names.add("Player three");
+        names.add("Player four");
 
         Color[] playerColors = {
                 Color.YELLOW,
@@ -32,7 +32,14 @@ public class GameplayUnitTest {
                 Color.GREEN,
                 Color.BLUE};
 
-        game = GameFactory.createNewGame(names, playerColors);
+        boolean[] isCPU = {
+                false,
+                false,
+                false,
+                false
+        };
+
+        game = GameFactory.createNewGame(names, playerColors, isCPU);
     }
 
     @Test
@@ -111,12 +118,12 @@ public class GameplayUnitTest {
         game.move(6, movablePieces.get(0));
         game.move(6, movablePieces.get(0));
         game.move(6, movablePieces.get(0));
-        printAllPieceLocations();
+        //printAllPieceLocations();
         game.move(6, movablePieces.get(0));
         game.move(1, movablePieces.get(0));
         game.move(6, movablePieces.get(0));
 
-        printAllPieceLocations();
+        //printAllPieceLocations();
 
     }
 

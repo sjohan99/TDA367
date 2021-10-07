@@ -6,6 +6,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class responsible for tying together the different components of the game and using them to
+ * simulate the game
+ */
 public class Game implements Serializable {
 
     private Board board;
@@ -14,6 +18,12 @@ public class Game implements Serializable {
     private Dice dice;
     private List<Player> finishedPlayers = new ArrayList<>();
 
+    /**
+     * Creates a game
+     *
+     * @param players the players who will play the game
+     * @throws NotImplementedException if an unsupported amount of players is given
+     */
     public Game(List<Player> players) throws NotImplementedException {
         activePlayers = players;
         board = new Board(players.size(), getAllPlayerPieces());
@@ -30,12 +40,18 @@ public class Game implements Serializable {
 
     /**
      * Get the current player
+     *
      * @return the current player
      */
     public Player getCurrentPlayer() {
         return activePlayers.get(currentPlayerIndex);
     }
 
+    /**
+     * gets the dice
+     *
+     * @return the dice
+     */
     public Dice getDice() {
         return dice;
     }
@@ -48,8 +64,7 @@ public class Game implements Serializable {
         if (activePlayers.size() <= 1) {
             // currentPlayerIndex is set to -1 when there is one or less players left
             currentPlayerIndex = -1;
-        }
-        else {
+        } else {
             currentPlayerIndex++;
             if (currentPlayerIndex >= activePlayers.size()) {
                 currentPlayerIndex = 0;
@@ -59,6 +74,7 @@ public class Game implements Serializable {
 
     /**
      * For testing purposes only right now
+     *
      * @return all active players
      */
     public List<Player> getActivePlayers() {
@@ -67,6 +83,7 @@ public class Game implements Serializable {
 
     /**
      * Get the current players index
+     *
      * @return the current players index
      */
     public int getCurrentPlayerIndex() {
@@ -75,6 +92,7 @@ public class Game implements Serializable {
 
     /**
      * Get the current players pieces
+     *
      * @param player specifies the current player
      * @return the current players pieces
      */
@@ -84,6 +102,7 @@ public class Game implements Serializable {
 
     /**
      * Get all the players pieces
+     *
      * @return all the players pieces in a list
      */
     public List<Piece> getAllPlayerPieces() {
@@ -96,6 +115,7 @@ public class Game implements Serializable {
 
     /**
      * Get the current players movable pieces
+     *
      * @param player gets the movable pieces of this player
      * @return all the players movable pieces in a collection
      */
@@ -106,7 +126,8 @@ public class Game implements Serializable {
     /**
      * Mock method.
      * Get the current players movable pieces
-     * @param player gets the movable pieces of this player
+     *
+     * @param player      gets the movable pieces of this player
      * @param rolledValue the rolled value
      * @return all the players movable pieces in a collection
      */
@@ -119,6 +140,17 @@ public class Game implements Serializable {
      */
     public void rollDice() {
         dice.rollDice();
+    }
+
+    public int getDiceValue() {
+        return dice.getRolledValue();
+    }
+    /**
+     * Getter for the dice's rolled value. Only used for testing purposes.
+     * @return the dice's rolled value
+     */
+    public int rollAndGetDiceValue() {
+        return dice.rollDice();
     }
 
     private void finishedPlayer(Player player) {
@@ -179,7 +211,6 @@ public class Game implements Serializable {
      * @param piece the piece to be checked
      * @return True if the piece was removed, else False
      */
-
     public boolean removePieceIfFinished(Piece piece) {
         if (piece.getIndex() == board.getFinishIndex()) {
             removeFinishedPiece(piece);
@@ -232,6 +263,14 @@ public class Game implements Serializable {
      */
     public List<Position> getPositions () {
         return this.board.getPositions();
+    }
+
+    /**
+     * Returns the board
+     * @return the board
+     */
+    public Board getBoard() {
+        return this.board;
     }
 
 }
