@@ -57,9 +57,10 @@ public class GameViewModel extends ViewModel {
                 movePiece(clickedPiece);
                 return true;
             }
+            // FIXME: 2021-10-07 Is this correct? Doesn't change to next player if piece is moved.
             moveToNextPlayer();
-            return false;
         }
+        return false;
     }
 
     /**
@@ -68,7 +69,6 @@ public class GameViewModel extends ViewModel {
      * should be removed from the view as well.
      * @param piece is the piece that should be checked.
      */
-
     private void checkIfRemoved(Piece piece) {
         if (!game.getAllPlayerPieces().contains(piece)) {
             // remove piece from view

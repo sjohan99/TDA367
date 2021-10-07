@@ -265,12 +265,4 @@ public class Game implements Serializable {
         return this.board.getPositions();
     }
 
-    /**
-     * Returns the board
-     * @return the board
-     */
-    public Board getBoard() {
-        return this.board;
-    }
-
 }
