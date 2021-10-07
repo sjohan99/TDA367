@@ -10,6 +10,7 @@ import com.example.fiamedknuff.model.Game;
 import com.example.fiamedknuff.model.GameFactory;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Player;
+import com.example.fiamedknuff.model.Position;
 
 import java.util.Collection;
 import java.util.List;
@@ -47,7 +48,7 @@ public class GameViewModel extends ViewModel {
             // TODO move dice to current player
             // TODO maybe not a while-loop, but we need to wait for player input to roll dice
             // while() {
-                diceValue = game.rollDice();
+                diceValue = game.getDiceValue();
             // }
             movablePieces = game.getMovablePieces(currentPlayer, diceValue);
             // TODO show result of rolled dice
@@ -125,6 +126,7 @@ public class GameViewModel extends ViewModel {
         // check if game finished - finish
         // move dice to the next player
         game.getDice().setIsUsed(true);
+    }
 
     public LiveData<String> getPlayerName(int index) {
         MutableLiveData<String> data = new MutableLiveData<>();
@@ -165,12 +167,5 @@ public class GameViewModel extends ViewModel {
 
     public List<Position> getPositions() {
         return game.getPositions();
-    }
-}
-
-    public LiveData<String> getPlayerName(int index) {
-        MutableLiveData<String> data = new MutableLiveData<>();
-        data.setValue(playerNames.get(index));
-        return data;
     }
 }
