@@ -24,7 +24,7 @@ public class GameViewFragment extends Fragment {
     private TextView player1Label, player2Label, player3Label, player4Label;
 
     private GameSideBarFragment sideBarFragment;
-    private standardboardFragment boardFragment;
+    private StandardboardFragment boardFragment;
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -60,7 +60,7 @@ public class GameViewFragment extends Fragment {
 
     private void initFragments() {
         sideBarFragment = new GameSideBarFragment();
-        boardFragment = new standardboardFragment();
+        boardFragment = new StandardboardFragment();
     }
 
     private <T extends Fragment> void showFragment(int frameLayoutId, T fragment) {

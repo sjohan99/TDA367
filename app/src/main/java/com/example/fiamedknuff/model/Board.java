@@ -7,15 +7,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Class representing the board on which pieces move.
+ *
+ * Created by
+ * @author Johan Selin
+ */
 public class Board implements Serializable {
 
     private List<Position> positions; // List of all positions on the board including home-positions
     private HashMap<Piece, Position> piecePositionHashMap; // Maps the pieces to their positions
     private final int[] numberOfPositions = {0, 0, 0, 57, 0, 0, 0}; // Number of positions for each board size
-    private final int[] walkOutOffset = {0, 0, 0, 10, 0, 0, 0};
-    private final int[] lapLength = {0, 0, 0, 40, 0, 0, 0};
-    private final int playerCount;
+    private final int[] walkOutOffset = {0, 0, 0, 10, 0, 0, 0}; // Walk out offset-multiplier for the pieces for each board size
+    private final int[] lapLength = {0, 0, 0, 40, 0, 0, 0}; // The amount of steps to walk around the path
+    private final int[] finishIndex = {0, 0, 0, 45, 0, 0, 0}; // Index for last square where a piece finishes and disappears
+    private final int playerCount; // amount of players
 
+    /**
+     * Creates a board according to the number of players and the pieces given. Assigns each piece
+     * a home-position and offset as well as linking it to a position via the piecePositionHashMap
+     * @param playerCount the number of players
+     * @param pieces all pieces to be involved in the game
+     * @throws NotImplementedException If given amount of players is not yet supported
+     */
     public Board(int playerCount, List<Piece> pieces) throws NotImplementedException {
         if (playerCount == 4) {
             this.playerCount = playerCount;
@@ -44,6 +58,10 @@ public class Board implements Serializable {
         return positionArrayList;
     }
 
+    /**
+     * Gets the list of all positions
+     * @return the list of all positions
+     */
     public List<Position> getPositions() {
         return positions;
     }
@@ -78,13 +96,26 @@ public class Board implements Serializable {
         return piecePositionHashMap;
     }
 
+    /**
+     * returns the hashmap linking the pieces to a position
+     * @return the hashmap linking the pieces to a position
+     */
     public HashMap<Piece, Position> getPiecePositionHashMap() {
         return piecePositionHashMap;
     }
 
     /**
-     * Moves Piece forward one step
-     * @param piece is the piece to be moved
+     * Get the finish index for the specific board
+     * @return the finish index
+     */
+    public int getFinishIndex() {
+        return finishIndex[playerCount - 1];
+    }
+
+    /**
+     * Moves Piece step forward and increments its index. If the piece is home, about to go into the
+     * middle path, or pass the lap line then the correct position will instead by calculated.
+     * @param piece the piece to be moved
      */
     void movePiece(Piece piece) throws Exception {
         Position p;
@@ -102,9 +133,16 @@ public class Board implements Serializable {
         }
 
         piecePositionHashMap.put(piece, p); // Updates value of key
-        piece.setIndex(piece.getIndex() + 1);
+        piece.incrementIndex();
     }
 
+
+    /**
+     * Moves the piece in reverse order and decrements its index. The position will decrement by one in all cases except when
+     * the piece is about to exit its middle path. In that case the piece will instead calculate the
+     * position just before its middle path.
+     * @param piece the piece to be moved
+     */
     void movePieceBackwards(Piece piece) {
         Position p;
         if (pieceAboutToExitMiddlePath(piece)) {
@@ -114,7 +152,7 @@ public class Board implements Serializable {
             p = decrementPositionOf(piece);
         }
         piecePositionHashMap.put(piece, p); // Updates value of key
-        piece.setIndex(piece.getIndex() - 1);
+        piece.decrementIndex();
     }
 
     private Position getPieceLastPositionBeforeMiddlePath(Piece piece) {
@@ -205,6 +243,12 @@ public class Board implements Serializable {
     }
 
 
+    /**
+     * Finds the position corresponding to the piece's home number.
+     * @param piece the piece whose home position to find
+     * @return the home position of piece
+     * @throws Exception if a position couldn't be found
+     */
     int indexOfHomeNumber(Piece piece) throws Exception {
         for (Position p : positions) {
             if (p.getPos() == (piece.getHomeNumber())) {
@@ -215,6 +259,12 @@ public class Board implements Serializable {
         throw new Exception(); // -> skriv in rätt Exception här?
     }
 
+    /**
+     * Checks if the position of a piece is also occupied by another piece. If occupied the other
+     * piece will get sent back to its home position.
+     * @param piece the piece you want to check if it shares a position with another
+     * @throws Exception if the knocked out piece's home position couldn't be found
+     */
     void knockOutPieceIfOccupied(Piece piece) throws Exception {
         Position pos = piecePositionHashMap.get(piece);
         piecePositionHashMap.remove(piece);
@@ -232,7 +282,7 @@ public class Board implements Serializable {
     void knockout(Position p) throws Exception {
         Piece piece = pieceAtPosition(p);
         piecePositionHashMap.remove(piece);
-        piece.setIndex(0);
+        piece.resetIndex();
         piecePositionHashMap.put(piece, positions.get(indexOfHomeNumber(piece)));
     }
 
