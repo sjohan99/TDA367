@@ -2,9 +2,11 @@ package com.example.fiamedknuff.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -36,9 +38,9 @@ public class GameViewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
         View view = inflater.inflate(R.layout.fragment_game_view, container, false);
 
-        gameViewModel = new ViewModelProvider(this).get(GameViewModel.class);
 
         initLabels(view);
         initFragments();
@@ -55,10 +57,10 @@ public class GameViewFragment extends Fragment {
         player3Label = view.findViewById(R.id.player3Label);
         player4Label = view.findViewById(R.id.player4Label);
 
-        player1Label.setText("Player 1");
-        player2Label.setText("Player 2");
-        player3Label.setText("Player 3");
-        player4Label.setText("Player 4");
+        player1Label.setText(gameViewModel.getPlayerName(0).getValue());
+        player2Label.setText(gameViewModel.getPlayerName(1).getValue());
+        player3Label.setText(gameViewModel.getPlayerName(2).getValue());
+        player4Label.setText(gameViewModel.getPlayerName(3).getValue());
     }
 
     private void initFragments() {
