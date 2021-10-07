@@ -33,7 +33,14 @@ public class GameplayUnitTest2 {
                 Color.GREEN,
                 Color.BLUE};
 
-        game = GameFactory.createNewGame(names, playerColors);
+        boolean[] isCPU = {
+                false,
+                false,
+                false,
+                false
+        };
+
+        game = GameFactory.createNewGame(names, playerColors, isCPU);
     }
 
     @Test
@@ -103,7 +110,7 @@ public class GameplayUnitTest2 {
         moved -= 5;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
         assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
-        printAllPieceLocations();
+        //printAllPieceLocations();
     }
 
     @Test
@@ -181,7 +188,7 @@ public class GameplayUnitTest2 {
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
         assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + pos));
 
-        printAllPieceLocations();
+        //printAllPieceLocations();
     }
 
 

@@ -6,6 +6,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class responsible for tying together the different components of the game and using them to
+ * simulate the game
+ */
 public class Game implements Serializable {
 
     private Board board;
@@ -14,6 +18,11 @@ public class Game implements Serializable {
     private Dice dice;
     private List<Player> finishedPlayers = new ArrayList<>();
 
+    /**
+     * Creates a game
+     * @param players the players who will play the game
+     * @throws NotImplementedException if an unsupported amount of players is given
+     */
     public Game(List<Player> players) throws NotImplementedException {
         activePlayers = players;
         board = new Board(players.size(), getAllPlayerPieces());
@@ -28,6 +37,10 @@ public class Game implements Serializable {
         return activePlayers.get(currentPlayerIndex);
     }
 
+    /**
+     * gets the dice
+     * @return the dice
+     */
     public Dice getDice() {
         return dice;
     }
@@ -113,6 +126,14 @@ public class Game implements Serializable {
         dice.rollDice();
     }
 
+    /**
+     * Getter for the dice's rolled value. Only used for testing purposes.
+     * @return the dice's rolled value
+     */
+    public int rollAndGetDiceValue() {
+        return dice.rollDice();
+    }
+
     private void finishedPlayer(Player player) {
         activePlayers.remove(player);
         finishedPlayers.add(player);
@@ -171,7 +192,6 @@ public class Game implements Serializable {
      * @param piece the piece to be checked
      * @return True if the piece was removed, else False
      */
-
     boolean removePieceIfFinished(Piece piece) {
         if (piece.getIndex() == board.getFinishIndex()) {
             removeFinishedPiece(piece);
@@ -224,6 +244,14 @@ public class Game implements Serializable {
      */
     public List<Position> getPositions () {
         return this.board.getPositions();
+    }
+
+    /**
+     * Returns the board
+     * @return the board
+     */
+    public Board getBoard() {
+        return this.board;
     }
 
 }

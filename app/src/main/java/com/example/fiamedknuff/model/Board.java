@@ -133,7 +133,7 @@ public class Board implements Serializable {
         }
 
         piecePositionHashMap.put(piece, p); // Updates value of key
-        piece.setIndex(piece.getIndex() + 1);
+        piece.incrementIndex();
     }
 
 
@@ -152,7 +152,7 @@ public class Board implements Serializable {
             p = decrementPositionOf(piece);
         }
         piecePositionHashMap.put(piece, p); // Updates value of key
-        piece.setIndex(piece.getIndex() - 1);
+        piece.decrementIndex();
     }
 
     private Position getPieceLastPositionBeforeMiddlePath(Piece piece) {
@@ -282,7 +282,7 @@ public class Board implements Serializable {
     void knockout(Position p) throws Exception {
         Piece piece = pieceAtPosition(p);
         piecePositionHashMap.remove(piece);
-        piece.setIndex(0);
+        piece.resetIndex();
         piecePositionHashMap.put(piece, positions.get(indexOfHomeNumber(piece)));
     }
 
