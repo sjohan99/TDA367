@@ -349,7 +349,7 @@ public class StandardboardFragment extends Fragment {
         }
 
         for (int i = nrOfHomePositions; i < positionsModel.size(); i++) {
-            imageViewPositionHashMap.put(boardPositions.get(i), positionsModel.get(i));
+            imageViewPositionHashMap.put(boardPositions.get(i - nrOfHomePositions), positionsModel.get(i));
         }
     }
 
