@@ -31,6 +31,18 @@
 <h2 id="project-files-description"> Projektfilsbeskrivning </h2>
 WIP
 
+<!-- Setup -->
+<h2 id="project-files-description"> Hur man kör programmet </h2>
+För att köra appen på datorn är det lättaste sättet att använda android studio.
+
+<ol>
+  <li>Ladda ner <a href="https://developer.android.com/studio">Android Studio</a> och följ instruktionerna</li>
+  <li>Clona detta repo i Android Studio via "get from version control" alternativt ladda ner det och öppna i Android Studio</li>
+  <li>Skapa en "Virtual Device" i AVD Manager (Föreslagsvis Nexus 7 tablet, då dimenensionerna för tillfället endast är skalade för denna)</li>
+  <li>Builda och kör sedan "app"</li>
+</ol>
+
+
 <!-- Genomgång -->
 <h2 id="getting-started"> Genomgång </h2>
 WIP
