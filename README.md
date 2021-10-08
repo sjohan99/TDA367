@@ -3,7 +3,7 @@
 <h3 align="center"> TDA367 - Objektorienterat programmingsprojekt </h3>
 
 <p align="center"> 
-  <img src="https://www.gamereactor.se/media/forum/se/5107647_58.jpg" alt="Full Example"/>
+  <img src="https://i.imgur.com/IAXD4nu.png" alt="Full Example"/>
 </p>
 
 <!-- TABLE OF CONTENTS -->
