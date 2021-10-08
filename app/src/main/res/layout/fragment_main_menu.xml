@@ -23,7 +23,7 @@
         android:id="@+id/mainmenu_title"
         android:layout_width="550dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="54dp"
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,44 +34,47 @@
         android:id="@+id/gameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:fontFamily="@font/titlefont"
-        android:text="Fia Med Knuff"
+        android:text="@string/mainmenu_title"
         android:textColor="#604027"
-        android:textSize="60sp"
+        android:textSize="55sp"
+        app:layout_constraintBottom_toBottomOf="@+id/mainmenu_title"
         app:layout_constraintEnd_toEndOf="@+id/mainmenu_title"
         app:layout_constraintStart_toStartOf="@+id/mainmenu_title"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/mainmenu_title" />
 
     <Button
         android:id="@+id/newGameBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="New Game"
+        android:layout_marginTop="45dp"
+        android:text="@string/new_game_button"
         android:textSize="30sp"
+        android:fontFamily="@font/titlefont"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gameTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/mainmenu_title" />
 
     <Button
         android:id="@+id/leaderboardBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Leaderboard"
+        android:text="@string/leaderboard_button"
         android:textSize="30sp"
+        android:fontFamily="@font/titlefont"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newGameBtn" />
 
     <Button
         android:id="@+id/rulebookBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Rules"
+        android:text="@string/rulebook_button"
         android:textSize="30sp"
+        android:fontFamily="@font/titlefont"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leaderboardBtn" />
