@@ -38,7 +38,7 @@ För att köra appen på datorn är det lättaste sättet att använda android s
 <ol>
   <li>Ladda ner <a href="https://developer.android.com/studio">Android Studio</a> och följ instruktionerna</li>
   <li>Clona detta repo i Android Studio via "get from version control" alternativt ladda ner det och öppna i Android Studio</li>
-  <li>Skapa en "Virtual Device" i AVD Manager (Föreslagsvis Nexus 7 tablet, då dimenensionerna för tillfället endast är skalade för denna)</li>
+  <li>Skapa en "Virtual Device" i AVD Manager (Förslagsvis Nexus 7 tablet, då dimenensionerna för tillfället endast är skalade för denna)</li>
   <li>Builda och kör sedan "app"</li>
 </ol>
 
