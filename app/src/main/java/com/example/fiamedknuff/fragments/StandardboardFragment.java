@@ -343,8 +343,12 @@ public class StandardboardFragment extends Fragment {
     private void initPositionsHashmap() {
         imageViewPositionHashMap = new HashMap<>();
         List<Position> positionsModel = gameViewModel.getPositions();
-        int playerCount = gameViewModel.getPlayerCount();
-        for (int i = 0; i < positionsModel.size(); i++) {
+        int nrOfHomePositions = gameViewModel.getPlayerCount() * 4;
+        for (int i = 0; i < nrOfHomePositions; i++) {
+            imageViewPositionHashMap.put(homePositions.get(i), positionsModel.get(i));
+        }
+
+        for (int i = nrOfHomePositions; i < positionsModel.size(); i++) {
             imageViewPositionHashMap.put(boardPositions.get(i), positionsModel.get(i));
         }
     }
