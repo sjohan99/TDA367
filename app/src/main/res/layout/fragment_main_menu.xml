@@ -21,9 +21,9 @@
 
     <ImageView
         android:id="@+id/mainmenu_title"
-        android:layout_width="550dp"
+        android:layout_width="@dimen/mainmenu_title_holder_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="@dimen/mainmenu_title_holder_margin_top"
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:fontFamily="@font/titlefont"
         android:text="@string/mainmenu_title"
         android:textColor="#604027"
-        android:textSize="55sp"
+        android:textSize="@dimen/mainmenu_title_text"
         app:layout_constraintBottom_toBottomOf="@+id/mainmenu_title"
         app:layout_constraintEnd_toEndOf="@+id/mainmenu_title"
         app:layout_constraintStart_toStartOf="@+id/mainmenu_title"
@@ -45,12 +45,12 @@
 
     <Button
         android:id="@+id/newGameBtn"
-        android:layout_width="350dp"
+        android:layout_width="@dimen/mainmenu_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="@dimen/mainmenu_first_button_margin_top"
         android:text="@string/new_game_button"
         android:textColor="#604027"
-        android:textSize="30sp"
+        android:textSize="@dimen/mainmenu_button_text"
         android:fontFamily="@font/titlefont"
         android:backgroundTint="#D9BCA3"
         app:cornerRadius="30dp"
@@ -60,12 +60,12 @@
 
     <Button
         android:id="@+id/leaderboardBtn"
-        android:layout_width="350dp"
+        android:layout_width="@dimen/mainmenu_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/mainmenu_button_margin_top"
         android:text="@string/leaderboard_button"
         android:textColor="#604027"
-        android:textSize="30sp"
+        android:textSize="@dimen/mainmenu_button_text"
         android:fontFamily="@font/titlefont"
         android:backgroundTint="#D9BCA3"
         app:cornerRadius="30dp"
@@ -75,12 +75,12 @@
 
     <Button
         android:id="@+id/rulebookBtn"
-        android:layout_width="350dp"
+        android:layout_width="@dimen/mainmenu_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/mainmenu_button_margin_top"
         android:text="@string/rulebook_button"
         android:textColor="#604027"
-        android:textSize="30sp"
+        android:textSize="@dimen/mainmenu_button_text"
         android:fontFamily="@font/titlefont"
         android:backgroundTint="#D9BCA3"
         app:cornerRadius="30dp"
