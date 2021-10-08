@@ -14,7 +14,7 @@
   <ol>
     <li><a href="#overview"> ➤ Översikt </a></li>
     <li><a href="#project-files-description"> ➤ Projektfilsbeskrivning </a></li>
-    <li><a href="#getting-started"> ➤ Genomgång </a></li>
+    <li><a href="#getting-started"> ➤ Kör programmet på din maskin </a></li>
     <li><a href="#links"> ➤ Länkar</a></li>
     <li><a href="#credits"> ➤ Credits</a></li>
   </ol>
@@ -32,20 +32,15 @@
 WIP
 
 <!-- Setup -->
-<h2 id="project-files-description"> Hur man kör programmet </h2>
+<h2 id="getting-started"> Kör programmet på din maskin </h2>
 För att köra appen på datorn är det lättaste sättet att använda android studio.
 
 <ol>
   <li>Ladda ner <a href="https://developer.android.com/studio">Android Studio</a> och följ instruktionerna</li>
-  <li>Clona detta repo i Android Studio via "get from version control" alternativt ladda ner det och öppna i Android Studio</li>
+  <li>Klona detta repo i Android Studio via "get from version control" alternativt ladda ner det och öppna i Android Studio</li>
   <li>Skapa en "Virtual Device" i AVD Manager (Förslagsvis Nexus 7 tablet, då dimenensionerna för tillfället endast är skalade för denna)</li>
-  <li>Builda och kör sedan "app"</li>
+  <li>Bygg projektet och kör sedan "app"</li>
 </ol>
-
-
-<!-- Genomgång -->
-<h2 id="getting-started"> Genomgång </h2>
-WIP
 
 <!-- Länkar -->
 <h2 id="links"> Länkar </h2>
