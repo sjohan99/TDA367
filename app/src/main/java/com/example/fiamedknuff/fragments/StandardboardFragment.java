@@ -40,7 +40,12 @@ public class StandardboardFragment extends Fragment {
     ImageView pos31, pos32, pos33, pos34, pos35, pos36, pos37, pos38, pos39, pos40;
     ImageView pos41, pos42, pos43, pos44, pos45, pos46, pos47, pos48, pos49, pos50;
     ImageView pos51, pos52, pos53, pos54, pos55, pos56;
-    List<ImageView> positions;
+    ImageView yellowHomePos0, yellowHomePos1, yellowHomePos2, yellowHomePos3;
+    ImageView redHomePos0, redHomePos1, redHomePos2, redHomePos3;
+    ImageView greenHomePos0, greenHomePos1, greenHomePos2, greenHomePos3;
+    ImageView blueHomePos0, blueHomePos1, blueHomePos2, blueHomePos3;
+    List<ImageView> boardPositions;
+    List<ImageView> homePositions;
     HashMap<ImageView, Position> imageViewPositionHashMap;
 
     ImageView yellowpiece0, yellowpiece1, yellowpiece2, yellowpiece3;
@@ -189,26 +194,22 @@ public class StandardboardFragment extends Fragment {
      */
     private void initPositions() {
         connectPositionIds();
-        initListOfPositions();
+        initListsOfPositions();
         initPositionsHashmap();
-    }
-
-    /**
-     * Initiates the hashmap imageViewPositionHashMap. Gets the positions from gameViewModel
-     * and connects them with the equivalent imageView.
-     */
-    private void initPositionsHashmap() {
-        imageViewPositionHashMap = new HashMap<>();
-        List<Position> positionsModel = gameViewModel.getPositions();
-        for (int i = 0; i < positionsModel.size(); i++) {
-            imageViewPositionHashMap.put(positions.get(i), positionsModel.get(i));
-        }
     }
 
     /**
      * Connects every position to its equivalent ImageView.
      */
     private void connectPositionIds() {
+        connectBoardPositionsIds();
+        connectHomePositionsIds();
+    }
+
+    /**
+     * Connects every position on the board to its equivalent ImageView
+     */
+    private void connectBoardPositionsIds() {
         pos0 = view.findViewById(R.id.pos0);
         pos1 = view.findViewById(R.id.pos1);
         pos2 = view.findViewById(R.id.pos2);
@@ -269,23 +270,87 @@ public class StandardboardFragment extends Fragment {
     }
 
     /**
-     * Initiates the List with all positions.
+     * Connects every position in the homes to its equivalent ImageView.
      */
-    private void initListOfPositions() {
-        positions = new ArrayList<>();
+    private void connectHomePositionsIds() {
+        yellowHomePos0 = view.findViewById(R.id.yellowHomepos0);
+        yellowHomePos1 = view.findViewById(R.id.yellowHomepos1);
+        yellowHomePos2 = view.findViewById(R.id.yellowHomepos2);
+        yellowHomePos3 = view.findViewById(R.id.yellowHomepos3);
+        redHomePos0 = view.findViewById(R.id.redHomepos0);
+        redHomePos1 = view.findViewById(R.id.redHomepos1);
+        redHomePos2 = view.findViewById(R.id.redHomepos2);
+        redHomePos3 = view.findViewById(R.id.redHomepos3);
+        greenHomePos0 = view.findViewById(R.id.greenHomepos0);
+        greenHomePos1 = view.findViewById(R.id.greenHomepos1);
+        greenHomePos2 = view.findViewById(R.id.greenHomepos2);
+        greenHomePos3 = view.findViewById(R.id.greenHomepos3);
+        blueHomePos0 = view.findViewById(R.id.blueHomepos0);
+        blueHomePos1 = view.findViewById(R.id.blueHomepos1);
+        blueHomePos2 = view.findViewById(R.id.blueHomepos2);
+        blueHomePos3 = view.findViewById(R.id.blueHomepos3);
+    }
 
-        positions.addAll(new ArrayList<>(Arrays.asList
+    /**
+     * Initiates the lists for the positions in the homes and on the board.
+     */
+    private void initListsOfPositions() {
+        initListOfBoardPositions();
+        initListOfHomePositions();
+    }
+
+    /**
+     * Initiates the List with all positions in the homes.
+     */
+    private void initListOfHomePositions() {
+        homePositions = new ArrayList<>();
+
+        homePositions.addAll(new ArrayList<>(Arrays.asList(
+                yellowHomePos0, yellowHomePos1, yellowHomePos2, yellowHomePos3)));
+        homePositions.addAll(new ArrayList<>(Arrays.asList(
+                redHomePos0, redHomePos1, redHomePos2, redHomePos3)));
+        homePositions.addAll(new ArrayList<>(Arrays.asList(
+                greenHomePos0, greenHomePos1, greenHomePos2, greenHomePos3)));
+        homePositions.addAll(new ArrayList<>(Arrays.asList(
+                blueHomePos0, blueHomePos1, blueHomePos2, blueHomePos3)));
+    }
+
+    /**
+     * Initiates the List with all positions on the board.
+     */
+    private void initListOfBoardPositions() {
+        boardPositions = new ArrayList<>();
+
+        boardPositions.addAll(new ArrayList<>(Arrays.asList
                 (pos0, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10)));
-        positions.addAll(new ArrayList<>(Arrays.asList
+        boardPositions.addAll(new ArrayList<>(Arrays.asList
                 (pos11, pos12, pos13, pos14, pos15, pos16, pos17, pos18, pos19, pos20)));
-        positions.addAll(new ArrayList<>(Arrays.asList
+        boardPositions.addAll(new ArrayList<>(Arrays.asList
                 (pos21, pos22, pos23, pos24, pos25, pos26, pos27, pos28, pos29, pos30)));
-        positions.addAll(new ArrayList<>(Arrays.asList
+        boardPositions.addAll(new ArrayList<>(Arrays.asList
                 (pos31, pos32, pos33, pos34, pos35, pos36, pos37, pos38, pos39, pos40)));
-        positions.addAll(new ArrayList<>(Arrays.asList
+        boardPositions.addAll(new ArrayList<>(Arrays.asList
                 (pos41, pos42, pos43, pos44, pos45, pos46, pos47, pos48, pos49, pos50)));
-        positions.addAll(new ArrayList<>(Arrays.asList
+        boardPositions.addAll(new ArrayList<>(Arrays.asList
                 (pos51, pos52, pos53, pos54, pos55, pos56)));
+    }
+
+    /**
+     * Initiates the hashmap imageViewPositionHashMap. Gets the positions from gameViewModel
+     * and connects them with the equivalent imageView. The first ones are for the positions
+     * in the homes.
+     */
+    private void initPositionsHashmap() {
+        imageViewPositionHashMap = new HashMap<>();
+        List<Position> positionsModel = gameViewModel.getPositions();
+        int nrOfHomePositions = gameViewModel.getPlayerCount() * 4;
+        for (int i = 0; i < nrOfHomePositions; i++) {
+            imageViewPositionHashMap.put(homePositions.get(i), positionsModel.get(i));
+        }
+
+        for (int i = nrOfHomePositions; i < positionsModel.size(); i++) {
+            imageViewPositionHashMap.put(boardPositions.get(i - nrOfHomePositions), positionsModel.get(i));
+        }
     }
 
     /**
