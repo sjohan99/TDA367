@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * A class responsible for communicating the model to whatever view is interested
+ * A class responsible for communicating the model to whatever view is interested.
  *
  * Created by
  * @author Emma Stålberg
@@ -34,9 +34,6 @@ public class GameViewModel extends ViewModel {
     private Color[] colors;
 
     public void init(List<String> playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
-        // TODO game skall skapas av gamefactory, skickar med input från annan controllerklass (den
-        //  som jobbar med spelinput inför ett spel)
-        // this.playerNames.setValue(playerNames);
         this.playerNames = playerNames;
         game = GameFactory.createNewGame(playerNames, colors, selectedCPU);
     }

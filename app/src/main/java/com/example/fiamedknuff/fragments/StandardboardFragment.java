@@ -40,6 +40,7 @@ public class StandardboardFragment extends Fragment {
     ImageView pos31, pos32, pos33, pos34, pos35, pos36, pos37, pos38, pos39, pos40;
     ImageView pos41, pos42, pos43, pos44, pos45, pos46, pos47, pos48, pos49, pos50;
     ImageView pos51, pos52, pos53, pos54, pos55, pos56;
+
     List<ImageView> positions;
     HashMap<ImageView, Position> imageViewPositionHashMap;
 
