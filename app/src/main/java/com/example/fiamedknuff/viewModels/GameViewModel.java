@@ -147,4 +147,12 @@ public class GameViewModel extends ViewModel {
         game.getDice().setIsUsed(true);
     }
 
+    /**
+     * Returns number of active players in the game.
+     * @return number of active players.
+     */
+    public int getPlayerCount() {
+        return game.getPlayerCount();
+    }
+
 }

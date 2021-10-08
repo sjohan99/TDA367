@@ -337,11 +337,13 @@ public class StandardboardFragment extends Fragment {
 
     /**
      * Initiates the hashmap imageViewPositionHashMap. Gets the positions from gameViewModel
-     * and connects them with the equivalent imageView.
+     * and connects them with the equivalent imageView. The first ones are for the positions
+     * in the homes.
      */
     private void initPositionsHashmap() {
         imageViewPositionHashMap = new HashMap<>();
         List<Position> positionsModel = gameViewModel.getPositions();
+        int playerCount = gameViewModel.getPlayerCount();
         for (int i = 0; i < positionsModel.size(); i++) {
             imageViewPositionHashMap.put(boardPositions.get(i), positionsModel.get(i));
         }

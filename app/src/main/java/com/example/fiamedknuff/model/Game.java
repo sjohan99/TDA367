@@ -266,4 +266,11 @@ public class Game implements Serializable {
         return this.board.getPositions();
     }
 
+    /**
+     * Returns number of active players.
+     * @return number of active players.
+     */
+    public int getPlayerCount() {
+        return activePlayers.size();
+    }
 }
