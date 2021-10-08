@@ -45,36 +45,45 @@
 
     <Button
         android:id="@+id/newGameBtn"
-        android:layout_width="320dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
         android:text="@string/new_game_button"
+        android:textColor="#604027"
         android:textSize="30sp"
         android:fontFamily="@font/titlefont"
+        android:backgroundTint="#D9BCA3"
+        app:cornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainmenu_title" />
 
     <Button
         android:id="@+id/leaderboardBtn"
-        android:layout_width="320dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/leaderboard_button"
+        android:textColor="#604027"
         android:textSize="30sp"
         android:fontFamily="@font/titlefont"
+        android:backgroundTint="#D9BCA3"
+        app:cornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newGameBtn" />
 
     <Button
         android:id="@+id/rulebookBtn"
-        android:layout_width="320dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/rulebook_button"
+        android:textColor="#604027"
         android:textSize="30sp"
         android:fontFamily="@font/titlefont"
+        android:backgroundTint="#D9BCA3"
+        app:cornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leaderboardBtn" />
