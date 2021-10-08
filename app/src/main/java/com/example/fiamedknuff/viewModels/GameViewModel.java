@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * A class gameViewModel that ...
+ * A class responsible for communicating the model to whatever view is interested
  *
  * Created by
  * @author Emma Stålberg
