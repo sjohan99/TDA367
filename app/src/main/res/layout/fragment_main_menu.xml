@@ -54,6 +54,8 @@
         android:fontFamily="@font/titlefont"
         android:backgroundTint="#D9BCA3"
         app:cornerRadius="30dp"
+        app:strokeWidth="1.5dp"
+        app:strokeColor="#B6A392"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainmenu_title" />
@@ -69,6 +71,8 @@
         android:fontFamily="@font/titlefont"
         android:backgroundTint="#D9BCA3"
         app:cornerRadius="30dp"
+        app:strokeWidth="1.5dp"
+        app:strokeColor="#B6A392"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newGameBtn" />
@@ -84,6 +88,8 @@
         android:fontFamily="@font/titlefont"
         android:backgroundTint="#D9BCA3"
         app:cornerRadius="30dp"
+        app:strokeWidth="1.5dp"
+        app:strokeColor="#B6A392"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leaderboardBtn" />
