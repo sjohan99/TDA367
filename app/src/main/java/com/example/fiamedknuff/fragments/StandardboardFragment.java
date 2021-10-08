@@ -25,7 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * A class standardboardFragment that ...
+ * A class standardboardFragment that handles the view of the standardboard and its
+ * pieces, positions and dice.
  *
  * Created by
  * @author Emma Stålberg
@@ -289,7 +290,7 @@ public class StandardboardFragment extends Fragment {
 
     /**
      * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
-     * should be called.
+     * should be called. The pieces should be non-clickable when the method makeTurn is called.
      */
     private void addPiecesOnClickListeners() {
         for (ImageView piece : piecesImageViews) {
