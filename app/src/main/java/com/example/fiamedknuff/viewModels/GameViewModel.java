@@ -57,22 +57,8 @@ public class GameViewModel extends ViewModel {
                 movePiece(clickedPiece);
                 return true;
             }
-            // FIXME: 2021-10-07 Is this correct? Doesn't change to next player if piece is moved.
-            moveToNextPlayer();
         }
         return false;
-    }
-
-    /**
-     * TODO - should be erased and replaced
-     * Checks if the piece is removed from the board in the model. If so, the piece
-     * should be removed from the view as well.
-     * @param piece is the piece that should be checked.
-     */
-    private void checkIfRemoved(Piece piece) {
-        if (!game.getAllPlayerPieces().contains(piece)) {
-            // remove piece from view
-        }
     }
 
     /**
@@ -104,13 +90,6 @@ public class GameViewModel extends ViewModel {
         return game.removePlayerIfFinished();
     }
 
-    private void moveToNextPlayer() {
-        game.selectNextPlayer();
-        // check if game finished - finish
-        // move dice to the next player
-        game.getDice().setIsUsed(true);
-    }
-
     public LiveData<String> getPlayerName(int index) {
         MutableLiveData<String> data = new MutableLiveData<>();
         data.setValue(playerNames.get(index));
@@ -122,11 +101,8 @@ public class GameViewModel extends ViewModel {
      * @return the value of the rolled dice (if it´s ready to be rolled), or -1 if
      * it´s not ready to be rolled.
      */
-
     public int rollDice() {
-        
         // if the dice is used, you may roll again
-
         if (game.getDice().getIsUsed()) {
             game.rollDice();
             return game.getDice().getRolledValue();
