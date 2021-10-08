@@ -117,7 +117,7 @@ public class Board implements Serializable {
      * middle path, or pass the lap line then the correct position will instead by calculated.
      * @param piece the piece to be moved
      */
-    void movePiece(Piece piece) throws Exception {
+    void movePiece(Piece piece) {
         Position p;
         if (piece.isHome()) {
             p = getFirstPositionOf(piece);
@@ -217,7 +217,7 @@ public class Board implements Serializable {
      * @return the piece at the incoming position
      * @throws Exception if the method is called incorrectly
      */
-    Piece pieceAtPosition(Position pos) throws Exception {
+    private Piece pieceAtPosition(Position pos) throws Exception {
 
         for (Piece piece : piecePositionHashMap.keySet()) {
             if (piecePositionHashMap.get(piece) == pos) {
@@ -249,7 +249,7 @@ public class Board implements Serializable {
      * @return the home position of piece
      * @throws Exception if a position couldn't be found
      */
-    int indexOfHomeNumber(Piece piece) throws Exception {
+    private int indexOfHomeNumber(Piece piece) throws Exception {
         for (Position p : positions) {
             if (p.getPos() == (piece.getHomeNumber())) {
                 return positions.indexOf(p);
@@ -279,7 +279,7 @@ public class Board implements Serializable {
      * @param p is the position
      * @throws Exception if the method is called incorrectly
      */
-    void knockout(Position p) throws Exception {
+    private void knockout(Position p) throws Exception {
         Piece piece = pieceAtPosition(p);
         piecePositionHashMap.remove(piece);
         piece.resetIndex();

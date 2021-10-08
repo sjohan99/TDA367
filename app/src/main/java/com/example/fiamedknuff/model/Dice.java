@@ -22,7 +22,7 @@ public class Dice implements Serializable{
 
     /**
      * Creates a dice with possible numbers from 1 to valueMax value.
-     * @param valueMax
+     * @param valueMax the highest number the dice can roll
      */
     public Dice(int valueMax) {
         this.valueMax = valueMax;

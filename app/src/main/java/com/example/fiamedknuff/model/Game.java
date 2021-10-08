@@ -145,6 +145,7 @@ public class Game implements Serializable {
     public int getDiceValue() {
         return dice.getRolledValue();
     }
+
     /**
      * Getter for the dice's rolled value. Only used for testing purposes.
      * @return the dice's rolled value

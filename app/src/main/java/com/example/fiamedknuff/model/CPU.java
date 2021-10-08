@@ -17,6 +17,8 @@ public class CPU extends Player {
     /**
      * Constructor for the class CPU which calls the superclass Players constructor and
      * couples the variable board with the incoming parameter board
+     * @param name The name of the CPU
+     * @param color The color you want the player's pieces to have
      * */
     public CPU(String name, Color color) {
         super(name, color);
