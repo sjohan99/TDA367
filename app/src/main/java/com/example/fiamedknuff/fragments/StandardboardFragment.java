@@ -88,9 +88,25 @@ public class StandardboardFragment extends Fragment {
                 int rolledValue = gameViewModel.rollDice();
                 if (rolledValue != -1) {
                     rotateDice(rolledValue);
+
+                    // If the rolled value is not possible to use, i.e. the player can´t move
+                    // any of their pieces with that value, the dice should be moved to the
+                    // next player in the view and the dice should be set to used. Also, the next
+                    // player should be selected.
+                    if (!gameViewModel.isPossibleToUseDicevalue()) {
+                        gameViewModel.selectNextPlayer();
+                        moveDice();
+                        gameViewModel.diceIsUsed();
+                    }
                 }
             }
         });
+    }
+
+    private void moveDice() {
+        // move dice in view, not implemented yet
+        // 1. check current player.
+        //2. move the dice to that player
     }
 
     /**
@@ -391,7 +407,7 @@ public class StandardboardFragment extends Fragment {
                 gameViewModel.selectNextPlayer();
             }
             // check if game is finished --> finish...
-            // move dice in view to the next player
+            moveDice();
             gameViewModel.diceIsUsed();
         }
     }
@@ -411,7 +427,7 @@ public class StandardboardFragment extends Fragment {
      * @param piece is the piece that should be moved.
      */
     private void move(ImageView piece) {
-        //move in view, implementation not completed yet
+        //move piece in view, implementation not completed yet
         Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
         moveImageView(piece, imageViewPositionHashMap.get(target));
     }
