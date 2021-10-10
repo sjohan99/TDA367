@@ -46,7 +46,7 @@ public class StandardboardFragment extends Fragment {
     ImageView blueHomePos0, blueHomePos1, blueHomePos2, blueHomePos3;
     List<ImageView> boardPositions;
     List<ImageView> homePositions;
-    HashMap<ImageView, Position> imageViewPositionHashMap;
+    HashMap<Position, ImageView> imageViewPositionHashMap;
 
     ImageView yellowpiece0, yellowpiece1, yellowpiece2, yellowpiece3;
     ImageView redpiece0, redpiece1, redpiece2, redpiece3;
@@ -345,11 +345,11 @@ public class StandardboardFragment extends Fragment {
         List<Position> positionsModel = gameViewModel.getPositions();
         int nrOfHomePositions = gameViewModel.getPlayerCount() * 4;
         for (int i = 0; i < nrOfHomePositions; i++) {
-            imageViewPositionHashMap.put(homePositions.get(i), positionsModel.get(i));
+            imageViewPositionHashMap.put(positionsModel.get(i), homePositions.get(i));
         }
 
         for (int i = nrOfHomePositions; i < positionsModel.size(); i++) {
-            imageViewPositionHashMap.put(boardPositions.get(i - nrOfHomePositions), positionsModel.get(i));
+            imageViewPositionHashMap.put(positionsModel.get(i), boardPositions.get(i - nrOfHomePositions));
         }
     }
 
@@ -407,11 +407,13 @@ public class StandardboardFragment extends Fragment {
     }
 
     /**
-     * Should move the piece in the view (not implemented yet).
+     * Should move the piece in the view (implementation not completed yet).
      * @param piece is the piece that should be moved.
      */
     private void move(ImageView piece) {
-        //move in view, not implemented yet
+        //move in view, implementation not completed yet
+        Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
+        moveImageView(piece, imageViewPositionHashMap.get(target));
     }
 
     /**
