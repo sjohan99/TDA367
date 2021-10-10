@@ -887,10 +887,10 @@
         android:id="@+id/diceImage"
         android:layout_width="@dimen/sbDiceSize"
         android:layout_height="@dimen/sbDiceSize"
-        android:src="@drawable/dice1"
-        app:layout_constraintBottom_toBottomOf="@+id/yellowHome"
-        app:layout_constraintEnd_toStartOf="@+id/yellowHome"
         android:layout_marginEnd="@dimen/sbDiceMarginHorizontal"
-        android:layout_marginBottom="@dimen/sbDiceMarginVertical"/>
+        android:layout_marginBottom="@dimen/sbDiceMarginVertical"
+        android:src="@drawable/dice1"
+        app:layout_constraintBottom_toTopOf="@+id/pos0"
+        app:layout_constraintEnd_toStartOf="@+id/pos8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
