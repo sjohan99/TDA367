@@ -155,4 +155,13 @@ public class GameViewModel extends ViewModel {
         return game.getPlayerCount();
     }
 
+    /**
+     * Returns the position of the piece given as a parameter.
+     * @param piece is the piece from which you want to know the position
+     * @return the position of the given piece
+     */
+    public Position getPosition(Piece piece) {
+        return game.getPosition(piece);
+    }
+
 }
