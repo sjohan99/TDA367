@@ -164,4 +164,13 @@ public class GameViewModel extends ViewModel {
         return game.getPosition(piece);
     }
 
+    /**
+     * Checks if the current player can move any of their pieces with the rolled
+     * dicevalue.
+     * @return true if the current player can move any piece, and false otherwise
+     */
+    public boolean isPossibleToUseDicevalue() {
+        List<Piece> movablePieces = game.getMovablePieces(game.getCurrentPlayer());
+        return movablePieces.size() != 0;
+    }
 }
