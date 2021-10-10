@@ -1,7 +1,5 @@
 package com.example.fiamedknuff.viewModels;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -140,7 +138,6 @@ public class GameViewModel extends ViewModel {
      */
     public void selectNextPlayer() {
         game.selectNextPlayer();
-        Log.d(null, "nuvarande spelare: " + game.getCurrentPlayer().getName());
     }
 
     /**
