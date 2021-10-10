@@ -6,48 +6,90 @@
     android:layout_height="match_parent"
     tools:context=".fragments.MainMenuFragment">
 
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/background" />
+
+    <ImageView
+        android:id="@+id/mainmenu_title"
+        android:layout_width="@dimen/mainmenu_title_holder_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mainmenu_title_holder_margin_top"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background"
+        app:srcCompat="@drawable/title_holder" />
+
     <TextView
         android:id="@+id/gameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Fia Med Knuff"
-        android:textColor="@color/black"
-        android:textSize="60sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:fontFamily="@font/titlefont"
+        android:text="@string/mainmenu_title"
+        android:textColor="#604027"
+        android:textSize="@dimen/mainmenu_title_text"
+        app:layout_constraintBottom_toBottomOf="@+id/mainmenu_title"
+        app:layout_constraintEnd_toEndOf="@+id/mainmenu_title"
+        app:layout_constraintStart_toStartOf="@+id/mainmenu_title"
+        app:layout_constraintTop_toTopOf="@+id/mainmenu_title" />
 
     <Button
         android:id="@+id/newGameBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/mainmenu_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="New Game"
-        android:textSize="30sp"
+        android:layout_marginTop="@dimen/mainmenu_first_button_margin_top"
+        android:text="@string/new_game_button"
+        android:textColor="#604027"
+        android:textSize="@dimen/mainmenu_button_text"
+        android:fontFamily="@font/titlefont"
+        android:backgroundTint="#D9BCA3"
+        app:cornerRadius="30dp"
+        app:strokeWidth="1.5dp"
+        app:strokeColor="#B6A392"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gameTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/mainmenu_title" />
 
     <Button
         android:id="@+id/leaderboardBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/mainmenu_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Leaderboard"
-        android:textSize="30sp"
+        android:layout_marginTop="@dimen/mainmenu_button_margin_top"
+        android:text="@string/leaderboard_button"
+        android:textColor="#604027"
+        android:textSize="@dimen/mainmenu_button_text"
+        android:fontFamily="@font/titlefont"
+        android:backgroundTint="#D9BCA3"
+        app:cornerRadius="30dp"
+        app:strokeWidth="1.5dp"
+        app:strokeColor="#B6A392"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newGameBtn" />
 
     <Button
         android:id="@+id/rulebookBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/mainmenu_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Rules"
-        android:textSize="30sp"
+        android:layout_marginTop="@dimen/mainmenu_button_margin_top"
+        android:text="@string/rulebook_button"
+        android:textColor="#604027"
+        android:textSize="@dimen/mainmenu_button_text"
+        android:fontFamily="@font/titlefont"
+        android:backgroundTint="#D9BCA3"
+        app:cornerRadius="30dp"
+        app:strokeWidth="1.5dp"
+        app:strokeColor="#B6A392"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leaderboardBtn" />
