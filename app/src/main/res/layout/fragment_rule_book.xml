@@ -25,7 +25,6 @@
         android:layout_marginTop="@dimen/rulebookMarginTop"
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background"
         app:srcCompat="@drawable/title_holder" />

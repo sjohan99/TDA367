@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">FiaMedKnuff</string>
     <string name="rulebook_title">RULES</string>
+    <string name="mainmenu_title">FIA MED KNUFF</string>
+    <string name="new_game_button">NEW GAME</string>
+    <string name="leaderboard_button">LEADERBOARD</string>
+    <string name="rulebook_button">RULES</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="spinner_player_amount">
