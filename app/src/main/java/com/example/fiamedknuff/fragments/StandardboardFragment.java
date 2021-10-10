@@ -157,14 +157,14 @@ public class StandardboardFragment extends Fragment {
         redpiece1 = view.findViewById(R.id.redpiece1);
         redpiece2 = view.findViewById(R.id.redpiece2);
         redpiece3 = view.findViewById(R.id.redpiece3);
-        bluepiece0 = view.findViewById(R.id.bluepiece0);
-        bluepiece1 = view.findViewById(R.id.bluepiece1);
-        bluepiece2 = view.findViewById(R.id.bluepiece2);
-        bluepiece3 = view.findViewById(R.id.bluepiece3);
         greenpiece0 = view.findViewById(R.id.greenpiece0);
         greenpiece1 = view.findViewById(R.id.greenpiece1);
         greenpiece2 = view.findViewById(R.id.greenpiece2);
         greenpiece3 = view.findViewById(R.id.greenpiece3);
+        bluepiece0 = view.findViewById(R.id.bluepiece0);
+        bluepiece1 = view.findViewById(R.id.bluepiece1);
+        bluepiece2 = view.findViewById(R.id.bluepiece2);
+        bluepiece3 = view.findViewById(R.id.bluepiece3);
     }
 
     /**
@@ -177,9 +177,9 @@ public class StandardboardFragment extends Fragment {
         piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
                 redpiece0, redpiece1, redpiece2, redpiece3)));
         piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
-                bluepiece0, bluepiece1, bluepiece2, bluepiece3)));
-        piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
                 greenpiece0, greenpiece1, greenpiece2, greenpiece3)));
+        piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
+                bluepiece0, bluepiece1, bluepiece2, bluepiece3)));
     }
 
     /**
@@ -405,9 +405,9 @@ public class StandardboardFragment extends Fragment {
             boolean playerIsFinished = removePieceAndPlayerIfFinished(piece);
             if (isNextPlayer(playerIsFinished)) {
                 gameViewModel.selectNextPlayer();
+                moveDice();
             }
             // check if game is finished --> finish...
-            moveDice();
             gameViewModel.diceIsUsed();
         }
     }
@@ -505,6 +505,10 @@ public class StandardboardFragment extends Fragment {
         constraintSet.connect(
                 movingImageView.getId(), ConstraintSet.BOTTOM, target.getId(), ConstraintSet.BOTTOM);
         constraintSet.applyTo(constraintLayout);
+
+        if (piecesImageViews.contains(movingImageView)) {
+            //TODO a piece should have a margin in the bottom to make it look more real
+        }
 
         movingImageView.bringToFront();
     }
