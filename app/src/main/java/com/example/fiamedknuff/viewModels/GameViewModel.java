@@ -155,4 +155,22 @@ public class GameViewModel extends ViewModel {
         return game.getPlayerCount();
     }
 
+    /**
+     * Returns the position of the piece given as a parameter.
+     * @param piece is the piece from which you want to know the position
+     * @return the position of the given piece
+     */
+    public Position getPosition(Piece piece) {
+        return game.getPosition(piece);
+    }
+
+    /**
+     * Checks if the current player can move any of their pieces with the rolled
+     * dicevalue.
+     * @return true if the current player can move any piece, and false otherwise
+     */
+    public boolean isPossibleToUseDicevalue() {
+        List<Piece> movablePieces = game.getMovablePieces(game.getCurrentPlayer());
+        return movablePieces.size() != 0;
+    }
 }

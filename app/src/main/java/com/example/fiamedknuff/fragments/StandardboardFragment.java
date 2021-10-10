@@ -46,7 +46,7 @@ public class StandardboardFragment extends Fragment {
     ImageView blueHomePos0, blueHomePos1, blueHomePos2, blueHomePos3;
     List<ImageView> boardPositions;
     List<ImageView> homePositions;
-    HashMap<ImageView, Position> imageViewPositionHashMap;
+    HashMap<Position, ImageView> imageViewPositionHashMap;
 
     ImageView yellowpiece0, yellowpiece1, yellowpiece2, yellowpiece3;
     ImageView redpiece0, redpiece1, redpiece2, redpiece3;
@@ -88,9 +88,25 @@ public class StandardboardFragment extends Fragment {
                 int rolledValue = gameViewModel.rollDice();
                 if (rolledValue != -1) {
                     rotateDice(rolledValue);
+
+                    // If the rolled value is not possible to use, i.e. the player can´t move
+                    // any of their pieces with that value, the dice should be moved to the
+                    // next player in the view and the dice should be set to used. Also, the next
+                    // player should be selected.
+                    if (!gameViewModel.isPossibleToUseDicevalue()) {
+                        gameViewModel.selectNextPlayer();
+                        moveDice();
+                        gameViewModel.diceIsUsed();
+                    }
                 }
             }
         });
+    }
+
+    private void moveDice() {
+        // move dice in view, not implemented yet
+        // 1. check current player.
+        //2. move the dice to that player
     }
 
     /**
@@ -141,14 +157,14 @@ public class StandardboardFragment extends Fragment {
         redpiece1 = view.findViewById(R.id.redpiece1);
         redpiece2 = view.findViewById(R.id.redpiece2);
         redpiece3 = view.findViewById(R.id.redpiece3);
-        bluepiece0 = view.findViewById(R.id.bluepiece0);
-        bluepiece1 = view.findViewById(R.id.bluepiece1);
-        bluepiece2 = view.findViewById(R.id.bluepiece2);
-        bluepiece3 = view.findViewById(R.id.bluepiece3);
         greenpiece0 = view.findViewById(R.id.greenpiece0);
         greenpiece1 = view.findViewById(R.id.greenpiece1);
         greenpiece2 = view.findViewById(R.id.greenpiece2);
         greenpiece3 = view.findViewById(R.id.greenpiece3);
+        bluepiece0 = view.findViewById(R.id.bluepiece0);
+        bluepiece1 = view.findViewById(R.id.bluepiece1);
+        bluepiece2 = view.findViewById(R.id.bluepiece2);
+        bluepiece3 = view.findViewById(R.id.bluepiece3);
     }
 
     /**
@@ -161,9 +177,9 @@ public class StandardboardFragment extends Fragment {
         piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
                 redpiece0, redpiece1, redpiece2, redpiece3)));
         piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
-                bluepiece0, bluepiece1, bluepiece2, bluepiece3)));
-        piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
                 greenpiece0, greenpiece1, greenpiece2, greenpiece3)));
+        piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
+                bluepiece0, bluepiece1, bluepiece2, bluepiece3)));
     }
 
     /**
@@ -345,11 +361,11 @@ public class StandardboardFragment extends Fragment {
         List<Position> positionsModel = gameViewModel.getPositions();
         int nrOfHomePositions = gameViewModel.getPlayerCount() * 4;
         for (int i = 0; i < nrOfHomePositions; i++) {
-            imageViewPositionHashMap.put(homePositions.get(i), positionsModel.get(i));
+            imageViewPositionHashMap.put(positionsModel.get(i), homePositions.get(i));
         }
 
         for (int i = nrOfHomePositions; i < positionsModel.size(); i++) {
-            imageViewPositionHashMap.put(boardPositions.get(i - nrOfHomePositions), positionsModel.get(i));
+            imageViewPositionHashMap.put(positionsModel.get(i), boardPositions.get(i - nrOfHomePositions));
         }
     }
 
@@ -389,9 +405,9 @@ public class StandardboardFragment extends Fragment {
             boolean playerIsFinished = removePieceAndPlayerIfFinished(piece);
             if (isNextPlayer(playerIsFinished)) {
                 gameViewModel.selectNextPlayer();
+                moveDice();
             }
             // check if game is finished --> finish...
-            // move dice in view to the next player
             gameViewModel.diceIsUsed();
         }
     }
@@ -407,11 +423,13 @@ public class StandardboardFragment extends Fragment {
     }
 
     /**
-     * Should move the piece in the view (not implemented yet).
+     * Should move the piece in the view (implementation not completed yet).
      * @param piece is the piece that should be moved.
      */
     private void move(ImageView piece) {
-        //move in view, not implemented yet
+        //move piece in view, implementation not completed yet
+        Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
+        moveImageView(piece, imageViewPositionHashMap.get(target));
     }
 
     /**
@@ -487,6 +505,10 @@ public class StandardboardFragment extends Fragment {
         constraintSet.connect(
                 movingImageView.getId(), ConstraintSet.BOTTOM, target.getId(), ConstraintSet.BOTTOM);
         constraintSet.applyTo(constraintLayout);
+
+        if (piecesImageViews.contains(movingImageView)) {
+            //TODO a piece should have a margin in the bottom to make it look more real
+        }
 
         movingImageView.bringToFront();
     }

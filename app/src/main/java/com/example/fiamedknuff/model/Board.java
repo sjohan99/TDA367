@@ -75,6 +75,15 @@ public class Board implements Serializable {
         return piecePositionHashMap.get(piece);
     }
 
+    /**
+     * Returns the position of the piece given as a parameter.
+     * @param piece is the piece from which you want to know the position
+     * @return the position of the given piece
+     */
+    public Position getPosition(Piece piece) {
+        return piecePositionHashMap.get(piece);
+    }
+
     private void assignPieceOffsets(List<Piece> pieces) {
         int multiplier = -1;
         for (int i = 0; i < pieces.size(); i++) {

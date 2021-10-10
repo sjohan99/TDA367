@@ -60,7 +60,7 @@
         app:layout_constraintStart_toEndOf="@+id/boardFrame" />
 
     <TextView
-        android:id="@+id/player3Label"
+        android:id="@+id/player4Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Player 4"
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toBottomOf="@+id/boardFrame" />
 
     <TextView
-        android:id="@+id/player4Label"
+        android:id="@+id/player3Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Player 3"
