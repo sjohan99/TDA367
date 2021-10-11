@@ -14,8 +14,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
@@ -76,7 +74,7 @@ public class StandardboardFragment extends Fragment {
 
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
 
-        constraintLayout = view.findViewById(R.id.constraintLayout);
+        constraintLayout = view.findViewById(R.id.sbConstraintLayout);
 
         initPositions();
         initPieces();
