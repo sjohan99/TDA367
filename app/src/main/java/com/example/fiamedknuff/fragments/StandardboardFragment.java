@@ -412,7 +412,7 @@ public class StandardboardFragment extends Fragment {
                 if (aBoolean) {
                     move(latestClickedPiece);
                     boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
-                    if (isNextPlayer(playerIsFinished)) {
+                    if (gameViewModel.isNextPlayer(playerIsFinished)) {
                         gameViewModel.selectNextPlayer();
                         moveDice();
                     }
@@ -421,16 +421,6 @@ public class StandardboardFragment extends Fragment {
                 }
             }
         });
-    }
-
-    /**
-     * If a player rolls a six and is not finished, it is their turn again. Otherwise,
-     * it is the next player´s turn.
-     * @param playerIsFinished is true if the player is finished, otherwise false.
-     * @return true if it is the next player´s turn, otherwise false.
-     */
-    private boolean isNextPlayer(boolean playerIsFinished) {
-        return !((gameViewModel.getDiceValue() == 6) && !playerIsFinished);
     }
 
     /**
