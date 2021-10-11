@@ -413,7 +413,9 @@ public class StandardboardFragment extends Fragment {
         });
 
         /*
-            Observes the variable
+            Observes the variable movesArePossibleToMake, which is set to true when the rolled
+            dicevalue is able to use.
+            When the variable is set to true, the movable pieces should be highlighted.
          */
         gameViewModel.movesArePossibleToMake.observe(getActivity(), new Observer<>() {
             @Override
