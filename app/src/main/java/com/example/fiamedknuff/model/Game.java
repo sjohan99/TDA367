@@ -239,7 +239,7 @@ public class Game implements Serializable {
     }
 
     private boolean pieceWillMovePastGoal(int diceValue, Piece piece) {
-        return piece.getIndex() + diceValue > 45;
+        return piece.getIndex() + diceValue > board.getFinishIndex();
     }
 
     private void movePieceAndMoveBackwardsAfterMiddle(int diceValue, Piece piece) throws Exception {
