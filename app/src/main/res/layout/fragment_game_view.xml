@@ -45,7 +45,7 @@
         android:id="@+id/player1Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Player 1"
+        android:text="@string/player1Label"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/boardFrame"
         app:layout_constraintEnd_toStartOf="@+id/boardFrame" />
@@ -54,7 +54,7 @@
         android:id="@+id/player2Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Player 2"
+        android:text="@string/player2Label"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/boardFrame"
         app:layout_constraintStart_toEndOf="@+id/boardFrame" />
@@ -63,7 +63,7 @@
         android:id="@+id/player4Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Player 4"
+        android:text="@string/player4Label"
         android:textSize="30dp"
         app:layout_constraintEnd_toStartOf="@+id/boardFrame"
         app:layout_constraintTop_toBottomOf="@+id/boardFrame" />
@@ -72,7 +72,7 @@
         android:id="@+id/player3Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Player 3"
+        android:text="@string/player3Label"
         android:textSize="30dp"
         app:layout_constraintStart_toEndOf="@+id/boardFrame"
         app:layout_constraintTop_toBottomOf="@+id/boardFrame" />
