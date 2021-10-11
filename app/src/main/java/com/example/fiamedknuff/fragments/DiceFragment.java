@@ -58,70 +58,15 @@ public class DiceFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 int rolledValue = gameViewModel.rollDice();
+
+                // If the dice is rolled, the dice should be rotated and
+                // the method diceRolled should be called.
                 if (rolledValue != -1) {
                     rotateDice(rolledValue);
-
-                    // If the rolled value is not possible to use, i.e. the player can´t move
-                    // any of their pieces with that value, the dice should be moved to the
-                    // next player in the view and the dice should be set to used. Also, the next
-                    // player should be selected.
-                    if (!gameViewModel.isPossibleToUseDicevalue()) {
-                        gameViewModel.selectNextPlayer();
-                        moveDice();
-                        gameViewModel.diceIsUsed();
-                    } else {
-                        // The player can make a turn and the player's pieces will be highlighted.
-                        markMovablePieces();
-                    }
+                    gameViewModel.diceRolled();
                 }
             }
         });
-    }
-
-    /**
-     * Gets the current player's movable pieces marked on the GUI.
-     */
-    private void markMovablePieces() {
-        for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
-            // TODO: Change to something fancy
-            entry.getValue().setBackgroundColor(R.drawable.background); // Highlight the movable piece
-        }
-    }
-
-    /**
-     * Removes the background of all piece's ImageView.
-     */
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void unMarkAllPieces() {
-        imageViewPieceHashMap.forEach((imageView, piece) -> {
-            imageView.setBackgroundColor(0); // Remove the background.
-        });
-    }
-
-    /**
-     * TODO Make more slim
-     * Method used to help identify ImageViews for affecting pliancy on the current player's pieces.
-     * @return Returns a HashMap with the current player's piece's ImageViews.
-     */
-    public HashMap<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
-        // For each of the player's movable pieces, iterate through all pieces in the HashMap
-        // and find the corresponding ImageView that is connected to the movable piece.
-        HashMap<Piece, ImageView> map = new HashMap<>();
-        LiveData<List<Piece>> movablePieces = gameViewModel.getMovablePiecesForCurrentPlayer();
-        for (Piece piece : movablePieces.getValue()) {
-            for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
-                if (piece.toString().equals(entry.getValue().toString())) {
-                    map.put(entry.getValue(), entry.getKey());
-                }
-            }
-        }
-        return map;
-    }
-
-    private void moveDice() {
-        // move dice in view, not implemented yet
-        // 1. check current player.
-        //2. move the dice to that player
     }
 
     /**
