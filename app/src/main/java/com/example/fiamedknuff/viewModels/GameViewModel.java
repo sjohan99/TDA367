@@ -34,7 +34,7 @@ public class GameViewModel extends ViewModel {
     private List<String> playerNames;
     private Color[] colors;
 
-    public MutableLiveData<Boolean> isMoved = new MutableLiveData();
+    public MutableLiveData<Boolean> isMoved = new MutableLiveData<>();
     public MutableLiveData<Player> currentPlayer = new MutableLiveData<>();
 
     public void init(List<String> playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
@@ -135,10 +135,12 @@ public class GameViewModel extends ViewModel {
     }
 
     /**
-     * Selects the next player in the model.
+     * Selects the next player in the model. Sets the value of the variable currentPlayer
+     * to the current player.
      */
     public void selectNextPlayer() {
         game.selectNextPlayer();
+        currentPlayer.setValue(game.getCurrentPlayer());
     }
 
     /**
