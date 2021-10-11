@@ -33,7 +33,7 @@ public class GameViewModel extends ViewModel {
     private List<String> playerNames;
     private Color[] colors;
 
-    public void init(List<String> playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
+    public void init(List<String> playerNames, List<Color> colors, List<Boolean> selectedCPU) throws NotImplementedException {
         this.playerNames = playerNames;
         game = GameFactory.createNewGame(playerNames, colors, selectedCPU);
     }
@@ -143,6 +143,7 @@ public class GameViewModel extends ViewModel {
     /**
      * Sets the dice to used.
      */
+    // TODO: 2021-10-10 Create method in game for this to avoid unnecessary dependencies
     public void diceIsUsed() {
         game.getDice().setIsUsed(true);
     }
