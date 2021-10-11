@@ -28,17 +28,17 @@ public class GameUnitTest {
     }
 
     @Test
-    public void testDiceRoll() {
-        for (int i = 0; i < 50; i++) {
-            assertThat(game.rollAndGetDiceValue()).isBetween(0, 6);
-        }
+    public void testSerializing() {
+        game.selectNextPlayer();
+        byte[] data = SerializationUtils.serialize(game);
+        Game g2 = SerializationUtils.deserialize(data);
+        assertThat(g2.getCurrentPlayer().getName()).isEqualTo(game.getCurrentPlayer().getName());
     }
 
     @Test
-    public void testGetActivePlayers() {
-        List<Player> activePlayers = game.getActivePlayers();
-        for (int i = 0; i < activePlayers.size(); i++) {
-            assertThat(players.get(i)).isEqualTo(activePlayers.get(i));
+    public void testDiceRoll() {
+        for (int i = 0; i < 50; i++) {
+            assertThat(game.rollAndGetDiceValue()).isBetween(0, 6);
         }
     }
 
@@ -55,11 +55,41 @@ public class GameUnitTest {
     }
 
     @Test
-    public void testSerializing() {
+    public void testSelectNextPlayer() {
+        List<Player> activePlayers = players;
+        activePlayers.subList(0, 3).clear();
+        assertThat(activePlayers.size()).isEqualTo(1);
         game.selectNextPlayer();
-        byte[] data = SerializationUtils.serialize(game);
-        Game g2 = SerializationUtils.deserialize(data);
-        assertThat(g2.getCurrentPlayer().getName()).isEqualTo(game.getCurrentPlayer().getName());
+        assertThat(game.getCurrentPlayerIndex()).isEqualTo(-1);
+    }
+
+    @Test
+    public void testGetActivePlayers() {
+        List<Player> activePlayers = game.getActivePlayers();
+        for (int i = 0; i < activePlayers.size(); i++) {
+            assertThat(players.get(i)).isEqualTo(activePlayers.get(i));
+        }
+    }
+
+    @Test
+    public void testGetMovablePiecesTwoPieces() {
+        Player player = players.get(0);
+        List<Piece> pieces = player.getPieces();
+        pieces.get(0).setIndex(1);
+        pieces.get(1).setIndex(11);
+        for (int i = 2; i < 6; i++) {
+            assertEquals(2, game.getMovablePieces(player, i).size());
+        }
+    }
+
+    @Test
+    public void testGetMovablePiecesAllPieces() {
+        Player player = players.get(0);
+        List<Piece> pieces = player.getPieces();
+        pieces.get(0).setIndex(1);
+        pieces.get(1).setIndex(11);
+        assertEquals(2, game.getMovablePieces(player, 1).size());
+        assertEquals(4, game.getMovablePieces(player, 6).size());
     }
 
     @Test
@@ -144,37 +174,6 @@ public class GameUnitTest {
     }
 
     @Test
-    public void testSelectNextPlayer() {
-        List<Player> activePlayers = players;
-        activePlayers.subList(0, 3).clear();
-        assertThat(activePlayers.size()).isEqualTo(1);
-        game.selectNextPlayer();
-        assertThat(game.getCurrentPlayerIndex()).isEqualTo(-1);
-    }
-
-
-    @Test
-    public void testGetMovablePiecesTwoPieces() {
-        Player player = players.get(0);
-        List<Piece> pieces = player.getPieces();
-        pieces.get(0).setIndex(1);
-        pieces.get(1).setIndex(11);
-        for (int i = 2; i < 6; i++) {
-            assertEquals(2, game.getMovablePieces(player, i).size());
-        }
-    }
-
-    @Test
-    public void testGetMovablePiecesAllPieces() {
-        Player player = players.get(0);
-        List<Piece> pieces = player.getPieces();
-        pieces.get(0).setIndex(1);
-        pieces.get(1).setIndex(11);
-        assertEquals(2, game.getMovablePieces(player, 1).size());
-        assertEquals(4, game.getMovablePieces(player, 6).size());
-    }
-
-    @Test
     public void testMovePieceAndMoveBackwardsAfterMiddle() throws Exception {
         Board board = game.getBoard();
         HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
@@ -187,4 +186,10 @@ public class GameUnitTest {
         assertThat(piece.getIndex()).isEqualTo(board.getFinishIndex() - 2);
         assertThat(piecePositionHashMap.get(piece).getPos()).isEqualTo(board.getFinishIndex() - 2);
     }
+
+    @Test
+    public void testGetPlayerCount(){
+        assertThat(game.getPlayerCount()).isEqualTo(players.size());
+    }
+
 }
