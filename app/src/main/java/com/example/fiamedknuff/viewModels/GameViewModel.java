@@ -1,7 +1,5 @@
 package com.example.fiamedknuff.viewModels;
 
-import android.widget.ImageView;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -37,6 +35,7 @@ public class GameViewModel extends ViewModel {
 
     public MutableLiveData<Boolean> isMoved = new MutableLiveData<>();
     public MutableLiveData<Player> currentPlayer = new MutableLiveData<>();
+    public MutableLiveData<Boolean> movesArePossibleToMake = new MutableLiveData<>();
 
     public void init(List<String> playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
         this.playerNames = playerNames;
@@ -100,20 +99,6 @@ public class GameViewModel extends ViewModel {
         MutableLiveData<String> data = new MutableLiveData<>();
         data.setValue(playerNames.get(index));
         return data;
-    }
-
-    /**
-     * If the dice is ready to be rolled (i.e. is used), the dice is rolled.
-     * @return the value of the rolled dice (if it´s ready to be rolled), or -1 if
-     * it´s not ready to be rolled.
-     */
-    public int rollDice() {
-        // if the dice is used, you may roll again
-        if (game.getDice().getIsUsed()) {
-            game.rollDice();
-            return game.getDice().getRolledValue();
-        }
-        return -1;
     }
 
     /**
@@ -200,4 +185,35 @@ public class GameViewModel extends ViewModel {
         data.setValue(game.getMovablePieces(game.getCurrentPlayer()));
         return data;
     }
+
+    /**
+     * If the dice is ready to be rolled (i.e. is used), the dice is rolled.
+     * @return the value of the rolled dice (if it´s ready to be rolled), or -1 if
+     * it´s not ready to be rolled.
+     */
+    public int rollDice() {
+        // if the dice is used, you may roll again
+        if (game.getDice().getIsUsed()) {
+            game.rollDice();
+            return game.getDice().getRolledValue();
+        }
+        return -1;
+    }
+
+
+    public void diceRolled() {
+        // If the rolled value is not possible to use, i.e. the player can´t move
+        // any of their pieces with that value, the dice should be moved to the
+        // next player in the view and the dice should be set to used. Also, the next
+        // player should be selected.
+        if (!isPossibleToUseDicevalue()) {
+            selectNextPlayer();
+            diceIsUsed();
+        } else {
+            // The player can make a turn and the player's pieces will be highlighted
+            // through the observer.
+            movesArePossibleToMake.setValue(true);
+        }
+    }
+
 }
