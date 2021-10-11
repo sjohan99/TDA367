@@ -66,7 +66,7 @@ public class GameUnitTest {
     public void testRemoveFinishedPiece() throws Exception {
         Player currentPlayer = players.get(0);
         Piece piece = currentPlayer.getPieces().get(0);
-        piece.setIndex(44);
+        piece.setIndex(game.getBoard().getFinishIndex() - 1);
         game.move(1, piece);
         game.removePieceIfFinished(piece);
         game.removePlayerIfFinished();
@@ -83,7 +83,7 @@ public class GameUnitTest {
             currentPlayer.removePiece(piece);
         }
         Piece piece = currentPlayer.getPieces().get(0);
-        piece.setIndex(44);
+        piece.setIndex(game.getBoard().getFinishIndex() - 1);
         game.move(1, piece);
         game.removePieceIfFinished(piece);
         game.removePlayerIfFinished();
@@ -103,7 +103,7 @@ public class GameUnitTest {
         }
         // Go out with last piece for current player
         piece = currentPlayer.getPieces().get(0);
-        piece.setIndex(44);
+        piece.setIndex(game.getBoard().getFinishIndex() - 1);
         game.move(1, piece);
         game.removePieceIfFinished(piece);
         game.removePlayerIfFinished();
@@ -124,7 +124,7 @@ public class GameUnitTest {
         }
         // Go out with last piece for finished player
         piece = finishedPlayer.getPieces().get(0);
-        piece.setIndex(40);
+        piece.setIndex(game.getBoard().getFinishIndex() - 5);
         game.move(5, piece);
         game.removePieceIfFinished(piece);
         game.removePlayerIfFinished();
@@ -136,7 +136,7 @@ public class GameUnitTest {
         }
         // Go out with last piece for current player
         piece = currentPlayer.getPieces().get(0);
-        piece.setIndex(39);
+        piece.setIndex(game.getBoard().getFinishIndex() - 6);
         game.move(6, piece);
         game.removePieceIfFinished(piece);
         game.removePlayerIfFinished();
