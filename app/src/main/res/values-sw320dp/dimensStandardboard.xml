@@ -12,7 +12,4 @@
     <dimen name="sbPieceHeight">40dp</dimen>
     <dimen name="sbPieceMargin">10dp</dimen>
     <dimen name="sbHomePosMargin">36dp</dimen>
-    <dimen name="sbDiceSize">40dp</dimen>
-    <dimen name="sbDiceMarginHorizontal">90dp</dimen>
-    <dimen name="sbDiceMarginVertical">90dp</dimen>
 </resources>
