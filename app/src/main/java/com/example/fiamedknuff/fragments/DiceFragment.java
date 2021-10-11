@@ -21,7 +21,6 @@ import java.util.List;
 public class DiceFragment extends Fragment {
 
     View view;
-    ConstraintLayout constraintLayout;
     GameViewModel gameViewModel;
 
     ImageView diceImage;
@@ -34,8 +33,6 @@ public class DiceFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_dice, container, false);
 
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
-
-        constraintLayout = view.findViewById(R.id.sbConstraintLayout);
 
         initDice();
 
