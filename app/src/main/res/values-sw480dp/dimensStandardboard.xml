@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sbWidth">530dp</dimen>
+    <dimen name="sbHeight">530dp</dimen>
+    <dimen name="sbPosWidth">44dp</dimen>
+    <dimen name="sbPosHeight">44dp</dimen>
+    <dimen name="sbPosMargin">2dp</dimen>
+    <dimen name="sbHomeWidth">130dp</dimen>
+    <dimen name="sbHomeHeight">130dp</dimen>
+    <dimen name="sbHomeSpace">170dp</dimen>
+    <dimen name="sbHomeMargin">25dp</dimen>
+    <dimen name="sbPieceHeight">60dp</dimen>
+    <dimen name="sbPieceMargin">20dp</dimen>
+    <dimen name="sbHomePosMargin">44dp</dimen>
+    <dimen name="sbDiceSize">60dp</dimen>
+    <dimen name="sbDiceMarginHorizontal">132dp</dimen>
+    <dimen name="sbDiceMarginVertical">132dp</dimen>
+</resources>

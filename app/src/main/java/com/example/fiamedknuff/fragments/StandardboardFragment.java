@@ -423,7 +423,8 @@ public class StandardboardFragment extends Fragment {
     }
 
     /**
-     * Should move the piece in the view (implementation not completed yet).
+     * Should move the piece in the view (implementation not completed yet) to the position
+     * that the piece has moved to in the model.
      * @param piece is the piece that should be moved.
      */
     private void move(ImageView piece) {
