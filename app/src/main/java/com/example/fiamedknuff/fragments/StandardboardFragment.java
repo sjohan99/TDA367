@@ -1,11 +1,14 @@
 package com.example.fiamedknuff.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A class standardboardFragment that handles the view of the standardboard and its
@@ -102,10 +106,53 @@ public class StandardboardFragment extends Fragment {
                         gameViewModel.selectNextPlayer();
                         moveDice();
                         gameViewModel.diceIsUsed();
+                    } else {
+                        // The player can make a turn and the player's pieces will be highlighted.
+                        markMovablePieces();
                     }
                 }
             }
         });
+    }
+
+    /**
+     * Gets the current player's movable pieces marked on the GUI.
+     */
+    private void markMovablePieces() {
+        for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
+            // TODO: Change to something fancy
+            entry.getValue().setBackgroundColor(R.drawable.background); // Highlight the movable piece
+        }
+    }
+
+    /**
+     * Removes the background of all piece's ImageView.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void unMarkAllPieces() {
+        imageViewPieceHashMap.forEach((imageView, piece) -> {
+            imageView.setBackgroundColor(0); // Remove the background.
+        });
+    }
+
+    /**
+     * TODO Make more slim
+     * Method used to help identify ImageViews for affecting pliancy on the current player's pieces.
+     * @return Returns a HashMap with the current player's piece's ImageViews.
+     */
+    public HashMap<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
+        // For each of the player's movable pieces, iterate through all pieces in the HashMap
+        // and find the corresponding ImageView that is connected to the movable piece.
+        HashMap<Piece, ImageView> map = new HashMap<>();
+        LiveData<List<Piece>> movablePieces = gameViewModel.getMovablePiecesForCurrentPlayer();
+        for (Piece piece : movablePieces.getValue()) {
+            for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
+                if (piece.toString().equals(entry.getValue().toString())) {
+                    map.put(entry.getValue(), entry.getKey());
+                }
+            }
+        }
+        return map;
     }
 
     private void moveDice() {
@@ -381,8 +428,10 @@ public class StandardboardFragment extends Fragment {
     private void addPiecesOnClickListeners() {
         for (ImageView piece : piecesImageViews) {
             piece.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onClick(View view) {
+                    unMarkAllPieces();
                     setPiecesClickable(false);
                     latestClickedPiece = piece;
                     gameViewModel.move(imageViewPieceHashMap.get(piece));

@@ -77,7 +77,7 @@ public class CPUUnitTest {
 
        // Set position for third CPU-piece
        Piece cpuThirdPiece = CPU.getPieces().get(2);
-       cpuThirdPiece.setIndex(43);
+       cpuThirdPiece.setIndex(board.getFinishIndex() - 2);
        Position cpuToBeFinishPos = new Position(34);
        piecePositionHashMap.put(cpuThirdPiece, cpuToBeFinishPos);
 
@@ -120,13 +120,13 @@ public class CPUUnitTest {
 
         Player cpu = players.get(1);
 
-        // Set position for a CPU-piece
+        // Set position for first CPU-piece
         Piece cpuFirstPiece = CPU.getPieces().get(0);
         cpuFirstPiece.setIndex(13);
         Position cpuFirstPos = new Position(4);
         piecePositionHashMap.put(cpuFirstPiece, cpuFirstPos);
 
-        // Set position for a second cpu-piece
+        // Set position for second cpu-piece (leading piece)
         Piece cpuSecondPiece = cpu.getPieces().get(1);
         cpuSecondPiece.setIndex(30);
         Position cpuSecondPos= new Position(21);

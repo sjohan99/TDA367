@@ -75,9 +75,9 @@ public class GameSideBarFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (soundMuted)
-                    soundBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_greenpos, 0, 0, 0);
+                    soundBtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_mute_btn, 0, 0);
                 else
-                    soundBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_redpos, 0, 0, 0);
+                    soundBtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_mute2_btn, 0, 0);
                 soundMuted = !soundMuted;
             }
         });

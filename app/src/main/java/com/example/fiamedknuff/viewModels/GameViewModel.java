@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.model.CPU;
 import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.model.Game;
 import com.example.fiamedknuff.model.GameFactory;
@@ -40,6 +41,13 @@ public class GameViewModel extends ViewModel {
     public void init(List<String> playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
         this.playerNames = playerNames;
         game = GameFactory.createNewGame(playerNames, colors, selectedCPU);
+
+        // For each CPU in the player list, set the board
+        for (Player player: game.getActivePlayers()) {
+            if (player.getClass() == CPU.class) {
+                ((CPU) player).setBoard(game.getBoard());
+            }
+        }
     }
 
     /**
@@ -185,5 +193,11 @@ public class GameViewModel extends ViewModel {
      */
     public boolean isNextPlayer(boolean playerIsFinished) {
         return !((getDiceValue() == 6) && !playerIsFinished);
+    }
+
+    public LiveData<List<Piece>> getMovablePiecesForCurrentPlayer() {
+        MutableLiveData<List<Piece>> data = new MutableLiveData<>();
+        data.setValue(game.getMovablePieces(game.getCurrentPlayer()));
+        return data;
     }
 }
