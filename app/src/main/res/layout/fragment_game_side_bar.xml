@@ -21,12 +21,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
+            android:paddingTop="40dp"
             android:id="@+id/homeBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#00FFFFFF"
-            android:drawableTop="@android:mipmap/sym_def_app_icon"
+            android:drawableTop="@drawable/ic_home_btn"
             android:text="Home"
             android:textColor="#000000"
             android:textSize="10sp" />
@@ -37,7 +38,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#00FFFFFF"
-            android:drawableTop="@android:mipmap/sym_def_app_icon"
+            android:drawableTop="@drawable/ic_settings_btn"
             android:text="Settings"
             android:textColor="#000000"
             android:textSize="10sp" />
@@ -48,7 +49,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#00FFFFFF"
-            android:drawableTop="@android:mipmap/sym_def_app_icon"
+            android:drawableTop="@drawable/ic_rules_btn"
             android:text="Rules"
             android:textColor="#000000"
             android:textSize="10sp" />
@@ -59,7 +60,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#00FFFFFF"
-            android:drawableTop="@android:mipmap/sym_def_app_icon"
+            android:drawableTop="@drawable/ic_mute_btn"
             android:text="Sound"
             android:textColor="#000000"
             android:textSize="10sp" />
@@ -70,10 +71,12 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#00FFFFFF"
-            android:drawableTop="@android:mipmap/sym_def_app_icon"
+            android:drawableTop="@drawable/ic_replay_btn"
             android:text="Replay"
             android:textColor="#000000"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:paddingBottom="40dp"
+            />
 
     </LinearLayout>
 
