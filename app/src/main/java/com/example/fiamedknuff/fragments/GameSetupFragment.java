@@ -29,6 +29,7 @@ import com.example.fiamedknuff.model.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: 2021-10-11 Disable being able to choose only one player
 public class GameSetupFragment extends Fragment {
 
     private NavController navController;
@@ -40,6 +41,7 @@ public class GameSetupFragment extends Fragment {
     private GameViewModel gameViewModel;
     ArrayList<EditText> players = new ArrayList<>();
     ArrayList<CheckBox> CPUCheckBoxes = new ArrayList<>();
+    ArrayList<Color> colors = new ArrayList<>();
     private int selectedPlayerCount = 4;
 
     @Override
@@ -55,8 +57,10 @@ public class GameSetupFragment extends Fragment {
         populateSpinner();
         populatePlayersList();
         populateCPUCheckBoxList();
+        populateColors();
 
 
+        // FIXME: 2021-10-11 Now implemented, leaving this here in case you want to save the code. / Johan
         // TODO Add EditTexts dynamically
         /*playerAmountSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -67,7 +71,6 @@ public class GameSetupFragment extends Fragment {
                     EditText editText = new EditText(getActivity());
                     verticalLayout.addView(editText);
                 }
-
                 // TODO: Add the EditText to verticalLayout
             }
 
@@ -75,6 +78,14 @@ public class GameSetupFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> adapterView) {}
         });*/
 
+        initCreateGameButton();
+        
+        initPlayerAmountSpinner();
+
+        return view;
+    }
+
+    private void initCreateGameButton() {
         createGameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +103,9 @@ public class GameSetupFragment extends Fragment {
                         .build());
             }
         });
+    }
 
+    private void initPlayerAmountSpinner() {
         playerAmountSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object item = parent.getItemAtPosition(position);
@@ -109,8 +122,6 @@ public class GameSetupFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
-        return view;
     }
 
     private void populatePlayersList() {
@@ -127,23 +138,31 @@ public class GameSetupFragment extends Fragment {
         CPUCheckBoxes.add(CPUCheckBox4);
     }
 
-    private Color[] getColors() {
-        // TODO
-        return new Color[] {Color.YELLOW, Color.RED, Color.GREEN, Color.BLUE};
+    private void populateColors() {
+        colors.add(Color.YELLOW);
+        colors.add(Color.RED);
+        colors.add(Color.GREEN);
+        colors.add(Color.BLUE);
+        colors.add(Color.BLACK);
+        colors.add(Color.PINK);
     }
 
-    private boolean[] getSelectedCPU() {
+    private List<Color> getColors() {
+        // TODO
+        List<Color> selectedColors = new ArrayList<>();
+        for (int i = 0; i < selectedPlayerCount; i++) {
+            colors.add(colors.get(i));
+        }
+        return colors;
+    }
+
+    private List<Boolean> getSelectedCPU() {
         // FIXME: 2021-10-11 Fixa
         ArrayList<Boolean> isCPU = new ArrayList<>();
         for (int i = 0; i < selectedPlayerCount; i++) {
             isCPU.add(CPUCheckBoxes.get(i).isSelected());
         }
-        return new boolean[] {
-                CPUCheckBox1.isSelected(),
-                CPUCheckBox2.isSelected(),
-                CPUCheckBox3.isSelected(),
-                CPUCheckBox4.isSelected()
-        };
+        return isCPU;
     }
 
     private List<String> getPlayerNames() {
