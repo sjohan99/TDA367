@@ -1,9 +1,13 @@
 package com.example.fiamedknuff.fragments;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -34,6 +38,9 @@ public class GameSetupFragment extends Fragment {
     private LinearLayout verticalLayout;
     private CheckBox CPUCheckBox1, CPUCheckBox2, CPUCheckBox3, CPUCheckBox4;
     private GameViewModel gameViewModel;
+    ArrayList<EditText> players = new ArrayList<>();
+    ArrayList<CheckBox> CPUCheckBoxes = new ArrayList<>();
+    private int selectedPlayerCount = 4;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +53,9 @@ public class GameSetupFragment extends Fragment {
 
         initWidgets(view);
         populateSpinner();
+        populatePlayersList();
+        populateCPUCheckBoxList();
+
 
         // TODO Add EditTexts dynamically
         /*playerAmountSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -68,9 +78,8 @@ public class GameSetupFragment extends Fragment {
         createGameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String playerCount = playerAmountSpinner.getSelectedItem().toString();
-
                 // GameFactory.createNewGame(getPlayerNames(), getColors(), getSelectedCPU());
+
                 try {
                     gameViewModel.init(getPlayerNames(), getColors(), getSelectedCPU());
                 } catch (NotImplementedException e) {
@@ -84,7 +93,38 @@ public class GameSetupFragment extends Fragment {
             }
         });
 
+        playerAmountSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Object item = parent.getItemAtPosition(position);
+                selectedPlayerCount = Integer.parseInt(item.toString());
+                for (int i = 0; i < selectedPlayerCount; i++) {
+                    players.get(i).setVisibility(View.VISIBLE);
+                    CPUCheckBoxes.get(i).setVisibility(View.VISIBLE);
+                }
+                for (int j = selectedPlayerCount; j < players.size(); j++) {
+                    players.get(j).setVisibility(View.INVISIBLE);
+                    CPUCheckBoxes.get(j).setVisibility(View.INVISIBLE);
+                }
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
         return view;
+    }
+
+    private void populatePlayersList() {
+        players.add(player1Name);
+        players.add(player2Name);
+        players.add(player3Name);
+        players.add(player4Name);
+    }
+
+    private void populateCPUCheckBoxList() {
+        CPUCheckBoxes.add(CPUCheckBox1);
+        CPUCheckBoxes.add(CPUCheckBox2);
+        CPUCheckBoxes.add(CPUCheckBox3);
+        CPUCheckBoxes.add(CPUCheckBox4);
     }
 
     private Color[] getColors() {
@@ -93,6 +133,11 @@ public class GameSetupFragment extends Fragment {
     }
 
     private boolean[] getSelectedCPU() {
+        // FIXME: 2021-10-11 Fixa
+        ArrayList<Boolean> isCPU = new ArrayList<>();
+        for (int i = 0; i < selectedPlayerCount; i++) {
+            isCPU.add(CPUCheckBoxes.get(i).isSelected());
+        }
         return new boolean[] {
                 CPUCheckBox1.isSelected(),
                 CPUCheckBox2.isSelected(),
@@ -103,10 +148,13 @@ public class GameSetupFragment extends Fragment {
 
     private List<String> getPlayerNames() {
         List<String> list = new ArrayList<>();
-        list.add(player1Name.getText().toString());
-        list.add(player2Name.getText().toString());
-        list.add(player3Name.getText().toString());
-        list.add(player4Name.getText().toString());
+        for (int i = 0; i < selectedPlayerCount; i++) {
+            list.add(players.get(i).getText().toString());
+        }
+//        list.add(player1Name.getText().toString());
+//        list.add(player2Name.getText().toString());
+//        list.add(player3Name.getText().toString());
+//        list.add(player4Name.getText().toString());
         return list;
     }
 
