@@ -1,5 +1,7 @@
 package com.example.fiamedknuff.viewModels;
 
+import android.widget.ImageView;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -33,6 +35,9 @@ public class GameViewModel extends ViewModel {
     private List<String> playerNames;
     private Color[] colors;
 
+    public MutableLiveData<Boolean> isMoved = new MutableLiveData();
+    public MutableLiveData<Piece> clickedPiece = new MutableLiveData<>();
+
     public void init(List<String> playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
         this.playerNames = playerNames;
         game = GameFactory.createNewGame(playerNames, colors, selectedCPU);
@@ -41,10 +46,8 @@ public class GameViewModel extends ViewModel {
     /**
      * Moves the clicked piece.
      * @param clickedPiece is the clicked piece
-     * @return returns true if the piece if moved, and false if it can´t be moved.
      */
-
-    public boolean move(Piece clickedPiece) {
+    public void move(Piece clickedPiece) {
         // if the rolled dice is already used, we can´t move any piece before another roll has
         // been made
         if (!game.getDice().getIsUsed()) {
@@ -52,19 +55,19 @@ public class GameViewModel extends ViewModel {
             //checks if the clicked piece is movable
             if(movablePieces.contains(clickedPiece)) {
                 movePiece(clickedPiece);
-                return true;
             }
         }
-        return false;
     }
 
     /**
-     * Moves the piece.
+     * Moves the piece. Sets the value of the mutable livedata "isMoved" to true.
      * @param piece is the piece that should be moved
      */
     private void movePiece(Piece piece) {
         try {
             game.move(piece);
+            clickedPiece.setValue(piece);
+            isMoved.setValue(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
