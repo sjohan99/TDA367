@@ -62,7 +62,7 @@ public class StandardboardFragment extends Fragment {
     ImageView diceImage;
     List<Integer> diceImages;
 
-    Piece latestClickedPiece;
+    ImageView latestClickedPiece;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -385,7 +385,7 @@ public class StandardboardFragment extends Fragment {
                 public void onClick(View view) {
                     setPiecesClickable(false);
                     gameViewModel.move(imageViewPieceHashMap.get(piece));
-
+                    latestClickedPiece = piece;
                     setPiecesClickable(true);
                 }
             });
@@ -393,20 +393,12 @@ public class StandardboardFragment extends Fragment {
     }
 
     private void initObservers() {
-        gameViewModel.clickedPiece.observe(getActivity(), new Observer<Piece>() {
-            @Override
-            public void onChanged(Piece piece) {
-                latestClickedPiece = piece;
-            }
-        });
-
         gameViewModel.isMoved.observe(getActivity(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    move(imageViewPieceHashMap.get(latestClickedPiece));
-                    boolean playerIsFinished = removePieceAndPlayerIfFinished(
-                            imageViewPieceHashMap.get(latestClickedPiece));
+                    move(latestClickedPiece);
+                    boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
                     if (isNextPlayer(playerIsFinished)) {
                         gameViewModel.selectNextPlayer();
                         moveDice();
@@ -431,9 +423,7 @@ public class StandardboardFragment extends Fragment {
      * @param piece is the piece which is about to move
      */
     private void makeTurn(ImageView piece) {
-        if (isMoved) {
 
-        }
     }
 
     /**
@@ -451,9 +441,9 @@ public class StandardboardFragment extends Fragment {
      * that the piece has moved to in the model.
      * @param piece is the piece that should be moved.
      */
-    private void move(Piece piece) {
+    private void move(ImageView piece) {
         //move piece in view, implementation not completed yet
-        Position target = gameViewModel.getPosition(piece);
+        Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
         moveImageView(piece, imageViewPositionHashMap.get(target));
     }
 
