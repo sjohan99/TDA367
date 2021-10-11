@@ -20,24 +20,22 @@ public class Board3PlayerUnitTest {
 
     Board board3p;
     ArrayList<Piece> pieces;
+    int pc = 3;
 
     @Before
     public void createBoard() throws NotImplementedException {
-        int playerCount = 4;
+        pc = 3;
         pieces = new ArrayList<>();
-        for (int i = 0; i < playerCount; i++) {
+        for (int i = 0; i < 4; i++) {
             pieces.add(new Piece(Color.YELLOW));
         }
-        for (int i = 0; i < playerCount; i++) {
+        for (int i = 0; i < 4; i++) {
             pieces.add(new Piece(Color.RED));
         }
-        for (int i = 0; i < playerCount; i++) {
+        for (int i = 0; i < 4; i++) {
             pieces.add(new Piece(Color.GREEN));
         }
-        for (int i = 0; i < playerCount; i++) {
-            pieces.add(new Piece(Color.BLUE));
-        }
-        board3p = new Board(playerCount, pieces);
+        board3p = new Board(pc, pieces);
     }
 
     @Test(expected = NotImplementedException.class)
@@ -48,15 +46,15 @@ public class Board3PlayerUnitTest {
     @Test
     public void boardPositionsInitializesCorrectly() {
         List<Position> positions = board3p.getPositions();
-        assertEquals(57+16, positions.size());
-        assertEquals(-16, positions.get(0).getPos());
+        assertEquals(57+12, positions.size());
+        assertEquals(-12, positions.get(0).getPos());
         assertEquals(56, positions.get(positions.size()-1).getPos());
     }
 
     @Test
     public void boardHashMapInitializesCorrectly() {
         var hm = board3p.getPiecePositionHashMap();
-        int i = -16;
+        int i = -12;
         for (Piece piece : pieces) {
             assertEquals(hm.get(piece).getPos(), i++);
         }
@@ -74,7 +72,7 @@ public class Board3PlayerUnitTest {
     public void testMovePieceOutOfHome() throws Exception {
         board3p.movePiece(pieces.get(0));
         assertThat(pieces.get(0).getIndex()).isEqualTo(1);
-        assertThat(board3p.getPiecePositionHashMap().get(pieces.get(0))).isEqualTo(board3p.getPositions().get(16));
+        assertThat(board3p.getPiecePositionHashMap().get(pieces.get(0))).isEqualTo(board3p.getPositions().get(pc*4));
     }
 
     @Test
@@ -83,7 +81,7 @@ public class Board3PlayerUnitTest {
         cp.setIndex(40);
         board3p.movePiece(cp);
         assertThat(cp.getIndex()).isEqualTo(41);
-        assertThat(board3p.getPiecePositionHashMap().get(cp)).isEqualTo(board3p.getPositions().get(16+40));
+        assertThat(board3p.getPiecePositionHashMap().get(cp)).isEqualTo(board3p.getPositions().get((pc*4)+40));
     }
 
     @Test
@@ -92,7 +90,7 @@ public class Board3PlayerUnitTest {
         cp.setIndex(40);
         board3p.movePiece(cp);
         assertThat(cp.getIndex()).isEqualTo(41);
-        assertThat(board3p.getPiecePositionHashMap().get(cp)).isEqualTo(board3p.getPositions().get(16+40+4));
+        assertThat(board3p.getPiecePositionHashMap().get(cp)).isEqualTo(board3p.getPositions().get((pc*4)+40+4));
     }
 
     @Test
@@ -101,16 +99,6 @@ public class Board3PlayerUnitTest {
         cp.setIndex(40);
         board3p.movePiece(cp);
         assertThat(cp.getIndex()).isEqualTo(41);
-        assertThat(board3p.getPiecePositionHashMap().get(cp)).isEqualTo(board3p.getPositions().get(16+40+8));
+        assertThat(board3p.getPiecePositionHashMap().get(cp)).isEqualTo(board3p.getPositions().get((pc*4)+40+8));
     }
-
-    @Test
-    public void testMovePieceType4ToMiddlePath() throws Exception {
-        Piece cp = pieces.get(12);
-        cp.setIndex(40);
-        board3p.movePiece(cp);
-        assertThat(cp.getIndex()).isEqualTo(41);
-        assertThat(board3p.getPiecePositionHashMap().get(cp)).isEqualTo(board3p.getPositions().get(16+40+12));
-    }
-
 }
