@@ -384,8 +384,8 @@ public class StandardboardFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     setPiecesClickable(false);
-                    gameViewModel.move(imageViewPieceHashMap.get(piece));
                     latestClickedPiece = piece;
+                    gameViewModel.move(imageViewPieceHashMap.get(piece));
                     setPiecesClickable(true);
                 }
             });
@@ -393,7 +393,20 @@ public class StandardboardFragment extends Fragment {
     }
 
     private void initObservers() {
-        gameViewModel.isMoved.observe(getActivity(), new Observer<Boolean>() {
+
+        // TODO - some of the logic which is going to be implemented is right now just comments
+        //  or not written here at all
+        /*
+          Observes the variable isMoved in GameViewModel, which is set to true
+          when a piece is moved in the model.
+          Moves the piece in the view. If the piece is finished it is removed from the
+          model and view. If a player rolls a six and is not finished, it is their turn again.
+          Otherwise, the next player is selected.
+          If the game is finished, another method should be called here (not implemented yet).
+          If not, the dice in the view is moved to the next player and the dice´s value is
+          set to used.
+         */
+        gameViewModel.isMoved.observe(getActivity(), new Observer<>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
@@ -408,22 +421,6 @@ public class StandardboardFragment extends Fragment {
                 }
             }
         });
-    }
-
-    // TODO - some of the logic which is going to be implemented is right now just comments
-    //  or not written here at all
-    /**
-     * Makes a turn with the parameter piece. First, it is moved in the model (if possible). If
-     * it is not movable, the method is done here. Otherwise, the piece is moved in the view.
-     * If the piece is finished it is removed from the model and view. If a player rolls a six
-     * and is not finished, it is their turn again. Otherwise, the next player is selected.
-     * If the game is finished, another method should be called here (not implemented yet).
-     * If not, the dice in the view is moved to the next player and the dice´s value is
-     * set to used.
-     * @param piece is the piece which is about to move
-     */
-    private void makeTurn(ImageView piece) {
-
     }
 
     /**
