@@ -80,14 +80,14 @@ public class StandardboardFragment extends Fragment {
 
         initPositions();
         initPieces();
-        initDice();
+        //initDice();
 
         initObservers();
 
         return view;
     }
 
-    private void initDice() {
+/*    private void initDice() {
         diceImage = view.findViewById(R.id.diceImage);
         initDiceImages();
 
@@ -115,9 +115,9 @@ public class StandardboardFragment extends Fragment {
         });
     }
 
-    /**
+    *//**
      * Gets the current player's movable pieces marked on the GUI.
-     */
+     *//*
     private void markMovablePieces() {
         for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
             // TODO: Change to something fancy
@@ -125,9 +125,9 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
-    /**
+    *//**
      * Removes the background of all piece's ImageView.
-     */
+     *//*
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void unMarkAllPieces() {
         imageViewPieceHashMap.forEach((imageView, piece) -> {
@@ -135,11 +135,11 @@ public class StandardboardFragment extends Fragment {
         });
     }
 
-    /**
+    *//**
      * TODO Make more slim
      * Method used to help identify ImageViews for affecting pliancy on the current player's pieces.
      * @return Returns a HashMap with the current player's piece's ImageViews.
-     */
+     *//*
     public HashMap<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
         // For each of the player's movable pieces, iterate through all pieces in the HashMap
         // and find the corresponding ImageView that is connected to the movable piece.
@@ -161,9 +161,9 @@ public class StandardboardFragment extends Fragment {
         //2. move the dice to that player
     }
 
-    /**
+    *//**
      * Initiates the diceimages and puts them in a list "diceImages".
-     */
+     *//*
     private void initDiceImages() {
         diceImages = new ArrayList<>();
         diceImages.add(R.drawable.dice1);
@@ -174,15 +174,15 @@ public class StandardboardFragment extends Fragment {
         diceImages.add(R.drawable.dice6);
     }
 
-    /**
+    *//**
      * Method that rotates the dice and sets the new rolled value.
      * @param rolledValue is the rolled value
-     */
+     *//*
     private void rotateDice(int rolledValue) {
         Animation anim = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.rotate);
         diceImage.startAnimation(anim); // animate the roll of the dice
         diceImage.setImageResource(diceImages.get(rolledValue - 1)); // sets the rolled value
-    }
+    }*/
 
     /**
      * Initiates the pieces by connecting the pieces ids, initiates the list of the pieces,
