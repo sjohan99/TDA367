@@ -114,6 +114,14 @@ public class Board implements Serializable {
     }
 
     /**
+     * Get the lap length for the specific board
+     * @return the lap length
+     */
+    public int getLapLength() {
+        return lapLength[playerCount - 1];
+    }
+
+    /**
      * Get the finish index for the specific board
      * @return the finish index
      */
