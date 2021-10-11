@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -61,6 +62,8 @@ public class StandardboardFragment extends Fragment {
     ImageView diceImage;
     List<Integer> diceImages;
 
+    Piece latestClickedPiece;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,6 +77,8 @@ public class StandardboardFragment extends Fragment {
         initPositions();
         initPieces();
         initDice();
+
+        initObservers();
 
         return view;
     }
@@ -379,11 +384,38 @@ public class StandardboardFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     setPiecesClickable(false);
-                    makeTurn(piece);
+                    gameViewModel.move(imageViewPieceHashMap.get(piece));
+
                     setPiecesClickable(true);
                 }
             });
         }
+    }
+
+    private void initObservers() {
+        gameViewModel.clickedPiece.observe(getActivity(), new Observer<Piece>() {
+            @Override
+            public void onChanged(Piece piece) {
+                latestClickedPiece = piece;
+            }
+        });
+
+        gameViewModel.isMoved.observe(getActivity(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    move(imageViewPieceHashMap.get(latestClickedPiece));
+                    boolean playerIsFinished = removePieceAndPlayerIfFinished(
+                            imageViewPieceHashMap.get(latestClickedPiece));
+                    if (isNextPlayer(playerIsFinished)) {
+                        gameViewModel.selectNextPlayer();
+                        moveDice();
+                    }
+                    // check if game is finished --> finish...
+                    gameViewModel.diceIsUsed();
+                }
+            }
+        });
     }
 
     // TODO - some of the logic which is going to be implemented is right now just comments
@@ -399,16 +431,8 @@ public class StandardboardFragment extends Fragment {
      * @param piece is the piece which is about to move
      */
     private void makeTurn(ImageView piece) {
-        boolean isMoved = gameViewModel.move(imageViewPieceHashMap.get(piece));
         if (isMoved) {
-            move(piece);
-            boolean playerIsFinished = removePieceAndPlayerIfFinished(piece);
-            if (isNextPlayer(playerIsFinished)) {
-                gameViewModel.selectNextPlayer();
-                moveDice();
-            }
-            // check if game is finished --> finish...
-            gameViewModel.diceIsUsed();
+
         }
     }
 
@@ -427,9 +451,9 @@ public class StandardboardFragment extends Fragment {
      * that the piece has moved to in the model.
      * @param piece is the piece that should be moved.
      */
-    private void move(ImageView piece) {
+    private void move(Piece piece) {
         //move piece in view, implementation not completed yet
-        Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
+        Position target = gameViewModel.getPosition(piece);
         moveImageView(piece, imageViewPositionHashMap.get(target));
     }
 
