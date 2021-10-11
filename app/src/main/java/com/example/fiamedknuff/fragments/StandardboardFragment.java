@@ -97,6 +97,14 @@ public class StandardboardFragment extends Fragment {
                         gameViewModel.selectNextPlayer();
                         moveDice();
                         gameViewModel.diceIsUsed();
+                    } else {
+                        // The player can make a turn and the player's pieces will be highlighted.
+                        // TODO Get players movable pieces
+
+
+                        // TODO Highlight the pieces
+
+
                     }
                 }
             }
