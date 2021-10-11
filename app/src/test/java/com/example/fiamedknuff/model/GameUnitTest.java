@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GameUnitTest {
@@ -173,4 +174,17 @@ public class GameUnitTest {
         assertEquals(4, game.getMovablePieces(player, 6).size());
     }
 
+    @Test
+    public void testMovePieceAndMoveBackwardsAfterMiddle() throws Exception {
+        Board board = game.getBoard();
+        HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
+        Piece piece = players.get(0).getPieces().get(0);
+        piece.setIndex(board.getFinishIndex() - 1);
+        Position pos = new Position(board.getFinishIndex() - 1);
+        piecePositionHashMap.put(piece, pos);
+
+        game.move(3, piece);
+        assertThat(piece.getIndex()).isEqualTo(board.getFinishIndex() - 2);
+        assertThat(piecePositionHashMap.get(piece).getPos()).isEqualTo(board.getFinishIndex() - 2);
+    }
 }
