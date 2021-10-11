@@ -77,4 +77,15 @@
         app:layout_constraintStart_toEndOf="@+id/boardFrame"
         app:layout_constraintTop_toBottomOf="@+id/boardFrame" />
 
+    <FrameLayout
+        android:id="@+id/diceFrame"
+        android:layout_width="@dimen/diceSize"
+        android:layout_height="@dimen/diceSize"
+        android:layout_marginEnd="@dimen/diceMarginHorizontal"
+        android:layout_marginTop="@dimen/diceMarginVertical"
+        app:layout_constraintEnd_toStartOf="@+id/boardFrame"
+        app:layout_constraintTop_toBottomOf="@+id/player1Label">
+
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
