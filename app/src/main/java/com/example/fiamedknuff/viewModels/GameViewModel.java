@@ -181,4 +181,10 @@ public class GameViewModel extends ViewModel {
         List<Piece> movablePieces = game.getMovablePieces(game.getCurrentPlayer());
         return movablePieces.size() != 0;
     }
+
+    public LiveData<List<Piece>> getMovablePiecesForCurrentPlayer() {
+        MutableLiveData<List<Piece>> data = new MutableLiveData<>();
+        data.setValue(game.getMovablePieces(game.getCurrentPlayer()));
+        return data;
+    }
 }
