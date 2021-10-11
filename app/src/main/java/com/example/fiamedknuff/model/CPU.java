@@ -36,7 +36,10 @@ public class CPU extends Player {
     }
 
     /**
-     * Decides which move a CPU wants to make by ranking different moves
+     * Decides which move a CPU wants to make by ranking different moves. Prioritizes knockout
+     * of another players piece. Otherwise going out with a piece off the board, then going out
+     * with a piece from the home and lastly move a leading piece forward (a leading piece is the
+     * piece that has moved the farthest on the board but not yet entered the home-path).
      * @param roll is the value from the latest roll
      * @return the piece to be moved
      */
@@ -54,7 +57,7 @@ public class CPU extends Player {
             }
         }
         for (Piece piece : movablePieces) {
-            if (piece.getIndex() + roll == 45) {
+            if (piece.getIndex() + roll == board.getFinishIndex()) {
                 return piece;
             }
         }
