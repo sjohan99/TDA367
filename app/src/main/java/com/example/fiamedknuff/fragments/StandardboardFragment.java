@@ -102,22 +102,29 @@ public class StandardboardFragment extends Fragment {
                         gameViewModel.diceIsUsed();
                     } else {
                         // The player can make a turn and the player's pieces will be highlighted.
-                        LiveData<List<Piece>> movablePieces = gameViewModel.getMovablePiecesForCurrentPlayer(); // Get players movable pieces
-                        // For each of the player's movable pieces, iterate through all positions
-                        // and find the ImageView that is connected to the movable piece.
-                        for (Piece piece : movablePieces.getValue()) {
-                            for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
-                                if (piece.toString().equals(entry.getValue().toString())) {
-                                    // TODO: Change to something fancy
-                                    entry.getKey().setBackgroundColor(R.drawable.background); // Highlight the movable piece
-                                }
-                            }
-                        }
-
+                        markMovablePieces();
                     }
                 }
             }
         });
+    }
+
+    /**
+     * Gets the current player's movable pieces marked on the GUI.
+     */
+    private void markMovablePieces() {
+        // For each of the player's movable pieces, iterate through all pieces in the HashMap
+        // and find the corresponding ImageView that is connected to the movable piece.
+        // When found the piece gets highlighted.
+        LiveData<List<Piece>> movablePieces = gameViewModel.getMovablePiecesForCurrentPlayer();
+        for (Piece piece : movablePieces.getValue()) {
+            for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
+                if (piece.toString().equals(entry.getValue().toString())) {
+                    // TODO: Change to something fancy
+                    entry.getKey().setBackgroundColor(R.drawable.background); // Highlight the movable piece
+                }
+            }
+        }
     }
 
     private void moveDice() {
