@@ -243,7 +243,7 @@ public class Game implements Serializable {
     }
 
     private void movePieceAndMoveBackwardsAfterMiddle(int diceValue, Piece piece) throws Exception {
-        int forwardSteps = 45 - piece.getIndex();
+        int forwardSteps = board.getFinishIndex() - piece.getIndex();
         int backwardSteps = diceValue - forwardSteps;
         for (int i = forwardSteps; i > 0; i--) {
             board.movePiece(piece);
