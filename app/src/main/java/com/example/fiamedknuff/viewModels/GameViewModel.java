@@ -36,7 +36,6 @@ public class GameViewModel extends ViewModel {
     private Color[] colors;
 
     public MutableLiveData<Boolean> isMoved = new MutableLiveData();
-    public MutableLiveData<Piece> clickedPiece = new MutableLiveData<>();
 
     public void init(List<String> playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
         this.playerNames = playerNames;
@@ -66,7 +65,6 @@ public class GameViewModel extends ViewModel {
     private void movePiece(Piece piece) {
         try {
             game.move(piece);
-            clickedPiece.setValue(piece);
             isMoved.setValue(true);
         } catch (Exception e) {
             e.printStackTrace();
