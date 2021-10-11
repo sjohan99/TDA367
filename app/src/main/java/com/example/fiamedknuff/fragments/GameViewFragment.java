@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.fiamedknuff.R;
+import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 
 /**
@@ -40,10 +42,20 @@ public class GameViewFragment extends Fragment {
 
         initLabels(view);
         initFragments();
+        initObservers();
 
         showAllFragments();
 
         return view;
+    }
+
+    private void initObservers() {
+        gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Player player) {
+                // TODO move diceframe to current player
+            }
+        });
     }
 
     private void showAllFragments() {
