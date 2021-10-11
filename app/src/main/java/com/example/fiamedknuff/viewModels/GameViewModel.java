@@ -28,7 +28,6 @@ public class GameViewModel extends ViewModel {
 
     private Game game;
     private int playerCount;
-    private Player currentPlayer;
     private int diceValue;
     private Collection<Piece> movablePieces;
     private Piece selectedPiece;
@@ -36,6 +35,7 @@ public class GameViewModel extends ViewModel {
     private Color[] colors;
 
     public MutableLiveData<Boolean> isMoved = new MutableLiveData();
+    public MutableLiveData<Player> currentPlayer = new MutableLiveData<>();
 
     public void init(List<String> playerNames, Color[] colors, boolean[] selectedCPU) throws NotImplementedException {
         this.playerNames = playerNames;
