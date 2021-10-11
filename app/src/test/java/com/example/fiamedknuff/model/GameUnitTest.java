@@ -34,6 +34,14 @@ public class GameUnitTest {
     }
 
     @Test
+    public void testGetActivePlayers() {
+        List<Player> activePlayers = game.getActivePlayers();
+        for (int i = 0; i < activePlayers.size(); i++) {
+            assertThat(players.get(i)).isEqualTo(activePlayers.get(i));
+        }
+    }
+
+    @Test
     public void testCurrentPlayer() {
         for (int i = 0; i < 25; i++) {
             assertThat(game.getCurrentPlayer()).isEqualTo(players.get(i % players.size()));
