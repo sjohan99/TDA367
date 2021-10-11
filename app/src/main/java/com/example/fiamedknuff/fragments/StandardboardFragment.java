@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * A class standardboardFragment that handles the view of the standardboard and its
@@ -100,11 +102,17 @@ public class StandardboardFragment extends Fragment {
                         gameViewModel.diceIsUsed();
                     } else {
                         // The player can make a turn and the player's pieces will be highlighted.
-                        // TODO Get players movable pieces
-                        LiveData<List<Piece>> movablePieces = gameViewModel.getMovablePiecesForCurrentPlayer();
-
-                        // TODO Highlight the pieces
-
+                        LiveData<List<Piece>> movablePieces = gameViewModel.getMovablePiecesForCurrentPlayer(); // Get players movable pieces
+                        // For each of the player's movable pieces, iterate through all positions
+                        // and find the ImageView that is connected to the movable piece.
+                        for (Piece piece : movablePieces.getValue()) {
+                            for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
+                                if (piece.toString().equals(entry.getValue().toString())) {
+                                    // TODO: Change to something fancy
+                                    entry.getKey().setBackgroundColor(R.drawable.background); // Highlight the movable piece
+                                }
+                            }
+                        }
 
                     }
                 }
