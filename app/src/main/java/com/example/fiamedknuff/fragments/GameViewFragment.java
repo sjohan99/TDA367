@@ -25,6 +25,7 @@ public class GameViewFragment extends Fragment {
 
     private GameSideBarFragment sideBarFragment;
     private StandardboardFragment boardFragment;
+    private DiceFragment diceFragment;
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -40,10 +41,15 @@ public class GameViewFragment extends Fragment {
         initLabels(view);
         initFragments();
 
-        showFragment(R.id.boardFrame, boardFragment);
-        showFragment(R.id.sideBarFrame, sideBarFragment);
+        showAllFragments();
 
         return view;
+    }
+
+    private void showAllFragments() {
+        showFragment(R.id.boardFrame, boardFragment);
+        showFragment(R.id.sideBarFrame, sideBarFragment);
+        showFragment(R.id.diceFrame, diceFragment);
     }
 
     private void initLabels(View view) {
@@ -61,6 +67,7 @@ public class GameViewFragment extends Fragment {
     private void initFragments() {
         sideBarFragment = new GameSideBarFragment();
         boardFragment = new StandardboardFragment();
+        diceFragment = new DiceFragment();
     }
 
     private <T extends Fragment> void showFragment(int frameLayoutId, T fragment) {
