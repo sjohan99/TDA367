@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gameViewConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -82,8 +83,8 @@
         android:id="@+id/diceFrame"
         android:layout_width="@dimen/diceSize"
         android:layout_height="@dimen/diceSize"
-        android:layout_marginEnd="@dimen/diceMarginHorizontal"
         android:layout_marginTop="@dimen/diceMarginVertical"
+        android:layout_marginEnd="@dimen/diceMarginHorizontal"
         app:layout_constraintEnd_toStartOf="@+id/boardFrame"
         app:layout_constraintTop_toBottomOf="@+id/player1Label">
 
