@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -100,7 +101,7 @@ public class StandardboardFragment extends Fragment {
                     } else {
                         // The player can make a turn and the player's pieces will be highlighted.
                         // TODO Get players movable pieces
-
+                        LiveData<List<Piece>> movablePieces = gameViewModel.getMovablePiecesForCurrentPlayer();
 
                         // TODO Highlight the pieces
 
