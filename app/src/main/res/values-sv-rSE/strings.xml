@@ -10,4 +10,10 @@
     <string name="player2Label">Spelare 2</string>
     <string name="player3Label">Spelare 3</string>
     <string name="player4Label">Spelare 4</string>
+    <string name="player_name_input">Namn på spelare</string>
+    <string-array name="spinner_player_amount">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 </resources>

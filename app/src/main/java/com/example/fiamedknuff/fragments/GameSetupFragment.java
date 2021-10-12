@@ -132,13 +132,12 @@ public class GameSetupFragment extends Fragment {
         // TODO
         List<Color> selectedColors = new ArrayList<>();
         for (int i = 0; i < selectedPlayerCount; i++) {
-            colors.add(colors.get(i));
+            selectedColors.add(colors.get(i));
         }
-        return colors;
+        return selectedColors;
     }
 
     private List<Boolean> getSelectedCPU() {
-        // FIXME: 2021-10-11 Fix
         ArrayList<Boolean> isCPU = new ArrayList<>();
         for (int i = 0; i < selectedPlayerCount; i++) {
             isCPU.add(CPUCheckBoxes.get(i).isSelected());
