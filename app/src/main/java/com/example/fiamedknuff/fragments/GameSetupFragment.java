@@ -1,7 +1,6 @@
 package com.example.fiamedknuff.fragments;
 
 import android.os.Build;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.annotation.RequiresApi;
@@ -23,11 +21,10 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.fiamedknuff.NotImplementedException;
 import com.example.fiamedknuff.R;
-import com.example.fiamedknuff.viewModels.GameViewModel;
 import com.example.fiamedknuff.model.Color;
+import com.example.fiamedknuff.viewModels.GameViewModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -38,7 +35,6 @@ public class GameSetupFragment extends Fragment {
     private Button createGameBtn;
     private Spinner playerAmountSpinner;
     private EditText player1Name, player2Name, player3Name, player4Name;
-    private LinearLayout verticalLayout;
     private CheckBox CPUCheckBox1, CPUCheckBox2, CPUCheckBox3, CPUCheckBox4;
     private GameViewModel gameViewModel;
     ArrayList<EditText> players = new ArrayList<>();
@@ -52,9 +48,7 @@ public class GameSetupFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         navController = NavHostFragment.findNavController(this);
-
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
-
         View view = inflater.inflate(R.layout.fragment_game_setup, container, false);
 
         initPlayerNameInputs(view);
@@ -71,22 +65,20 @@ public class GameSetupFragment extends Fragment {
 
     private void initCreateGameButton(View view) {
         createGameBtn = view.findViewById(R.id.createGameBtn);
-        createGameBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // GameFactory.createNewGame(getPlayerNames(), getColors(), getSelectedCPU());
-
+        createGameBtn.setOnClickListener(gameBtn -> {
+            // GameFactory.createNewGame(getPlayerNames(), getColors(), getSelectedCPU());
+            if (readyToCreateGame) {
                 try {
                     gameViewModel.init(getPlayerNames(), getColors(), getSelectedCPU());
                 } catch (NotImplementedException e) {
                     e.printStackTrace();
                 }
-                // TODO Get more parameter inputs
-                navController.navigate(R.id.action_gameSetupFragment_to_gameView, null, new NavOptions.Builder()
-                        .setEnterAnim(android.R.animator.fade_in)
-                        .setExitAnim(android.R.animator.fade_out)
-                        .build());
             }
+            // TODO Get more parameter inputs
+            navController.navigate(R.id.action_gameSetupFragment_to_gameView, null, new NavOptions.Builder()
+                    .setEnterAnim(android.R.animator.fade_in)
+                    .setExitAnim(android.R.animator.fade_out)
+                    .build());
         });
     }
 
@@ -144,7 +136,7 @@ public class GameSetupFragment extends Fragment {
     }
 
     private List<Boolean> getSelectedCPU() {
-        // FIXME: 2021-10-11 Fixa
+        // FIXME: 2021-10-11 Fix
         ArrayList<Boolean> isCPU = new ArrayList<>();
         for (int i = 0; i < selectedPlayerCount; i++) {
             isCPU.add(CPUCheckBoxes.get(i).isSelected());
@@ -184,26 +176,10 @@ public class GameSetupFragment extends Fragment {
                 player3Name,
                 player4Name
         };
-
         for (EditText playerNameLabel : editTexts) {
-            playerNameLabel.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View view, boolean b) {
-                    // TODO Add type control
-                    if (namesAreDistinguishable()) {
-                        // The player names are not distinct.
-                        readyToCreateGame = false;
-                        System.out.println("not ready");
-                    } else if (aNameIsEmpty()) {
-                        // A name is empty or does only contain whitespaces.
-                        readyToCreateGame = false;
-                        System.out.println("not ready");
-                    } else {
-                        readyToCreateGame = true;
-                        System.out.println("ready");
-                    }
-                }
-
+            playerNameLabel.setOnFocusChangeListener((view, b) -> {
+                // TODO: 2021-10-12 Dim createNewGameButton if not ready and add additional visuals.
+                readyToCreateGame = !namesAreDistinguishable() && !aNameIsEmpty();
             });
         }
     }
@@ -217,17 +193,13 @@ public class GameSetupFragment extends Fragment {
         return false;
     }
 
-    /**
-     * Returns true if the entered player names are distinguishable.
-     * I.e. false will be returned if player 1 and player 2 have the same name.
-     * @return boolean
-     */
     @RequiresApi(api = Build.VERSION_CODES.N)
     private boolean namesAreDistinguishable() {
+        // Returns true if the entered player names are distinguishable.
+        // I.e. false will be returned if player 1 and player 2 have the same name.
+        // The method compares a list of all unique names with all names.
         List<String> distinctNames = new ArrayList<>();
-        getPlayerNames().stream().distinct().forEach(s -> {
-            distinctNames.add(s);
-        });
+        getPlayerNames().stream().distinct().forEach(distinctNames::add);
         return !getPlayerNames().toString().equals(distinctNames.toString());
     }
 
@@ -236,6 +208,5 @@ public class GameSetupFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         playerAmountSpinner.setAdapter(adapter);
     }
-
 
 }
