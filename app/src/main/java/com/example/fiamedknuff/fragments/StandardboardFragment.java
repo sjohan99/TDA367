@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
+import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Position;
@@ -421,6 +422,14 @@ public class StandardboardFragment extends Fragment {
                 if (aBoolean) {
                     markMovablePieces();
                 }
+            }
+        });
+
+        gameViewModel.currentPlayer.observe(getActivity(), new Observer<Player>() {
+            @Override
+            public void onChanged(Player player) {
+                // trigger roll dice clicked
+                //
             }
         });
     }
