@@ -1,5 +1,6 @@
 package com.example.fiamedknuff.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -23,7 +25,10 @@ import com.example.fiamedknuff.viewModels.GameViewModel;
 import com.example.fiamedknuff.model.Color;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GameSetupFragment extends Fragment {
 
@@ -50,20 +55,29 @@ public class GameSetupFragment extends Fragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void initTypoForEditTexts() {
-        for (EditText playerNameLabel : new EditText[] {
+        EditText[] editTexts = new EditText[] {
                 player1Name,
                 player2Name,
                 player3Name,
-                player4Name}) {
+                player4Name
+        };
+
+        for (EditText playerNameLabel : editTexts) {
             playerNameLabel.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View view, boolean b) {
+
                     // TODO Add type controll
+                    getPlayerNames().stream().distinct().forEach(System.out::println);
 
                 }
+
             });
         }
+
+
     }
 
     private Color[] getColors() {
