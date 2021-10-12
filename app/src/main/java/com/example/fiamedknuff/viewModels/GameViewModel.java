@@ -139,7 +139,7 @@ public class GameViewModel extends ViewModel {
     /**
      * Sets the dice to used.
      */
-    public void diceIsUsed() {
+    public void setDiceIsUsed() {
         game.setDiceIsUsed();
     }
 
@@ -208,7 +208,7 @@ public class GameViewModel extends ViewModel {
         // player should be selected.
         if (!isPossibleToUseDicevalue()) {
             selectNextPlayer();
-            diceIsUsed();
+            setDiceIsUsed();
         } else {
             // The player can make a turn and the player's pieces will be highlighted
             // through the observer.

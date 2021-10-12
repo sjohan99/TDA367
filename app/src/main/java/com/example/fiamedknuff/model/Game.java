@@ -282,4 +282,11 @@ public class Game implements Serializable {
     public Position getPosition(Piece piece) {
         return board.getPosition(piece);
     }
+
+    /**
+     * Sets the dice to used.
+     */
+    public void setDiceIsUsed() {
+        dice.setIsUsed(true);
+    }
 }
