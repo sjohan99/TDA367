@@ -84,6 +84,7 @@ public class GameViewFragment extends Fragment {
             @Override
             public void onChanged(Player player) {
                 // TODO move diceframe to current player
+
                 ConstraintSet constraintSet = playerDiceConstraintsHashMap.get(player.getName());
                 constraintSet.applyTo(gameViewConstraintLayout);
                 diceFrame.bringToFront();
@@ -105,7 +106,11 @@ public class GameViewFragment extends Fragment {
                 diceFrame.getId(), ConstraintSet.END, boardFrame.getId(), ConstraintSet.START);
         constraintSetDiceToPlayer1.connect(
                 diceFrame.getId(), ConstraintSet.TOP, player1Label.getId(), ConstraintSet.BOTTOM);
-        //constraintSetDiceToPlayer1.applyTo(gameViewConstraintLayout);
+        constraintSetDiceToPlayer1.connect(
+                diceFrame.getId(), ConstraintSet.START, diceFrame.getId(), ConstraintSet.START);
+        constraintSetDiceToPlayer1.connect(
+                diceFrame.getId(), ConstraintSet.BOTTOM, diceFrame.getId(), ConstraintSet.BOTTOM);
+        constraintSetDiceToPlayer1.applyTo(gameViewConstraintLayout);
     }
 
     private void createConstraintSetDicePlayer2() {
@@ -115,7 +120,11 @@ public class GameViewFragment extends Fragment {
                 diceFrame.getId(), ConstraintSet.START, boardFrame.getId(), ConstraintSet.END);
         constraintSetDiceToPlayer2.connect(
                 diceFrame.getId(), ConstraintSet.TOP, player2Label.getId(), ConstraintSet.BOTTOM);
-        //constraintSetDiceToPlayer2.applyTo(gameViewConstraintLayout);
+        constraintSetDiceToPlayer2.connect(
+                diceFrame.getId(), ConstraintSet.END, diceFrame.getId(), ConstraintSet.END);
+        constraintSetDiceToPlayer2.connect(
+                diceFrame.getId(), ConstraintSet.BOTTOM, diceFrame.getId(), ConstraintSet.BOTTOM);
+        constraintSetDiceToPlayer2.applyTo(gameViewConstraintLayout);
     }
 
     private void createConstraintSetDicePlayer3() {
@@ -125,7 +134,11 @@ public class GameViewFragment extends Fragment {
                 diceFrame.getId(), ConstraintSet.START, boardFrame.getId(), ConstraintSet.END);
         constraintSetDiceToPlayer3.connect(
                 diceFrame.getId(), ConstraintSet.BOTTOM, player3Label.getId(), ConstraintSet.TOP);
-        //constraintSetDiceToPlayer3.applyTo(gameViewConstraintLayout);
+        constraintSetDiceToPlayer3.connect(
+                diceFrame.getId(), ConstraintSet.END, diceFrame.getId(), ConstraintSet.END);
+        constraintSetDiceToPlayer3.connect(
+                diceFrame.getId(), ConstraintSet.TOP, diceFrame.getId(), ConstraintSet.TOP);
+        constraintSetDiceToPlayer3.applyTo(gameViewConstraintLayout);
     }
 
     private void createConstraintSetDicePlayer4() {
@@ -135,7 +148,11 @@ public class GameViewFragment extends Fragment {
                 diceFrame.getId(), ConstraintSet.END, boardFrame.getId(), ConstraintSet.START);
         constraintSetDiceToPlayer4.connect(
                 diceFrame.getId(), ConstraintSet.BOTTOM, player4Label.getId(), ConstraintSet.TOP);
-        //constraintSetDiceToPlayer4.applyTo(gameViewConstraintLayout);
+        constraintSetDiceToPlayer4.connect(
+                diceFrame.getId(), ConstraintSet.START, diceFrame.getId(), ConstraintSet.START);
+        constraintSetDiceToPlayer4.connect(
+                diceFrame.getId(), ConstraintSet.TOP, diceFrame.getId(), ConstraintSet.TOP);
+        constraintSetDiceToPlayer4.applyTo(gameViewConstraintLayout);
     }
 
     private void createListOfConstraintSets() {
