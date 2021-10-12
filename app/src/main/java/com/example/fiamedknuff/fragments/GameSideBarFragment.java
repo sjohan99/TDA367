@@ -1,7 +1,5 @@
 package com.example.fiamedknuff.fragments;
 
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
@@ -48,6 +46,7 @@ public class GameSideBarFragment extends Fragment {
     private void initBackgroundMusic() {
         mediaPlayer = MediaPlayer.create(getActivity(), R.raw.music);
         mediaPlayer.start();
+        mediaPlayer.setLooping(true);
     }
 
     private void specifyOnClickActions() {
