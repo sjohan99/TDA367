@@ -27,18 +27,17 @@ public class GameplayUnitTest2 {
         names.add("Player three");
         names.add("Player four");
 
-        Color[] playerColors = {
-                Color.YELLOW,
-                Color.RED,
-                Color.GREEN,
-                Color.BLUE};
+        ArrayList<Color> playerColors = new ArrayList<>();
+        playerColors.add(Color.YELLOW);
+        playerColors.add(Color.RED);
+        playerColors.add(Color.GREEN);
+        playerColors.add(Color.BLUE);
 
-        boolean[] isCPU = {
-                false,
-                false,
-                false,
-                false
-        };
+        ArrayList<Boolean> isCPU = new ArrayList<>();
+        isCPU.add(false);
+        isCPU.add(false);
+        isCPU.add(false);
+        isCPU.add(false);
 
         game = GameFactory.createNewGame(names, playerColors, isCPU);
     }

@@ -1,20 +1,23 @@
 package com.example.fiamedknuff.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
+import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Position;
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A class standardboardFragment that handles the view of the standardboard and its
@@ -61,6 +65,8 @@ public class StandardboardFragment extends Fragment {
     ImageView diceImage;
     List<Integer> diceImages;
 
+    ImageView latestClickedPiece;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,67 +75,14 @@ public class StandardboardFragment extends Fragment {
 
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
 
-        constraintLayout = view.findViewById(R.id.constraintLayout);
+        constraintLayout = view.findViewById(R.id.sbConstraintLayout);
 
         initPositions();
         initPieces();
-        initDice();
+
+        initObservers();
 
         return view;
-    }
-
-    private void initDice() {
-        diceImage = view.findViewById(R.id.diceImage);
-        initDiceImages();
-
-        diceImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int rolledValue = gameViewModel.rollDice();
-                if (rolledValue != -1) {
-                    rotateDice(rolledValue);
-
-                    // If the rolled value is not possible to use, i.e. the player can´t move
-                    // any of their pieces with that value, the dice should be moved to the
-                    // next player in the view and the dice should be set to used. Also, the next
-                    // player should be selected.
-                    if (!gameViewModel.isPossibleToUseDicevalue()) {
-                        gameViewModel.selectNextPlayer();
-                        moveDice();
-                        gameViewModel.diceIsUsed();
-                    }
-                }
-            }
-        });
-    }
-
-    private void moveDice() {
-        // move dice in view, not implemented yet
-        // 1. check current player.
-        //2. move the dice to that player
-    }
-
-    /**
-     * Initiates the diceimages and puts them in a list "diceImages".
-     */
-    private void initDiceImages() {
-        diceImages = new ArrayList<>();
-        diceImages.add(R.drawable.dice1);
-        diceImages.add(R.drawable.dice2);
-        diceImages.add(R.drawable.dice3);
-        diceImages.add(R.drawable.dice4);
-        diceImages.add(R.drawable.dice5);
-        diceImages.add(R.drawable.dice6);
-    }
-
-    /**
-     * Method that rotates the dice and sets the new rolled value.
-     * @param rolledValue is the rolled value
-     */
-    private void rotateDice(int rolledValue) {
-        Animation anim = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.rotate);
-        diceImage.startAnimation(anim); // animate the roll of the dice
-        diceImage.setImageResource(diceImages.get(rolledValue - 1)); // sets the rolled value
     }
 
     /**
@@ -370,60 +323,136 @@ public class StandardboardFragment extends Fragment {
     }
 
     /**
+     * Gets the current player's movable pieces marked on the GUI.
+     */
+    private void markMovablePieces() {
+        for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
+            // TODO: Change to something fancy
+            entry.getValue().setBackgroundColor(R.drawable.background); // Highlight the movable piece
+        }
+    }
+
+    /**
+     * Removes the background of all piece's ImageView.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void unMarkAllPieces() {
+        imageViewPieceHashMap.forEach((imageView, piece) -> {
+            imageView.setBackgroundColor(0); // Remove the background.
+        });
+    }
+
+    /**
+     * TODO Make more slim
+     * Method used to help identify ImageViews for affecting pliancy on the current player's pieces.
+     * @return Returns a HashMap with the current player's piece's ImageViews.
+     */
+    public HashMap<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
+        // For each of the player's movable pieces, iterate through all pieces in the HashMap
+        // and find the corresponding ImageView that is connected to the movable piece.
+        HashMap<Piece, ImageView> map = new HashMap<>();
+        LiveData<List<Piece>> movablePieces = gameViewModel.getMovablePiecesForCurrentPlayer();
+        for (Piece piece : movablePieces.getValue()) {
+            for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
+                if (piece.toString().equals(entry.getValue().toString())) {
+                    map.put(entry.getValue(), entry.getKey());
+                }
+            }
+        }
+        return map;
+    }
+
+    /**
      * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
      * should be called. The pieces should be non-clickable when the method makeTurn is called.
      */
     private void addPiecesOnClickListeners() {
         for (ImageView piece : piecesImageViews) {
             piece.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onClick(View view) {
+                    unMarkAllPieces();
                     setPiecesClickable(false);
-                    makeTurn(piece);
+                    latestClickedPiece = piece;
+                    gameViewModel.move(imageViewPieceHashMap.get(piece));
                     setPiecesClickable(true);
                 }
             });
         }
     }
 
-    // TODO - some of the logic which is going to be implemented is right now just comments
-    //  or not written here at all
-    /**
-     * Makes a turn with the parameter piece. First, it is moved in the model (if possible). If
-     * it is not movable, the method is done here. Otherwise, the piece is moved in the view.
-     * If the piece is finished it is removed from the model and view. If a player rolls a six
-     * and is not finished, it is their turn again. Otherwise, the next player is selected.
-     * If the game is finished, another method should be called here (not implemented yet).
-     * If not, the dice in the view is moved to the next player and the dice´s value is
-     * set to used.
-     * @param piece is the piece which is about to move
-     */
-    private void makeTurn(ImageView piece) {
-        boolean isMoved = gameViewModel.move(imageViewPieceHashMap.get(piece));
-        if (isMoved) {
-            move(piece);
-            boolean playerIsFinished = removePieceAndPlayerIfFinished(piece);
-            if (isNextPlayer(playerIsFinished)) {
-                gameViewModel.selectNextPlayer();
-                moveDice();
+    private void initObservers() {
+
+        // TODO - some of the logic which is going to be implemented is right now just comments
+        //  or not written here at all
+        /*
+          Observes the variable isMoved in GameViewModel, which is set to true
+          when a piece is moved in the model.
+          Moves the piece in the view. If the piece is finished it is removed from the
+          model and view. If a player rolls a six and is not finished, it is their turn again.
+          Otherwise, the next player is selected.
+          If the game is finished, another method should be called here (not implemented yet).
+          If not, the dice in the view is moved to the next player and the dice´s value is
+          set to used.
+         */
+        gameViewModel.isMoved.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    move(latestClickedPiece);
+                    boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
+                    if (gameViewModel.isNextPlayer(playerIsFinished)) {
+                        gameViewModel.selectNextPlayer();
+                    }
+                    // check if game is finished --> finish...
+                    gameViewModel.diceIsUsed();
+                }
             }
-            // check if game is finished --> finish...
-            gameViewModel.diceIsUsed();
-        }
+        });
+
+        /*
+            Observes the variable movesArePossibleToMake, which is set to true when the rolled
+            dicevalue is able to use.
+            When the variable is set to true, the movable pieces should be highlighted.
+         */
+        gameViewModel.movesArePossibleToMake.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    markMovablePieces();
+                }
+            }
+        });
+
+        gameViewModel.currentPlayer.observe(getActivity(), new Observer<Player>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onChanged(Player player) {
+                if (gameViewModel.isCPU(player)) {
+                    // trigger roll dice clicked
+                    view.performClick();
+                    int rolledValue = gameViewModel.rollDice();
+
+                    Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(rolledValue);
+
+                    // trigger addPieceOnClickListener
+                    view.performClick();
+
+                    //unMarkAllPieces();
+                    //setPiecesClickable(false);
+                    //latestClickedPiece = imageViewPieceHashMap.get(piece);
+                    //gameViewModel.move(imageViewPieceHashMap.get(piece));
+                    //setPiecesClickable(true);
+
+                }
+            }
+        });
     }
 
     /**
-     * If a player rolls a six and is not finished, it is their turn again. Otherwise,
-     * it is the next player´s turn.
-     * @param playerIsFinished is true if the player is finished, otherwise false.
-     * @return true if it is the next player´s turn, otherwise false.
-     */
-    private boolean isNextPlayer(boolean playerIsFinished) {
-        return !((gameViewModel.getDiceValue() == 6) && !playerIsFinished);
-    }
-
-    /**
-     * Should move the piece in the view (implementation not completed yet).
+     * Should move the piece in the view (implementation not completed yet) to the position
+     * that the piece has moved to in the model.
      * @param piece is the piece that should be moved.
      */
     private void move(ImageView piece) {

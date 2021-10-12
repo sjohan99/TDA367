@@ -239,11 +239,11 @@ public class Game implements Serializable {
     }
 
     private boolean pieceWillMovePastGoal(int diceValue, Piece piece) {
-        return piece.getIndex() + diceValue > 45;
+        return piece.getIndex() + diceValue > board.getFinishIndex();
     }
 
     private void movePieceAndMoveBackwardsAfterMiddle(int diceValue, Piece piece) throws Exception {
-        int forwardSteps = 45 - piece.getIndex();
+        int forwardSteps = board.getFinishIndex() - piece.getIndex();
         int backwardSteps = diceValue - forwardSteps;
         for (int i = forwardSteps; i > 0; i--) {
             board.movePiece(piece);

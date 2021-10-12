@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -13,7 +14,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.fiamedknuff.R;
+import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 /**
  * UI controller for the game view layout.
@@ -22,9 +28,11 @@ import com.example.fiamedknuff.viewModels.GameViewModel;
 public class GameViewFragment extends Fragment {
 
     private TextView player1Label, player2Label, player3Label, player4Label;
+    private ArrayList<TextView> playerLabels = new ArrayList<>();
 
     private GameSideBarFragment sideBarFragment;
     private StandardboardFragment boardFragment;
+    private DiceFragment diceFragment;
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -36,14 +44,30 @@ public class GameViewFragment extends Fragment {
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
         View view = inflater.inflate(R.layout.fragment_game_view, container, false);
 
-
         initLabels(view);
+        populatePlayerLabelList();
+        setLabelNames();
         initFragments();
+        initObservers();
 
-        showFragment(R.id.boardFrame, boardFragment);
-        showFragment(R.id.sideBarFrame, sideBarFragment);
+        showAllFragments();
 
         return view;
+    }
+
+    private void initObservers() {
+        gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Player player) {
+                // TODO move diceframe to current player
+            }
+        });
+    }
+
+    private void showAllFragments() {
+        showFragment(R.id.boardFrame, boardFragment);
+        showFragment(R.id.sideBarFrame, sideBarFragment);
+        showFragment(R.id.diceFrame, diceFragment);
     }
 
     private void initLabels(View view) {
@@ -51,16 +75,30 @@ public class GameViewFragment extends Fragment {
         player2Label = view.findViewById(R.id.player2Label);
         player3Label = view.findViewById(R.id.player3Label);
         player4Label = view.findViewById(R.id.player4Label);
+    }
 
-        player1Label.setText(gameViewModel.getPlayerName(0).getValue());
-        player2Label.setText(gameViewModel.getPlayerName(1).getValue());
-        player3Label.setText(gameViewModel.getPlayerName(2).getValue());
-        player4Label.setText(gameViewModel.getPlayerName(3).getValue());
+    private void setLabelNames() {
+        int players = gameViewModel.getPlayerCount();
+        for (TextView label : playerLabels) {
+            label.setVisibility(View.INVISIBLE);
+        }
+        for (int i = 0; i < players; i++) {
+            playerLabels.get(i).setText(gameViewModel.getPlayerName(i).getValue());
+            playerLabels.get(i).setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void populatePlayerLabelList() {
+        playerLabels.add(player1Label);
+        playerLabels.add(player2Label);
+        playerLabels.add(player3Label);
+        playerLabels.add(player4Label);
     }
 
     private void initFragments() {
         sideBarFragment = new GameSideBarFragment();
         boardFragment = new StandardboardFragment();
+        diceFragment = new DiceFragment();
     }
 
     private <T extends Fragment> void showFragment(int frameLayoutId, T fragment) {

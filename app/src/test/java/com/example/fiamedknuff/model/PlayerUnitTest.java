@@ -81,5 +81,11 @@ public class PlayerUnitTest {
         assertEquals(player.getName(),"newNamePerson");
     }
 
+    @Test
+    public void testRemovePiece() {
+        assertEquals(4, player.getPieces().size());
+        player.removePiece(piece);
+        assertEquals(3, player.getPieces().size());
+    }
 
 }
