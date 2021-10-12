@@ -55,6 +55,7 @@ public class GameSetupFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_game_setup, container, false);
 
         initPlayerNameInputs(view);
+        initCPUCheckBoxes(view);
         initPlayerAmountSpinner(view);
         populatePlayersList();
         populateCPUCheckBoxList();
@@ -157,20 +158,18 @@ public class GameSetupFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void initPlayerNameInputs(View view) {
-        //createGameBtn = view.findViewById(R.id.createGameBtn);
-        // EditTexts
         player1Name = view.findViewById(R.id.player1Name);
         player2Name = view.findViewById(R.id.player2Name);
         player3Name = view.findViewById(R.id.player3Name);
         player4Name = view.findViewById(R.id.player4Name);
-        // CheckBoxes
+        initTypoForEditTexts();
+    }
+
+    private void initCPUCheckBoxes(View view) {
         CPUCheckBox1 = view.findViewById(R.id.CPUCheckBox1);
         CPUCheckBox2 = view.findViewById(R.id.CPUCheckBox2);
         CPUCheckBox3 = view.findViewById(R.id.CPUCheckBox3);
         CPUCheckBox4 = view.findViewById(R.id.CPUCheckBox4);
-
-        initTypoForEditTexts();
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
