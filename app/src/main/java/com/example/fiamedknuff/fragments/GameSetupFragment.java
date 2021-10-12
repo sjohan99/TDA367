@@ -181,7 +181,9 @@ public class GameSetupFragment extends Fragment {
         for (EditText playerNameLabel : editTexts) {
             playerNameLabel.setOnFocusChangeListener((view, b) -> {
                 // TODO: 2021-10-12 Dim createNewGameButton if not ready and add additional visuals.
-                readyToCreateGame = !namesAreDistinguishable() && !aNameIsEmpty();
+                //                  Fix the problem with aNameIsEmpty() which leads to only names
+                //                  with letters apart from å, ä and ö is accepted.
+                readyToCreateGame = namesAreDistinguishable(); // && !aNameIsEmpty();
             });
         }
     }
@@ -202,7 +204,7 @@ public class GameSetupFragment extends Fragment {
         // The method compares a list of all unique names with all names.
         List<String> distinctNames = new ArrayList<>();
         getPlayerNames().stream().distinct().forEach(distinctNames::add);
-        return !getPlayerNames().toString().equals(distinctNames.toString());
+        return getPlayerNames().toString().equals(distinctNames.toString());
     }
 
     private void populateSpinner() {
