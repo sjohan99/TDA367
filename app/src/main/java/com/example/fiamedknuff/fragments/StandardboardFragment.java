@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -436,13 +437,13 @@ public class StandardboardFragment extends Fragment {
             @Override
             public void onChanged(Player player) {
                 if (gameViewModel.isCPU(player)) {
-                    // trigger roll dice clicked
-                    view.performClick();
-                    int rolledValue = gameViewModel.rollDice();
-
-                    Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(rolledValue);
-                    ImageView pieceImageView = getPieceImageView(piece);
-                    pieceClicked(pieceImageView);
+                    gameViewModel.CPUdiceRoll(true);
+                    Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(gameViewModel.getDiceValue());
+                    if (piece != null) {
+                        ImageView pieceImageView = getPieceImageView(piece);
+                        pieceClicked(pieceImageView);
+                    }
+                    gameViewModel.selectNextPlayer();
                 }
             }
         });
