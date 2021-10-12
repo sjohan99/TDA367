@@ -54,19 +54,18 @@ public class GameSetupFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_game_setup, container, false);
 
-        initPlayerNameInput(view);
+        initPlayerNameInputs(view);
         initPlayerAmountSpinner(view);
         populatePlayersList();
         populateCPUCheckBoxList();
         populateColors();
-
-        initCreateGameButton();
-
+        initCreateGameButton(view);
 
         return view;
     }
 
-    private void initCreateGameButton() {
+    private void initCreateGameButton(View view) {
+        createGameBtn = view.findViewById(R.id.createGameBtn);
         createGameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,16 +152,12 @@ public class GameSetupFragment extends Fragment {
         for (int i = 0; i < selectedPlayerCount; i++) {
             list.add(players.get(i).getText().toString());
         }
-//        list.add(player1Name.getText().toString());
-//        list.add(player2Name.getText().toString());
-//        list.add(player3Name.getText().toString());
-//        list.add(player4Name.getText().toString());
         return list;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void initPlayerNameInput(View view) {
-        createGameBtn = view.findViewById(R.id.createGameBtn);
+    private void initPlayerNameInputs(View view) {
+        //createGameBtn = view.findViewById(R.id.createGameBtn);
         // EditTexts
         player1Name = view.findViewById(R.id.player1Name);
         player2Name = view.findViewById(R.id.player2Name);
