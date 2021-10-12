@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.model.CPU;
 import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.model.Game;
 import com.example.fiamedknuff.model.GameFactory;
@@ -26,25 +27,33 @@ public class GameViewModel extends ViewModel {
 
     private Game game;
     private int playerCount;
-    private Player currentPlayer;
     private int diceValue;
     private Collection<Piece> movablePieces;
     private Piece selectedPiece;
     private List<String> playerNames;
     private Color[] colors;
+  
+    public MutableLiveData<Boolean> isMoved = new MutableLiveData<>();
+    public MutableLiveData<Player> currentPlayer = new MutableLiveData<>();
+    public MutableLiveData<Boolean> movesArePossibleToMake = new MutableLiveData<>();
 
     public void init(List<String> playerNames, List<Color> colors, List<Boolean> selectedCPU) throws NotImplementedException {
         this.playerNames = playerNames;
         game = GameFactory.createNewGame(playerNames, colors, selectedCPU);
+
+        // For each CPU in the player list, set the board
+        for (Player player: game.getActivePlayers()) {
+            if (player.getClass() == CPU.class) {
+                ((CPU) player).setBoard(game.getBoard());
+            }
+        }
     }
 
     /**
      * Moves the clicked piece.
      * @param clickedPiece is the clicked piece
-     * @return returns true if the piece if moved, and false if it can´t be moved.
      */
-
-    public boolean move(Piece clickedPiece) {
+    public void move(Piece clickedPiece) {
         // if the rolled dice is already used, we can´t move any piece before another roll has
         // been made
         if (!game.getDice().getIsUsed()) {
@@ -52,19 +61,18 @@ public class GameViewModel extends ViewModel {
             //checks if the clicked piece is movable
             if(movablePieces.contains(clickedPiece)) {
                 movePiece(clickedPiece);
-                return true;
             }
         }
-        return false;
     }
 
     /**
-     * Moves the piece.
+     * Moves the piece. Sets the value of the mutable livedata "isMoved" to true.
      * @param piece is the piece that should be moved
      */
     private void movePiece(Piece piece) {
         try {
             game.move(piece);
+            isMoved.setValue(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,20 +102,6 @@ public class GameViewModel extends ViewModel {
     }
 
     /**
-     * If the dice is ready to be rolled (i.e. is used), the dice is rolled.
-     * @return the value of the rolled dice (if it´s ready to be rolled), or -1 if
-     * it´s not ready to be rolled.
-     */
-    public int rollDice() {
-        // if the dice is used, you may roll again
-        if (game.getDice().getIsUsed()) {
-            game.rollDice();
-            return game.getDice().getRolledValue();
-        }
-        return -1;
-    }
-
-    /**
      * Returns all player pieces from game.
      * @return all player pieces
      */
@@ -134,10 +128,12 @@ public class GameViewModel extends ViewModel {
     }
 
     /**
-     * Selects the next player in the model.
+     * Selects the next player in the model. Sets the value of the variable currentPlayer
+     * to the current player.
      */
     public void selectNextPlayer() {
         game.selectNextPlayer();
+        currentPlayer.setValue(game.getCurrentPlayer());
     }
 
     /**
@@ -174,4 +170,51 @@ public class GameViewModel extends ViewModel {
         List<Piece> movablePieces = game.getMovablePieces(game.getCurrentPlayer());
         return movablePieces.size() != 0;
     }
+
+    /**
+     * If a player rolls a six and is not finished, it is their turn again. Otherwise,
+     * it is the next player´s turn.
+     * @param playerIsFinished is true if the player is finished, otherwise false.
+     * @return true if it is the next player´s turn, otherwise false.
+     */
+    public boolean isNextPlayer(boolean playerIsFinished) {
+        return !((getDiceValue() == 6) && !playerIsFinished);
+    }
+
+    public LiveData<List<Piece>> getMovablePiecesForCurrentPlayer() {
+        MutableLiveData<List<Piece>> data = new MutableLiveData<>();
+        data.setValue(game.getMovablePieces(game.getCurrentPlayer()));
+        return data;
+    }
+
+    /**
+     * If the dice is ready to be rolled (i.e. is used), the dice is rolled.
+     * @return the value of the rolled dice (if it´s ready to be rolled), or -1 if
+     * it´s not ready to be rolled.
+     */
+    public int rollDice() {
+        // if the dice is used, you may roll again
+        if (game.getDice().getIsUsed()) {
+            game.rollDice();
+            return game.getDice().getRolledValue();
+        }
+        return -1;
+    }
+
+
+    public void diceRolled() {
+        // If the rolled value is not possible to use, i.e. the player can´t move
+        // any of their pieces with that value, the dice should be moved to the
+        // next player in the view and the dice should be set to used. Also, the next
+        // player should be selected.
+        if (!isPossibleToUseDicevalue()) {
+            selectNextPlayer();
+            diceIsUsed();
+        } else {
+            // The player can make a turn and the player's pieces will be highlighted
+            // through the observer.
+            movesArePossibleToMake.setValue(true);
+        }
+    }
+
 }

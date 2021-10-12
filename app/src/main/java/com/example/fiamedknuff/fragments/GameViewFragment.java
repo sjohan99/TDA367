@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.fiamedknuff.R;
+import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 
 import org.w3c.dom.Text;
@@ -30,6 +32,7 @@ public class GameViewFragment extends Fragment {
 
     private GameSideBarFragment sideBarFragment;
     private StandardboardFragment boardFragment;
+    private DiceFragment diceFragment;
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -45,11 +48,26 @@ public class GameViewFragment extends Fragment {
         populatePlayerLabelList();
         setLabelNames();
         initFragments();
+        initObservers();
 
-        showFragment(R.id.boardFrame, boardFragment);
-        showFragment(R.id.sideBarFrame, sideBarFragment);
+        showAllFragments();
 
         return view;
+    }
+
+    private void initObservers() {
+        gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Player player) {
+                // TODO move diceframe to current player
+            }
+        });
+    }
+
+    private void showAllFragments() {
+        showFragment(R.id.boardFrame, boardFragment);
+        showFragment(R.id.sideBarFrame, sideBarFragment);
+        showFragment(R.id.diceFrame, diceFragment);
     }
 
     private void initLabels(View view) {
@@ -80,6 +98,7 @@ public class GameViewFragment extends Fragment {
     private void initFragments() {
         sideBarFragment = new GameSideBarFragment();
         boardFragment = new StandardboardFragment();
+        diceFragment = new DiceFragment();
     }
 
     private <T extends Fragment> void showFragment(int frameLayoutId, T fragment) {

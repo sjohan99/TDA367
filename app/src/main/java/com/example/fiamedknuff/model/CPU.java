@@ -27,7 +27,7 @@ public class CPU extends Player {
     /**
      * Set the board to incoming parameter of board, if board is already initialized,
      * do nothing
-     * @param board is the specific board to be...?
+     * @param board is the specific board to be set to CPU's board variable
      */
     public void setBoard(Board board) {
         if (this.board == null) {
@@ -36,7 +36,10 @@ public class CPU extends Player {
     }
 
     /**
-     * Decides which move a CPU wants to make by ranking different moves
+     * Decides which move a CPU wants to make by ranking different moves. Prioritizes knockout
+     * of another players piece. Otherwise going out with a piece off the board, then going out
+     * with a piece from the home and lastly move a leading piece forward (a leading piece is the
+     * piece that has moved the farthest on the board but not yet entered the home-path).
      * @param roll is the value from the latest roll
      * @return the piece to be moved
      */
@@ -54,7 +57,7 @@ public class CPU extends Player {
             }
         }
         for (Piece piece : movablePieces) {
-            if (piece.getIndex() + roll == 45) {
+            if (piece.getIndex() + roll == board.getFinishIndex()) {
                 return piece;
             }
         }
@@ -66,12 +69,14 @@ public class CPU extends Player {
         return leadingPiece(movablePieces);
     }
 
+    // Return the leading piece, which is the piece that has moved the farthest on the board and
+    // not yet entered the home path. If all the pieces is in the home path, return the first piece
     private Piece leadingPiece(List<Piece> movablePieces) {
         Piece piece = movablePieces.get(0);
         int tmpIndex = piece.getIndex();
         for (Piece p : movablePieces) {
             // If piece is in home path, don't prioritize moving that piece
-            if (p.getIndex() > 41) {
+            if (p.getIndex() > board.getLapLength() + 1) {
                 continue;
             }
             if (p.getIndex() > tmpIndex) {
@@ -82,16 +87,4 @@ public class CPU extends Player {
         return piece;
     }
 
-    /*
-    * Ta reda på vilka drag som är möjliga, som en vanlig Player -> getMovablePieces
-    * Rangordning på möjliga drag:
-    * 1. Om isOccupied -> knockput
-    * 2. Gå ut med en pjäs
-    * 3. Gå ut från bo med pjäs -> 1a eller 6a
-    * 4. Inget speciellt, bara gå antal steg på tärningen framåt. Ta första bästa. (Slumpa mellan dessa om det finns fler?)
-    *
-    * Välja vilken pjäs -> Flytta den
-    *
-    * Överlag: Kan inte flytta -> Gå vidare till nästa
-     */
 }

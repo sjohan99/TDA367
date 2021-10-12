@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sbDiceSize">60dp</dimen>
+    <dimen name="sbDiceMarginHorizontal">132dp</dimen>
+    <dimen name="sbDiceMarginVertical">132dp</dimen>
+    <dimen name="diceSize">60dp</dimen>
+    <dimen name="diceMarginHorizontal">25dp</dimen>
+    <dimen name="diceMarginVertical">25dp</dimen>
+</resources>
