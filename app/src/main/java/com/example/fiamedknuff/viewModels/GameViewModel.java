@@ -139,9 +139,8 @@ public class GameViewModel extends ViewModel {
     /**
      * Sets the dice to used.
      */
-    // TODO: 2021-10-10 Create method in game for this to avoid unnecessary dependencies
     public void diceIsUsed() {
-        game.getDice().setIsUsed(true);
+        game.setDiceIsUsed();
     }
 
     /**
