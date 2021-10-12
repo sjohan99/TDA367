@@ -2,6 +2,8 @@ package com.example.fiamedknuff.fragments;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.fiamedknuff.R;
@@ -39,14 +42,20 @@ public class GameViewFragment extends Fragment {
 
     private GameViewModel gameViewModel;
 
+    private ConstraintLayout gameViewConstraintLayout;
+    private FrameLayout diceFrame;
+    private FrameLayout boardFrame;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
         View view = inflater.inflate(R.layout.fragment_game_view, container, false);
+        gameViewConstraintLayout = view.findViewById(R.id.gameViewConstraintLayout);
 
         initLabels(view);
         populatePlayerLabelList();
         setLabelNames();
+        initFrames(view);
         initFragments();
         initObservers();
 
@@ -55,11 +64,29 @@ public class GameViewFragment extends Fragment {
         return view;
     }
 
+    private void initFrames(View view) {
+        diceFrame = view.findViewById(R.id.diceFrame);
+        boardFrame = view.findViewById(R.id.boardFrame);
+    }
+
     private void initObservers() {
         gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
             @Override
             public void onChanged(Player player) {
                 // TODO move diceframe to current player
+                if (player.getName().equals(player2Label.getText().toString())) {
+                    ConstraintSet constraintSet = new ConstraintSet();
+                    constraintSet.clone(gameViewConstraintLayout);
+                    constraintSet.connect(
+                            diceFrame.getId(), ConstraintSet.START, boardFrame.getId(), ConstraintSet.START);
+                    constraintSet.connect(
+                            diceFrame.getId(), ConstraintSet.END, boardFrame.getId(), ConstraintSet.END);
+                    constraintSet.connect(
+                            diceFrame.getId(), ConstraintSet.TOP, boardFrame.getId(), ConstraintSet.TOP);
+                    constraintSet.connect(
+                            diceFrame.getId(), ConstraintSet.BOTTOM, boardFrame.getId(), ConstraintSet.BOTTOM);
+                    constraintSet.applyTo(gameViewConstraintLayout);
+                    diceFrame.bringToFront();                }
             }
         });
     }
