@@ -84,7 +84,24 @@ public class GameSetupFragment extends Fragment {
             }
         });
 
+        initTypoForEditTexts();
+
         return view;
+    }
+
+    private void initTypoForEditTexts() {
+        for (EditText playerNameLabel : new EditText[] {
+                player1Name,
+                player2Name,
+                player3Name,
+                player4Name}) {
+            playerNameLabel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // TODO Add type controll
+                }
+            });
+        }
     }
 
     private Color[] getColors() {
