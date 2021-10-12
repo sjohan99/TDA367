@@ -48,7 +48,9 @@ public class GameSetupFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         navController = NavHostFragment.findNavController(this);
-        gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
+
+        gameViewModel = new ViewModelProvider(requireActivity()).get(GameViewModel.class);
+
         View view = inflater.inflate(R.layout.fragment_game_setup, container, false);
 
         initPlayerNameInputs(view);
@@ -65,20 +67,20 @@ public class GameSetupFragment extends Fragment {
 
     private void initCreateGameButton(View view) {
         createGameBtn = view.findViewById(R.id.createGameBtn);
-        createGameBtn.setOnClickListener(gameBtn -> {
+        createGameBtn.setOnClickListener(view1 -> {
             // GameFactory.createNewGame(getPlayerNames(), getColors(), getSelectedCPU());
             if (readyToCreateGame) {
                 try {
-                    gameViewModel.init(getPlayerNames(), getColors(), getSelectedCPU());
+                    gameViewModel.init(GameSetupFragment.this.getPlayerNames(), GameSetupFragment.this.getColors(), GameSetupFragment.this.getSelectedCPU());
                 } catch (NotImplementedException e) {
                     e.printStackTrace();
                 }
-            }
             // TODO Get more parameter inputs
             navController.navigate(R.id.action_gameSetupFragment_to_gameView, null, new NavOptions.Builder()
                     .setEnterAnim(android.R.animator.fade_in)
                     .setExitAnim(android.R.animator.fade_out)
                     .build());
+            }
         });
     }
 
