@@ -1,10 +1,8 @@
 package com.example.fiamedknuff.fragments;
 
 import android.os.Build;
-import static android.content.ContentValues.TAG;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,10 +27,7 @@ import com.example.fiamedknuff.viewModels.GameViewModel;
 import com.example.fiamedknuff.model.Color;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 // TODO: 2021-10-11 Disable being able to choose only one player
 public class GameSetupFragment extends Fragment {
@@ -59,15 +54,14 @@ public class GameSetupFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_game_setup, container, false);
 
-        initWidgets(view);
-        populateSpinner();
+        initPlayerNameInput(view);
+        initPlayerAmountSpinner(view);
         populatePlayersList();
         populateCPUCheckBoxList();
         populateColors();
 
         initCreateGameButton();
 
-        initPlayerAmountSpinner();
 
         return view;
     }
@@ -92,7 +86,9 @@ public class GameSetupFragment extends Fragment {
         });
     }
 
-    private void initPlayerAmountSpinner() {
+    private void initPlayerAmountSpinner(View view) {
+        playerAmountSpinner = view.findViewById(R.id.playerAmountSpinner);
+        populateSpinner();
         playerAmountSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object item = parent.getItemAtPosition(position);
@@ -165,8 +161,7 @@ public class GameSetupFragment extends Fragment {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void initWidgets(View view) {
-        playerAmountSpinner = view.findViewById(R.id.playerAmountSpinner);
+    private void initPlayerNameInput(View view) {
         createGameBtn = view.findViewById(R.id.createGameBtn);
         // EditTexts
         player1Name = view.findViewById(R.id.player1Name);
