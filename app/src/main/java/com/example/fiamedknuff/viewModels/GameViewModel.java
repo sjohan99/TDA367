@@ -221,4 +221,8 @@ public class GameViewModel extends ViewModel {
         return player.getClass() == CPU.class;
     }
 
+    public CPU getCPUPlayer() {
+        return (CPU) game.getCurrentPlayer();
+    }
+
 }
