@@ -9,7 +9,7 @@
     <dimen name="sbHomeHeight">90dp</dimen>
     <dimen name="sbHomeSpace">90dp</dimen>
     <dimen name="sbHomeMargin">20dp</dimen>
-    <dimen name="sbPieceHeight">45dp</dimen>
+    <dimen name="sbPieceHeight">40dp</dimen>
     <dimen name="sbPieceMargin">10dp</dimen>
     <dimen name="sbHomePosMargin">36dp</dimen>
 </resources>

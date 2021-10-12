@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
+    android:id="@+id/sbConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.StandardboardFragment"
@@ -882,15 +882,5 @@
         android:layout_height="@dimen/sbPosHeight"
         app:layout_constraintStart_toEndOf="@+id/greenHomepos2"
         app:layout_constraintTop_toBottomOf="@+id/greenHomepos1" />
-
-    <ImageView
-        android:id="@+id/diceImage"
-        android:layout_width="@dimen/sbDiceSize"
-        android:layout_height="@dimen/sbDiceSize"
-        android:layout_marginEnd="@dimen/sbDiceMarginHorizontal"
-        android:layout_marginBottom="@dimen/sbDiceMarginVertical"
-        android:src="@drawable/dice1"
-        app:layout_constraintBottom_toTopOf="@+id/pos0"
-        app:layout_constraintEnd_toStartOf="@+id/pos8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
