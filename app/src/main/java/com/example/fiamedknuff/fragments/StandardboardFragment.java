@@ -14,6 +14,11 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
@@ -441,6 +446,7 @@ public class StandardboardFragment extends Fragment {
      */
     private void move(ImageView piece) {
         //move piece in view, implementation not completed yet
+        animateFinishedPiece(piece);
         Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
         moveImageView(piece, imageViewPositionHashMap.get(target));
     }
@@ -466,6 +472,8 @@ public class StandardboardFragment extends Fragment {
      */
     private boolean removePieceIfFinished(ImageView piece) {
         if (pieceIsFinished(piece)) {
+            //TODO animation not completed, and might need a delay or something to be seen
+            animateFinishedPiece(piece);
             piece.setVisibility(View.INVISIBLE);
             return true;
         }
@@ -524,6 +532,22 @@ public class StandardboardFragment extends Fragment {
         }
 
         movingImageView.bringToFront();
+    }
+
+    private void animateFinishedPiece(ImageView piece) {
+        //TODO
+        Animation rotate = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.rotate);
+        Animation fadeOut = new AlphaAnimation(1, 0);
+        fadeOut.setInterpolator(new AccelerateInterpolator());
+        fadeOut.setStartOffset(1000);
+        fadeOut.setDuration(1000);
+
+        AnimationSet animation = new AnimationSet(false);
+        animation.addAnimation(rotate);
+        animation.addAnimation(fadeOut);
+        piece.setAnimation(animation);
+
+        piece.animate(); // animate the roll of the dice
     }
 
 }
