@@ -466,69 +466,6 @@ public class StandardboardFragment extends Fragment {
         return null; //TODO Exception?
     }
 
-
-
-
-    /**
-     * Gets the current player's movable pieces marked on the GUI.
-     */
-    private void markMovablePieces() {
-        for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
-            // TODO: Change to something fancy
-            entry.getValue().setBackgroundColor(R.drawable.background); // Highlight the movable piece
-        }
-    }
-
-    /**
-     * Removes the background of all piece's ImageView.
-     */
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void unMarkAllPieces() {
-        imageViewPieceHashMap.forEach((imageView, piece) -> {
-            imageView.setBackgroundColor(0); // Remove the background.
-        });
-    }
-
-    /**
-     * TODO Make more slim
-     * Method used to help identify ImageViews for affecting pliancy on the current player's pieces.
-     * @return Returns a HashMap with the current player's piece's ImageViews.
-     */
-    public HashMap<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
-        // For each of the player's movable pieces, iterate through all pieces in the HashMap
-        // and find the corresponding ImageView that is connected to the movable piece.
-        HashMap<Piece, ImageView> map = new HashMap<>();
-        LiveData<List<Piece>> movablePieces = gameViewModel.getMovablePiecesForCurrentPlayer();
-        for (Piece piece : movablePieces.getValue()) {
-            for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
-                if (piece.toString().equals(entry.getValue().toString())) {
-                    map.put(entry.getValue(), entry.getKey());
-                }
-            }
-        }
-        return map;
-    }
-
-    /**
-     * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
-     * should be called. The pieces should be non-clickable when the method makeTurn is called.
-     */
-    private void addPiecesOnClickListeners() {
-        for (ImageView piece : piecesImageViews) {
-            piece.setOnClickListener(new View.OnClickListener() {
-                @RequiresApi(api = Build.VERSION_CODES.N)
-                @Override
-                public void onClick(View view) {
-                    unMarkAllPieces();
-                    setPiecesClickable(false);
-                    latestClickedPiece = piece;
-                    gameViewModel.move(imageViewPieceHashMap.get(piece));
-                    setPiecesClickable(true);
-                }
-            });
-        }
-    }
-
     /**
      * Should move the piece in the view (implementation not completed yet) to the position
      * that the piece has moved to in the model.
