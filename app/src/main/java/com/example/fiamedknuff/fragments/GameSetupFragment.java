@@ -49,6 +49,7 @@ public class GameSetupFragment extends Fragment {
     ArrayList<Color> colors = new ArrayList<>();
     private int selectedPlayerCount = 4;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,8 +64,6 @@ public class GameSetupFragment extends Fragment {
         populatePlayersList();
         populateCPUCheckBoxList();
         populateColors();
-
-
 
         initCreateGameButton();
 
@@ -165,6 +164,7 @@ public class GameSetupFragment extends Fragment {
         return list;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void initWidgets(View view) {
         playerAmountSpinner = view.findViewById(R.id.playerAmountSpinner);
         createGameBtn = view.findViewById(R.id.createGameBtn);
