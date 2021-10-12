@@ -47,45 +47,6 @@ public class GameSetupFragment extends Fragment {
         initWidgets(view);
         populateSpinner();
 
-        // TODO Add EditTexts dynamically
-        /*playerAmountSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                // TODO: Dynamically add EditTexts (Player name inputs)
-                // int playerAmount = Integer.getInteger(playerAmountSpinner.getSelectedItem().toString()); Does not work
-                for (int j = 0; j < 3; j++) {
-                    EditText editText = new EditText(getActivity());
-                    verticalLayout.addView(editText);
-                }
-
-                // TODO: Add the EditText to verticalLayout
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {}
-        });*/
-
-        createGameBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String playerCount = playerAmountSpinner.getSelectedItem().toString();
-
-                // GameFactory.createNewGame(getPlayerNames(), getColors(), getSelectedCPU());
-                try {
-                    gameViewModel.init(getPlayerNames(), getColors(), getSelectedCPU());
-                } catch (NotImplementedException e) {
-                    e.printStackTrace();
-                }
-                // TODO Get more parameter inputs
-                navController.navigate(R.id.action_gameSetupFragment_to_gameView, null, new NavOptions.Builder()
-                        .setEnterAnim(android.R.animator.fade_in)
-                        .setExitAnim(android.R.animator.fade_out)
-                        .build());
-            }
-        });
-
-        initTypoForEditTexts();
-
         return view;
     }
 
@@ -95,10 +56,11 @@ public class GameSetupFragment extends Fragment {
                 player2Name,
                 player3Name,
                 player4Name}) {
-            playerNameLabel.setOnClickListener(new View.OnClickListener() {
+            playerNameLabel.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
-                public void onClick(View view) {
+                public void onFocusChange(View view, boolean b) {
                     // TODO Add type controll
+
                 }
             });
         }
@@ -140,6 +102,29 @@ public class GameSetupFragment extends Fragment {
         CPUCheckBox2 = view.findViewById(R.id.CPUCheckBox2);
         CPUCheckBox3 = view.findViewById(R.id.CPUCheckBox3);
         CPUCheckBox4 = view.findViewById(R.id.CPUCheckBox4);
+
+        initTypoForEditTexts();
+
+        createGameBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String playerCount = playerAmountSpinner.getSelectedItem().toString();
+
+                // GameFactory.createNewGame(getPlayerNames(), getColors(), getSelectedCPU());
+                try {
+                    gameViewModel.init(getPlayerNames(), getColors(), getSelectedCPU());
+                } catch (NotImplementedException e) {
+                    e.printStackTrace();
+                }
+                // TODO Get more parameter inputs
+                navController.navigate(R.id.action_gameSetupFragment_to_gameView, null, new NavOptions.Builder()
+                        .setEnterAnim(android.R.animator.fade_in)
+                        .setExitAnim(android.R.animator.fade_out)
+                        .build());
+            }
+        });
+
+
     }
 
     private void populateSpinner() {
