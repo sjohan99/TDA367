@@ -23,6 +23,7 @@ import com.example.fiamedknuff.viewModels.GameViewModel;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * UI controller for the game view layout.
@@ -45,6 +46,12 @@ public class GameViewFragment extends Fragment {
     private ConstraintLayout gameViewConstraintLayout;
     private FrameLayout diceFrame;
     private FrameLayout boardFrame;
+
+    private HashMap<String, ConstraintSet> diceConstraints;
+    private ConstraintSet constraintSetPlayer1;
+    private ConstraintSet constraintSetPlayer2;
+    private ConstraintSet constraintSetPlayer3;
+    private ConstraintSet constraintSetPlayer4;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -86,9 +93,24 @@ public class GameViewFragment extends Fragment {
                     constraintSet.connect(
                             diceFrame.getId(), ConstraintSet.BOTTOM, boardFrame.getId(), ConstraintSet.BOTTOM);
                     constraintSet.applyTo(gameViewConstraintLayout);
-                    diceFrame.bringToFront();                }
+                    diceFrame.bringToFront();
+                }
             }
         });
+    }
+
+    private void createConstraintSets() {
+        constraintSetPlayer1 = new ConstraintSet();
+        constraintSetPlayer1.clone(gameViewConstraintLayout);
+        constraintSetPlayer1.connect(
+                diceFrame.getId(), ConstraintSet.START, diceFrame.getId(), ConstraintSet.START);
+        constraintSetPlayer1.connect(
+                diceFrame.getId(), ConstraintSet.END, boardFrame.getId(), ConstraintSet.START);
+        constraintSetPlayer1.connect(
+                diceFrame.getId(), ConstraintSet.TOP, player1Label.getId(), ConstraintSet.BOTTOM);
+        constraintSetPlayer1.connect(
+                diceFrame.getId(), ConstraintSet.BOTTOM, diceFrame.getId(), ConstraintSet.BOTTOM);
+        constraintSetPlayer1.applyTo(gameViewConstraintLayout);
     }
 
     private void showAllFragments() {
