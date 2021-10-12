@@ -139,9 +139,8 @@ public class GameViewModel extends ViewModel {
     /**
      * Sets the dice to used.
      */
-    // TODO: 2021-10-10 Create method in game for this to avoid unnecessary dependencies
-    public void diceIsUsed() {
-        game.getDice().setIsUsed(true);
+    public void setDiceIsUsed() {
+        game.setDiceIsUsed();
     }
 
     /**
@@ -209,7 +208,7 @@ public class GameViewModel extends ViewModel {
         // player should be selected.
         if (!isPossibleToUseDicevalue()) {
             selectNextPlayer();
-            diceIsUsed();
+            setDiceIsUsed();
         } else {
             // The player can make a turn and the player's pieces will be highlighted
             // through the observer.
