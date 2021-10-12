@@ -2,6 +2,8 @@ package com.example.fiamedknuff.fragments;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,15 +13,17 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * UI controller for the game view layout.
@@ -28,7 +32,7 @@ import java.util.ArrayList;
 public class GameViewFragment extends Fragment {
 
     private TextView player1Label, player2Label, player3Label, player4Label;
-    private ArrayList<TextView> playerLabels = new ArrayList<>();
+    private List<TextView> playerLabels = new ArrayList<>();
 
     private GameSideBarFragment sideBarFragment;
     private StandardboardFragment boardFragment;
@@ -39,15 +43,33 @@ public class GameViewFragment extends Fragment {
 
     private GameViewModel gameViewModel;
 
+    private ConstraintLayout gameViewConstraintLayout;
+    private FrameLayout diceFrame;
+    private FrameLayout boardFrame;
+
+    private ImageView spacePlayer1Dice;
+    private ImageView spacePlayer2Dice;
+    private ImageView spacePlayer3Dice;
+    private ImageView spacePlayer4Dice;
+    private HashMap<String, ImageView> playerToDicespaceHashMap;
+    private List<ImageView> diceSpaces;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
         View view = inflater.inflate(R.layout.fragment_game_view, container, false);
+        gameViewConstraintLayout = view.findViewById(R.id.gameViewConstraintLayout);
 
         initLabels(view);
         populatePlayerLabelList();
         setLabelNames();
+        initFrames(view);
         initFragments();
+
+        //TODO refactor
+        initDiceSpaces(view);
+        initDiceSpacesList();
+        initPlayerToDicespaceHashMap();
         initObservers();
 
         showAllFragments();
@@ -55,13 +77,57 @@ public class GameViewFragment extends Fragment {
         return view;
     }
 
+    private void initFrames(View view) {
+        diceFrame = view.findViewById(R.id.diceFrame);
+        boardFrame = view.findViewById(R.id.boardFrame);
+    }
+
     private void initObservers() {
         gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
             @Override
             public void onChanged(Player player) {
-                // TODO move diceframe to current player
+                ImageView target = playerToDicespaceHashMap.get(player.getName());
+                moveDice(target);
             }
         });
+    }
+
+    private void moveDice(ImageView target) {
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(gameViewConstraintLayout);
+        constraintSet.connect(
+                diceFrame.getId(), ConstraintSet.START, target.getId(), ConstraintSet.START);
+        constraintSet.connect(
+                diceFrame.getId(), ConstraintSet.END, target.getId(), ConstraintSet.END);
+        constraintSet.connect(
+                diceFrame.getId(), ConstraintSet.TOP, target.getId(), ConstraintSet.TOP);
+        constraintSet.connect(
+                diceFrame.getId(), ConstraintSet.BOTTOM, target.getId(), ConstraintSet.BOTTOM);
+        constraintSet.applyTo(gameViewConstraintLayout);
+
+        diceFrame.bringToFront();
+    }
+
+    private void initDiceSpaces(View view) {
+        spacePlayer1Dice = view.findViewById(R.id.spacePlayer1Dice);
+        spacePlayer2Dice = view.findViewById(R.id.spacePlayer2Dice);
+        spacePlayer3Dice = view.findViewById(R.id.spacePlayer3Dice);
+        spacePlayer4Dice = view.findViewById(R.id.spacePlayer4Dice);
+    }
+
+    private void initDiceSpacesList() {
+        diceSpaces = new ArrayList<>();
+        diceSpaces.add(spacePlayer1Dice);
+        diceSpaces.add(spacePlayer2Dice);
+        diceSpaces.add(spacePlayer3Dice);
+        diceSpaces.add(spacePlayer4Dice);
+    }
+
+    private void initPlayerToDicespaceHashMap() {
+        playerToDicespaceHashMap = new HashMap<>();
+        for (int i = 0; i < playerLabels.size(); i++) {
+            playerToDicespaceHashMap.put(playerLabels.get(i).getText().toString(), diceSpaces.get(i));
+        }
     }
 
     private void showAllFragments() {

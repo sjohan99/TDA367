@@ -15,6 +15,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
@@ -63,9 +66,6 @@ public class StandardboardFragment extends Fragment {
 
     ConstraintLayout constraintLayout;
     GameViewModel gameViewModel;
-
-    ImageView diceImage;
-    List<Integer> diceImages;
 
     ImageView latestClickedPiece;
 
@@ -413,7 +413,7 @@ public class StandardboardFragment extends Fragment {
                         gameViewModel.selectNextPlayer();
                     }
                     // check if game is finished --> finish...
-                    gameViewModel.diceIsUsed();
+                    gameViewModel.setDiceIsUsed();
                 }
             }
         });
@@ -432,7 +432,15 @@ public class StandardboardFragment extends Fragment {
             }
         });
 
-        gameViewModel.currentPlayer.observe(getActivity(), new Observer<Player>() {
+        gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Player player) {
+                // trigger roll dice clicked
+                //
+            }
+        });
+
+      gameViewModel.currentPlayer.observe(getActivity(), new Observer<Player>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onChanged(Player player) {
@@ -460,6 +468,66 @@ public class StandardboardFragment extends Fragment {
 
 
 
+
+    /**
+     * Gets the current player's movable pieces marked on the GUI.
+     */
+    private void markMovablePieces() {
+        for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
+            // TODO: Change to something fancy
+            entry.getValue().setBackgroundColor(R.drawable.background); // Highlight the movable piece
+        }
+    }
+
+    /**
+     * Removes the background of all piece's ImageView.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void unMarkAllPieces() {
+        imageViewPieceHashMap.forEach((imageView, piece) -> {
+            imageView.setBackgroundColor(0); // Remove the background.
+        });
+    }
+
+    /**
+     * TODO Make more slim
+     * Method used to help identify ImageViews for affecting pliancy on the current player's pieces.
+     * @return Returns a HashMap with the current player's piece's ImageViews.
+     */
+    public HashMap<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
+        // For each of the player's movable pieces, iterate through all pieces in the HashMap
+        // and find the corresponding ImageView that is connected to the movable piece.
+        HashMap<Piece, ImageView> map = new HashMap<>();
+        LiveData<List<Piece>> movablePieces = gameViewModel.getMovablePiecesForCurrentPlayer();
+        for (Piece piece : movablePieces.getValue()) {
+            for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
+                if (piece.toString().equals(entry.getValue().toString())) {
+                    map.put(entry.getValue(), entry.getKey());
+                }
+            }
+        }
+        return map;
+    }
+
+    /**
+     * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
+     * should be called. The pieces should be non-clickable when the method makeTurn is called.
+     */
+    private void addPiecesOnClickListeners() {
+        for (ImageView piece : piecesImageViews) {
+            piece.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onClick(View view) {
+                    unMarkAllPieces();
+                    setPiecesClickable(false);
+                    latestClickedPiece = piece;
+                    gameViewModel.move(imageViewPieceHashMap.get(piece));
+                    setPiecesClickable(true);
+                }
+            });
+        }
+    }
 
     /**
      * Should move the piece in the view (implementation not completed yet) to the position
@@ -493,6 +561,8 @@ public class StandardboardFragment extends Fragment {
      */
     private boolean removePieceIfFinished(ImageView piece) {
         if (pieceIsFinished(piece)) {
+            //TODO animation might need a delay or something to be seen?
+            animateFinishedPiece(piece);
             piece.setVisibility(View.INVISIBLE);
             return true;
         }
@@ -551,6 +621,22 @@ public class StandardboardFragment extends Fragment {
         }
 
         movingImageView.bringToFront();
+    }
+
+    private void animateFinishedPiece(ImageView piece) {
+        Animation rotate = AnimationUtils.loadAnimation(
+                requireActivity().getApplicationContext(), R.anim.rotate);
+        Animation fadeout = AnimationUtils.loadAnimation(
+                requireActivity().getApplicationContext(), R.anim.fadeout);
+
+        rotate.setDuration(750);
+
+        AnimationSet animation = new AnimationSet(false);
+        animation.addAnimation(rotate);
+        animation.addAnimation(fadeout);
+        piece.setAnimation(animation);
+
+        piece.animate();
     }
 
 }

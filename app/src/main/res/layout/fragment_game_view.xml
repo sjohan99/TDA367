@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/gameViewConstraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="ContentDescription">
 
-    <!--  Foreground -->
+<!--  Foreground -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
@@ -79,15 +80,52 @@
         app:layout_constraintTop_toBottomOf="@+id/boardFrame" />
 
     <!-- Dice container -->
+
     <FrameLayout
         android:id="@+id/diceFrame"
+        android:layout_width="@dimen/diceSize"
+        android:layout_height="@dimen/diceSize"
+        app:layout_constraintBottom_toBottomOf="@+id/spacePlayer1Dice"
+        app:layout_constraintEnd_toEndOf="@+id/spacePlayer1Dice"
+        app:layout_constraintStart_toStartOf="@+id/spacePlayer1Dice"
+        app:layout_constraintTop_toTopOf="@+id/spacePlayer1Dice">
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/spacePlayer1Dice"
         android:layout_width="@dimen/diceSize"
         android:layout_height="@dimen/diceSize"
         android:layout_marginTop="@dimen/diceMarginVertical"
         android:layout_marginEnd="@dimen/diceMarginHorizontal"
         app:layout_constraintEnd_toStartOf="@+id/boardFrame"
-        app:layout_constraintTop_toBottomOf="@+id/player1Label">
+        app:layout_constraintTop_toBottomOf="@+id/player1Label" />
 
-    </FrameLayout>
+    <ImageView
+        android:id="@+id/spacePlayer2Dice"
+        android:layout_width="@dimen/diceSize"
+        android:layout_height="@dimen/diceSize"
+        android:layout_marginStart="@dimen/diceMarginHorizontal"
+        android:layout_marginTop="@dimen/diceMarginVertical"
+        app:layout_constraintStart_toEndOf="@+id/boardFrame"
+        app:layout_constraintTop_toBottomOf="@+id/player2Label" />
+
+    <ImageView
+        android:id="@+id/spacePlayer3Dice"
+        android:layout_width="@dimen/diceSize"
+        android:layout_height="@dimen/diceSize"
+        android:layout_marginStart="@dimen/diceMarginHorizontal"
+        android:layout_marginBottom="@dimen/diceMarginVertical"
+        app:layout_constraintBottom_toTopOf="@+id/player3Label"
+        app:layout_constraintStart_toEndOf="@+id/boardFrame" />
+
+    <ImageView
+        android:id="@+id/spacePlayer4Dice"
+        android:layout_width="@dimen/diceSize"
+        android:layout_height="@dimen/diceSize"
+        android:layout_marginEnd="@dimen/diceMarginHorizontal"
+        android:layout_marginBottom="@dimen/diceMarginVertical"
+        app:layout_constraintBottom_toTopOf="@+id/player4Label"
+        app:layout_constraintEnd_toStartOf="@+id/boardFrame" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
