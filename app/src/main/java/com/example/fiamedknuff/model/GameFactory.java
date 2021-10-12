@@ -25,13 +25,13 @@ public class GameFactory {
      * @return the created game in accordance with the parameters
      * @throws NotImplementedException if an unsupported amount of players is supplied
      */
-    static public Game createNewGame(List<String> playerNames, Color[] colors, boolean[] CPUSelection) throws NotImplementedException {
+    static public Game createNewGame(List<String> playerNames, List<Color> colors, List<Boolean> CPUSelection) throws NotImplementedException {
         ArrayList<Player> players = new ArrayList<>();
         for (int i = 0; i < playerNames.size(); i++) {
-            if (CPUSelection[i]) {
-                players.add(new CPU(playerNames.get(i), colors[i]));
+            if (CPUSelection.get(i)) {
+                players.add(new CPU(playerNames.get(i), colors.get(i)));
             } else {
-                players.add(new Player(playerNames.get(i), colors[i]));
+                players.add(new Player(playerNames.get(i), colors.get(i)));
             }
         }
         return new Game(players);

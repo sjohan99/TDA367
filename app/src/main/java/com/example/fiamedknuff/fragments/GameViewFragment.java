@@ -17,6 +17,10 @@ import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+
 /**
  * UI controller for the game view layout.
  * @author Philip Winsnes
@@ -24,6 +28,7 @@ import com.example.fiamedknuff.viewModels.GameViewModel;
 public class GameViewFragment extends Fragment {
 
     private TextView player1Label, player2Label, player3Label, player4Label;
+    private ArrayList<TextView> playerLabels = new ArrayList<>();
 
     private GameSideBarFragment sideBarFragment;
     private StandardboardFragment boardFragment;
@@ -39,8 +44,9 @@ public class GameViewFragment extends Fragment {
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
         View view = inflater.inflate(R.layout.fragment_game_view, container, false);
 
-
         initLabels(view);
+        populatePlayerLabelList();
+        setLabelNames();
         initFragments();
         initObservers();
 
@@ -69,11 +75,24 @@ public class GameViewFragment extends Fragment {
         player2Label = view.findViewById(R.id.player2Label);
         player3Label = view.findViewById(R.id.player3Label);
         player4Label = view.findViewById(R.id.player4Label);
+    }
 
-        player1Label.setText(gameViewModel.getPlayerName(0).getValue());
-        player2Label.setText(gameViewModel.getPlayerName(1).getValue());
-        player3Label.setText(gameViewModel.getPlayerName(2).getValue());
-        player4Label.setText(gameViewModel.getPlayerName(3).getValue());
+    private void setLabelNames() {
+        int players = gameViewModel.getPlayerCount();
+        for (TextView label : playerLabels) {
+            label.setVisibility(View.INVISIBLE);
+        }
+        for (int i = 0; i < players; i++) {
+            playerLabels.get(i).setText(gameViewModel.getPlayerName(i).getValue());
+            playerLabels.get(i).setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void populatePlayerLabelList() {
+        playerLabels.add(player1Label);
+        playerLabels.add(player2Label);
+        playerLabels.add(player3Label);
+        playerLabels.add(player4Label);
     }
 
     private void initFragments() {
