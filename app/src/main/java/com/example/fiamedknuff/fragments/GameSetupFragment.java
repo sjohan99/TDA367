@@ -27,7 +27,9 @@ import com.example.fiamedknuff.viewModels.GameViewModel;
 import com.example.fiamedknuff.model.Color;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 // TODO: 2021-10-11 Disable being able to choose only one player
 public class GameSetupFragment extends Fragment {
@@ -43,6 +45,7 @@ public class GameSetupFragment extends Fragment {
     ArrayList<CheckBox> CPUCheckBoxes = new ArrayList<>();
     ArrayList<Color> colors = new ArrayList<>();
     private int selectedPlayerCount = 4;
+    private boolean readyToCreateGame = false;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -57,10 +60,11 @@ public class GameSetupFragment extends Fragment {
         initPlayerNameInputs(view);
         initCPUCheckBoxes(view);
         initPlayerAmountSpinner(view);
+        initCreateGameButton(view);
+
         populatePlayersList();
         populateCPUCheckBoxList();
         populateColors();
-        initCreateGameButton(view);
 
         return view;
     }
@@ -185,14 +189,46 @@ public class GameSetupFragment extends Fragment {
             playerNameLabel.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View view, boolean b) {
-
-                    // TODO Add type controll
-                    getPlayerNames().stream().distinct().forEach(System.out::println);
-
+                    // TODO Add type control
+                    if (namesAreDistinguishable()) {
+                        // The player names are not distinct.
+                        readyToCreateGame = false;
+                        System.out.println("not ready");
+                    } else if (aNameIsEmpty()) {
+                        // A name is empty or does only contain whitespaces.
+                        readyToCreateGame = false;
+                        System.out.println("not ready");
+                    } else {
+                        readyToCreateGame = true;
+                        System.out.println("ready");
+                    }
                 }
 
             });
         }
+    }
+
+    private boolean aNameIsEmpty() {
+        for (String name : getPlayerNames()) {
+            if (!Pattern.matches("[a-zA-Z]+", name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if the entered player names are distinguishable.
+     * I.e. false will be returned if player 1 and player 2 have the same name.
+     * @return boolean
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private boolean namesAreDistinguishable() {
+        List<String> distinctNames = new ArrayList<>();
+        getPlayerNames().stream().distinct().forEach(s -> {
+            distinctNames.add(s);
+        });
+        return !getPlayerNames().toString().equals(distinctNames.toString());
     }
 
     private void populateSpinner() {
