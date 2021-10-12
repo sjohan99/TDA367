@@ -14,8 +14,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
@@ -66,9 +64,6 @@ public class StandardboardFragment extends Fragment {
 
     ConstraintLayout constraintLayout;
     GameViewModel gameViewModel;
-
-    ImageView diceImage;
-    List<Integer> diceImages;
 
     ImageView latestClickedPiece;
 
@@ -327,6 +322,58 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
+    private void initObservers() {
+
+        // TODO - some of the logic which is going to be implemented is right now just comments
+        //  or not written here at all
+        /*
+          Observes the variable isMoved in GameViewModel, which is set to true
+          when a piece is moved in the model.
+          Moves the piece in the view. If the piece is finished it is removed from the
+          model and view. If a player rolls a six and is not finished, it is their turn again.
+          Otherwise, the next player is selected.
+          If the game is finished, another method should be called here (not implemented yet).
+          If not, the dice in the view is moved to the next player and the dice´s value is
+          set to used.
+         */
+        gameViewModel.isMoved.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    move(latestClickedPiece);
+                    boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
+                    if (gameViewModel.isNextPlayer(playerIsFinished)) {
+                        gameViewModel.selectNextPlayer();
+                    }
+                    // check if game is finished --> finish...
+                    gameViewModel.setDiceIsUsed();
+                }
+            }
+        });
+
+        /*
+            Observes the variable movesArePossibleToMake, which is set to true when the rolled
+            dicevalue is able to use.
+            When the variable is set to true, the movable pieces should be highlighted.
+         */
+        gameViewModel.movesArePossibleToMake.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    markMovablePieces();
+                }
+            }
+        });
+
+        gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Player player) {
+                // trigger roll dice clicked
+                //
+            }
+        });
+    }
+
     /**
      * Gets the current player's movable pieces marked on the GUI.
      */
@@ -387,58 +434,6 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
-    private void initObservers() {
-
-        // TODO - some of the logic which is going to be implemented is right now just comments
-        //  or not written here at all
-        /*
-          Observes the variable isMoved in GameViewModel, which is set to true
-          when a piece is moved in the model.
-          Moves the piece in the view. If the piece is finished it is removed from the
-          model and view. If a player rolls a six and is not finished, it is their turn again.
-          Otherwise, the next player is selected.
-          If the game is finished, another method should be called here (not implemented yet).
-          If not, the dice in the view is moved to the next player and the dice´s value is
-          set to used.
-         */
-        gameViewModel.isMoved.observe(getActivity(), new Observer<>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                if (aBoolean) {
-                    move(latestClickedPiece);
-                    boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
-                    if (gameViewModel.isNextPlayer(playerIsFinished)) {
-                        gameViewModel.selectNextPlayer();
-                    }
-                    // check if game is finished --> finish...
-                    gameViewModel.setDiceIsUsed();
-                }
-            }
-        });
-
-        /*
-            Observes the variable movesArePossibleToMake, which is set to true when the rolled
-            dicevalue is able to use.
-            When the variable is set to true, the movable pieces should be highlighted.
-         */
-        gameViewModel.movesArePossibleToMake.observe(getActivity(), new Observer<>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                if (aBoolean) {
-                    markMovablePieces();
-                }
-            }
-        });
-
-        gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
-            @Override
-            public void onChanged(Player player) {
-                // trigger roll dice clicked
-                //
-            }
-        });
-    }
-
     /**
      * Should move the piece in the view (implementation not completed yet) to the position
      * that the piece has moved to in the model.
@@ -471,7 +466,7 @@ public class StandardboardFragment extends Fragment {
      */
     private boolean removePieceIfFinished(ImageView piece) {
         if (pieceIsFinished(piece)) {
-            //TODO animation not fully completed, and might need a delay or something to be seen
+            //TODO animation might need a delay or something to be seen?
             animateFinishedPiece(piece);
             piece.setVisibility(View.INVISIBLE);
             return true;
@@ -534,7 +529,6 @@ public class StandardboardFragment extends Fragment {
     }
 
     private void animateFinishedPiece(ImageView piece) {
-        //TODO not done
         Animation rotate = AnimationUtils.loadAnimation(
                 requireActivity().getApplicationContext(), R.anim.rotate);
         Animation fadeout = AnimationUtils.loadAnimation(
