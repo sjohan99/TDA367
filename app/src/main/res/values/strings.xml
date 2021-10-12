@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">FiaMedKnuff</string>
-    <string name="rulebook_title">RULES</string>
     <string name="mainmenu_title">FIA MED KNUFF</string>
     <string name="new_game_button">NEW GAME</string>
     <string name="leaderboard_button">LEADERBOARD</string>
     <string name="rulebook_button">RULES</string>
+    <string name="leaderboard_title">LEADERBOARD</string>
+    <string name="rulebook_title">RULES</string>
     <string name="player1Label">Player 1</string>
     <string name="player2Label">Player 2</string>
     <string name="player3Label">Player 3</string>

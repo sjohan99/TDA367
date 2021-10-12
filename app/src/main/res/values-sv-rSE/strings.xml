@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FiaMedKnuff</string>
-    <string name="rulebook_title">REGLER</string>
     <string name="mainmenu_title">FIA MED KNUFF</string>
     <string name="new_game_button">NYTT SPEL</string>
     <string name="leaderboard_button">TOPPLISTA</string>
     <string name="rulebook_button">REGLER</string>
+    <string name="leaderboard_title">TOPPLISTA</string>
+    <string name="rulebook_title">REGLER</string>
     <string name="player1Label">Spelare 1</string>
     <string name="player2Label">Spelare 2</string>
     <string name="player3Label">Spelare 3</string>
