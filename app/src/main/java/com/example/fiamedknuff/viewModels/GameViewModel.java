@@ -43,7 +43,7 @@ public class GameViewModel extends ViewModel {
 
         // For each CPU in the player list, set the board
         for (Player player: game.getActivePlayers()) {
-            if (player.getClass() == CPU.class) {
+            if (isCPU(player)) {
                 ((CPU) player).setBoard(game.getBoard());
             }
         }
@@ -215,6 +215,10 @@ public class GameViewModel extends ViewModel {
             // through the observer.
             movesArePossibleToMake.setValue(true);
         }
+    }
+
+    public boolean isCPU(Player player) {
+        return player.getClass() == CPU.class;
     }
 
 }
