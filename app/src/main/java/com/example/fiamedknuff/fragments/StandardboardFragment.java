@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
+import com.example.fiamedknuff.model.Dice;
 import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 import com.example.fiamedknuff.model.Piece;
@@ -372,14 +373,19 @@ public class StandardboardFragment extends Fragment {
                 @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onClick(View view) {
-                    unMarkAllPieces();
-                    setPiecesClickable(false);
-                    latestClickedPiece = piece;
-                    gameViewModel.move(imageViewPieceHashMap.get(piece));
-                    setPiecesClickable(true);
+                    pieceClicked(piece);
                 }
             });
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void pieceClicked(ImageView piece) {
+        unMarkAllPieces();
+        setPiecesClickable(false);
+        latestClickedPiece = piece;
+        gameViewModel.move(imageViewPieceHashMap.get(piece));
+        setPiecesClickable(true);
     }
 
     private void initObservers() {
@@ -435,20 +441,24 @@ public class StandardboardFragment extends Fragment {
                     int rolledValue = gameViewModel.rollDice();
 
                     Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(rolledValue);
-
-                    // trigger addPieceOnClickListener
-                    view.performClick();
-
-                    //unMarkAllPieces();
-                    //setPiecesClickable(false);
-                    //latestClickedPiece = imageViewPieceHashMap.get(piece);
-                    //gameViewModel.move(imageViewPieceHashMap.get(piece));
-                    //setPiecesClickable(true);
-
+                    ImageView pieceImageView = getPieceImageView(piece);
+                    pieceClicked(pieceImageView);
                 }
             }
         });
     }
+
+    private ImageView getPieceImageView(Piece piece) {
+        for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
+            if (piece.toString().equals(entry.getValue().toString())) {
+                return entry.getKey();
+            }
+        }
+        return null; //TODO Exception?
+    }
+
+
+
 
     /**
      * Should move the piece in the view (implementation not completed yet) to the position
