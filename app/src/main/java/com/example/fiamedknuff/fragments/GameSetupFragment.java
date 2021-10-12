@@ -89,8 +89,6 @@ public class GameSetupFragment extends Fragment {
         createGameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // GameFactory.createNewGame(getPlayerNames(), getColors(), getSelectedCPU());
-
                 try {
                     gameViewModel.init(getPlayerNames(), getColors(), getSelectedCPU());
                 } catch (NotImplementedException e) {
@@ -151,13 +149,12 @@ public class GameSetupFragment extends Fragment {
         // TODO
         List<Color> selectedColors = new ArrayList<>();
         for (int i = 0; i < selectedPlayerCount; i++) {
-            colors.add(colors.get(i));
+            selectedColors.add(colors.get(i));
         }
-        return colors;
+        return selectedColors;
     }
 
     private List<Boolean> getSelectedCPU() {
-        // FIXME: 2021-10-11 Fixa
         ArrayList<Boolean> isCPU = new ArrayList<>();
         for (int i = 0; i < selectedPlayerCount; i++) {
             isCPU.add(CPUCheckBoxes.get(i).isSelected());
@@ -170,10 +167,6 @@ public class GameSetupFragment extends Fragment {
         for (int i = 0; i < selectedPlayerCount; i++) {
             list.add(players.get(i).getText().toString());
         }
-//        list.add(player1Name.getText().toString());
-//        list.add(player2Name.getText().toString());
-//        list.add(player3Name.getText().toString());
-//        list.add(player4Name.getText().toString());
         return list;
     }
 

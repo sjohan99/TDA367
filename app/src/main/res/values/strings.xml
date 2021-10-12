@@ -9,13 +9,10 @@
     <string name="player2Label">Player 2</string>
     <string name="player3Label">Player 3</string>
     <string name="player4Label">Player 4</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="spinner_player_amount">
-        <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
     </string-array>
-    <string name="player_name_input">Namn på spelare</string>
+    <string name="player_name_input">Namn of player</string>
 </resources>
