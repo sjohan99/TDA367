@@ -20,8 +20,6 @@ import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -48,10 +46,10 @@ public class GameViewFragment extends Fragment {
     private FrameLayout boardFrame;
 
     private HashMap<String, ConstraintSet> diceConstraints;
-    private ConstraintSet constraintSetPlayer1;
-    private ConstraintSet constraintSetPlayer2;
-    private ConstraintSet constraintSetPlayer3;
-    private ConstraintSet constraintSetPlayer4;
+    private ConstraintSet constraintSetDiceToPlayer1;
+    private ConstraintSet constraintSetDiceToPlayer2;
+    private ConstraintSet constraintSetDiceToPlayer3;
+    private ConstraintSet constraintSetDiceToPlayer4;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,6 +62,7 @@ public class GameViewFragment extends Fragment {
         setLabelNames();
         initFrames(view);
         initFragments();
+        createConstraintSetsDiceToPlayers();
         initObservers();
 
         showAllFragments();
@@ -99,18 +98,67 @@ public class GameViewFragment extends Fragment {
         });
     }
 
-    private void createConstraintSets() {
-        constraintSetPlayer1 = new ConstraintSet();
-        constraintSetPlayer1.clone(gameViewConstraintLayout);
-        constraintSetPlayer1.connect(
+    private void createConstraintSetsDiceToPlayers() {
+        createConstraintSetDicePlayer1();
+        createConstraintSetDicePlayer2();
+        createConstraintSetDicePlayer3();
+        createConstraintSetDicePlayer4();
+    }
+
+    private void createConstraintSetDicePlayer1() {
+        constraintSetDiceToPlayer1 = new ConstraintSet();
+        constraintSetDiceToPlayer1.clone(gameViewConstraintLayout);
+        constraintSetDiceToPlayer1.connect(
                 diceFrame.getId(), ConstraintSet.START, diceFrame.getId(), ConstraintSet.START);
-        constraintSetPlayer1.connect(
+        constraintSetDiceToPlayer1.connect(
                 diceFrame.getId(), ConstraintSet.END, boardFrame.getId(), ConstraintSet.START);
-        constraintSetPlayer1.connect(
+        constraintSetDiceToPlayer1.connect(
                 diceFrame.getId(), ConstraintSet.TOP, player1Label.getId(), ConstraintSet.BOTTOM);
-        constraintSetPlayer1.connect(
+        constraintSetDiceToPlayer1.connect(
                 diceFrame.getId(), ConstraintSet.BOTTOM, diceFrame.getId(), ConstraintSet.BOTTOM);
-        constraintSetPlayer1.applyTo(gameViewConstraintLayout);
+        constraintSetDiceToPlayer1.applyTo(gameViewConstraintLayout);
+    }
+
+    private void createConstraintSetDicePlayer2() {
+        constraintSetDiceToPlayer2 = new ConstraintSet();
+        constraintSetDiceToPlayer2.clone(gameViewConstraintLayout);
+        constraintSetDiceToPlayer2.connect(
+                diceFrame.getId(), ConstraintSet.START, boardFrame.getId(), ConstraintSet.END);
+        constraintSetDiceToPlayer2.connect(
+                diceFrame.getId(), ConstraintSet.END, diceFrame.getId(), ConstraintSet.END);
+        constraintSetDiceToPlayer2.connect(
+                diceFrame.getId(), ConstraintSet.TOP, player2Label.getId(), ConstraintSet.BOTTOM);
+        constraintSetDiceToPlayer2.connect(
+                diceFrame.getId(), ConstraintSet.BOTTOM, diceFrame.getId(), ConstraintSet.BOTTOM);
+        constraintSetDiceToPlayer2.applyTo(gameViewConstraintLayout);
+    }
+
+    private void createConstraintSetDicePlayer3() {
+        constraintSetDiceToPlayer3 = new ConstraintSet();
+        constraintSetDiceToPlayer3.clone(gameViewConstraintLayout);
+        constraintSetDiceToPlayer3.connect(
+                diceFrame.getId(), ConstraintSet.START, boardFrame.getId(), ConstraintSet.END);
+        constraintSetDiceToPlayer3.connect(
+                diceFrame.getId(), ConstraintSet.END, diceFrame.getId(), ConstraintSet.END);
+        constraintSetDiceToPlayer3.connect(
+                diceFrame.getId(), ConstraintSet.TOP, diceFrame.getId(), ConstraintSet.TOP);
+        constraintSetDiceToPlayer3.connect(
+                diceFrame.getId(), ConstraintSet.BOTTOM, player3Label.getId(), ConstraintSet.TOP);
+        constraintSetDiceToPlayer3.applyTo(gameViewConstraintLayout);
+    }
+
+    private void createConstraintSetDicePlayer4() {
+        constraintSetDiceToPlayer4 = new ConstraintSet();
+        constraintSetDiceToPlayer4.clone(gameViewConstraintLayout);
+        constraintSetDiceToPlayer4.connect(
+                diceFrame.getId(), ConstraintSet.START, diceFrame.getId(), ConstraintSet.START);
+        constraintSetDiceToPlayer4.connect(
+                diceFrame.getId(), ConstraintSet.END, boardFrame.getId(), ConstraintSet.START);
+        constraintSetDiceToPlayer4.connect(
+                diceFrame.getId(), ConstraintSet.TOP, diceFrame.getId(), ConstraintSet.TOP);
+        constraintSetDiceToPlayer4.connect(
+                diceFrame.getId(), ConstraintSet.BOTTOM, player4Label.getId(), ConstraintSet.TOP);
+        constraintSetDiceToPlayer4.applyTo(gameViewConstraintLayout);
     }
 
     private void showAllFragments() {
