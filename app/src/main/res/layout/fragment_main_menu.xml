@@ -7,7 +7,7 @@
     tools:context=".fragments.MainMenuFragment">
 
     <ImageView
-        android:id="@+id/background"
+        android:id="@+id/background_mainmenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
@@ -27,7 +27,7 @@
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/background"
+        app:layout_constraintTop_toTopOf="@+id/background_mainmenu"
         app:srcCompat="@drawable/title_holder" />
 
     <TextView
