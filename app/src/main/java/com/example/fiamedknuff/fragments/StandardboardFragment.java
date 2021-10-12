@@ -372,6 +372,30 @@ public class StandardboardFragment extends Fragment {
                 //
             }
         });
+      
+      gameViewModel.currentPlayer.observe(getActivity(), new Observer<Player>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onChanged(Player player) {
+                if (gameViewModel.isCPU(player)) {
+                    // trigger roll dice clicked
+                    view.performClick();
+                    int rolledValue = gameViewModel.rollDice();
+
+                    Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(rolledValue);
+
+                    // trigger addPieceOnClickListener
+                    view.performClick();
+
+                    //unMarkAllPieces();
+                    //setPiecesClickable(false);
+                    //latestClickedPiece = imageViewPieceHashMap.get(piece);
+                    //gameViewModel.move(imageViewPieceHashMap.get(piece));
+                    //setPiecesClickable(true);
+
+                }
+            }
+        });
     }
 
     /**
