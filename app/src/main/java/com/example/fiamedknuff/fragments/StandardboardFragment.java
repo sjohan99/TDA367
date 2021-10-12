@@ -3,6 +3,7 @@ package com.example.fiamedknuff.fragments;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
@@ -66,6 +67,7 @@ public class StandardboardFragment extends Fragment {
     GameViewModel gameViewModel;
 
     ImageView latestClickedPiece;
+    boolean alreadyInitialized;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,12 +79,21 @@ public class StandardboardFragment extends Fragment {
 
         constraintLayout = view.findViewById(R.id.sbConstraintLayout);
 
-        initPositions();
-        initPieces();
+        if (!alreadyInitialized) {
+            initPositions();
+            initPieces();
+            initObservers();
+            alreadyInitialized = true;
+        }
 
-        initObservers();
 
         return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        alreadyInitialized = false;
     }
 
     /**
