@@ -171,13 +171,7 @@ public class GameSetupFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void initTypoForEditTexts() {
-        EditText[] editTexts = new EditText[] {
-                player1Name,
-                player2Name,
-                player3Name,
-                player4Name
-        };
-        for (EditText playerNameLabel : editTexts) {
+        for (EditText playerNameLabel : players) {
             playerNameLabel.setOnFocusChangeListener((view, b) -> {
                 // TODO: 2021-10-12 Dim createNewGameButton if not ready and add additional visuals.
                 //                  Fix the problem with aNameIsEmpty() which leads to only names
