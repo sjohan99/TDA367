@@ -55,3 +55,5 @@ För att köra appen på datorn är det lättaste sättet att använda android s
 <h2 id="credits"> Lista över medverkande </h2>
 WIP
 
+<div class="attribution-block">Musik: <a href="http://dig.ccmixter.org/files/Milky_Blue/63912">Lights Writing</a> by Milky_Blue (c) copyright 2021 Licensed under a Creative Commons <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution Noncommercial  (3.0)</a> license. </div>
+

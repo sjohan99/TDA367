@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
+import com.example.fiamedknuff.model.Dice;
 import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 import com.example.fiamedknuff.model.Piece;
@@ -337,81 +339,6 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
-    private void initObservers() {
-
-        // TODO - some of the logic which is going to be implemented is right now just comments
-        //  or not written here at all
-        /*
-          Observes the variable isMoved in GameViewModel, which is set to true
-          when a piece is moved in the model.
-          Moves the piece in the view. If the piece is finished it is removed from the
-          model and view. If a player rolls a six and is not finished, it is their turn again.
-          Otherwise, the next player is selected.
-          If the game is finished, another method should be called here (not implemented yet).
-          If not, the dice in the view is moved to the next player and the dice´s value is
-          set to used.
-         */
-        gameViewModel.isMoved.observe(getActivity(), new Observer<>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                if (aBoolean) {
-                    move(latestClickedPiece);
-                    boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
-                    if (gameViewModel.isNextPlayer(playerIsFinished)) {
-                        gameViewModel.selectNextPlayer();
-                    }
-                    // check if game is finished --> finish...
-                    gameViewModel.setDiceIsUsed();
-                }
-            }
-        });
-
-        /*
-            Observes the variable movesArePossibleToMake, which is set to true when the rolled
-            dicevalue is able to use.
-            When the variable is set to true, the movable pieces should be highlighted.
-         */
-        gameViewModel.movesArePossibleToMake.observe(getActivity(), new Observer<>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                if (aBoolean) {
-                    markMovablePieces();
-                }
-            }
-        });
-
-        gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
-            @Override
-            public void onChanged(Player player) {
-                // trigger roll dice clicked
-                //
-            }
-        });
-      
-      gameViewModel.currentPlayer.observe(getActivity(), new Observer<Player>() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onChanged(Player player) {
-                if (gameViewModel.isCPU(player)) {
-                    // trigger roll dice clicked
-                    view.performClick();
-                    int rolledValue = gameViewModel.rollDice();
-
-                    Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(rolledValue);
-
-                    // trigger addPieceOnClickListener
-                    view.performClick();
-
-                    //unMarkAllPieces();
-                    //setPiecesClickable(false);
-                    //latestClickedPiece = imageViewPieceHashMap.get(piece);
-                    //gameViewModel.move(imageViewPieceHashMap.get(piece));
-                    //setPiecesClickable(true);
-
-                }
-            }
-        });
-    }
 
     /**
      * Gets the current player's movable pieces marked on the GUI.
@@ -463,15 +390,96 @@ public class StandardboardFragment extends Fragment {
                 @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onClick(View view) {
-                    System.out.println("piece clicked");
-                    unMarkAllPieces();
-                    setPiecesClickable(false);
-                    latestClickedPiece = piece;
-                    gameViewModel.move(imageViewPieceHashMap.get(piece));
-                    setPiecesClickable(true);
+                    pieceClicked(piece);
                 }
             });
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void pieceClicked(ImageView piece) {
+        unMarkAllPieces();
+        setPiecesClickable(false);
+        latestClickedPiece = piece;
+        gameViewModel.move(imageViewPieceHashMap.get(piece));
+        setPiecesClickable(true);
+    }
+
+    private void initObservers() {
+
+        // TODO - some of the logic which is going to be implemented is right now just comments
+        //  or not written here at all
+        /*
+          Observes the variable isMoved in GameViewModel, which is set to true
+          when a piece is moved in the model.
+          Moves the piece in the view. If the piece is finished it is removed from the
+          model and view. If a player rolls a six and is not finished, it is their turn again.
+          Otherwise, the next player is selected.
+          If the game is finished, another method should be called here (not implemented yet).
+          If not, the dice in the view is moved to the next player and the dice´s value is
+          set to used.
+         */
+        gameViewModel.isMoved.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    move(latestClickedPiece);
+                    boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
+                    if (gameViewModel.isNextPlayer(playerIsFinished)) {
+                        gameViewModel.selectNextPlayer();
+                    }
+                    // check if game is finished --> finish...
+                    gameViewModel.setDiceIsUsed();
+                }
+            }
+        });
+
+        /*
+            Observes the variable movesArePossibleToMake, which is set to true when the rolled
+            dicevalue is able to use.
+            When the variable is set to true, the movable pieces should be highlighted.
+         */
+        gameViewModel.movesArePossibleToMake.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    markMovablePieces();
+                }
+            }
+        });
+
+        gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Player player) {
+                // trigger roll dice clicked
+                //
+            }
+        });
+
+      gameViewModel.currentPlayer.observe(getActivity(), new Observer<Player>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onChanged(Player player) {
+                if (gameViewModel.isCPU(player)) {
+                    gameViewModel.CPUdiceRoll(true);
+                    Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(gameViewModel.getDiceValue());
+                    if (piece != null) {
+                        ImageView pieceImageView = getPieceImageView(piece);
+                        pieceClicked(pieceImageView);
+                    }
+                    gameViewModel.selectNextPlayer();
+                }
+            }
+        });
+    }
+
+    private ImageView getPieceImageView(Piece piece) {
+        for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
+            if (piece.toString().equals(entry.getValue().toString())) {
+                return entry.getKey();
+            }
+        }
+        return null; // TODO exception
     }
 
     /**

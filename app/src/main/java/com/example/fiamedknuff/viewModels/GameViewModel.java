@@ -36,6 +36,7 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<Boolean> isMoved = new MutableLiveData<>();
     public MutableLiveData<Player> currentPlayer = new MutableLiveData<>();
     public MutableLiveData<Boolean> movesArePossibleToMake = new MutableLiveData<>();
+    public MutableLiveData<Boolean> CPUdiceRoll = new MutableLiveData<>();
 
     public void init(List<String> playerNames, List<Color> colors, List<Boolean> selectedCPU) throws NotImplementedException {
         this.playerNames = playerNames;
@@ -76,6 +77,10 @@ public class GameViewModel extends ViewModel {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void CPUdiceRoll(Boolean b) {
+        CPUdiceRoll.setValue(b);
     }
 
     /**
@@ -125,6 +130,7 @@ public class GameViewModel extends ViewModel {
      */
     public int getDiceValue() {
         return game.getDice().getRolledValue();
+        //return 1; //for testing
     }
 
     /**
@@ -196,6 +202,7 @@ public class GameViewModel extends ViewModel {
         if (game.getDice().getIsUsed()) {
             game.rollDice();
             return game.getDice().getRolledValue();
+            //return 1; //for testing
         }
         return -1;
     }
@@ -217,7 +224,8 @@ public class GameViewModel extends ViewModel {
     }
 
     public boolean isCPU(Player player) {
-        return player.getClass() == CPU.class;
+        return player instanceof CPU;
+        //return player.getClass() == CPU.class;
     }
 
     public CPU getCPUPlayer() {
