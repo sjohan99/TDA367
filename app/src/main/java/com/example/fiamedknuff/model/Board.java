@@ -259,7 +259,6 @@ public class Board implements Serializable {
         return false;
     }
 
-
     /**
      * Finds the position corresponding to the piece's home number.
      * @param piece the piece whose home position to find
@@ -289,6 +288,23 @@ public class Board implements Serializable {
             knockout(pos);
         }
         piecePositionHashMap.put(piece, pos);
+    }
+
+    /**
+     * Checks if the position of a piece is also occupied by another piece. If occupied,
+     * the method returns true. Otherwise it returns false.
+     * @param piece the piece you want to check if it shares a position with another
+     * @return true if a piece should be knocked out, and false otherwise
+     */
+    boolean isKnockout(Piece piece) {
+        boolean isKnockout = false;
+        Position pos = piecePositionHashMap.get(piece);
+        piecePositionHashMap.remove(piece);
+        if (isOccupied(pos)) {
+            isKnockout = true;
+        }
+        piecePositionHashMap.put(piece, pos);
+        return isKnockout;
     }
 
     /**
