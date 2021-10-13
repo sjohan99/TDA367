@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
+import com.example.fiamedknuff.model.Dice;
 import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 import com.example.fiamedknuff.model.Piece;
@@ -322,6 +324,33 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
+
+
+    /**
+     * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
+     * should be called. The pieces should be non-clickable when the method makeTurn is called.
+     */
+    private void addPiecesOnClickListeners() {
+        for (ImageView piece : piecesImageViews) {
+            piece.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onClick(View view) {
+                    pieceClicked(piece);
+                }
+            });
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void pieceClicked(ImageView piece) {
+        unMarkAllPieces();
+        setPiecesClickable(false);
+        latestClickedPiece = piece;
+        gameViewModel.move(imageViewPieceHashMap.get(piece));
+        setPiecesClickable(true);
+    }
+
     private void initObservers() {
 
         // TODO - some of the logic which is going to be implemented is right now just comments
@@ -378,25 +407,29 @@ public class StandardboardFragment extends Fragment {
             @Override
             public void onChanged(Player player) {
                 if (gameViewModel.isCPU(player)) {
-                    // trigger roll dice clicked
-                    view.performClick();
-                    int rolledValue = gameViewModel.rollDice();
-
-                    Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(rolledValue);
-
-                    // trigger addPieceOnClickListener
-                    view.performClick();
-
-                    //unMarkAllPieces();
-                    //setPiecesClickable(false);
-                    //latestClickedPiece = imageViewPieceHashMap.get(piece);
-                    //gameViewModel.move(imageViewPieceHashMap.get(piece));
-                    //setPiecesClickable(true);
-
+                    gameViewModel.CPUdiceRoll(true);
+                    Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(gameViewModel.getDiceValue());
+                    if (piece != null) {
+                        ImageView pieceImageView = getPieceImageView(piece);
+                        pieceClicked(pieceImageView);
+                    }
+                    gameViewModel.selectNextPlayer();
                 }
             }
         });
     }
+
+    private ImageView getPieceImageView(Piece piece) {
+        for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
+            if (piece.toString().equals(entry.getValue().toString())) {
+                return entry.getKey();
+            }
+        }
+        return null; //TODO Exception?
+    }
+
+
+
 
     /**
      * Gets the current player's movable pieces marked on the GUI.
@@ -436,26 +469,6 @@ public class StandardboardFragment extends Fragment {
             }
         }
         return map;
-    }
-
-    /**
-     * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
-     * should be called. The pieces should be non-clickable when the method makeTurn is called.
-     */
-    private void addPiecesOnClickListeners() {
-        for (ImageView piece : piecesImageViews) {
-            piece.setOnClickListener(new View.OnClickListener() {
-                @RequiresApi(api = Build.VERSION_CODES.N)
-                @Override
-                public void onClick(View view) {
-                    unMarkAllPieces();
-                    setPiecesClickable(false);
-                    latestClickedPiece = piece;
-                    gameViewModel.move(imageViewPieceHashMap.get(piece));
-                    setPiecesClickable(true);
-                }
-            });
-        }
     }
 
     /**
