@@ -307,7 +307,23 @@ public class Board implements Serializable {
         return isKnockout;
     }
 
-
+    /**
+     * Knocks out the piece that is standing on the same position as the piece which
+     * is sent in as a parameter.
+     * (The piece that is sent in as a parameter is removed from the hashmap while the
+     * knockout is happening. This is because we don´t want the piece to knock out itself.
+     * When the knockout is done, the piece is put back into the hashmap again.)
+     * @param piece is the piece that is knocking out another piece
+     * @return the piece that is knocked out
+     * @throws Exception if the method is called incorrectly
+     */
+    Piece knockoutWithPiece(Piece piece) throws Exception {
+        Position pos = piecePositionHashMap.get(piece);
+        piecePositionHashMap.remove(piece);
+        Piece knockedPiece = knockout(pos);
+        piecePositionHashMap.put(piece, pos);
+        return knockedPiece;
+    }
 
     /**
      * Knocks out a piece at a position if another piece is moving to the same position
