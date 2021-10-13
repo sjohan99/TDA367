@@ -61,6 +61,7 @@ public class GameSetupFragment extends Fragment {
         populatePlayersList();
         populateCPUCheckBoxList();
         populateColors();
+        initTypoForEditTexts();
 
         return view;
     }
@@ -166,7 +167,6 @@ public class GameSetupFragment extends Fragment {
         player2Name = view.findViewById(R.id.player2Name);
         player3Name = view.findViewById(R.id.player3Name);
         player4Name = view.findViewById(R.id.player4Name);
-        initTypoForEditTexts();
     }
 
     private void initCPUCheckBoxes(View view) {
