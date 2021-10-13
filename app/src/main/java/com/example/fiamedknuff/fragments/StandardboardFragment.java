@@ -462,6 +462,9 @@ public class StandardboardFragment extends Fragment {
         for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
             if (piece.toString().equals(entry.getValue().toString())) {
                 return entry.getKey();
+            }
+        }
+        return null; // TODO exception
     }
 
     /**
