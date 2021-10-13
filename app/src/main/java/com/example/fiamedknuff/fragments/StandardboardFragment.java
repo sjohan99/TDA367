@@ -3,6 +3,7 @@ package com.example.fiamedknuff.fragments;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -79,9 +80,12 @@ public class StandardboardFragment extends Fragment {
 
         constraintLayout = view.findViewById(R.id.sbConstraintLayout);
 
+
+        initPositions();
+        initPieces();
+        // TODO: 2021-10-13 Check if everything should be inside if-clause
         if (!alreadyInitialized) {
-            initPositions();
-            initPieces();
+
             initObservers();
             alreadyInitialized = true;
         }
@@ -459,6 +463,7 @@ public class StandardboardFragment extends Fragment {
                 @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onClick(View view) {
+                    System.out.println("piece clicked");
                     unMarkAllPieces();
                     setPiecesClickable(false);
                     latestClickedPiece = piece;

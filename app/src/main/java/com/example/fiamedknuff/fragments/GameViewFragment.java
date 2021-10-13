@@ -63,6 +63,7 @@ public class GameViewFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_game_view, container, false);
         gameViewConstraintLayout = view.findViewById(R.id.gameViewConstraintLayout);
 
+        // TODO: 2021-10-13 Check if everything should be inside here
         if (!alreadyInitialized) {
             initLabels(view);
             initFrames(view);
