@@ -325,6 +325,45 @@ public class StandardboardFragment extends Fragment {
     }
 
 
+    /**
+     * Gets the current player's movable pieces marked on the GUI.
+     */
+    private void markMovablePieces() {
+        for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
+            // TODO: Change to something fancy
+            entry.getValue().setBackgroundColor(R.drawable.background); // Highlight the movable piece
+        }
+    }
+
+    /**
+     * Removes the background of all piece's ImageView.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void unMarkAllPieces() {
+        imageViewPieceHashMap.forEach((imageView, piece) -> {
+            imageView.setBackgroundColor(0); // Remove the background.
+        });
+    }
+
+    /**
+     * TODO Make more slim
+     * Method used to help identify ImageViews for affecting pliancy on the current player's pieces.
+     * @return Returns a HashMap with the current player's piece's ImageViews.
+     */
+    public HashMap<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
+        // For each of the player's movable pieces, iterate through all pieces in the HashMap
+        // and find the corresponding ImageView that is connected to the movable piece.
+        HashMap<Piece, ImageView> map = new HashMap<>();
+        LiveData<List<Piece>> movablePieces = gameViewModel.getMovablePiecesForCurrentPlayer();
+        for (Piece piece : movablePieces.getValue()) {
+            for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
+                if (piece.toString().equals(entry.getValue().toString())) {
+                    map.put(entry.getValue(), entry.getKey());
+                }
+            }
+        }
+        return map;
+    }
 
     /**
      * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
@@ -401,7 +440,7 @@ public class StandardboardFragment extends Fragment {
                 //
             }
         });
-      
+
       gameViewModel.currentPlayer.observe(getActivity(), new Observer<Player>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -423,52 +462,6 @@ public class StandardboardFragment extends Fragment {
         for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
             if (piece.toString().equals(entry.getValue().toString())) {
                 return entry.getKey();
-            }
-        }
-        return null; //TODO Exception?
-    }
-
-
-
-
-    /**
-     * Gets the current player's movable pieces marked on the GUI.
-     */
-    private void markMovablePieces() {
-        for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
-            // TODO: Change to something fancy
-            entry.getValue().setBackgroundColor(R.drawable.background); // Highlight the movable piece
-        }
-    }
-
-    /**
-     * Removes the background of all piece's ImageView.
-     */
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void unMarkAllPieces() {
-        imageViewPieceHashMap.forEach((imageView, piece) -> {
-            imageView.setBackgroundColor(0); // Remove the background.
-        });
-    }
-
-    /**
-     * TODO Make more slim
-     * Method used to help identify ImageViews for affecting pliancy on the current player's pieces.
-     * @return Returns a HashMap with the current player's piece's ImageViews.
-     */
-    public HashMap<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
-        // For each of the player's movable pieces, iterate through all pieces in the HashMap
-        // and find the corresponding ImageView that is connected to the movable piece.
-        HashMap<Piece, ImageView> map = new HashMap<>();
-        LiveData<List<Piece>> movablePieces = gameViewModel.getMovablePiecesForCurrentPlayer();
-        for (Piece piece : movablePieces.getValue()) {
-            for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
-                if (piece.toString().equals(entry.getValue().toString())) {
-                    map.put(entry.getValue(), entry.getKey());
-                }
-            }
-        }
-        return map;
     }
 
     /**
