@@ -307,16 +307,20 @@ public class Board implements Serializable {
         return isKnockout;
     }
 
+
+
     /**
      * Knocks out a piece at a position if another piece is moving to the same position
      * @param p is the position
+     * @return the piece that is knocked out
      * @throws Exception if the method is called incorrectly
      */
-    private void knockout(Position p) throws Exception {
+    private Piece knockout(Position p) throws Exception {
         Piece piece = pieceAtPosition(p);
         piecePositionHashMap.remove(piece);
         piece.resetIndex();
         piecePositionHashMap.put(piece, positions.get(indexOfHomeNumber(piece)));
+        return piece;
     }
 
     /**
