@@ -141,7 +141,8 @@ public class GameSetupFragment extends Fragment {
     private List<Boolean> getSelectedCPU() {
         ArrayList<Boolean> isCPUs = new ArrayList<>();
         for (int i = 0; i < selectedPlayerCount; i++) {
-            isCPUs.add(CPUCheckBoxes.get(i).isSelected());
+            //isCPUs.add(true);
+            isCPUs.add(CPUCheckBoxes.get(i).isChecked());
         }
         return isCPUs;
     }
