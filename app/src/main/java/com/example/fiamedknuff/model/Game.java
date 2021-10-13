@@ -202,7 +202,19 @@ public class Game implements Serializable {
         return board.isKnockout(piece);
     }
 
-
+    /**
+     * Knocks out the piece that is standing on the same position as the piece which
+     * is sent in as a parameter.
+     * (The piece that is sent in as a parameter is removed from the hashmap while the
+     * knockout is happening. This is because we don´t want the piece to knock out itself.
+     * When the knockout is done, the piece is put back into the hashmap again.)
+     * @param piece is the piece that is knocking out another piece
+     * @return the piece that is knocked out
+     * @throws Exception if the method is called incorrectly
+     */
+    public Piece knockoutWithPiece(Piece piece) throws Exception {
+        return board.knockoutWithPiece(piece);
+    }
 
     /**
      * Mock method.
