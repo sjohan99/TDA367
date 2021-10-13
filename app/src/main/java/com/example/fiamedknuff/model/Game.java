@@ -192,7 +192,6 @@ public class Game implements Serializable {
 
 
     /**
-     * Calls the method isKnockout in the class Board.
      * Checks if the position of a piece is also occupied by another piece. If occupied,
      * the method returns true. Otherwise it returns false.
      * @param piece the piece you want to check if it shares a position with another
@@ -205,9 +204,6 @@ public class Game implements Serializable {
     /**
      * Knocks out the piece that is standing on the same position as the piece which
      * is sent in as a parameter.
-     * (The piece that is sent in as a parameter is removed from the hashmap while the
-     * knockout is happening. This is because we don´t want the piece to knock out itself.
-     * When the knockout is done, the piece is put back into the hashmap again.)
      * @param piece is the piece that is knocking out another piece
      * @return the piece that is knocked out
      * @throws Exception if the method is called incorrectly
