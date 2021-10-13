@@ -61,6 +61,7 @@ public class GameSetupFragment extends Fragment {
         populatePlayersList();
         populateCPUCheckBoxList();
         populateColors();
+        initTypoForEditTexts();
 
         return view;
     }
@@ -145,13 +146,11 @@ public class GameSetupFragment extends Fragment {
     }
 
     private List<Boolean> getSelectedCPU() {
-        ArrayList<Boolean> isCPU = new ArrayList<>();
+        ArrayList<Boolean> isCPUs = new ArrayList<>();
         for (int i = 0; i < selectedPlayerCount; i++) {
-            //isCPU.add(true); //for testing
-            //isCPU.add(CPUCheckBoxes.get(i).isChecked()); //to be worked on
-           isCPU.add(CPUCheckBoxes.get(i).isSelected());
+            isCPUs.add(CPUCheckBoxes.get(i).isSelected());
         }
-        return isCPU;
+        return isCPUs;
     }
 
     private List<String> getPlayerNames() {
@@ -168,7 +167,6 @@ public class GameSetupFragment extends Fragment {
         player2Name = view.findViewById(R.id.player2Name);
         player3Name = view.findViewById(R.id.player3Name);
         player4Name = view.findViewById(R.id.player4Name);
-        initTypoForEditTexts();
     }
 
     private void initCPUCheckBoxes(View view) {

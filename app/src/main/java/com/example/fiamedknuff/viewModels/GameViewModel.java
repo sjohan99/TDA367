@@ -130,6 +130,7 @@ public class GameViewModel extends ViewModel {
      */
     public int getDiceValue() {
         return game.getDice().getRolledValue();
+        //return 1; //for testing
     }
 
     /**
@@ -201,6 +202,7 @@ public class GameViewModel extends ViewModel {
         if (game.getDice().getIsUsed()) {
             game.rollDice();
             return game.getDice().getRolledValue();
+            //return 1; //for testing
         }
         return -1;
     }

@@ -2,6 +2,7 @@ package com.example.fiamedknuff.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
@@ -31,6 +32,7 @@ import java.util.List;
  */
 public class GameViewFragment extends Fragment {
 
+    private boolean alreadyInitialized;
     private TextView player1Label, player2Label, player3Label, player4Label;
     private List<TextView> playerLabels = new ArrayList<>();
 
@@ -56,25 +58,73 @@ public class GameViewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        System.out.println("GMF onCreateView");
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
         View view = inflater.inflate(R.layout.fragment_game_view, container, false);
         gameViewConstraintLayout = view.findViewById(R.id.gameViewConstraintLayout);
 
-        initLabels(view);
-        populatePlayerLabelList();
-        setLabelNames();
-        initFrames(view);
-        initFragments();
+        // TODO: 2021-10-13 Check if everything should be inside here
+        if (!alreadyInitialized) {
+            initLabels(view);
+            initFrames(view);
+            initDiceSpaces(view);
+            populatePlayerLabelList();
+            setLabelNames();
+            initFragments();
 
-        //TODO refactor
-        initDiceSpaces(view);
-        initDiceSpacesList();
-        initPlayerToDicespaceHashMap();
-        initObservers();
-
-        showAllFragments();
+            //TODO refactor
+            initDiceSpacesList();
+            initPlayerToDicespaceHashMap();
+            initObservers();
+            alreadyInitialized = true;
+            showAllFragments();
+        }
 
         return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
+        alreadyInitialized = false;
+        System.out.println("GMF onCreate");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        System.out.println("GMF onStop");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("GMF onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        System.out.println("GMF onPause");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        System.out.println("GMF onStart");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.out.println("GMF onDestroy");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        System.out.println("GMF onDestroyView");
     }
 
     private void initFrames(View view) {
