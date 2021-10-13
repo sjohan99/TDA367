@@ -19,6 +19,13 @@ import com.example.fiamedknuff.viewModels.GameViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class DiceFragment that handles the dice visually.
+ *
+ * Created by
+ * @author Emma Stålberg
+ */
+
 public class DiceFragment extends Fragment {
 
     View view;
@@ -54,7 +61,7 @@ public class DiceFragment extends Fragment {
     }
 
     private void initObservers() {
-        gameViewModel.CPUdiceRoll.observe(getActivity(), new Observer<Boolean>() {
+        gameViewModel.CPUdiceRoll.observe(getActivity(), new Observer<>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
