@@ -324,6 +324,7 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
+
     /**
      * Gets the current player's movable pieces marked on the GUI.
      */
@@ -461,9 +462,6 @@ public class StandardboardFragment extends Fragment {
         for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
             if (piece.toString().equals(entry.getValue().toString())) {
                 return entry.getKey();
-            }
-        }
-        return null; //TODO Exception?
     }
 
     /**

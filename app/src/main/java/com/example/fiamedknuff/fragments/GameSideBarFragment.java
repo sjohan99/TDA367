@@ -1,7 +1,6 @@
 package com.example.fiamedknuff.fragments;
 
-import android.graphics.drawable.Drawable;
-import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +25,7 @@ public class GameSideBarFragment extends Fragment {
     private NavController navController;
     private Button homeBtn, settingsBtn, rulebookBtn, soundBtn, replayBtn;
 
+    private MediaPlayer mediaPlayer;
     private boolean soundMuted;
 
     @Override
@@ -38,7 +38,15 @@ public class GameSideBarFragment extends Fragment {
         initButtons(view);
         specifyOnClickActions();
 
+        initBackgroundMusic();
+
         return view;
+    }
+
+    private void initBackgroundMusic() {
+        mediaPlayer = MediaPlayer.create(getActivity(), R.raw.music);
+        mediaPlayer.start();
+        mediaPlayer.setLooping(true);
     }
 
     private void specifyOnClickActions() {
@@ -74,10 +82,14 @@ public class GameSideBarFragment extends Fragment {
         soundBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (soundMuted)
+                if (soundMuted) {
+                    initBackgroundMusic();
                     soundBtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_mute_btn, 0, 0);
-                else
+                }
+                else {
+                    mediaPlayer.stop();
                     soundBtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_mute2_btn, 0, 0);
+                }
                 soundMuted = !soundMuted;
             }
         });

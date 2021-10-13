@@ -1,32 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.LeaderboardFragment">
 
+    <ImageView
+        android:id="@+id/background_leaderboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
+        android:id="@+id/leaderboard_title"
+        android:layout_width="@dimen/leaderboardTitle"
         android:layout_height="wrap_content"
-        android:src="@drawable/background"
-        android:scaleType="centerCrop" />
+        android:layout_marginTop="@dimen/leaderboardMarginTop"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background_leaderboard"
+        app:srcCompat="@drawable/title_holder" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/leaderboard_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Leaderboard"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp"
-        android:textSize="40dp"
-        android:textStyle="bold"/>
+        android:text="@string/leaderboard_title"
+        android:fontFamily="@font/titlefont"
+        android:textSize="@dimen/leaderboardTitleText"
+        android:textColor="#5A4A3E"
+        app:layout_constraintBottom_toBottomOf="@+id/leaderboard_title"
+        app:layout_constraintEnd_toEndOf="@+id/leaderboard_title"
+        app:layout_constraintStart_toStartOf="@+id/leaderboard_title"
+        app:layout_constraintTop_toTopOf="@+id/leaderboard_title" />
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

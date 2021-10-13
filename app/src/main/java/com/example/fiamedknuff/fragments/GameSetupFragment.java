@@ -137,12 +137,19 @@ public class GameSetupFragment extends Fragment {
         return selectedColors;
     }
 
+    public void itemClicked(View v) {
+        CPUCheckBox1 = (CheckBox)v;
+        if (CPUCheckBox1.isChecked()) {
+            int i = 2;
+        }
+    }
+
     private List<Boolean> getSelectedCPU() {
         ArrayList<Boolean> isCPUs = new ArrayList<>();
         for (int i = 0; i < selectedPlayerCount; i++) {
-            //isCPUs.add(true); //for testing
-            //isCPUs.add(CPUCheckBoxes.get(i).isChecked()); //to be worked on
-           isCPUs.add(CPUCheckBoxes.get(i).isSelected());
+            //isCPU.add(true); //for testing
+            //isCPU.add(CPUCheckBoxes.get(i).isChecked()); //to be worked on
+           isCPU.add(CPUCheckBoxes.get(i).isSelected());
         }
         return isCPUs;
     }
