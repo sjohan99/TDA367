@@ -448,14 +448,6 @@ public class StandardboardFragment extends Fragment {
             }
         });
 
-        gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
-            @Override
-            public void onChanged(Player player) {
-                // trigger roll dice clicked
-                //
-            }
-        });
-
       gameViewModel.currentPlayer.observe(getActivity(), new Observer<Player>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
