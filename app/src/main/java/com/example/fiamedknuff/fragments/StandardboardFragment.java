@@ -324,8 +324,6 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
-
-
     /**
      * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
      * should be called. The pieces should be non-clickable when the method makeTurn is called.
@@ -427,9 +425,6 @@ public class StandardboardFragment extends Fragment {
         }
         return null; //TODO Exception?
     }
-
-
-
 
     /**
      * Gets the current player's movable pieces marked on the GUI.
