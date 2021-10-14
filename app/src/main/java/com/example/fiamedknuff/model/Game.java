@@ -218,15 +218,19 @@ public class Game implements Serializable {
      * @param diceValue amount of steps to be taken
      * @param piece the piece to be moved
      * @throws Exception if a piece is to be knocked out but can't be found
+     * @return returns a list of positions the piece has passed including where it ends.
      */
-    public void move(int diceValue, Piece piece) throws Exception {
+    // TODO: 2021-10-14 Separate behavior into calculating path and moving??
+    public List<Position> move(int diceValue, Piece piece) throws Exception {
+        List<Position> positionPath;
         if (pieceWillMovePastGoal(diceValue, piece)) {
-            movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
+            positionPath = movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
         }
         else {
-            movePieceNormally(diceValue, piece);
+            positionPath = movePieceNormally(diceValue, piece);
         }
         board.knockOutPieceIfOccupied(piece);
+        return positionPath;
     }
 
     /**
@@ -254,25 +258,33 @@ public class Game implements Serializable {
         return false;
     }
 
-    private void movePieceNormally(int diceValue, Piece piece) throws Exception {
+    private List<Position> movePieceNormally(int diceValue, Piece piece) throws Exception {
+        List<Position> positionPath = new ArrayList<>();
         for (int i = 0; i < diceValue; i++) {
-            board.movePiece(piece);
+            Position p = board.movePiece(piece);
+            positionPath.add(p);
         }
+        return positionPath;
     }
 
     private boolean pieceWillMovePastGoal(int diceValue, Piece piece) {
         return piece.getIndex() + diceValue > board.getFinishIndex();
     }
 
-    private void movePieceAndMoveBackwardsAfterMiddle(int diceValue, Piece piece) throws Exception {
+    private List<Position> movePieceAndMoveBackwardsAfterMiddle(int diceValue, Piece piece) throws Exception {
+        List<Position> positionPath = new ArrayList<>();
+        Position p;
         int forwardSteps = board.getFinishIndex() - piece.getIndex();
         int backwardSteps = diceValue - forwardSteps;
         for (int i = forwardSteps; i > 0; i--) {
-            board.movePiece(piece);
+            p = board.movePiece(piece);
+            positionPath.add(p);
         }
         for (int i = backwardSteps; i > 0; i--) {
-            board.movePieceBackwards(piece);
+            p = board.movePieceBackwards(piece);
+            positionPath.add(p);
         }
+        return positionPath;
     }
 
    /*

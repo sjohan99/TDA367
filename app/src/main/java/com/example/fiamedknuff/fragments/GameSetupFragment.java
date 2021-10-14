@@ -88,6 +88,7 @@ public class GameSetupFragment extends Fragment {
     private void initPlayerAmountSpinner(View view) {
         playerAmountSpinner = view.findViewById(R.id.playerAmountSpinner);
         populateSpinner();
+        playerAmountSpinner.setSelection(2);
         playerAmountSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object item = parent.getItemAtPosition(position);
@@ -138,17 +139,11 @@ public class GameSetupFragment extends Fragment {
         return selectedColors;
     }
 
-    public void itemClicked(View v) {
-        CPUCheckBox1 = (CheckBox)v;
-        if (CPUCheckBox1.isChecked()) {
-            int i = 2;
-        }
-    }
-
     private List<Boolean> getSelectedCPU() {
         ArrayList<Boolean> isCPUs = new ArrayList<>();
         for (int i = 0; i < selectedPlayerCount; i++) {
-            isCPUs.add(CPUCheckBoxes.get(i).isSelected());
+            //isCPUs.add(true);
+            isCPUs.add(CPUCheckBoxes.get(i).isChecked());
         }
         return isCPUs;
     }
