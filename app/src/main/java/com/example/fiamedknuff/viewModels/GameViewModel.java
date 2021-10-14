@@ -37,6 +37,7 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<Player> currentPlayer = new MutableLiveData<>();
     public MutableLiveData<Boolean> movesArePossibleToMake = new MutableLiveData<>();
     public MutableLiveData<Boolean> CPUdiceRoll = new MutableLiveData<>();
+    public MutableLiveData<Piece> knockedPiece = new MutableLiveData<>();
 
     public void init(List<String> playerNames, List<Color> colors, List<Boolean> selectedCPU) throws NotImplementedException {
         this.playerNames = playerNames;
@@ -74,8 +75,21 @@ public class GameViewModel extends ViewModel {
         try {
             game.move(piece);
             isMoved.setValue(true);
+            handleKnockout(piece);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Checks if the move of a piece results in a knockout. In that case, knockout
+     * the piece.
+     * @param piece is the moved piece that might knock out another piece
+     * @throws Exception if the method is called incorrectly
+     */
+    private void handleKnockout(Piece piece) throws Exception {
+        if (game.isKnockout(piece)) {
+            knockedPiece.setValue(game.knockoutWithPiece(piece));
         }
     }
 
