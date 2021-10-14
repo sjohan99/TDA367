@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Random;
 
 /**
- * A class Dice that creates a dice. A Dice may be rolled.
+ * A class Dice that creates a dice. A Dice may be rolled. Implements Serializable to handle data.
  *
  * Created by
  * @author Emma Stålberg
