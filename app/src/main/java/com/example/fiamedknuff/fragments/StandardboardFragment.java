@@ -408,14 +408,6 @@ public class StandardboardFragment extends Fragment {
         });
 
         gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
-            @Override
-            public void onChanged(Player player) {
-                // trigger roll dice clicked
-                //
-            }
-        });
-
-      gameViewModel.currentPlayer.observe(getActivity(), new Observer<Player>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onChanged(Player player) {
@@ -428,6 +420,13 @@ public class StandardboardFragment extends Fragment {
                     }
                     gameViewModel.selectNextPlayer();
                 }
+            }
+        });
+
+        gameViewModel.knockedPiece.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Piece piece) {
+                move(getPieceImageView(piece));
             }
         });
     }
