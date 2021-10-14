@@ -451,12 +451,17 @@ public class StandardboardFragment extends Fragment {
       gameViewModel.currentPlayer.observe(getActivity(), new Observer<Player>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onChanged(Player player) {
+            public void onChanged(Player player) throws IllegalStateException {
                 if (gameViewModel.isCPU(player)) {
                     gameViewModel.CPUdiceRoll(true);
                     Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(gameViewModel.getDiceValue());
                     if (piece != null) {
-                        ImageView pieceImageView = getPieceImageView(piece);
+                        ImageView pieceImageView = null;
+                        try {
+                            pieceImageView = getPieceImageView(piece);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         pieceClicked(pieceImageView);
                     }
                     gameViewModel.selectNextPlayer();
@@ -465,13 +470,13 @@ public class StandardboardFragment extends Fragment {
         });
     }
 
-    private ImageView getPieceImageView(Piece piece) {
+    private ImageView getPieceImageView(Piece piece) throws Exception {
         for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
             if (piece.toString().equals(entry.getValue().toString())) {
                 return entry.getKey();
             }
         }
-        return null; // TODO exception
+        throw new IllegalStateException("Did not find ImageView for Piece");
     }
 
     /**
