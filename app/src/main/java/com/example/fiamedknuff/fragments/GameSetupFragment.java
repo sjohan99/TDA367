@@ -88,6 +88,7 @@ public class GameSetupFragment extends Fragment {
     private void initPlayerAmountSpinner(View view) {
         playerAmountSpinner = view.findViewById(R.id.playerAmountSpinner);
         populateSpinner();
+        playerAmountSpinner.setSelection(2);
         playerAmountSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object item = parent.getItemAtPosition(position);
