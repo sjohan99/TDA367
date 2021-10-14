@@ -398,7 +398,6 @@ public class StandardboardFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void pieceClicked(ImageView piece) {
-        unMarkAllPieces();
         setPiecesClickable(false);
         latestClickedPiece = piece;
         gameViewModel.move(imageViewPieceHashMap.get(piece));
@@ -420,10 +419,12 @@ public class StandardboardFragment extends Fragment {
           set to used.
          */
         gameViewModel.isMoved.observe(getActivity(), new Observer<>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
                     move(latestClickedPiece);
+                    unMarkAllPieces();
                     boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
                     if (gameViewModel.isNextPlayer(playerIsFinished)) {
                         gameViewModel.selectNextPlayer();
