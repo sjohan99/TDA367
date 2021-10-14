@@ -178,16 +178,19 @@ public class Game implements Serializable {
      * Moves the piece according to diceValue
      * @param piece the piece to be moved
      * @throws Exception if a piece is to be knocked out but can't be found
+     * @return a list of positions the piece has passed including where it ends
      */
-    public void move(Piece piece) throws Exception {
+    // TODO: 2021-10-14 Separate behavior into calculating path and moving??
+    public List<Position> move(Piece piece) throws Exception {
+        List<Position> positionPath;
         int diceValue = dice.getRolledValue();
         if (pieceWillMovePastGoal(diceValue, piece)) {
-            movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
+            positionPath = movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
         }
         else {
-            movePieceNormally(diceValue, piece);
+            positionPath = movePieceNormally(diceValue, piece);
         }
-        //board.knockOutPieceIfOccupied(piece);
+        return positionPath;
     }
 
 
