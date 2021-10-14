@@ -187,7 +187,7 @@ public class Game implements Serializable {
         else {
             movePieceNormally(diceValue, piece);
         }
-        board.knockOutPieceIfOccupied(piece);
+        //board.knockOutPieceIfOccupied(piece);
     }
 
 
