@@ -15,9 +15,10 @@ public class Dice implements Serializable{
     private int valueMax;
     private final Random rand = new Random();
 
-    // set to true when used and are waiting to be rolled, false if it is rolled and not used yet
+    // Set to true when used and are waiting to be rolled, false if it is rolled and not used yet
     private Boolean isUsed;
 
+    // A variable to hold the value of the rolled dice
     private int rolledValue;
 
     /**
