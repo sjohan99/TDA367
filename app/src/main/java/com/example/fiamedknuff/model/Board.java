@@ -134,7 +134,7 @@ public class Board implements Serializable {
      * middle path, or pass the lap line then the correct position will instead by calculated.
      * @param piece the piece to be moved
      */
-    void movePiece(Piece piece) {
+    Position movePiece(Piece piece) {
         Position p;
         if (piece.isHome()) {
             p = getFirstPositionOf(piece);
@@ -151,6 +151,7 @@ public class Board implements Serializable {
 
         piecePositionHashMap.put(piece, p); // Updates value of key
         piece.incrementIndex();
+        return p;
     }
 
 
@@ -160,7 +161,7 @@ public class Board implements Serializable {
      * position just before its middle path.
      * @param piece the piece to be moved
      */
-    void movePieceBackwards(Piece piece) {
+    Position movePieceBackwards(Piece piece) {
         Position p;
         if (pieceAboutToExitMiddlePath(piece)) {
             p = getPieceLastPositionBeforeMiddlePath(piece);
@@ -170,6 +171,7 @@ public class Board implements Serializable {
         }
         piecePositionHashMap.put(piece, p); // Updates value of key
         piece.decrementIndex();
+        return p;
     }
 
     private Position getPieceLastPositionBeforeMiddlePath(Piece piece) {
