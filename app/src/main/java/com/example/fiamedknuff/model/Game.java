@@ -194,7 +194,29 @@ public class Game implements Serializable {
         else {
             movePieceNormally(diceValue, piece);
         }
-        board.knockOutPieceIfOccupied(piece);
+        //board.knockOutPieceIfOccupied(piece);
+    }
+
+
+    /**
+     * Checks if the position of a piece is also occupied by another piece. If occupied,
+     * the method returns true. Otherwise it returns false.
+     * @param piece the piece you want to check if it shares a position with another
+     * @return true if a piece should be knocked out, and false otherwise
+     */
+    public boolean isKnockout(Piece piece) {
+        return board.isKnockout(piece);
+    }
+
+    /**
+     * Knocks out the piece that is standing on the same position as the piece which
+     * is sent in as a parameter.
+     * @param piece is the piece that is knocking out another piece
+     * @return the piece that is knocked out
+     * @throws Exception if the method is called incorrectly
+     */
+    public Piece knockoutWithPiece(Piece piece) throws Exception {
+        return board.knockoutWithPiece(piece);
     }
 
     /**

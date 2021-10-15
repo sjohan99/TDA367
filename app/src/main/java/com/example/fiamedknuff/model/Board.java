@@ -273,7 +273,6 @@ public class Board implements Serializable {
         return false;
     }
 
-
     /**
      * Finds the position corresponding to the piece's home number.
      *
@@ -308,16 +307,52 @@ public class Board implements Serializable {
     }
 
     /**
-     * Knocks out a piece at a position if another piece is moving to the same position.
-     *
-     * @param pos is the position.
-     * @throws Exception if the method is called incorrectly.
+     * Checks if the position of a piece is also occupied by another piece. If occupied,
+     * the method returns true. Otherwise it returns false.
+     * @param piece the piece you want to check if it shares a position with another
+     * @return true if a piece should be knocked out, and false otherwise
      */
-    private void knockout(Position pos) throws Exception {
-        Piece piece = pieceAtPosition(pos);
+    boolean isKnockout(Piece piece) {
+        boolean isKnockout = false;
+        Position pos = piecePositionHashMap.get(piece);
+        piecePositionHashMap.remove(piece);
+        if (isOccupied(pos)) {
+            isKnockout = true;
+        }
+        piecePositionHashMap.put(piece, pos);
+        return isKnockout;
+    }
+
+    /**
+     * Knocks out the piece that is standing on the same position as the piece which
+     * is sent in as a parameter.
+     * (The piece that is sent in as a parameter is removed from the hashmap while the
+     * knockout is happening. This is because we don´t want the piece to knock out itself.
+     * When the knockout is done, the piece is put back into the hashmap again.)
+     * @param piece is the piece that is knocking out another piece
+     * @return the piece that is knocked out
+     * @throws Exception if the method is called incorrectly
+     */
+    Piece knockoutWithPiece(Piece piece) throws Exception {
+        Position pos = piecePositionHashMap.get(piece);
+        piecePositionHashMap.remove(piece);
+        Piece knockedPiece = knockout(pos);
+        piecePositionHashMap.put(piece, pos);
+        return knockedPiece;
+    }
+
+    /**
+     * Knocks out a piece at a position if another piece is moving to the same position
+     * @param p is the position
+     * @return the piece that is knocked out
+     * @throws Exception if the method is called incorrectly
+     */
+    private Piece knockout(Position p) throws Exception {
+        Piece piece = pieceAtPosition(p);
         piecePositionHashMap.remove(piece);
         piece.resetIndex();
         piecePositionHashMap.put(piece, positions.get(indexOfHomeNumber(piece)));
+        return piece;
     }
 
     /**
