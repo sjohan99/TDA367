@@ -503,7 +503,8 @@ public class StandardboardFragment extends Fragment {
     }
 
     private void reInitPieces() {
-        for (ImageView piece : piecesImageViews) {
+        for (int i = 0; i < gameViewModel.getPlayerCount() * 4; i++) {
+            ImageView piece = piecesImageViews.get(i);
             Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
             moveImageView(piece, imageViewPositionHashMap.get(target));
         }
