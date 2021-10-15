@@ -94,7 +94,7 @@ public class StandardboardFragment extends Fragment {
             alreadyInitialized = true;
         }
 
-        reInitPieces();
+        reInit();
 
 
         return view;
@@ -508,6 +508,11 @@ public class StandardboardFragment extends Fragment {
             Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
             moveImageView(piece, imageViewPositionHashMap.get(target));
         }
+    }
+
+    private void reInit() {
+        reInitPieces();
+        markMovablePieces();
     }
 
     /**
