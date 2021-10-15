@@ -68,6 +68,10 @@ public class GameViewModel extends ViewModel {
         }
     }
 
+    public String getCurrentPlayerName() {
+        return game.getCurrentPlayerName();
+    }
+
     /**
      * Moves the piece. Sets the value of the mutable livedata "isMoved" to true.
      * @param piece is the piece that should be moved
