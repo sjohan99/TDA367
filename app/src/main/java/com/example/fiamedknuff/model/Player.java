@@ -20,7 +20,7 @@ public class Player implements Serializable {
     /**
      * Sole constructor for the class. Creates a Player.
      *
-     * @param name is the name of player.
+     * @param name is the name of the player.
      * @param color is the player's color.
      */
     public Player(String name, Color color) {
