@@ -2,7 +2,7 @@ package com.example.fiamedknuff.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.exceptions.NotImplementedException;
 
 import org.junit.Before;
 import org.junit.Test;

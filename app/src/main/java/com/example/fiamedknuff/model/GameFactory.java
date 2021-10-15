@@ -1,6 +1,6 @@
 package com.example.fiamedknuff.model;
 
-import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.exceptions.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;

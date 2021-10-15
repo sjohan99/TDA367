@@ -1,8 +1,10 @@
 package com.example.fiamedknuff.model;
 
-import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.exceptions.NotFoundException;
+import com.example.fiamedknuff.exceptions.NotImplementedException;
 
 import org.apache.commons.lang3.SerializationUtils;
+import org.assertj.core.condition.Not;
 import org.junit.Before;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
@@ -93,7 +95,7 @@ public class GameUnitTest {
     }
 
     @Test
-    public void testRemoveFinishedPiece() throws Exception {
+    public void testRemoveFinishedPiece() throws NotFoundException {
         Player currentPlayer = players.get(0);
         Piece piece = currentPlayer.getPieces().get(0);
         piece.setIndex(game.getBoard().getFinishIndex() - 1);
@@ -104,7 +106,7 @@ public class GameUnitTest {
     }
 
     @Test
-    public void testRemoveSeveralFinishedPieces() throws Exception {
+    public void testRemoveSeveralFinishedPieces() throws NotFoundException {
         Player currentPlayer = players.get(0);
 
         // Remove all pieces except for one
@@ -121,7 +123,7 @@ public class GameUnitTest {
     }
 
     @Test
-    public void testFinishedPlayer() throws Exception {
+    public void testFinishedPlayer() throws NotFoundException {
         List<Player> activePlayers = players;
         Player currentPlayer = players.get(0);
         Piece piece;
@@ -141,7 +143,7 @@ public class GameUnitTest {
     }
 
     @Test
-    public void testSeveralFinishedPlayer() throws Exception {
+    public void testSeveralFinishedPlayer() throws NotFoundException {
         List<Player> activePlayers = players;
         Player finishedPlayer = players.get(0);
         Player currentPlayer = players.get(1);
@@ -174,7 +176,7 @@ public class GameUnitTest {
     }
 
     @Test
-    public void testMovePieceAndMoveBackwardsAfterMiddle() throws Exception {
+    public void testMovePieceAndMoveBackwardsAfterMiddle() throws NotFoundException {
         Board board = game.getBoard();
         HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
         Piece piece = players.get(0).getPieces().get(0);

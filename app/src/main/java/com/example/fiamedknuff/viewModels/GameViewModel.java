@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.exceptions.NotFoundException;
+import com.example.fiamedknuff.exceptions.NotImplementedException;
 import com.example.fiamedknuff.model.CPU;
 import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.model.Game;
@@ -76,7 +77,7 @@ public class GameViewModel extends ViewModel {
             game.move(piece);
             isMoved.setValue(true);
             handleKnockout(piece);
-        } catch (Exception e) {
+        } catch (NotFoundException e) {
             e.printStackTrace();
         }
     }

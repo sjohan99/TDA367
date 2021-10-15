@@ -1,4 +1,4 @@
-package com.example.fiamedknuff;
+package com.example.fiamedknuff.exceptions;
 
 public class NotImplementedException extends Exception {
 
