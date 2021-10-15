@@ -51,6 +51,15 @@ public class CPU extends Player {
            return null;
         }
         for (Piece piece : movablePieces) {
+            Position firstPosOutOfHome = board.getFirstPositionOf(piece);
+            int sixStepsOutOfHome = board.getFirstPositionIndexInLap() + board.getFirstPositionOf(piece).getPos() + 5;
+            int test = board.getFirstPositionIndexInLap();
+            Position posSixStepsOutOfHome = board.getPositions().get(sixStepsOutOfHome);
+            if (piece.isHome() && (board.isOccupied(firstPosOutOfHome) || board.isOccupied(posSixStepsOutOfHome))) {
+                return piece;
+            }
+        }
+        for (Piece piece : movablePieces) {
             pos = new Position(piecePositionHashMap.get(piece).getPos() + roll);
             if (board.isOccupied(pos)) {
                 return piece;
