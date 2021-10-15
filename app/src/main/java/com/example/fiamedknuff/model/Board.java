@@ -1,6 +1,7 @@
 package com.example.fiamedknuff.model;
 
-import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.exceptions.NotFoundException;
+import com.example.fiamedknuff.exceptions.NotImplementedException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -234,17 +235,15 @@ public class Board implements Serializable {
      * Finds out which piece that are standing on a certain position
      * @param pos is the position to be checked
      * @return the piece at the incoming position
-     * @throws Exception if the method is called incorrectly
+     * @throws NotFoundException if there's no piece at the given position
      */
-    private Piece pieceAtPosition(Position pos) throws Exception {
-
+    private Piece pieceAtPosition(Position pos) throws NotFoundException {
         for (Piece piece : piecePositionHashMap.keySet()) {
             if (piecePositionHashMap.get(piece) == pos) {
                 return piece;
             }
         }
-        // TODO: 2021-10-01 More specific exception
-        throw new Exception(); // -> skriv in rätt Exception här?
+        throw new NotFoundException("No piece at given position");
     }
 
     /**
@@ -266,25 +265,24 @@ public class Board implements Serializable {
      * Finds the position corresponding to the piece's home number.
      * @param piece the piece whose home position to find
      * @return the home position of piece
-     * @throws Exception if a position couldn't be found
+     * @throws NotFoundException if a position couldn't be found
      */
-    private int indexOfHomeNumber(Piece piece) throws Exception {
+    private int indexOfHomeNumber(Piece piece) throws NotFoundException {
         for (Position p : positions) {
             if (p.getPos() == (piece.getHomeNumber())) {
                 return positions.indexOf(p);
             }
         }
-        // TODO: 2021-10-01 More specific exception
-        throw new Exception(); // -> skriv in rätt Exception här?
+        throw new NotFoundException("No position correlating to given piece's home number");
     }
 
     /**
      * Checks if the position of a piece is also occupied by another piece. If occupied the other
      * piece will get sent back to its home position.
      * @param piece the piece you want to check if it shares a position with another
-     * @throws Exception if the knocked out piece's home position couldn't be found
+     * @throws NotFoundException if the knocked out piece's home position couldn't be found
      */
-    void knockOutPieceIfOccupied(Piece piece) throws Exception {
+    void knockOutPieceIfOccupied(Piece piece) throws NotFoundException {
         Position pos = piecePositionHashMap.get(piece);
         piecePositionHashMap.remove(piece);
         if (isOccupied(pos)) {
@@ -296,9 +294,9 @@ public class Board implements Serializable {
     /**
      * Knocks out a piece at a position if another piece is moving to the same position
      * @param p is the position
-     * @throws Exception if the method is called incorrectly
+     * @throws NotFoundException if a piece or position was not found
      */
-    private void knockout(Position p) throws Exception {
+    private void knockout(Position p) throws NotFoundException {
         Piece piece = pieceAtPosition(p);
         piecePositionHashMap.remove(piece);
         piece.resetIndex();

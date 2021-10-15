@@ -1,6 +1,7 @@
 package com.example.fiamedknuff.model;
 
-import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.exceptions.NotFoundException;
+import com.example.fiamedknuff.exceptions.NotImplementedException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -179,7 +180,7 @@ public class Game implements Serializable {
      * @param piece the piece to be moved
      * @throws Exception if a piece is to be knocked out but can't be found
      */
-    public void move(Piece piece) throws Exception {
+    public void move(Piece piece) throws NotFoundException {
         int diceValue = dice.getRolledValue();
         if (pieceWillMovePastGoal(diceValue, piece)) {
             movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
@@ -199,7 +200,7 @@ public class Game implements Serializable {
      * @return returns a list of positions the piece has passed including where it ends.
      */
     // TODO: 2021-10-14 Separate behavior into calculating path and moving??
-    public List<Position> move(int diceValue, Piece piece) throws Exception {
+    public List<Position> move(int diceValue, Piece piece) throws NotFoundException {
         List<Position> positionPath;
         if (pieceWillMovePastGoal(diceValue, piece)) {
             positionPath = movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
@@ -236,7 +237,7 @@ public class Game implements Serializable {
         return false;
     }
 
-    private List<Position> movePieceNormally(int diceValue, Piece piece) throws Exception {
+    private List<Position> movePieceNormally(int diceValue, Piece piece) {
         List<Position> positionPath = new ArrayList<>();
         for (int i = 0; i < diceValue; i++) {
             Position p = board.movePiece(piece);
@@ -249,7 +250,7 @@ public class Game implements Serializable {
         return piece.getIndex() + diceValue > board.getFinishIndex();
     }
 
-    private List<Position> movePieceAndMoveBackwardsAfterMiddle(int diceValue, Piece piece) throws Exception {
+    private List<Position> movePieceAndMoveBackwardsAfterMiddle(int diceValue, Piece piece) {
         List<Position> positionPath = new ArrayList<>();
         Position p;
         int forwardSteps = board.getFinishIndex() - piece.getIndex();
