@@ -7,6 +7,8 @@
     <string name="rulebook_button">REGLER</string>
     <string name="leaderboard_title">TOPPLISTA</string>
     <string name="rulebook_title">REGLER</string>
+    <string name="gamesetup_new_game_title">NYTT SPEL</string>
+    <string name="gamesetup_play_button">SPELA</string>
     <string name="player1Label">Spelare 1</string>
     <string name="player2Label">Spelare 2</string>
     <string name="player3Label">Spelare 3</string>

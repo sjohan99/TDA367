@@ -6,6 +6,8 @@
     <string name="rulebook_button">RULES</string>
     <string name="leaderboard_title">LEADERBOARD</string>
     <string name="rulebook_title">RULES</string>
+    <string name="gamesetup_new_game_title">NEW GAME</string>
+    <string name="gamesetup_play_button">PLAY</string>
     <string name="player1Label">Player 1</string>
     <string name="player2Label">Player 2</string>
     <string name="player3Label">Player 3</string>
