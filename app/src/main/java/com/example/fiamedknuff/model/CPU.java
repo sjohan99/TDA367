@@ -54,11 +54,7 @@ public class CPU extends Player {
            return null;
         }
         for (Piece piece : movablePieces) {
-            Position firstPosOutOfHome = board.getFirstPositionOf(piece);
-            int sixStepsOutOfHome = board.getFirstPositionIndexInLap() + board.getFirstPositionOf(piece).getPos() + 5;
-            int test = board.getFirstPositionIndexInLap();
-            Position posSixStepsOutOfHome = board.getPositions().get(sixStepsOutOfHome);
-            if (piece.isHome() && (board.isOccupied(firstPosOutOfHome) || board.isOccupied(posSixStepsOutOfHome))) {
+            if (isHomeAndCanKnockout(piece)) {
                 return piece;
             }
         }
@@ -97,6 +93,14 @@ public class CPU extends Player {
             }
         }
         return piece;
+    }
+
+    //If a piece is home, we calculate the players first and sixth position from home to see if it can knockout another piece at that position.
+    private boolean isHomeAndCanKnockout(Piece piece) {
+        Position firstPosOutOfHome = board.getFirstPositionOf(piece);
+        int sixStepsOutOfHome = board.getFirstPositionIndexInLap() + board.getFirstPositionOf(piece).getPos() + 5;
+        Position posSixStepsOutOfHome = board.getPositions().get(sixStepsOutOfHome);
+        return piece.isHome() && (board.isOccupied(firstPosOutOfHome) || board.isOccupied(posSixStepsOutOfHome));
     }
 
 }
