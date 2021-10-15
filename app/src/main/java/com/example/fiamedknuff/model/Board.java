@@ -212,6 +212,10 @@ public class Board implements Serializable {
         return positions.get(4*playerCount);
     }
 
+    public int getFirstPositionIndexInLap() {
+        return 4*playerCount;
+    }
+
     private Position getFirstInwardPositionOf(Piece piece) {
         Position p;
         int posIndex = lapLength[playerCount-1];
@@ -220,7 +224,8 @@ public class Board implements Serializable {
         return p;
     }
 
-    private Position getFirstPositionOf(Piece piece) {
+    // TODO: 2021-10-15 Javadoc
+    public Position getFirstPositionOf(Piece piece) {
         return positions.get((4*playerCount) + piece.getOffset());
     }
 
