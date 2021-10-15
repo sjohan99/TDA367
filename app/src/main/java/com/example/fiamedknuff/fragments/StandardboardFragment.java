@@ -448,7 +448,7 @@ public class StandardboardFragment extends Fragment {
                 return entry.getKey();
             }
         }
-        return null; //TODO Exception?
+        throw new IllegalStateException("Did not find ImageView for Piece");
     }
 
     /**
@@ -456,8 +456,8 @@ public class StandardboardFragment extends Fragment {
      */
     private void markMovablePieces() {
         for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
-            // TODO: Change to something fancy
-            entry.getValue().setBackgroundColor(R.drawable.background); // Highlight the movable piece
+            Animation anim = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.bounce);
+            entry.getValue().startAnimation(anim);
         }
     }
 
@@ -467,7 +467,7 @@ public class StandardboardFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void unMarkAllPieces() {
         imageViewPieceHashMap.forEach((imageView, piece) -> {
-            imageView.setBackgroundColor(0); // Remove the background.
+            imageView.clearAnimation();
         });
     }
 
