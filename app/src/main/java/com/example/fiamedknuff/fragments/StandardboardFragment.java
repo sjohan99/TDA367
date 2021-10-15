@@ -90,10 +90,11 @@ public class StandardboardFragment extends Fragment {
         initPieces();
         // TODO: 2021-10-13 Check if everything should be inside if-clause
         if (!alreadyInitialized) {
-
             initObservers();
             alreadyInitialized = true;
         }
+
+        reInitPieces();
 
 
         return view;
@@ -499,6 +500,13 @@ public class StandardboardFragment extends Fragment {
         //move piece in view, implementation not completed yet
         Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
         moveImageView(piece, imageViewPositionHashMap.get(target));
+    }
+
+    private void reInitPieces() {
+        for (ImageView piece : piecesImageViews) {
+            Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
+            moveImageView(piece, imageViewPositionHashMap.get(target));
+        }
     }
 
     /**
