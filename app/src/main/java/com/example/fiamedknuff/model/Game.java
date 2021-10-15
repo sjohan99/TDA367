@@ -9,21 +9,24 @@ import java.util.List;
 
 /**
  * Class responsible for tying together the different components of the game and using them to
- * simulate the game
+ * simulate the game. Implements Serializable to handle data.
+ *
+ * Created by
+ * @author Amanda Cyrén, Emma Stålberg, Hanna Boquist, Johan Selin, Philip Winsnes
  */
 public class Game implements Serializable {
 
-    private Board board;
-    private List<Player> activePlayers;
-    private int currentPlayerIndex = 0;
-    private Dice dice;
-    private List<Player> finishedPlayers = new ArrayList<>();
+    private Board board; // The board in the current game round
+    private List<Player> activePlayers; // List of active players, an active player is a player who has one or several pieces left
+    private int currentPlayerIndex = 0; // A variable to hold the index of the current player
+    private Dice dice; // The dice in the current game round
+    private List<Player> finishedPlayers = new ArrayList<>(); // List of finished players, a finished player is a player who has no pieces left
 
     /**
-     * Creates a game
+     * Constructor that creates a game.
      *
-     * @param players the players who will play the game
-     * @throws NotImplementedException if an unsupported amount of players is given
+     * @param players is a list of the players who will play the game.
+     * @throws NotImplementedException if an unsupported amount of players is given.
      */
     public Game(List<Player> players) throws NotImplementedException {
         activePlayers = players;
@@ -32,26 +35,27 @@ public class Game implements Serializable {
     }
 
     /**
-     * Get the board
-     * @return board
+     * Get the board.
+     *
+     * @return the board.
      */
     public Board getBoard() {
         return board;
     }
 
     /**
-     * Get the current player
+     * Get the current player.
      *
-     * @return the current player
+     * @return the current player.
      */
     public Player getCurrentPlayer() {
         return activePlayers.get(currentPlayerIndex);
     }
 
     /**
-     * gets the dice
+     * Get the dice.
      *
-     * @return the dice
+     * @return the dice.
      */
     public Dice getDice() {
         return dice;
@@ -59,7 +63,7 @@ public class Game implements Serializable {
 
     /**
      * Checks if there are more than one active player left in the game and if so, increments
-     * the current player index to select next player
+     * the current player index to select next player.
      */
     public void selectNextPlayer() {
         if (activePlayers.size() <= 1) {
@@ -74,37 +78,37 @@ public class Game implements Serializable {
     }
 
     /**
-     * For testing purposes only right now
+     * Get the list of active players.
      *
-     * @return all active players
+     * @return a list of all active players.
      */
     public List<Player> getActivePlayers() {
         return activePlayers;
     }
 
     /**
-     * Get the current players index
+     * Get the current players index. For testing purposes only.
      *
-     * @return the current players index
+     * @return the current players index.
      */
     public int getCurrentPlayerIndex() {
         return currentPlayerIndex;
     }
 
     /**
-     * Get the current players pieces
+     * Get the current players pieces.
      *
-     * @param player specifies the current player
-     * @return the current players pieces
+     * @param player specifies the current player.
+     * @return the current players pieces.
      */
     private List<Piece> getPlayerPieces(Player player) {
         return player.getPieces();
     }
 
     /**
-     * Get all the players pieces
+     * Get all the players pieces.
      *
-     * @return all the players pieces in a list
+     * @return all the players pieces in a list.
      */
     public List<Piece> getAllPlayerPieces() {
         List<Piece> pieces = new ArrayList<>();
@@ -115,29 +119,29 @@ public class Game implements Serializable {
     }
 
     /**
-     * Get the current players movable pieces
+     * Get the current players movable pieces.
      *
-     * @param player gets the movable pieces of this player
-     * @return all the players movable pieces in a collection
+     * @param player gets the movable pieces of this player.
+     * @return all the players movable pieces in a collection.
      */
     public ArrayList<Piece> getMovablePieces(Player player) {
         return player.getMovablePieces(player.getPieces(), dice.getRolledValue());
     }
 
     /**
-     * Mock method.
-     * Get the current players movable pieces
+     * Mock method, only used for testing purposes.
+     * Get the current players movable pieces.
      *
-     * @param player      gets the movable pieces of this player
-     * @param rolledValue the rolled value
-     * @return all the players movable pieces in a collection
+     * @param player      gets the movable pieces of this player.
+     * @param rolledValue the rolled value.
+     * @return all the players movable pieces in a collection.
      */
     public ArrayList<Piece> getMovablePieces(Player player, int rolledValue) {
         return player.getMovablePieces(player.getPieces(), rolledValue);
     }
 
     /**
-     * Rolls the dice
+     * Rolls the dice.
      */
     public void rollDice() {
         dice.rollDice();
@@ -149,7 +153,8 @@ public class Game implements Serializable {
 
     /**
      * Getter for the dice's rolled value. Only used for testing purposes.
-     * @return the dice's rolled value
+     *
+     * @return the dice's rolled value.
      */
     public int rollAndGetDiceValue() {
         return dice.rollDice();
@@ -162,9 +167,10 @@ public class Game implements Serializable {
 
 
     /**
-     * Removes the given piece from the piece-position hashmap and the current player's
-     * piece list, effectively removing it from the game
-     * @param piece The piece to be removed
+     * Removes the given piece from the piece-position hashmap and the current player's piece list,
+     * effectively removing it from the game.
+     *
+     * @param piece The piece to be removed.
      */
     private void removeFinishedPiece(Piece piece) {
         board.removePieceFromBoard(piece);
@@ -176,9 +182,10 @@ public class Game implements Serializable {
     }
 
     /**
-     * Moves the piece according to diceValue
-     * @param piece the piece to be moved
-     * @throws Exception if a piece is to be knocked out but can't be found
+     * Moves the piece according to diceValue.
+     *
+     * @param piece the piece to be moved.
+     * @throws Exception if a piece is to be knocked out but can't be found.
      */
     public void move(Piece piece) throws NotFoundException {
         int diceValue = dice.getRolledValue();
@@ -188,15 +195,38 @@ public class Game implements Serializable {
         else {
             movePieceNormally(diceValue, piece);
         }
-        board.knockOutPieceIfOccupied(piece);
+        //board.knockOutPieceIfOccupied(piece);
+    }
+
+
+    /**
+     * Checks if the position of a piece is also occupied by another piece. If occupied,
+     * the method returns true. Otherwise it returns false.
+     * @param piece the piece you want to check if it shares a position with another
+     * @return true if a piece should be knocked out, and false otherwise
+     */
+    public boolean isKnockout(Piece piece) {
+        return board.isKnockout(piece);
     }
 
     /**
-     * Mock method.
-     * Moves the piece according to diceValue
-     * @param diceValue amount of steps to be taken
-     * @param piece the piece to be moved
-     * @throws Exception if a piece is to be knocked out but can't be found
+     * Knocks out the piece that is standing on the same position as the piece which
+     * is sent in as a parameter.
+     * @param piece is the piece that is knocking out another piece
+     * @return the piece that is knocked out
+     * @throws Exception if the method is called incorrectly
+     */
+    public Piece knockoutWithPiece(Piece piece) throws Exception {
+        return board.knockoutWithPiece(piece);
+    }
+
+    /**
+     * Mock method, only used for testing purposes.
+     * Moves the piece according to diceValue.
+     *
+     * @param diceValue amount of steps to be taken.
+     * @param piece the piece to be moved.
+     * @throws Exception if a piece is to be knocked out but can't be found.
      * @return returns a list of positions the piece has passed including where it ends.
      */
     // TODO: 2021-10-14 Separate behavior into calculating path and moving??
@@ -213,9 +243,10 @@ public class Game implements Serializable {
     }
 
     /**
-     * Removes the given piece from the game if it is at the goal-index
-     * @param piece the piece to be checked
-     * @return True if the piece was removed, else False
+     * Removes the given piece from the game if it is at the goal-index.
+     *
+     * @param piece the piece to be checked.
+     * @return True if the piece was removed, else False.
      */
     public boolean removePieceIfFinished(Piece piece) {
         if (piece.getIndex() == board.getFinishIndex()) {
@@ -226,8 +257,9 @@ public class Game implements Serializable {
     }
 
     /**
-     * Removes the current player from the game if it has no more active pieces
-     * @return True if the player was removed, else False
+     * Removes the current player from the game if it has no more active pieces.
+     *
+     * @return True if the player was removed, else False.
      */
     public boolean removePlayerIfFinished() {
         if (isFinishedPlayer(getCurrentPlayer())) {
@@ -289,8 +321,8 @@ public class Game implements Serializable {
 
     /**
      * Returns the position of the piece given as a parameter.
-     * @param piece is the piece from which you want to know the position
-     * @return the position of the given piece
+     * @param piece is the piece from which you want to know the position.
+     * @return the position of the given piece.
      */
     public Position getPosition(Piece piece) {
         return board.getPosition(piece);

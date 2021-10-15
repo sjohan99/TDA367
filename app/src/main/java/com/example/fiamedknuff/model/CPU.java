@@ -4,21 +4,21 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * A class CPU that creates a CPU object and couples computer player logic with a player
+ * A class CPU that creates a CPU object and couples computer player logic with a player.
  *
  * Created by
  * @author Amanda Cyrén
  */
 public class CPU extends Player {
 
-    // A CPU must have a board to access the game logic
-    private Board board;
+    private Board board; // A CPU must have a board to access the game logic
 
     /**
      * Constructor for the class CPU which calls the superclass Players constructor and
-     * couples the variable board with the incoming parameter board
-     * @param name The name of the CPU
-     * @param color The color you want the player's pieces to have
+     * couples the variable board with the incoming parameter board.
+     *
+     * @param name The name of the CPU.
+     * @param color The color you want the player's pieces to have.
      * */
     public CPU(String name, Color color) {
         super(name, color);
@@ -26,8 +26,10 @@ public class CPU extends Player {
 
     /**
      * Set the board to incoming parameter of board, if board is already initialized,
-     * do nothing
-     * @param board is the specific board to be set to CPU's board variable
+     * do nothing. The Board must be set for the CPU after a Game has been created, since the
+     * Board is null otherwise.
+     *
+     * @param board is the specific board to be set to CPU's board variable.
      */
     public void setBoard(Board board) {
         if (this.board == null) {
@@ -40,8 +42,9 @@ public class CPU extends Player {
      * of another players piece. Otherwise going out with a piece off the board, then going out
      * with a piece from the home and lastly move a leading piece forward (a leading piece is the
      * piece that has moved the farthest on the board but not yet entered the home-path).
-     * @param roll is the value from the latest roll
-     * @return the piece to be moved
+     *
+     * @param roll is the value from the latest roll.
+     * @return the piece to be moved.
      */
     public Piece choosePieceToMove(int roll) {
         List<Piece> movablePieces = getMovablePieces(getPieces(), roll);

@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * A class Player that creates a player
+ * A class Player that creates a player. Implements Serializable to handle data.
  *
  * Created by
  * @author Amanda Cyrén
@@ -14,16 +14,13 @@ import java.util.List;
 
 public class Player implements Serializable {
 
-    // A variable for the players name
-    private String name;
-
-    // A list of the players pieces
-    private final List<Piece> pieces;
+    private String name; // A variable for the players name
+    private final List<Piece> pieces; // A list of the players pieces
 
     /**
-     * Constructor that initiates a player
-     * @param name is the name of player
-     * @param color is the players color
+     * Constructor that creates a player.
+     * @param name is the name of player.
+     * @param color is the player's color.
      */
     public Player(String name, Color color) {
         this.name = name;
@@ -34,34 +31,38 @@ public class Player implements Serializable {
     }
 
     /**
-     * Sets the name of the player to incoming parameter name
-     * @param name takes in a String as name
+     * Set the name of the player.
+     *
+     * @param name the name of the player.
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Gets the name of the player
-     * @return the players name
+     * Get the name of the player.
+     *
+     * @return the name of the player.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Gets a list of the players pieces
-     * @return a list of pieces
+     * Get a list of the player's pieces.
+     *
+     * @return a list of the player's pieces.
      */
     public List<Piece> getPieces() {
         return pieces;
     }
 
     /**
-     * Finds out which pieces that are movable in the current move
-     * @param pieces is the collection of pieces of the current player
-     * @param roll is the value from the latest diceroll
-     * @return which pieces that are able to move
+     * Returns a list of the player's pieces which are able to make a move in the current round.
+     *
+     * @param pieces is the list of pieces for the current player.
+     * @param roll is the value from the latest dice roll.
+     * @return a list of pieces which are able to make a move.
      */
     ArrayList<Piece> getMovablePieces(Collection<Piece> pieces, int roll) {
         ArrayList<Piece> movablePieces = new ArrayList<>();
@@ -76,10 +77,11 @@ public class Player implements Serializable {
     }
 
     /**
-     * Finds out if one piece is allowed to move or not
-     * @param piece is one of the current players pieces
-     * @param roll is the value from the latest dice roll
-     * @return if the piece is movable or not
+     * Checks if a piece is allowed to make a move or not.
+     *
+     * @param piece is the piece to be checked.
+     * @param roll is the value from the latest dice roll.
+     * @return true if the piece is able to make a move, otherwise false.
      */
     boolean isMovable (Piece piece, int roll) {
         if (targetPositionOccupiedBySelf(piece.getIndex() + roll)) return false;
@@ -88,9 +90,10 @@ public class Player implements Serializable {
     }
 
     /**
-     * Checks if the given index is already occupied by one of this player's pieces
-     * @param targetIndex Index to be checked
-     * @return if the position is occupied by self
+     * Checks if the given index is already occupied by one of this player's pieces.
+     *
+     * @param targetIndex is the index to be checked.
+     * @return true if the position is occupied by self, otherwise false.
      */
     private boolean targetPositionOccupiedBySelf(int targetIndex) {
         for (Piece p : pieces) {
@@ -101,8 +104,9 @@ public class Player implements Serializable {
 
 
     /**
-     * Removes a specific piece from the players list of pieces
-     * @param piece specifies which piece to remove
+     * Removes a specific piece from the player's list of pieces.
+     *
+     * @param piece is the piece to be removed.
      */
     void removePiece(Piece piece) {
         pieces.remove(piece);
