@@ -33,7 +33,7 @@ public class GameViewModel extends ViewModel {
     private List<String> playerNames;
     private Color[] colors;
   
-    public MutableLiveData<Boolean> isMoved = new MutableLiveData<>();
+    public MutableLiveData<List<Position>> movingPath = new MutableLiveData<>();
     public MutableLiveData<Player> currentPlayer = new MutableLiveData<>();
     public MutableLiveData<Boolean> movesArePossibleToMake = new MutableLiveData<>();
     public MutableLiveData<Boolean> CPUdiceRoll = new MutableLiveData<>();
@@ -73,8 +73,8 @@ public class GameViewModel extends ViewModel {
      */
     private void movePiece(Piece piece) {
         try {
-            game.move(piece);
-            isMoved.setValue(true);
+            List<Position> positionPath = game.move(piece);
+            movingPath.setValue(positionPath);
             handleKnockout(piece);
         } catch (Exception e) {
             e.printStackTrace();
@@ -144,7 +144,6 @@ public class GameViewModel extends ViewModel {
      */
     public int getDiceValue() {
         return game.getDice().getRolledValue();
-        //return 1; //for testing
     }
 
     /**
