@@ -86,9 +86,9 @@ public class GameViewModel extends ViewModel {
      * Checks if the move of a piece results in a knockout. In that case, knockout
      * the piece.
      * @param piece is the moved piece that might knock out another piece
-     * @throws Exception if the method is called incorrectly
+     * @throws NotFoundException if the method is called incorrectly
      */
-    private void handleKnockout(Piece piece) throws Exception {
+    private void handleKnockout(Piece piece) throws NotFoundException {
         if (game.isKnockout(piece)) {
             knockedPiece.setValue(game.knockoutWithPiece(piece));
         }

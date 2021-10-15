@@ -214,9 +214,9 @@ public class Game implements Serializable {
      * is sent in as a parameter.
      * @param piece is the piece that is knocking out another piece
      * @return the piece that is knocked out
-     * @throws Exception if the method is called incorrectly
+     * @throws NotFoundException if the method is called incorrectly
      */
-    public Piece knockoutWithPiece(Piece piece) throws Exception {
+    public Piece knockoutWithPiece(Piece piece) throws NotFoundException {
         return board.knockoutWithPiece(piece);
     }
 

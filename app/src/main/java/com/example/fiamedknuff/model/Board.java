@@ -326,9 +326,9 @@ public class Board implements Serializable {
      * When the knockout is done, the piece is put back into the hashmap again.)
      * @param piece is the piece that is knocking out another piece
      * @return the piece that is knocked out
-     * @throws Exception if the method is called incorrectly
+     * @throws NotFoundException if the method is called incorrectly
      */
-    Piece knockoutWithPiece(Piece piece) throws Exception {
+    Piece knockoutWithPiece(Piece piece) throws NotFoundException {
         Position pos = piecePositionHashMap.get(piece);
         piecePositionHashMap.remove(piece);
         Piece knockedPiece = knockout(pos);
