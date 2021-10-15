@@ -21,6 +21,7 @@ public class BoardUnitTest {
 
     Board board4p;
     ArrayList<Piece> pieces;
+    Position tempPos;
 
     @Before
     public void createBoard() throws NotImplementedException {
@@ -119,13 +120,23 @@ public class BoardUnitTest {
         var hMap = board4p.getPiecePositionHashMap();
         Piece piece = pieces.get(0);
         piece.setIndex(44);
-        Position pos = board4p.getPositions().get(16+39);
-        hMap.put(piece, pos);
-
+        tempPos = board4p.getPositions().get(16+39);
+        hMap.put(piece, tempPos);
         board4p.movePiece(piece);
         assertThat(piece.getIndex()).isEqualTo(45);
         assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(16));
     }
 
+    @Test
+    public void testMovePieceAsPerUsual() {
+        var hMap = board4p.getPiecePositionHashMap();
+        Piece piece = pieces.get(0);
+        piece.setIndex(12);
+        tempPos = board4p.getPositions().get(16+12);
+        hMap.put(piece, tempPos);
+        board4p.movePiece(piece);
+        assertThat(piece.getIndex()).isEqualTo(13);
+        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(16+13));
+    }
 
 }
