@@ -4,15 +4,19 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SimpleAdapter;
 
 import com.example.fiamedknuff.R;
 
@@ -35,6 +39,14 @@ public class GameSideBarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        /*
+         Tell the system that SideBarFragment would
+         like to receive menu-related callbacks.
+         https://developer.android.com/guide/fragments/appbar#activity-register
+        */
+        setHasOptionsMenu(true);
+
         navController = NavHostFragment.findNavController(this);
 
         View view = inflater.inflate(R.layout.fragment_game_side_bar, container, false);
@@ -45,6 +57,12 @@ public class GameSideBarFragment extends Fragment {
         initBackgroundMusic();
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+
+
     }
 
     private void initBackgroundMusic() {
@@ -101,13 +119,10 @@ public class GameSideBarFragment extends Fragment {
         replayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO
 
             }
         });
     }
-
-
 
     private void initButtons(View view) {
         homeBtn = view.findViewById(R.id.homeBtn);
@@ -116,4 +131,5 @@ public class GameSideBarFragment extends Fragment {
         soundBtn = view.findViewById(R.id.soundBtn);
         replayBtn = view.findViewById(R.id.replayBtn);
     }
+
 }
