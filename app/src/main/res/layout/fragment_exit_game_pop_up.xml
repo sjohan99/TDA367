@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- TODO: Set dynamic values -->
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="850dp"
-    android:layout_height="650dp"
-    tools:context=".ExitGamePopUpFragment">
+    android:layout_width="@dimen/exit_game_popup_width"
+    android:layout_height="@dimen/exit_game_popup_height"
+    tools:context=".ExitGamePopUpFragment"
+    android:background="@color/light_brown_2"
+    android:padding="5dp"
+    android:layout_gravity="center">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+</LinearLayout>
