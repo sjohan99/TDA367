@@ -366,26 +366,20 @@ public class StandardboardFragment extends Fragment {
         // TODO - some of the logic which is going to be implemented is right now just comments
         //  or not written here at all
         /*
-          Observes the variable isMoved in GameViewModel, which is set to true
+          Observes the variable movingPath in GameViewModel, which is set to a position path
           when a piece is moved in the model.
           Moves the piece in the view. If the piece is finished it is removed from the
           model and view. If a player rolls a six and is not finished, it is their turn again.
           Otherwise, the next player is selected.
           If the game is finished, another method should be called here (not implemented yet).
           If not, the dice in the view is moved to the next player and the dice´s value is
-          set to used.
+          set to used (this is done in the diceFragment).
          */
         gameViewModel.movingPath.observe(getActivity(), new Observer<>() {
             @Override
             public void onChanged(List<Position> movingPath) {
                 if (movingPath.size() != 0) {
-                    move(latestClickedPiece);
-                    boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
-                    if (gameViewModel.isNextPlayer(playerIsFinished)) {
-                        gameViewModel.selectNextPlayer();
-                    }
-                    // check if game is finished --> finish...
-                    gameViewModel.setDiceIsUsed();
+                    isMoved(movingPath);
                 }
             }
         });
@@ -427,6 +421,16 @@ public class StandardboardFragment extends Fragment {
                 move(getPieceImageView(piece), target);
             }
         });
+    }
+
+    private void isMoved(List<Position> movingPath) {
+        move(latestClickedPiece);
+        boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
+        if (gameViewModel.isNextPlayer(playerIsFinished)) {
+            gameViewModel.selectNextPlayer();
+        }
+        // check if game is finished --> finish...
+        gameViewModel.setDiceIsUsed();
     }
 
     private ImageView getPieceImageView(Piece piece) {
