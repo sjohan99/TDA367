@@ -1,15 +1,14 @@
 package com.example.fiamedknuff.model;
 
 
-import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.exceptions.NotFoundException;
+import com.example.fiamedknuff.exceptions.NotImplementedException;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class GameplayUnitTest {
@@ -42,7 +41,7 @@ public class GameplayUnitTest {
     }
 
     @Test
-    public void moveFirstPieceWithDiceRoll1() throws Exception {
+    public void moveFirstPieceWithDiceRoll1() throws NotFoundException {
 
         // Test that all pieces are movable when home and then move one piece and check that it moved
         int diceRoll = 1;
@@ -164,7 +163,7 @@ public class GameplayUnitTest {
         assertThat(movablePieces.size()).isEqualTo(1);
     }
 
-    public void moveSecondPieceWithDiceRoll6() throws Exception {
+    public void moveSecondPieceWithDiceRoll6() throws NotFoundException {
         game.selectNextPlayer();
         int diceRoll = 6;
         var movablePieces = game.getMovablePieces(currentPlayer, diceRoll);

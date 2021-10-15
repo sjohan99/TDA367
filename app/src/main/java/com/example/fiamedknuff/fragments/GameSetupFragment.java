@@ -19,7 +19,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.exceptions.NotImplementedException;
 import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.viewModels.GameViewModel;

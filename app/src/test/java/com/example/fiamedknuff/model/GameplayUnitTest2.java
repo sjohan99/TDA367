@@ -1,14 +1,13 @@
 package com.example.fiamedknuff.model;
 
-import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.exceptions.NotFoundException;
+import com.example.fiamedknuff.exceptions.NotImplementedException;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 
@@ -43,7 +42,7 @@ public class GameplayUnitTest2 {
     }
 
     @Test
-    public void testPlayerOneWalks() throws Exception {
+    public void testPlayerOneWalks() throws NotFoundException {
         int roll = 6;
         int moved = 0;
         var movablePieces = getPlayersMovablePieces(roll);
@@ -113,7 +112,7 @@ public class GameplayUnitTest2 {
     }
 
     @Test
-    public void testPlayerTwoWalks() throws Exception {
+    public void testPlayerTwoWalks() throws NotFoundException {
         game.selectNextPlayer();
         int roll = 6;
         int moved = 0;
