@@ -48,23 +48,16 @@ public class CPU extends Player {
      */
     public Piece choosePieceToMove(int roll) {
         List<Piece> movablePieces = getMovablePieces(getPieces(), roll);
-        HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
-        Position pos;
         if (movablePieces.size() == 0) {
            return null;
         }
         for (Piece piece : movablePieces) {
-            Position firstPosOutOfHome = board.getFirstPositionOf(piece);
-            int sixStepsOutOfHome = board.getFirstPositionIndexInLap() + board.getFirstPositionOf(piece).getPos() + 5;
-            int test = board.getFirstPositionIndexInLap();
-            Position posSixStepsOutOfHome = board.getPositions().get(sixStepsOutOfHome);
-            if (piece.isHome() && (board.isOccupied(firstPosOutOfHome) || board.isOccupied(posSixStepsOutOfHome))) {
+            if (isHomeAndCanKnockout(piece)) {
                 return piece;
             }
         }
         for (Piece piece : movablePieces) {
-            pos = new Position(piecePositionHashMap.get(piece).getPos() + roll);
-            if (board.isOccupied(pos)) {
+            if (!piece.isHome() && isOnBoardAndCanKnockout(piece, roll)) {
                 return piece;
             }
         }
@@ -99,4 +92,19 @@ public class CPU extends Player {
         return piece;
     }
 
+    // If a piece is home, calculate the players first and sixth position from home to see if it can knockout another piece at that position.
+    private boolean isHomeAndCanKnockout(Piece piece) {
+        Position firstPosOutOfHome = board.getFirstPositionOf(piece);
+        int indexSixStepsOutOfHome = board.getFirstPositionIndexInLap() + board.getFirstPositionOf(piece).getPos() + 5;
+        Position posSixStepsOutOfHome = board.getPositions().get(indexSixStepsOutOfHome);
+        return piece.isHome() && (board.isOccupied(firstPosOutOfHome) || board.isOccupied(posSixStepsOutOfHome));
+    }
+
+    // If a piece is on board, calculate the new position from the dice roll and check if knockout on another piece is possible.
+    private boolean isOnBoardAndCanKnockout(Piece piece, int roll) {
+        HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
+        int indexNewPos = board.getFirstPositionIndexInLap() + piecePositionHashMap.get(piece).getPos() + roll;
+        Position newPos = board.getPositions().get(indexNewPos);
+        return board.isOccupied(newPos);
+    }
 }
