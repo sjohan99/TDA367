@@ -803,7 +803,7 @@
         android:layout_width="@dimen/sbPosWidth"
         android:layout_height="@dimen/sbPosHeight"
         android:layout_marginEnd="@dimen/sbHomePosMargin"
-        android:layout_marginBottom="@dimen/sbHomePosBottomMargin"
+        android:layout_marginBottom="@dimen/sbHomePosMargin"
         app:layout_constraintBottom_toTopOf="@+id/pos2"
         app:layout_constraintEnd_toStartOf="@+id/pos6" />
 
@@ -828,7 +828,7 @@
         android:layout_width="@dimen/sbPosWidth"
         android:layout_height="@dimen/sbPosHeight"
         android:layout_marginStart="@dimen/sbHomePosMargin"
-        android:layout_marginBottom="@dimen/sbHomePosBottomMargin"
+        android:layout_marginBottom="@dimen/sbHomePosMargin"
         app:layout_constraintBottom_toTopOf="@+id/pos16"
         app:layout_constraintStart_toEndOf="@+id/pos12" />
 
@@ -850,7 +850,7 @@
         android:id="@+id/blueHomepos1"
         android:layout_width="@dimen/sbPosWidth"
         android:layout_height="@dimen/sbPosHeight"
-        android:layout_marginTop="@dimen/sbHomePosTopMargin"
+        android:layout_marginTop="@dimen/sbHomePosMargin"
         android:layout_marginEnd="@dimen/sbHomePosMargin"
         app:layout_constraintEnd_toStartOf="@+id/pos32"
         app:layout_constraintTop_toBottomOf="@+id/pos36" />
@@ -874,7 +874,7 @@
         android:layout_width="@dimen/sbPosWidth"
         android:layout_height="@dimen/sbPosHeight"
         android:layout_marginStart="@dimen/sbHomePosMargin"
-        android:layout_marginTop="@dimen/sbHomePosTopMargin"
+        android:layout_marginTop="@dimen/sbHomePosMargin"
         app:layout_constraintStart_toEndOf="@+id/pos26"
         app:layout_constraintTop_toBottomOf="@+id/pos22" />
 
