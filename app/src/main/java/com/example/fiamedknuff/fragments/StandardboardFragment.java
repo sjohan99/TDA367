@@ -1,5 +1,7 @@
 package com.example.fiamedknuff.fragments;
 
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -9,6 +11,7 @@ import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
@@ -339,6 +342,7 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
+
     /**
      * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
      * should be called. The pieces should be non-clickable when the method makeTurn is called.
@@ -357,7 +361,6 @@ public class StandardboardFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void pieceClicked(ImageView piece) {
-        unMarkAllPieces();
         setPiecesClickable(false);
         latestClickedPiece = piece;
         gameViewModel.move(imageViewPieceHashMap.get(piece));
@@ -379,10 +382,12 @@ public class StandardboardFragment extends Fragment {
           set to used.
          */
         gameViewModel.isMoved.observe(getActivity(), new Observer<>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
                     move(latestClickedPiece);
+                    unMarkAllPieces();
                     boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
                     if (gameViewModel.isNextPlayer(playerIsFinished)) {
                         gameViewModel.selectNextPlayer();
@@ -410,12 +415,17 @@ public class StandardboardFragment extends Fragment {
         gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onChanged(Player player) {
+            public void onChanged(Player player) throws IllegalStateException {
                 if (gameViewModel.isCPU(player)) {
                     gameViewModel.CPUdiceRoll(true);
                     Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(gameViewModel.getDiceValue());
                     if (piece != null) {
-                        ImageView pieceImageView = getPieceImageView(piece);
+                        ImageView pieceImageView = null;
+                        try {
+                            pieceImageView = getPieceImageView(piece);
+                        } catch (IllegalStateException e) {
+                            e.printStackTrace();
+                        }
                         pieceClicked(pieceImageView);
                     }
                     gameViewModel.selectNextPlayer();
@@ -431,7 +441,7 @@ public class StandardboardFragment extends Fragment {
         });
     }
 
-    private ImageView getPieceImageView(Piece piece) {
+    private ImageView getPieceImageView(Piece piece) throws IllegalStateException {
         for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
             if (piece.toString().equals(entry.getValue().toString())) {
                 return entry.getKey();

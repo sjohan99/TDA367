@@ -3,7 +3,7 @@ package com.example.fiamedknuff.model;
 import java.io.Serializable;
 
 /**
- * A class representing a Piece in the game
+ * A class representing a Piece in the game. Implements Serializable to handle data.
  *
  * Created by
  * TODO add author
@@ -17,8 +17,9 @@ public class Piece implements Serializable {
     private int offset; // The offset which represents how many positions above zero the piece gets when leaving its home
 
     /**
-     * Creates a piece of the color supplied
-     * @param color the color the Piece is supposed to have
+     * Constructor that creates a piece of the color supplied.
+     *
+     * @param color the color the Piece is supposed to have.
      */
     public Piece(Color color) {
         this.color = color;
@@ -26,78 +27,84 @@ public class Piece implements Serializable {
     }
 
     /**
-     * Returns the piece's current index
-     * @return the piece's current index
+     * Returns the piece's current index.
+     *
+     * @return the piece's current index.
      */
     public int getIndex() {
         return index;
     }
 
     /**
-     * Only used for testing purposes
-     * Sets the piece's index
-     * @param index the index the piece will receive
+     * Sets the piece's index. Used for testing purposes only.
+     *
+     * @param index the index the piece will receive.
      */
     public void setIndex(int index) {
         this.index = index;
     }
 
     /**
-     * Increases the piece's index by 1
+     * Increases the piece's index by 1.
      */
     void incrementIndex() {
         this.index += 1;
     }
 
     /**
-     * decreases the piece's index by 1
+     * Decreases the piece's index by 1.
      */
     void decrementIndex() {
         this.index -= 1;
     }
 
     /**
-     * Sets the piece's index to zero
+     * Sets the piece's index to zero.
      */
     void resetIndex() {
         this.index = 0;
     }
 
     /**
-     * gets whether the piece is at home
-     * @return whether the piece is at home
+     * Get if the piece is at home or not.
+     *
+     * @return true if the piece is at home, otherwise false.
      */
     boolean isHome () {
         return index == 0;
     }
 
     /**
-     * gets the piece's home number
-     * @return the piece's home number
+     * Get the home number of the piece
+     *
+     * @return the home number of the piece.
      */
     public int getHomeNumber() {
         return homeNumber;
     }
 
     /**
-     * Sets the piece's home number
-     * @param homeNumber the homenumber the piece is supposed to have
+     * Set the home number of the piece
+     *
+     * @param homeNumber the home number of the piece.
      */
     void setHomeNumber(int homeNumber) {
         this.homeNumber = homeNumber;
     }
 
     /**
-     * Sets the piece's offset
-     * @param offset the offset the piece should have
+     * Set the offset of the the piece.
+     *
+     * @param offset the offset of the the piece.
      */
     public void setOffset(int offset) {
         this.offset = offset;
     }
 
     /**
-     * Gets the piece's offset
-     * @return the piece's offset
+     * Get the offset of the the piece.
+     *
+     * @return the offset of the the piece.
      */
     public int getOffset() {
         return this.offset;

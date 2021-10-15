@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class for instantiating new games of different kinds
+ * Class for instantiating new games of different kinds.
  */
 public class GameFactory {
 
@@ -19,11 +19,11 @@ public class GameFactory {
      * colors[0] = Color.BLACK
      * CPUSelection[0] = false
      *
-     * @param playerNames The name of each player in corresponding order
-     * @param colors the color of the player's pieces in corresponding order
-     * @param CPUSelection whether the player is a CPU or not in corresponding order
-     * @return the created game in accordance with the parameters
-     * @throws NotImplementedException if an unsupported amount of players is supplied
+     * @param playerNames The name of each player in corresponding order.
+     * @param colors the color of the player's pieces in corresponding order.
+     * @param CPUSelection whether the player is a CPU or not in corresponding order.
+     * @return the created game in accordance with the parameters.
+     * @throws NotImplementedException if an unsupported amount of players is supplied.
      */
     static public Game createNewGame(List<String> playerNames, List<Color> colors, List<Boolean> CPUSelection) throws NotImplementedException {
         ArrayList<Player> players = new ArrayList<>();
