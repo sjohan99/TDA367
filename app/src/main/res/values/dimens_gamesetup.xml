@@ -3,7 +3,7 @@
 
     <dimen name="gamesetup_title_holder_width">350dp</dimen>
     <dimen name="gamesetup_title_holder_margin_top">35dp</dimen>
-    <dimen name="gamesetup_title_text">48dp</dimen>
-    <dimen name="gamesetup_play_button_text">50dp</dimen>
+    <dimen name="gamesetup_title_text">47sp</dimen>
+    <dimen name="gamesetup_play_button_text">50sp</dimen>
     <dimen name="gamesetup_play_button_margin_bottom">40dp</dimen>
 </resources>
