@@ -4,8 +4,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="850dp"
-    android:layout_height="450dp"
-    tools:context=".ReplayPopUpFragment">
+    android:layout_height="650dp"
+    tools:context=".ExitGamePopUpFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
