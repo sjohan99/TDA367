@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 import static org.assertj.core.api.Assertions.*;
 
 
+import com.example.fiamedknuff.exceptions.NotFoundException;
 import com.example.fiamedknuff.exceptions.NotImplementedException;
 
 import java.util.ArrayList;
@@ -210,7 +211,7 @@ public class BoardUnitTest {
     }
 
     @Test
-    public void testIsKnockoutTrue() {
+    public void testKnockoutPieceIfOccupied() throws NotFoundException {
         var hMap = board4p.getPiecePositionHashMap();
 
         // Initialize position and index for piece to knockout another piece
@@ -226,7 +227,7 @@ public class BoardUnitTest {
         hMap.put(pieceToBeKnockedOut, secondPos);
 
         assertTrue(board4p.isKnockout(piece));
+        board4p.knockOutPieceIfOccupied(piece);
         assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(16+11));
     }
-
 }
