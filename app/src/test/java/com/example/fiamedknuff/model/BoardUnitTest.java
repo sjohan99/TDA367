@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 import com.example.fiamedknuff.exceptions.NotImplementedException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -112,5 +113,19 @@ public class BoardUnitTest {
         assertThat(cp.getIndex()).isEqualTo(41);
         assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+40+12));
     }
+
+    @Test
+    public void testMovePieceAboutToLap() {
+        var hMap = board4p.getPiecePositionHashMap();
+        Piece piece = pieces.get(0);
+        piece.setIndex(44);
+        Position pos = board4p.getPositions().get(16+39);
+        hMap.put(piece, pos);
+
+        board4p.movePiece(piece);
+        assertThat(piece.getIndex()).isEqualTo(45);
+        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(16));
+    }
+
 
 }
