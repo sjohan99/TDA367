@@ -25,7 +25,7 @@ public class CPU extends Player {
     }
 
     /**
-     * Set the board to incoming parameter of board. If the board is already initialized,
+     * Sets the board to incoming parameter of board. If the board is already initialized,
      * do nothing. The board must be set for the CPU after a game has been created, since the
      * board is null otherwise.
      *
@@ -42,7 +42,7 @@ public class CPU extends Player {
      * piece which has the possibility to knockout another players piece, primarily if this piece
      * is at home. Otherwise going out with a piece off the board, then going out with a piece from
      * the home and lastly move a leading piece forward (a leading piece is the piece that has
-     * moved the farthest on the board but not yet entered the home-path).
+     * moved the farthest on the board but not yet entered the middle path).
      *
      * @param roll is the value from the latest roll.
      * @return the piece to be moved.
@@ -75,13 +75,13 @@ public class CPU extends Player {
         return leadingPiece(movablePieces);
     }
 
-    // Return the leading piece, which is the piece that has moved the farthest on the board and
-    // not yet entered the home path. If all the pieces is in the home path, return the first piece.
+    // Return the leading piece, which is the piece that has moved the farthest on the board and not
+    // yet entered the middle path. If all the pieces is in the middle path, return the first piece.
     private Piece leadingPiece(List<Piece> movablePieces) {
         Piece piece = movablePieces.get(0);
         int tmpIndex = piece.getIndex();
         for (Piece p : movablePieces) {
-            // If piece is in home path, don't prioritize moving that piece
+            // If piece is in the middle path, don't prioritize moving this piece
             if (p.getIndex() > board.getLapLength() + 1) {
                 continue;
             }

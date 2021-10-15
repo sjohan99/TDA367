@@ -18,7 +18,7 @@ public class Player implements Serializable {
     private final List<Piece> pieces; // A list of the players pieces
 
     /**
-     * Sole constructor for the class. Creates a Player.
+     * Sole constructor for the class. Creates a Player which has a name, color and a list of pieces.
      *
      * @param name is the name of the player.
      * @param color is the player's color.
@@ -32,7 +32,7 @@ public class Player implements Serializable {
     }
 
     /**
-     * Set the name of the player.
+     * Sets the name of the player.
      *
      * @param name the name of the player.
      */
@@ -41,7 +41,7 @@ public class Player implements Serializable {
     }
 
     /**
-     * Get the name of the player.
+     * Returns the name of the player.
      *
      * @return the name of the player.
      */
@@ -50,7 +50,7 @@ public class Player implements Serializable {
     }
 
     /**
-     * Get a list of the player's pieces.
+     * Returns a list of the player's pieces.
      *
      * @return a list of the player's pieces.
      */

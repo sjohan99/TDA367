@@ -154,7 +154,7 @@ public class CPUUnitTest {
         Position cpuSecondPos= board.getPositions().get(16+30);
         piecePositionHashMap.put(cpuSecondPiece, cpuSecondPos);
 
-        // Set position for third CPU-piece, (in homePath)
+        // Set position for third CPU-piece, (in middle path)
         Piece cpuThirdPiece = CPU.getPieces().get(2);
         cpuThirdPiece.setIndex(43);
         Position cpuThirdPos = board.getPositions().get(16+52);
@@ -164,7 +164,7 @@ public class CPUUnitTest {
     }
 
     @Test
-    public void testChoosePieceToMoveInHomePath() {
+    public void testChoosePieceToMoveInMiddlePath() {
         // Set position for a CPU-piece
         Piece cpuFirstPiece = CPU.getPieces().get(0);
         cpuFirstPiece.setIndex(41);
