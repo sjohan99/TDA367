@@ -140,7 +140,19 @@ public class BoardUnitTest {
     }
 
     @Test
-    public void testMovePieceType1Backwards() {
+    public void testMovePieceBackwards() {
+        var hMap = board4p.getPiecePositionHashMap();
+        Piece piece = pieces.get(0);
+        piece.setIndex(42);
+        tempPos = board4p.getPositions().get(16+41);
+        hMap.put(piece, tempPos);
+        board4p.movePieceBackwards(piece);
+        assertThat(piece.getIndex()).isEqualTo(41);
+        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(16+40));
+    }
+
+    @Test
+    public void testMovePieceType1BackwardsExitMiddlePath() {
         var hMap = board4p.getPiecePositionHashMap();
         Piece piece = pieces.get(0);
         piece.setIndex(41);
@@ -152,7 +164,7 @@ public class BoardUnitTest {
     }
 
     @Test
-    public void testMovePieceType2Backwards() {
+    public void testMovePieceType2BackwardsExitMiddlePath() {
         var hMap = board4p.getPiecePositionHashMap();
         Piece piece = pieces.get(4);
         piece.setIndex(41);
@@ -164,7 +176,7 @@ public class BoardUnitTest {
     }
 
     @Test
-    public void testMovePieceType3Backwards() {
+    public void testMovePieceType3BackwardsExitMiddlePath() {
         var hMap = board4p.getPiecePositionHashMap();
         Piece piece = pieces.get(8);
         piece.setIndex(41);
@@ -176,7 +188,7 @@ public class BoardUnitTest {
     }
 
     @Test
-    public void testMovePieceType4Backwards() {
+    public void testMovePieceType4BackwardsExitMiddlePath() {
         var hMap = board4p.getPiecePositionHashMap();
         Piece piece = pieces.get(12);
         piece.setIndex(41);
@@ -186,6 +198,5 @@ public class BoardUnitTest {
         assertThat(piece.getIndex()).isEqualTo(40);
         assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(16+29));
     }
-
 
 }
