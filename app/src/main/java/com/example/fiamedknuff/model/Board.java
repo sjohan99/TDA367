@@ -155,6 +155,10 @@ public class Board implements Serializable {
         else if (pieceAboutToLap(piece)) {
             pos = getFirstPositionInLap();
         }
+        // FIXME: 2021-10-16 Only tested so it works for yellow so far, investigate
+        else if (pieceOneStepBeforeGoal(piece)) {
+            pos = getGoalPosition();
+        }
         else { // Move as per usual
             pos = IncrementPositionOf(piece);
         }
@@ -177,12 +181,20 @@ public class Board implements Serializable {
         if (pieceAboutToExitMiddlePath(piece)) {
             p = getPieceLastPositionBeforeMiddlePath(piece);
         }
+        // FIXME: 2021-10-16 Only tested so it works for yellow so far, investigate
+        else if (piece.getIndex() == getFinishIndex()) {
+            p = getPiecePositionBeforeGoal(piece);
+        }
         else {
             p = decrementPositionOf(piece);
         }
         piecePositionHashMap.put(piece, p); // Updates value of key
         piece.decrementIndex();
         return p;
+    }
+
+    private boolean pieceOneStepBeforeGoal(Piece piece) {
+        return piece.getIndex() == getFinishIndex() - 1;
     }
 
     private Position getPieceLastPositionBeforeMiddlePath(Piece piece) {
@@ -196,6 +208,12 @@ public class Board implements Serializable {
         return p;
     }
 
+    private Position getPiecePositionBeforeGoal(Piece piece) {
+        Position p = getPieceLastPositionBeforeMiddlePath(piece);
+        p = positions.get(positions.indexOf(p) + 4);
+        return p;
+    }
+
     private boolean pieceAboutToExitMiddlePath(Piece piece) {
         return piece.getIndex() == lapLength[playerCount - 1] + 1;
     }
@@ -206,6 +224,10 @@ public class Board implements Serializable {
 
     private Position IncrementPositionOf(Piece piece) {
         return positions.get((4 * playerCount) + piecePositionHashMap.get(piece).getPos() + 1);
+    }
+
+    private Position getGoalPosition() {
+        return positions.get(positions.size()-1);
     }
 
     private Position getFirstPositionInLap() {
