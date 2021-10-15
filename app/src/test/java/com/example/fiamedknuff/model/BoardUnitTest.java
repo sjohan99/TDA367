@@ -139,4 +139,53 @@ public class BoardUnitTest {
         assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(16+13));
     }
 
+    @Test
+    public void testMovePieceType1Backwards() {
+        var hMap = board4p.getPiecePositionHashMap();
+        Piece piece = pieces.get(0);
+        piece.setIndex(41);
+        tempPos = board4p.getPositions().get(16+40);
+        hMap.put(piece, tempPos);
+        board4p.movePieceBackwards(piece);
+        assertThat(piece.getIndex()).isEqualTo(40);
+        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(16+39));
+    }
+
+    @Test
+    public void testMovePieceType2Backwards() {
+        var hMap = board4p.getPiecePositionHashMap();
+        Piece piece = pieces.get(4);
+        piece.setIndex(41);
+        tempPos = board4p.getPositions().get(16+44);
+        hMap.put(piece, tempPos);
+        board4p.movePieceBackwards(piece);
+        assertThat(piece.getIndex()).isEqualTo(40);
+        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(16+9));
+    }
+
+    @Test
+    public void testMovePieceType3Backwards() {
+        var hMap = board4p.getPiecePositionHashMap();
+        Piece piece = pieces.get(8);
+        piece.setIndex(41);
+        tempPos = board4p.getPositions().get(16+48);
+        hMap.put(piece, tempPos);
+        board4p.movePieceBackwards(piece);
+        assertThat(piece.getIndex()).isEqualTo(40);
+        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(16+19));
+    }
+
+    @Test
+    public void testMovePieceType4Backwards() {
+        var hMap = board4p.getPiecePositionHashMap();
+        Piece piece = pieces.get(12);
+        piece.setIndex(41);
+        tempPos = board4p.getPositions().get(16+52);
+        hMap.put(piece, tempPos);
+        board4p.movePieceBackwards(piece);
+        assertThat(piece.getIndex()).isEqualTo(40);
+        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(16+29));
+    }
+
+
 }
