@@ -426,7 +426,7 @@ public class StandardboardFragment extends Fragment {
     }
 
     private void isMoved(List<Position> movingPath) {
-        move(latestClickedPiece);
+        move(latestClickedPiece, movingPath);
         boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
         if (gameViewModel.isNextPlayer(playerIsFinished)) {
             gameViewModel.selectNextPlayer();
@@ -492,6 +492,7 @@ public class StandardboardFragment extends Fragment {
      * @param targets is the positions that the piece should be moved to
      */
     private void move(ImageView piece, List<Position> targets) {
+
         for (Position target : targets) {
             moveImageView(piece, imageViewPositionHashMap.get(target));
         }
