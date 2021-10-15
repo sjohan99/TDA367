@@ -2,40 +2,39 @@ package com.example.fiamedknuff.model;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
-
 import java.util.List;
+import static org.junit.Assert.*;
 
 public class PlayerUnitTest {
 
     Player player;
-    String name;
-    Color color;
     Piece piece;
+    int minDiceValue = 1;
+    int maxDiceValue = 6;
 
     @Before
     public void createPlayer() {
-        name = "TestPerson";
-        color = Color.BLUE;
-        player = new Player(name, color);
+        player = new Player("TestPerson", Color.RED);
         piece = player.getPieces().get(0);
-
     }
 
     @Test
     public void testIstMovableInHome() {
-        assertTrue(player.isMovable(piece, 6));
+        assertTrue(player.isMovable(piece, minDiceValue));
+        assertTrue(player.isMovable(piece, maxDiceValue));
     }
 
     @Test
     public void testIsNotMovableInHome() {
-        assertFalse(player.isMovable(piece, 3));
+        for (int i = minDiceValue + 1; i < maxDiceValue; i++) {
+            assertFalse(player.isMovable(piece, i));
+        }
     }
 
     @Test
     public void testIsMovableWhenPieceIsOnBoard() {
         piece.setIndex(12);
-        for (int i = 1; i < 7; i++) {
+        for (int i = minDiceValue; i <= maxDiceValue; i++) {
             assertTrue(player.isMovable(piece, i));
         }
     }
@@ -43,12 +42,11 @@ public class PlayerUnitTest {
     @Test
     public void testIsNotMovableWhenPieceIsOnBoard() {
         piece.setIndex(12);
-        Piece piece2 = player.getPieces().get(1);
-        for (int i = 1; i < 7; i++) {
-            piece2.setIndex(12+i);
+        Piece secondPiece = player.getPieces().get(1);
+        for (int i = minDiceValue; i <= maxDiceValue; i++) {
+            secondPiece.setIndex(12+i);
             assertFalse(player.isMovable(piece, i));
         }
-
     }
 
     @Test
@@ -56,7 +54,7 @@ public class PlayerUnitTest {
         List<Piece> pieces = player.getPieces();
         pieces.get(0).setIndex(1);
         pieces.get(1).setIndex(11);
-        for (int i = 2; i < 6; i++) {
+        for (int i = minDiceValue + 1; i < maxDiceValue; i++) {
             assertEquals(2, player.getMovablePieces(pieces, i).size());
         }
     }
@@ -66,8 +64,8 @@ public class PlayerUnitTest {
         List<Piece> pieces = player.getPieces();
         pieces.get(0).setIndex(1);
         pieces.get(1).setIndex(11);
-        assertEquals(2, player.getMovablePieces(pieces, 1).size());
-        assertEquals(4, player.getMovablePieces(pieces, 6).size());
+        assertEquals(2, player.getMovablePieces(pieces, minDiceValue).size());
+        assertEquals(4, player.getMovablePieces(pieces, maxDiceValue).size());
     }
 
     @Test
@@ -84,8 +82,10 @@ public class PlayerUnitTest {
     @Test
     public void testRemovePiece() {
         assertEquals(4, player.getPieces().size());
-        player.removePiece(piece);
-        assertEquals(3, player.getPieces().size());
+        for (int i = player.getPieces().size() - 1; i >= 0; i--) {
+            player.removePiece(player.getPieces().get(i));
+            assertEquals(i, player.getPieces().size());
+        }
     }
 
 }
