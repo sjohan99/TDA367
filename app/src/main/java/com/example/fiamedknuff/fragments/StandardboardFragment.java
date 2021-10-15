@@ -3,7 +3,6 @@ package com.example.fiamedknuff.fragments;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -13,7 +12,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +21,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
-import com.example.fiamedknuff.model.Dice;
 import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 import com.example.fiamedknuff.model.Piece;
@@ -378,10 +375,10 @@ public class StandardboardFragment extends Fragment {
           If not, the dice in the view is moved to the next player and the dice´s value is
           set to used.
          */
-        gameViewModel.isMoved.observe(getActivity(), new Observer<>() {
+        gameViewModel.movingPath.observe(getActivity(), new Observer<>() {
             @Override
-            public void onChanged(Boolean aBoolean) {
-                if (aBoolean) {
+            public void onChanged(List<Position> movingPath) {
+                if (movingPath.size() != 0) {
                     move(latestClickedPiece);
                     boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
                     if (gameViewModel.isNextPlayer(playerIsFinished)) {
@@ -426,7 +423,8 @@ public class StandardboardFragment extends Fragment {
         gameViewModel.knockedPiece.observe(getActivity(), new Observer<>() {
             @Override
             public void onChanged(Piece piece) {
-                move(getPieceImageView(piece));
+                Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
+                move(getPieceImageView(piece), target);
             }
         });
     }
@@ -481,13 +479,13 @@ public class StandardboardFragment extends Fragment {
     }
 
     /**
-     * Should move the piece in the view (implementation not completed yet) to the position
-     * that the piece has moved to in the model.
-     * @param piece is the piece that should be moved.
+     * Should move the piece in the view to the position sent in as a parameter.
+     * This position is usually the position that the piece has moved to in the model,
+     * or a position on the way there.
+     * @param piece is the piece that should be moved
+     * @param target is the position that the piece should be moved to
      */
-    private void move(ImageView piece) {
-        //move piece in view, implementation not completed yet
-        Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
+    private void move(ImageView piece, Position target) {
         moveImageView(piece, imageViewPositionHashMap.get(target));
     }
 
