@@ -226,4 +226,13 @@ public class GameViewFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
+    /**
+     * Displays a podium dialog by showing a ReplayDialogFragment.
+     * @param players is the list of players in a winning order
+     */
+    public void showPodiumDialog(List<String> players) {
+        // TODO: 2021-10-15 Do something with the list
+        new PodiumDialogFragment().show(getChildFragmentManager(), PodiumDialogFragment.TAG);
+    }
+
 }
