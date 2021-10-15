@@ -199,7 +199,18 @@ public class BoardUnitTest {
     }
 
     @Test
-    public void testIsKnockout() {
+    public void testIsKnockoutFalse() {
+        var hMap = board4p.getPiecePositionHashMap();
+        Piece piece = pieces.get(0);
+        piece.setIndex(9);
+        pos = board4p.getPositions().get(16+11);
+        hMap.put(piece, pos);
+        assertFalse(board4p.isKnockout(piece));
+        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(16+11));
+    }
+
+    @Test
+    public void testIsKnockoutTrue() {
         var hMap = board4p.getPiecePositionHashMap();
 
         // Initialize position and index for piece to knockout another piece
@@ -217,6 +228,5 @@ public class BoardUnitTest {
         assertTrue(board4p.isKnockout(piece));
         assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(16+11));
     }
-
 
 }
