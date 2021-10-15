@@ -454,6 +454,10 @@ public class StandardboardFragment extends Fragment {
             public void onChanged(Player player) {
                 if (gameViewModel.isCPU(player)) {
                     gameViewModel.CPUdiceRoll(true);
+                    //for-loop för delay i en CPU-drag -> för att kunna följa vad som händer
+                    //for (int i = 0; i < 1000000000; i++) {
+                    //    int wait = 2;
+                    //}
                     Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(gameViewModel.getDiceValue());
                     if (piece != null) {
                         ImageView pieceImageView = getPieceImageView(piece);

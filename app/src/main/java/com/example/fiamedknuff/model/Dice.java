@@ -68,7 +68,8 @@ public class Dice implements Serializable{
      */
     int rollDice() {
         isUsed = false;
-        rolledValue = rand.nextInt(valueMax) + 1;
+        rolledValue = 1; // for testing
+        //rolledValue = rand.nextInt(valueMax) + 1;
         return rolledValue;
     }
 
