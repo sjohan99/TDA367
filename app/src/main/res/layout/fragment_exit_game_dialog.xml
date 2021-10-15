@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/exit_game_popup_width"
     android:layout_height="@dimen/exit_game_popup_height"
-    tools:context=".ExitGamePopUpFragment"
+    tools:context=".fragments.ExitGameDialogFragment"
     android:background="@color/light_brown_2"
     android:padding="5dp"
     android:layout_gravity="center">
