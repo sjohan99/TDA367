@@ -43,7 +43,7 @@ public class BoardUnitTest {
 
     @Test(expected = NotImplementedException.class)
     public void boardPlayerAmountNotImplemented() throws NotImplementedException {
-        Board board = new Board(6, new ArrayList<Piece>());
+        Board board = new Board(6, new ArrayList<>());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class BoardUnitTest {
     }
 
     @Test
-    public void testMovePieceOutOfHome() throws Exception {
+    public void testMovePieceOutOfHome() {
         board4p.movePiece(pieces.get(0));
         assertThat(pieces.get(0).getIndex()).isEqualTo(1);
         assertThat(board4p.getPiecePositionHashMap().get(pieces.get(0))).isEqualTo(board4p.getPositions().get(16));
