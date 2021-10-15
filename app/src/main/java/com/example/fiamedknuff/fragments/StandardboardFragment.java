@@ -1,5 +1,7 @@
 package com.example.fiamedknuff.fragments;
 
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -9,6 +11,7 @@ import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
@@ -340,13 +343,18 @@ public class StandardboardFragment extends Fragment {
     }
 
 
+    Animation anim;
     /**
      * Gets the current player's movable pieces marked on the GUI.
      */
     private void markMovablePieces() {
         for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
             // TODO: Change to something fancy
-            entry.getValue().setBackgroundColor(R.drawable.background); // Highlight the movable piece
+            //entry.getValue().setBackgroundColor(R.drawable.background); // Highlight the movable piece
+
+            anim = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.bounce);
+            entry.getValue().startAnimation(anim); // animate the roll of the dice
+
         }
     }
 
@@ -356,7 +364,8 @@ public class StandardboardFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void unMarkAllPieces() {
         imageViewPieceHashMap.forEach((imageView, piece) -> {
-            imageView.setBackgroundColor(0); // Remove the background.
+            //imageView.setBackgroundColor(0); // Remove the background.
+            imageView.clearAnimation();
         });
     }
 
@@ -460,7 +469,7 @@ public class StandardboardFragment extends Fragment {
                         ImageView pieceImageView = null;
                         try {
                             pieceImageView = getPieceImageView(piece);
-                        } catch (Exception e) {
+                        } catch (IllegalStateException e) {
                             e.printStackTrace();
                         }
                         pieceClicked(pieceImageView);
@@ -471,7 +480,7 @@ public class StandardboardFragment extends Fragment {
         });
     }
 
-    private ImageView getPieceImageView(Piece piece) throws Exception {
+    private ImageView getPieceImageView(Piece piece) throws IllegalStateException {
         for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
             if (piece.toString().equals(entry.getValue().toString())) {
                 return entry.getKey();
