@@ -1,5 +1,6 @@
 package com.example.fiamedknuff.fragments;
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
@@ -14,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.fiamedknuff.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * UI controller for the side bar layout.
@@ -98,9 +102,12 @@ public class GameSideBarFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // TODO
+
             }
         });
     }
+
+
 
     private void initButtons(View view) {
         homeBtn = view.findViewById(R.id.homeBtn);
