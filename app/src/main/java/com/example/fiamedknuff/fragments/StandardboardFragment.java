@@ -519,7 +519,6 @@ public class StandardboardFragment extends Fragment {
      */
     private boolean removePieceIfFinished(ImageView piece) {
         if (pieceIsFinished(piece)) {
-            //TODO animation might need a delay or something to be seen?
             animateFinishedPiece(piece);
             piece.setVisibility(View.INVISIBLE);
             return true;
