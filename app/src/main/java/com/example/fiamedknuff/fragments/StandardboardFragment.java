@@ -342,19 +342,13 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
-
-    Animation anim;
     /**
      * Gets the current player's movable pieces marked on the GUI.
      */
     private void markMovablePieces() {
         for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
-            // TODO: Change to something fancy
-            //entry.getValue().setBackgroundColor(R.drawable.background); // Highlight the movable piece
-
-            anim = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.bounce);
-            entry.getValue().startAnimation(anim); // animate the roll of the dice
-
+            Animation anim = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.bounce);
+            entry.getValue().startAnimation(anim);
         }
     }
 
@@ -364,7 +358,6 @@ public class StandardboardFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void unMarkAllPieces() {
         imageViewPieceHashMap.forEach((imageView, piece) -> {
-            //imageView.setBackgroundColor(0); // Remove the background.
             imageView.clearAnimation();
         });
     }
