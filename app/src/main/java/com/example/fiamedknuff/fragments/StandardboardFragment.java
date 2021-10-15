@@ -418,7 +418,9 @@ public class StandardboardFragment extends Fragment {
             @Override
             public void onChanged(Piece piece) {
                 Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
-                move(getPieceImageView(piece), target);
+                List<Position> movingPath = new ArrayList<>();
+                movingPath.add(target);
+                move(getPieceImageView(piece), movingPath);
             }
         });
     }
@@ -483,14 +485,16 @@ public class StandardboardFragment extends Fragment {
     }
 
     /**
-     * Should move the piece in the view to the position sent in as a parameter.
-     * This position is usually the position that the piece has moved to in the model,
-     * or a position on the way there.
+     * Should move the piece in the view to the positions sent in as a parameter.
+     * This positions is usually the positions that the piece has moved through in the model,
+     * and it stops on the piece´s target position.
      * @param piece is the piece that should be moved
-     * @param target is the position that the piece should be moved to
+     * @param targets is the positions that the piece should be moved to
      */
-    private void move(ImageView piece, Position target) {
-        moveImageView(piece, imageViewPositionHashMap.get(target));
+    private void move(ImageView piece, List<Position> targets) {
+        for (Position target : targets) {
+            moveImageView(piece, imageViewPositionHashMap.get(target));
+        }
     }
 
     /**
