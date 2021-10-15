@@ -52,6 +52,10 @@ public class Game implements Serializable {
         return activePlayers.get(currentPlayerIndex);
     }
 
+    public String getCurrentPlayerName() {
+        return getCurrentPlayer().getName();
+    }
+
     /**
      * Get the dice.
      *

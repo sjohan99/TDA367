@@ -80,6 +80,8 @@ public class GameViewFragment extends Fragment {
             showAllFragments();
         }
 
+        reInitDice();
+
         return view;
     }
 
@@ -140,6 +142,11 @@ public class GameViewFragment extends Fragment {
                 moveDice(target);
             }
         });
+    }
+
+    private void reInitDice() {
+        ImageView target = playerToDicespaceHashMap.get(gameViewModel.getCurrentPlayerName());
+        moveDice(target);
     }
 
     private void moveDice(ImageView target) {
