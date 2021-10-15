@@ -10,5 +10,10 @@
     android:padding="5dp"
     android:layout_gravity="center">
 
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:text="@string/replay_popup_message"/>
+
 
 </LinearLayout>

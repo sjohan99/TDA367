@@ -12,6 +12,7 @@
     <color name="darker_grey">#959595</color>
     <color name="light_brown">#B6A392</color>
     <color name="light_brown_2">#F2E3D5</color>
+    <color name="light_brown_3">#D9BCA3</color>
     <color name="brown">#8A5A37</color>
     <color name="dark_brown">#5F412B</color>
 </resources>
