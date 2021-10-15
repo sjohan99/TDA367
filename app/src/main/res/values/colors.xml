@@ -10,4 +10,7 @@
     <color name="transparent_white">#4DFFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="darker_grey">#959595</color>
+    <color name="light_brown">#B6A392</color>
+    <color name="brown">#8A5A37</color>
+    <color name="dark_brown">#5F412B</color>
 </resources>
