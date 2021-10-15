@@ -208,10 +208,12 @@ public class Board implements Serializable {
         return positions.get((4 * playerCount) + piecePositionHashMap.get(piece).getPos() + 1);
     }
 
-    private Position getFirstPositionInLap() {
+    // TODO: 2021-10-15 Javadoc
+    public Position getFirstPositionInLap() {
         return positions.get(4*playerCount);
     }
 
+    // TODO: 2021-10-15 Javadoc
     public int getFirstPositionIndexInLap() {
         return 4*playerCount;
     }
