@@ -95,8 +95,8 @@ public class Player implements Serializable {
      * @return true if the position is occupied by self, otherwise false.
      */
     private boolean targetPositionOccupiedBySelf(int targetIndex) {
-        for (Piece p : pieces) {
-            if (targetIndex == p.getIndex()) return true;
+        for (Piece piece : pieces) {
+            if (targetIndex == piece.getIndex()) return true;
         }
         return false;
     }
