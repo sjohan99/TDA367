@@ -252,6 +252,16 @@ public class BoardUnitTest {
         assertThat(board4p.getPiecePositionHashMap().get(pieceToBeKnockedOut)).isEqualTo(board4p.getPositions().get(4));
     }
 
+    @Test(expected = NotFoundException.class)
+    public void testPieceAtPositionNotFoundException() throws NotFoundException {
+        var hMap = board4p.getPiecePositionHashMap();
+        Piece piece = pieces.get(0);
+        piece.setIndex(9);
+        pos = board4p.getPositions().get(16+11);
+        hMap.put(piece, pos);
+        board4p.knockoutWithPiece(piece);
+    }
+
     @Test
     public void testRemovePieceFromBoard() {
         var hMap = board4p.getPiecePositionHashMap();
