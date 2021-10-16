@@ -195,7 +195,7 @@ public class Game implements Serializable {
      * @return a list of positions the piece has passed including where it ends
      */
     // TODO: 2021-10-14 Separate behavior into calculating path and moving??
-    public List<Position> move(Piece piece) throws Resources.NotFoundException {
+    public List<Position> move(Piece piece) throws NotFoundException {
         List<Position> positionPath;
         int diceValue = dice.getRolledValue();
         if (pieceWillMovePastGoal(diceValue, piece)) {
