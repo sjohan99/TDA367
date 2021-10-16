@@ -134,7 +134,7 @@ public class BoardUnitTest {
         hMap.put(piece, pos);
         board4p.movePiece(piece);
         assertThat(piece.getIndex()).isEqualTo(45);
-        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(firstPos));
+        assertThat(hMap.get(piece)).isEqualTo(board4p.getPositions().get(firstPos));
     }
 
     @Test
@@ -146,7 +146,7 @@ public class BoardUnitTest {
         hMap.put(piece, pos);
         board4p.movePiece(piece);
         assertThat(piece.getIndex()).isEqualTo(14);
-        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(firstPos+13));
+        assertThat(hMap.get(piece)).isEqualTo(board4p.getPositions().get(firstPos+13));
     }
 
     @Test
@@ -158,7 +158,7 @@ public class BoardUnitTest {
         hMap.put(piece, pos);
         board4p.movePieceBackwards(piece);
         assertThat(piece.getIndex()).isEqualTo(41);
-        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(firstPos+40));
+        assertThat(hMap.get(piece)).isEqualTo(board4p.getPositions().get(firstPos+40));
     }
 
     @Test
@@ -170,7 +170,7 @@ public class BoardUnitTest {
         hMap.put(piece, pos);
         board4p.movePieceBackwards(piece);
         assertThat(piece.getIndex()).isEqualTo(40);
-        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(firstPos+39));
+        assertThat(hMap.get(piece)).isEqualTo(board4p.getPositions().get(firstPos+39));
     }
 
     @Test
@@ -182,7 +182,7 @@ public class BoardUnitTest {
         hMap.put(piece, pos);
         board4p.movePieceBackwards(piece);
         assertThat(piece.getIndex()).isEqualTo(40);
-        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(firstPos+9));
+        assertThat(hMap.get(piece)).isEqualTo(board4p.getPositions().get(firstPos+9));
     }
 
     @Test
@@ -194,7 +194,7 @@ public class BoardUnitTest {
         hMap.put(piece, pos);
         board4p.movePieceBackwards(piece);
         assertThat(piece.getIndex()).isEqualTo(40);
-        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(firstPos+19));
+        assertThat(hMap.get(piece)).isEqualTo(board4p.getPositions().get(firstPos+19));
     }
 
     @Test
@@ -206,7 +206,7 @@ public class BoardUnitTest {
         hMap.put(piece, pos);
         board4p.movePieceBackwards(piece);
         assertThat(piece.getIndex()).isEqualTo(40);
-        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(firstPos+29));
+        assertThat(hMap.get(piece)).isEqualTo(board4p.getPositions().get(firstPos+29));
     }
 
     @Test
@@ -217,7 +217,7 @@ public class BoardUnitTest {
         pos = board4p.getPositions().get(firstPos+11);
         hMap.put(piece, pos);
         assertFalse(board4p.isKnockout(piece));
-        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(firstPos+11));
+        assertThat(hMap.get(piece)).isEqualTo(board4p.getPositions().get(firstPos+11));
     }
 
     @Test
@@ -238,7 +238,7 @@ public class BoardUnitTest {
 
         assertTrue(board4p.isKnockout(piece));
         board4p.knockOutPieceIfOccupied(piece);
-        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(firstPos+11));
+        assertThat(hMap.get(piece)).isEqualTo(board4p.getPositions().get(firstPos+11));
     }
 
     @Test
@@ -259,7 +259,7 @@ public class BoardUnitTest {
 
         assertThat(board4p.knockoutWithPiece(piece)).isEqualTo(pieceToBeKnockedOut);
         assertThat(pieceToBeKnockedOut.getIndex()).isEqualTo(0);
-        assertThat(board4p.getPiecePositionHashMap().get(pieceToBeKnockedOut)).isEqualTo(board4p.getPositions().get(4));
+        assertThat(hMap.get(pieceToBeKnockedOut)).isEqualTo(board4p.getPositions().get(4));
     }
 
     @Test(expected = NotFoundException.class)
