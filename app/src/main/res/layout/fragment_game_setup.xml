@@ -17,26 +17,56 @@
         app:srcCompat="@drawable/background"
         tools:ignore="ImageContrastCheck" />
 
+    <ImageView
+        android:id="@+id/gamesetup_title"
+        android:layout_width="@dimen/gamesetup_title_holder_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gamesetup_title_holder_margin_top"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/title_holder" />
+
+    <TextView
+        android:id="@+id/gameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/titlefont"
+        android:text="@string/gamesetup_new_game_title"
+        android:textColor="#604027"
+        android:textSize="@dimen/gamesetup_title_text"
+        app:layout_constraintBottom_toBottomOf="@+id/gamesetup_title"
+        app:layout_constraintEnd_toEndOf="@+id/gamesetup_title"
+        app:layout_constraintStart_toStartOf="@+id/gamesetup_title"
+        app:layout_constraintTop_toTopOf="@+id/gamesetup_title" />
+
     <Button
         android:id="@+id/createGameBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:text="Play"
-        android:textSize="60sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        android:layout_marginBottom="@dimen/gamesetup_play_button_margin_bottom"
+        android:text="@string/gamesetup_play_button"
+        android:textColor="#604027"
+        android:textSize="@dimen/gamesetup_play_button_text"
+        android:fontFamily="@font/titlefont"
+        android:backgroundTint="#D9BCA3"
+        app:cornerRadius="30dp"
+        app:strokeWidth="1.5dp"
+        app:strokeColor="#B6A392"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginTop="140dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/gamesetup_title">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -81,7 +111,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="CPU" />
+                android:clickable="false"
+                android:text="@string/cpu_name" />
         </LinearLayout>
 
 
@@ -110,7 +141,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="CPU" />
+                android:text="@string/cpu_name" />
         </LinearLayout>
 
         <LinearLayout
@@ -138,7 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="CPU" />
+                android:text="@string/cpu_name" />
         </LinearLayout>
 
 
@@ -167,7 +198,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="CPU" />
+                android:text="@string/cpu_name" />
         </LinearLayout>
 
 

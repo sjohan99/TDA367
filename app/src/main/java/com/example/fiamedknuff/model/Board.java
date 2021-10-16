@@ -22,15 +22,16 @@ public class Board implements Serializable {
     private final int[] walkOutOffset = {0, 10, 10, 10, 0, 0, 0}; // Walk out offset-multiplier for the pieces for each board size
     private final int[] lapLength = {0, 40, 40, 40, 0, 0, 0}; // The amount of steps to walk around the path
     private final int[] finishIndex = {0, 45, 45, 45, 0, 0, 0}; // Index for last square where a piece finishes and disappears
-    private final int playerCount; // amount of players
+    private final int playerCount; // Amount of players
 
     /**
-     * Creates a board according to the number of players and the pieces given. Assigns each piece
-     * a home-position and offset as well as linking it to a position via the piecePositionHashMap.
+     * Sole constructor for the class. Creates a board according to the number of players and the
+     * pieces given. Assigns each piece a home-position and offset as well as linking it to a
+     * position via the piecePositionHashMap.
      *
      * @param playerCount the number of players.
      * @param pieces all pieces to be involved in the game.
-     * @throws NotImplementedException If given amount of players is not yet supported.
+     * @throws NotImplementedException if given amount of players is not yet supported.
      */
     public Board(int playerCount, List<Piece> pieces) throws NotImplementedException {
         if (playerCount >= 2 && playerCount <= 4) {
@@ -121,18 +122,18 @@ public class Board implements Serializable {
     }
 
     /**
-     * Get the lap length for the specific board.
+     * Returns the lap length of the board.
      *
-     * @return the lap length.
+     * @return the lap length of the board.
      */
     public int getLapLength() {
         return lapLength[playerCount - 1];
     }
 
     /**
-     * Get the finish index for the specific board.
+     * Returns the finish index of the board.
      *
-     * @return the finish index.
+     * @return the finish index of the board.
      */
     public int getFinishIndex() {
         return finishIndex[playerCount - 1];
@@ -176,19 +177,19 @@ public class Board implements Serializable {
      * @param piece the piece to be moved.
      */
     Position movePieceBackwards(Piece piece) {
-        Position p;
+        Position pos;
         if (pieceAboutToExitMiddlePath(piece)) {
-            p = getPieceLastPositionBeforeMiddlePath(piece);
+            pos = getPieceLastPositionBeforeMiddlePath(piece);
         }
         else if (piece.getIndex() == getFinishIndex()) {
             p = getPiecePositionBeforeGoal(piece);
         }
         else {
-            p = decrementPositionOf(piece);
+            pos = decrementPositionOf(piece);
         }
-        piecePositionHashMap.put(piece, p); // Updates value of key
+        piecePositionHashMap.put(piece, pos); // Updates value of key
         piece.decrementIndex();
-        return p;
+        return pos;
     }
 
     private boolean pieceOneStepBeforeGoal(Piece piece) {
@@ -196,14 +197,14 @@ public class Board implements Serializable {
     }
 
     private Position getPieceLastPositionBeforeMiddlePath(Piece piece) {
-        Position p;
+        Position pos;
         if (piece.getOffset() > 0) {
-            p = positions.get((4*playerCount) + piece.getOffset() - 1); // Start-position minus 1
+            pos = positions.get((4*playerCount) + piece.getOffset() - 1); // Start-position minus 1
         }
         else {
-            p = positions.get((4 * playerCount) + lapLength[playerCount-1] - 1); // For player 1
+            pos = positions.get((4 * playerCount) + lapLength[playerCount-1] - 1); // For player 1
         }
-        return p;
+        return pos;
     }
 
     private Position getPiecePositionBeforeGoal(Piece piece) {
@@ -224,23 +225,44 @@ public class Board implements Serializable {
         return positions.get((4 * playerCount) + piecePositionHashMap.get(piece).getPos() + 1);
     }
 
+
     private Position getGoalPosition() {
         return positions.get(positions.size()-1);
     }
 
-    private Position getFirstPositionInLap() {
+    /**
+     * Returns the first position in the lap, which is supposed to be position 0.
+     *
+     * @return the first position in the lap.
+     */
+    public Position getFirstPositionInLap() {
         return positions.get(4*playerCount);
     }
 
-    private Position getFirstInwardPositionOf(Piece piece) {
-        Position p;
-        int posIndex = lapLength[playerCount-1];
-        posIndex += getPieceJumpAmount(piece);
-        p = positions.get((4*playerCount)+posIndex);
-        return p;
+    /**
+     * Returns the index of the first position i the lap.
+     *
+     * @return the index of the first position i the lap.
+     */
+    public int getFirstPositionIndexInLap() {
+        return 4*playerCount;
     }
 
-    private Position getFirstPositionOf(Piece piece) {
+    private Position getFirstInwardPositionOf(Piece piece) {
+        Position pos;
+        int posIndex = lapLength[playerCount-1];
+        posIndex += getPieceJumpAmount(piece);
+        pos = positions.get((4*playerCount)+posIndex);
+        return pos;
+    }
+
+    /**
+     * Returns the first position outside of a specific piece's home.
+     *
+     * @param piece the piece to check the first position for.
+     * @return the first position outside of the piece's home.
+     */
+    public Position getFirstPositionOf(Piece piece) {
         return positions.get((4*playerCount) + piece.getOffset());
     }
 
@@ -262,10 +284,11 @@ public class Board implements Serializable {
     }
 
     /**
-     * Finds out which piece that are standing on a certain position
-     * @param pos is the position to be checked
-     * @return the piece at the incoming position
-     * @throws NotFoundException if there's no piece at the given position
+     * Checks if a piece is standing on a certain position and in that case returns that piece.
+     *
+     * @param pos is the position to be checked.
+     * @return the piece at the incoming position.
+     * @throws NotFoundException if there's no piece at the given position.
      */
     private Piece pieceAtPosition(Position pos) throws NotFoundException {
         for (Piece piece : piecePositionHashMap.keySet()) {
@@ -279,12 +302,12 @@ public class Board implements Serializable {
     /**
      * Checks if a position is occupied with another piece.
      *
-     * @param pos is the position to be checked.
+     * @param position is the position to be checked.
      * @return true if the position is occupied.
      */
-    boolean isOccupied(Position pos) {
-        for (Position p: piecePositionHashMap.values()) {
-            if (p.equals(pos)) {
+    boolean isOccupied(Position position) {
+        for (Position pos: piecePositionHashMap.values()) {
+            if (pos.equals(position)) {
                 return true;
             }
         }
@@ -293,24 +316,26 @@ public class Board implements Serializable {
 
     /**
      * Finds the position corresponding to the piece's home number.
-     * @param piece the piece whose home position to find
-     * @return the home position of piece
-     * @throws NotFoundException if a position couldn't be found
+     *
+     * @param piece the piece whose home position to find.
+     * @return the home position of piece.
+     * @throws NotFoundException if a position couldn't be found.
      */
     private int indexOfHomeNumber(Piece piece) throws NotFoundException {
-        for (Position p : positions) {
-            if (p.getPos() == (piece.getHomeNumber())) {
-                return positions.indexOf(p);
+        for (Position pos : positions) {
+            if (pos.getPos() == (piece.getHomeNumber())) {
+                return positions.indexOf(pos);
             }
         }
         throw new NotFoundException("No position correlating to given piece's home number");
     }
 
     /**
-     * Checks if the position of a piece is also occupied by another piece. If occupied the other
-     * piece will get sent back to its home position.
-     * @param piece the piece you want to check if it shares a position with another
-     * @throws NotFoundException if the knocked out piece's home position couldn't be found
+     * Checks if the position of a piece is also occupied by another piece. If the position is
+     * occupied the other piece will get sent back to its home position.
+     *
+     * @param piece the piece to check if it shares a position with another.
+     * @throws NotFoundException if the knocked out piece's home position couldn't be found.
      */
     void knockOutPieceIfOccupied(Piece piece) throws NotFoundException {
         Position pos = piecePositionHashMap.get(piece);
@@ -322,10 +347,10 @@ public class Board implements Serializable {
     }
 
     /**
-     * Checks if the position of a piece is also occupied by another piece. If occupied,
-     * the method returns true. Otherwise it returns false.
-     * @param piece the piece you want to check if it shares a position with another
-     * @return true if a piece should be knocked out, and false otherwise
+     * Checks if the position of a piece is also occupied by another piece.
+     *
+     * @param piece the piece to check if it shares a position with another.
+     * @return true if a piece should be knocked out, otherwise false.
      */
     boolean isKnockout(Piece piece) {
         boolean isKnockout = false;
@@ -343,14 +368,14 @@ public class Board implements Serializable {
     }
 
     /**
-     * Knocks out the piece that is standing on the same position as the piece which
-     * is sent in as a parameter.
-     * (The piece that is sent in as a parameter is removed from the hashmap while the
+     * Knocks out the piece that is standing on the same position as the piece which is sent in as
+     * a parameter. (The piece that is sent in as a parameter is removed from the hashmap while the
      * knockout is happening. This is because we don´t want the piece to knock out itself.
      * When the knockout is done, the piece is put back into the hashmap again.)
-     * @param piece is the piece that is knocking out another piece
-     * @return the piece that is knocked out
-     * @throws NotFoundException if the method is called incorrectly
+     *
+     * @param piece is the piece that is knocking out another piece.
+     * @return the piece that is knocked out.
+     * @throws NotFoundException if the method is called incorrectly.
      */
     Piece knockoutWithPiece(Piece piece) throws NotFoundException {
         Position pos = piecePositionHashMap.get(piece);
@@ -361,13 +386,14 @@ public class Board implements Serializable {
     }
 
     /**
-     * Knocks out a piece at a position if another piece is moving to the same position
-     * @param p is the position
-     * @return the piece that is knocked out
-     * @throws NotFoundException if a piece or position was not found
+     * Knocks out a piece at a position if another piece is moving to the same position.
+     *
+     * @param position is the position.
+     * @return the piece that is knocked out.
+     * @throws NotFoundException if a piece or position was not found.
      */
-    private Piece knockout(Position p) throws NotFoundException {
-        Piece piece = pieceAtPosition(p);
+    private Piece knockout(Position position) throws NotFoundException {
+        Piece piece = pieceAtPosition(position);
         piecePositionHashMap.remove(piece);
         piece.resetIndex();
         piecePositionHashMap.put(piece, positions.get(indexOfHomeNumber(piece)));
@@ -377,7 +403,7 @@ public class Board implements Serializable {
     /**
      * Removes a piece from the piecePositionHashMap.
      *
-     * @param piece The piece to be removed.
+     * @param piece the piece to be removed.
      */
     void removePieceFromBoard(Piece piece) {
         piecePositionHashMap.remove(piece);

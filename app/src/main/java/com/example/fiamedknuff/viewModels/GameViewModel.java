@@ -34,7 +34,7 @@ public class GameViewModel extends ViewModel {
     private List<String> playerNames;
     private Color[] colors;
   
-    public MutableLiveData<Boolean> isMoved = new MutableLiveData<>();
+    public MutableLiveData<List<Position>> movingPath = new MutableLiveData<>();
     public MutableLiveData<Player> currentPlayer = new MutableLiveData<>();
     public MutableLiveData<Boolean> movesArePossibleToMake = new MutableLiveData<>();
     public MutableLiveData<Boolean> CPUdiceRoll = new MutableLiveData<>();
@@ -64,6 +64,7 @@ public class GameViewModel extends ViewModel {
             //checks if the clicked piece is movable
             if(movablePieces.contains(clickedPiece)) {
                 movePiece(clickedPiece);
+                knockoutHandling(clickedPiece);
             }
         }
     }
@@ -78,9 +79,21 @@ public class GameViewModel extends ViewModel {
      */
     private void movePiece(Piece piece) {
         try {
-            game.move(piece);
-            isMoved.setValue(true);
-            handleKnockout(piece);
+            List<Position> positionPath = game.move(piece);
+            movingPath.setValue(positionPath);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Tries to call the method handleKnockout which handles a possible knockout.
+     *
+     * @param clickedPiece is the piece that might knock out another piece.
+     */
+    private void knockoutHandling(Piece clickedPiece) {
+        try {
+            handleKnockout(clickedPiece);
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
@@ -149,7 +162,6 @@ public class GameViewModel extends ViewModel {
      */
     public int getDiceValue() {
         return game.getDice().getRolledValue();
-        //return 1; //for testing
     }
 
     /**

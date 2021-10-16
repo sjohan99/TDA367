@@ -6,20 +6,21 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * A class Player that creates a player. Implements Serializable to handle data.
+ * A class Player that creates a player. A player has a name and a list of pieces.
+ * Implements Serializable to handle data.
  *
  * Created by
  * @author Amanda Cyrén
  */
-
 public class Player implements Serializable {
 
     private String name; // A variable for the players name
     private final List<Piece> pieces; // A list of the players pieces
 
     /**
-     * Constructor that creates a player.
-     * @param name is the name of player.
+     * Sole constructor for the class. Creates a Player which has a name, color and a list of pieces.
+     *
+     * @param name is the name of the player.
      * @param color is the player's color.
      */
     public Player(String name, Color color) {
@@ -31,7 +32,7 @@ public class Player implements Serializable {
     }
 
     /**
-     * Set the name of the player.
+     * Sets the name of the player.
      *
      * @param name the name of the player.
      */
@@ -40,7 +41,7 @@ public class Player implements Serializable {
     }
 
     /**
-     * Get the name of the player.
+     * Returns the name of the player.
      *
      * @return the name of the player.
      */
@@ -49,7 +50,7 @@ public class Player implements Serializable {
     }
 
     /**
-     * Get a list of the player's pieces.
+     * Returns a list of the player's pieces.
      *
      * @return a list of the player's pieces.
      */
@@ -62,18 +63,16 @@ public class Player implements Serializable {
      *
      * @param pieces is the list of pieces for the current player.
      * @param roll is the value from the latest dice roll.
-     * @return a list of pieces which are able to make a move.
+     * @return the list of pieces which are able to make a move.
      */
     ArrayList<Piece> getMovablePieces(Collection<Piece> pieces, int roll) {
         ArrayList<Piece> movablePieces = new ArrayList<>();
-
         for (Piece piece : pieces) {
             if (isMovable(piece, roll)) {
                 movablePieces.add(piece);
             }
         }
         return movablePieces;
-
     }
 
     /**
@@ -96,8 +95,8 @@ public class Player implements Serializable {
      * @return true if the position is occupied by self, otherwise false.
      */
     private boolean targetPositionOccupiedBySelf(int targetIndex) {
-        for (Piece p : pieces) {
-            if (targetIndex == p.getIndex()) return true;
+        for (Piece piece : pieces) {
+            if (targetIndex == piece.getIndex()) return true;
         }
         return false;
     }
@@ -106,9 +105,10 @@ public class Player implements Serializable {
     /**
      * Removes a specific piece from the player's list of pieces.
      *
-     * @param piece is the piece to be removed.
+     * @param piece the piece to be removed.
      */
     void removePiece(Piece piece) {
         pieces.remove(piece);
     }
+
 }

@@ -5,7 +5,6 @@ import android.animation.PropertyValuesHolder;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -16,7 +15,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -344,7 +342,6 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
-
     /**
      * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
      * should be called. The pieces should be non-clickable when the method makeTurn is called.
@@ -374,28 +371,22 @@ public class StandardboardFragment extends Fragment {
         // TODO - some of the logic which is going to be implemented is right now just comments
         //  or not written here at all
         /*
-          Observes the variable isMoved in GameViewModel, which is set to true
+          Observes the variable movingPath in GameViewModel, which is set to a position path
           when a piece is moved in the model.
           Moves the piece in the view. If the piece is finished it is removed from the
           model and view. If a player rolls a six and is not finished, it is their turn again.
           Otherwise, the next player is selected.
           If the game is finished, another method should be called here (not implemented yet).
           If not, the dice in the view is moved to the next player and the dice´s value is
-          set to used.
+          set to used (this is done in the diceFragment).
          */
-        gameViewModel.isMoved.observe(getActivity(), new Observer<>() {
+        gameViewModel.movingPath.observe(getActivity(), new Observer<>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onChanged(Boolean aBoolean) {
-                if (aBoolean) {
-                    move(latestClickedPiece);
+            public void onChanged(List<Position> movingPath) {
+                if (movingPath.size() != 0) {
                     unMarkAllPieces();
-                    boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
-                    if (gameViewModel.isNextPlayer(playerIsFinished)) {
-                        gameViewModel.selectNextPlayer();
-                    }
-                    // check if game is finished --> finish...
-                    gameViewModel.setDiceIsUsed();
+                    isMoved(movingPath);
                 }
             }
         });
@@ -430,7 +421,9 @@ public class StandardboardFragment extends Fragment {
                         }
                         pieceClicked(pieceImageView);
                     }
-                    gameViewModel.selectNextPlayer();
+                    else {
+                        gameViewModel.selectNextPlayer();
+                    }
                 }
             }
         });
@@ -438,13 +431,23 @@ public class StandardboardFragment extends Fragment {
         gameViewModel.knockedPiece.observe(getActivity(), new Observer<>() {
             @Override
             public void onChanged(Piece piece) {
-                try {
-                    move(getPieceImageView(piece));
-                } catch (NotFoundException e) {
-                    e.printStackTrace();
-                }
+                Position target = gameViewModel.getPosition(piece);
+                List<Position> movingPath = new ArrayList<>();
+                movingPath.add(target);
+                move(getPieceImageView(piece), movingPath);
             }
         });
+    }
+
+
+    private void isMoved(List<Position> movingPath) {
+        move(latestClickedPiece, movingPath);
+        boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
+        if (gameViewModel.isNextPlayer(playerIsFinished)) {
+            gameViewModel.selectNextPlayer();
+        }
+        // check if game is finished --> finish...
+        gameViewModel.setDiceIsUsed();
     }
 
     private ImageView getPieceImageView(Piece piece) throws NotFoundException {
@@ -453,7 +456,7 @@ public class StandardboardFragment extends Fragment {
                 return entry.getKey();
             }
         }
-        throw new NotFoundException("No ImageView found");
+        throw new NotFoundException("No ImageView found for given piece");
     }
 
     /**
@@ -461,8 +464,8 @@ public class StandardboardFragment extends Fragment {
      */
     private void markMovablePieces() {
         for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
-            // TODO: Change to something fancy
-            entry.getValue().setBackgroundColor(R.drawable.background); // Highlight the movable piece
+            Animation anim = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.bounce);
+            entry.getValue().startAnimation(anim);
         }
     }
 
@@ -472,7 +475,7 @@ public class StandardboardFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void unMarkAllPieces() {
         imageViewPieceHashMap.forEach((imageView, piece) -> {
-            imageView.setBackgroundColor(0); // Remove the background.
+            imageView.clearAnimation();
         });
     }
 
@@ -497,14 +500,17 @@ public class StandardboardFragment extends Fragment {
     }
 
     /**
-     * Should move the piece in the view (implementation not completed yet) to the position
-     * that the piece has moved to in the model.
-     * @param piece is the piece that should be moved.
+     * Should move the piece in the view to the positions sent in as a parameter.
+     * This positions is usually the positions that the piece has moved through in the model,
+     * and it stops on the piece´s target position.
+     * @param piece is the piece that should be moved
+     * @param targets is the positions that the piece should be moved to
      */
-    private void move(ImageView piece) {
-        //move piece in view, implementation not completed yet
-        Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
-        moveImageView(piece, imageViewPositionHashMap.get(target));
+    private void move(ImageView piece, List<Position> targets) {
+
+        for (Position target : targets) {
+            moveImageView(piece, imageViewPositionHashMap.get(target));
+        }
     }
 
     private void reInitPieces() {
@@ -541,7 +547,6 @@ public class StandardboardFragment extends Fragment {
      */
     private boolean removePieceIfFinished(ImageView piece) {
         if (pieceIsFinished(piece)) {
-            //TODO animation might need a delay or something to be seen?
             animateFinishedPiece(piece);
             piece.setVisibility(View.INVISIBLE);
             return true;
@@ -609,7 +614,8 @@ public class StandardboardFragment extends Fragment {
         Animation fadeout = AnimationUtils.loadAnimation(
                 requireActivity().getApplicationContext(), R.anim.fadeout);
 
-        rotate.setDuration(750);
+        int duration = 750;
+        rotate.setDuration(duration);
 
         AnimationSet animation = new AnimationSet(false);
         animation.addAnimation(rotate);
