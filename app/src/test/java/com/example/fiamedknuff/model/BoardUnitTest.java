@@ -141,11 +141,11 @@ public class BoardUnitTest {
     public void testMovePieceAsPerUsual() {
         var hMap = board4p.getPiecePositionHashMap();
         Piece piece = pieces.get(0);
-        piece.setIndex(12);
+        piece.setIndex(13);
         pos = board4p.getPositions().get(firstPos+12);
         hMap.put(piece, pos);
         board4p.movePiece(piece);
-        assertThat(piece.getIndex()).isEqualTo(13);
+        assertThat(piece.getIndex()).isEqualTo(14);
         assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(firstPos+13));
     }
 
@@ -213,7 +213,7 @@ public class BoardUnitTest {
     public void testIsKnockoutFalse() {
         var hMap = board4p.getPiecePositionHashMap();
         Piece piece = pieces.get(0);
-        piece.setIndex(9);
+        piece.setIndex(12);
         pos = board4p.getPositions().get(firstPos+11);
         hMap.put(piece, pos);
         assertFalse(board4p.isKnockout(piece));
@@ -226,13 +226,13 @@ public class BoardUnitTest {
 
         // Initialize position and index for piece to knockout another piece
         Piece piece = pieces.get(0);
-        piece.setIndex(9);
+        piece.setIndex(12);
         pos = board4p.getPositions().get(firstPos+11);
         hMap.put(piece, pos);
 
         // Initialize position and index for piece to be knocked out
         Piece pieceToBeKnockedOut = pieces.get(4);
-        pieceToBeKnockedOut.setIndex(1);
+        pieceToBeKnockedOut.setIndex(2);
         Position secondPos = board4p.getPositions().get(firstPos+11);
         hMap.put(pieceToBeKnockedOut, secondPos);
 
@@ -247,13 +247,13 @@ public class BoardUnitTest {
 
         // Initialize position and index for piece to knockout another piece
         Piece piece = pieces.get(0);
-        piece.setIndex(9);
+        piece.setIndex(12);
         pos = board4p.getPositions().get(firstPos+11);
         hMap.put(piece, pos);
 
         // Initialize position and index for piece to be knocked out
         Piece pieceToBeKnockedOut = pieces.get(4);
-        pieceToBeKnockedOut.setIndex(1);
+        pieceToBeKnockedOut.setIndex(2);
         Position secondPos = board4p.getPositions().get(firstPos+11);
         hMap.put(pieceToBeKnockedOut, secondPos);
 
@@ -266,7 +266,7 @@ public class BoardUnitTest {
     public void testPieceAtPositionNotFoundException() throws NotFoundException {
         var hMap = board4p.getPiecePositionHashMap();
         Piece piece = pieces.get(0);
-        piece.setIndex(9);
+        piece.setIndex(12);
         pos = board4p.getPositions().get(firstPos+11);
         hMap.put(piece, pos);
         board4p.knockoutWithPiece(piece);
@@ -278,14 +278,14 @@ public class BoardUnitTest {
 
         // Initialize position and index for piece to knockout another piece
         Piece piece = pieces.get(0);
-        piece.setIndex(9);
+        piece.setIndex(12);
         pos = board4p.getPositions().get(firstPos+11);
         hMap.put(piece, pos);
 
         // Initialize position and index for piece to be knocked out and set its home number to a
         // value that will cause an exception
         Piece pieceToBeKnockedOut = pieces.get(4);
-        pieceToBeKnockedOut.setIndex(1);
+        pieceToBeKnockedOut.setIndex(2);
         Position secondPos = board4p.getPositions().get(firstPos+11);
         hMap.put(pieceToBeKnockedOut, secondPos);
         pieceToBeKnockedOut.setHomeNumber(-17);
@@ -297,7 +297,7 @@ public class BoardUnitTest {
     public void testRemovePieceFromBoard() {
         var hMap = board4p.getPiecePositionHashMap();
         Piece piece = pieces.get(0);
-        piece.setIndex(1);
+        piece.setIndex(2);
         pos = board4p.getPositions().get(firstPos+1);
         hMap.put(piece, pos);
 
@@ -325,7 +325,7 @@ public class BoardUnitTest {
     public void testGetPositionOutsideHomeOf() {
         var hMap = board4p.getPiecePositionHashMap();
         Piece piece = pieces.get(0);
-        piece.setIndex(10);
+        piece.setIndex(11);
         pos = board4p.getPositions().get(firstPos+10);
         hMap.put(piece, pos);
         assertThat(board4p.getPositionOutsideHomeOf(piece)).isEqualTo(board4p.getPositions().get(firstPos+10));
