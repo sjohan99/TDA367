@@ -586,7 +586,8 @@ public class StandardboardFragment extends Fragment {
         Animation fadeout = AnimationUtils.loadAnimation(
                 requireActivity().getApplicationContext(), R.anim.fadeout);
 
-        rotate.setDuration(750);
+        int duration = 750;
+        rotate.setDuration(duration);
 
         AnimationSet animation = new AnimationSet(false);
         animation.addAnimation(rotate);
