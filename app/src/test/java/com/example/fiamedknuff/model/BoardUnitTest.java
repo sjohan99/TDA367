@@ -84,6 +84,13 @@ public class BoardUnitTest {
         board4p.movePiece(cp);
         assertThat(cp.getIndex()).isEqualTo(41);
         assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+40));
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePieceBackwards(cp);
+        board4p.movePieceBackwards(cp);
+        assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+42));
     }
 
     @Test
@@ -93,6 +100,13 @@ public class BoardUnitTest {
         board4p.movePiece(cp);
         assertThat(cp.getIndex()).isEqualTo(41);
         assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+40+4));
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePieceBackwards(cp);
+        board4p.movePieceBackwards(cp);
+        assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+42+4));
     }
 
     @Test
@@ -102,6 +116,13 @@ public class BoardUnitTest {
         board4p.movePiece(cp);
         assertThat(cp.getIndex()).isEqualTo(41);
         assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+40+8));
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePieceBackwards(cp);
+        board4p.movePieceBackwards(cp);
+        assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+42+8));
     }
 
     @Test
@@ -111,6 +132,13 @@ public class BoardUnitTest {
         board4p.movePiece(cp);
         assertThat(cp.getIndex()).isEqualTo(41);
         assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+40+12));
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePieceBackwards(cp);
+        board4p.movePieceBackwards(cp);
+        assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+42+12));
     }
 
 }

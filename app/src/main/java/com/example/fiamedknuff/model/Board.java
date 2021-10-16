@@ -155,7 +155,6 @@ public class Board implements Serializable {
         else if (pieceAboutToLap(piece)) {
             pos = getFirstPositionInLap();
         }
-        // FIXME: 2021-10-16 Only tested so it works for yellow so far, investigate
         else if (pieceOneStepBeforeGoal(piece)) {
             pos = getGoalPosition();
         }
@@ -181,7 +180,6 @@ public class Board implements Serializable {
         if (pieceAboutToExitMiddlePath(piece)) {
             p = getPieceLastPositionBeforeMiddlePath(piece);
         }
-        // FIXME: 2021-10-16 Only tested so it works for yellow so far, investigate
         else if (piece.getIndex() == getFinishIndex()) {
             p = getPiecePositionBeforeGoal(piece);
         }
@@ -209,8 +207,8 @@ public class Board implements Serializable {
     }
 
     private Position getPiecePositionBeforeGoal(Piece piece) {
-        Position p = getPieceLastPositionBeforeMiddlePath(piece);
-        p = positions.get(positions.indexOf(p) + 4);
+        Position p = getFirstInwardPositionOf(piece);
+        p = positions.get(positions.indexOf(p) + 3);
         return p;
     }
 

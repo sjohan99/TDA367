@@ -186,7 +186,7 @@ public class GameUnitTest {
 
         game.move(3, piece);
         assertThat(piece.getIndex()).isEqualTo(board.getFinishIndex() - 2);
-        assertThat(piecePositionHashMap.get(piece).getPos()).isEqualTo(board.getFinishIndex() - 2);
+        assertThat(piecePositionHashMap.get(piece).getPos()).isEqualTo(board.getFinishIndex() - 3);
     }
 
     @Test
