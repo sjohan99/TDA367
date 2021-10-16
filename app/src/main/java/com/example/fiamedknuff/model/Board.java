@@ -332,6 +332,10 @@ public class Board implements Serializable {
     boolean isKnockout(Piece piece) {
         boolean isKnockout = false;
         Position pos = piecePositionHashMap.get(piece);
+
+        // FIXME: 2021-10-16 pos is null if piece is removed in step before, ugly quick fix
+        if (pos == null) return false;
+
         piecePositionHashMap.remove(piece);
         if (isOccupied(pos)) {
             isKnockout = true;
