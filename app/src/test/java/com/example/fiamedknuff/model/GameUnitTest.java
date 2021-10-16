@@ -4,11 +4,12 @@ import com.example.fiamedknuff.exceptions.NotFoundException;
 import com.example.fiamedknuff.exceptions.NotImplementedException;
 
 import org.apache.commons.lang3.SerializationUtils;
-import org.assertj.core.condition.Not;
 import org.junit.Before;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,16 +18,34 @@ import java.util.List;
 public class GameUnitTest {
 
     Game game;
-    ArrayList<Player> players;
+    int playerCount = 4;
+    List<String> playerNames;
+    List<Color> colors;
+    List<Boolean> selectedCPU;
+    List<Player> players;
 
     @Before
     public void createGame() throws NotImplementedException {
-        players = new ArrayList<>();
-        players.add(new Player("1", Color.BLUE));
-        players.add(new Player("2", Color.RED));
-        players.add(new Player("3", Color.YELLOW));
-        players.add(new Player("4", Color.GREEN));
-        game = new Game(players);
+
+        playerNames = new ArrayList<>();
+        for (int i = 1; i <= playerCount; i++) {
+            String s = Integer.toString(i);
+            playerNames.add(s);
+        }
+
+        colors = new ArrayList<>();
+        colors.add(Color.YELLOW);
+        colors.add(Color.RED);
+        colors.add(Color.GREEN);
+        colors.add(Color.BLUE);
+
+        selectedCPU = new ArrayList<>();
+        for (int i = 0; i < playerCount; i++) {
+            selectedCPU.add(false);
+        }
+
+        game = GameFactory.createNewGame(playerNames, colors, selectedCPU);
+        players = game.getActivePlayers();
     }
 
     @Test
@@ -190,8 +209,49 @@ public class GameUnitTest {
     }
 
     @Test
+    public void testIsKnockoutFalse() {
+        var hMap = game.getBoard().getPiecePositionHashMap();
+
+        Piece piece = players.get(0).getPieces().get(0);
+        piece.setIndex(12);
+        Position pos = game.getBoard().getPositions().get(game.getBoard().getFirstPositionIndexInLap()+11);
+        hMap.put(piece, pos);
+
+        assertFalse(game.isKnockout(piece));
+        assertThat(game.getBoard().getPiecePositionHashMap().get(piece)).isEqualTo(game.getBoard().getPositions().get(16+11));
+    }
+
+    @Test
+    public void testIsKnockoutTrue() {
+        var hMap = game.getBoard().getPiecePositionHashMap();
+
+        // Initialize position and index for piece to knockout another piece
+        Piece piece = players.get(0).getPieces().get(0);
+        piece.setIndex(12);
+        Position pos = game.getBoard().getPositions().get(game.getBoard().getFirstPositionIndexInLap()+11);
+        hMap.put(piece, pos);
+
+        // Initialize position and index for piece to be knocked out
+        Piece pieceToBeKnockedOut = players.get(1).getPieces().get(0);
+        pieceToBeKnockedOut.setIndex(2);
+        Position secondPos = game.getBoard().getPositions().get(game.getBoard().getFirstPositionIndexInLap()+11);
+        hMap.put(pieceToBeKnockedOut, secondPos);
+
+        assertTrue(game.isKnockout(piece));
+        assertThat(game.getBoard().getPiecePositionHashMap().get(piece)).isEqualTo(game.getBoard().getPositions().get(16+11));
+    }
+
+    @Test
     public void testGetPlayerCount(){
         assertThat(game.getPlayerCount()).isEqualTo(players.size());
+    }
+
+    @Test
+    public void testGetCurrentPlayerName() {
+        for (int i = 1; i <= players.size(); i++) {
+            assertThat(game.getCurrentPlayerName()).isEqualTo(Integer.toString(i));
+            game.selectNextPlayer();
+        }
     }
 
 }
