@@ -9,26 +9,43 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CPUUnitTest {
 
     Game game;
     Board board;
     CPU CPU;
-    ArrayList<Player> players;
+    int playerCount;
+    List<Player> players;
 
     @Before
     public void createGame() throws NotImplementedException {
-        CPU = new CPU("2", Color.RED);
+        playerCount = 4;
 
-        players = new ArrayList<>();
-        players.add(new Player("1", Color.BLUE));
-        players.add(CPU);
-        players.add(new Player("3", Color.YELLOW));
-        players.add(new Player("4", Color.GREEN));
-        game = new Game(players);
+        List<String> playerNames = new ArrayList<>();
+        for (int i = 1; i <= playerCount; i++) {
+            String s = Integer.toString(i);
+            playerNames.add(s);
+        }
+
+        List<Color> colors = new ArrayList<>();
+        colors.add(Color.YELLOW);
+        colors.add(Color.RED);
+        colors.add(Color.GREEN);
+        colors.add(Color.BLUE);
+
+        List<Boolean> selectedCPU = new ArrayList<>();
+        selectedCPU.add(false);
+        selectedCPU.add(true);
+        selectedCPU.add(false);
+        selectedCPU.add(false);
+
+        game = GameFactory.createNewGame(playerNames, colors, selectedCPU);
+        players = game.getActivePlayers();
 
         board = game.getBoard();
+        CPU = (CPU) players.get(1);
         CPU.setBoard(board);
     }
 

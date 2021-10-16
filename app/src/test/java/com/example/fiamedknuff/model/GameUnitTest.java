@@ -18,12 +18,13 @@ import java.util.List;
 public class GameUnitTest {
 
     Game game;
-    int playerCount = 4;
+    int playerCount;
     List<Player> players;
     int firstPos;
 
     @Before
     public void createGame() throws NotImplementedException {
+        playerCount = 4;
 
         List<String> playerNames = new ArrayList<>();
         for (int i = 1; i <= playerCount; i++) {
