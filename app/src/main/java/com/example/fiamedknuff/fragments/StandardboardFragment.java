@@ -26,6 +26,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
+import com.example.fiamedknuff.exceptions.NotFoundException;
 import com.example.fiamedknuff.model.Dice;
 import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
@@ -416,7 +417,7 @@ public class StandardboardFragment extends Fragment {
         gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onChanged(Player player) throws IllegalStateException {
+            public void onChanged(Player player) {
                 if (gameViewModel.isCPU(player)) {
                     gameViewModel.CPUdiceRoll(true);
                     Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(gameViewModel.getDiceValue());
@@ -424,7 +425,7 @@ public class StandardboardFragment extends Fragment {
                         ImageView pieceImageView = null;
                         try {
                             pieceImageView = getPieceImageView(piece);
-                        } catch (IllegalStateException e) {
+                        } catch (NotFoundException e) {
                             e.printStackTrace();
                         }
                         pieceClicked(pieceImageView);
@@ -437,18 +438,22 @@ public class StandardboardFragment extends Fragment {
         gameViewModel.knockedPiece.observe(getActivity(), new Observer<>() {
             @Override
             public void onChanged(Piece piece) {
-                move(getPieceImageView(piece));
+                try {
+                    move(getPieceImageView(piece));
+                } catch (NotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
-    private ImageView getPieceImageView(Piece piece) throws IllegalStateException {
+    private ImageView getPieceImageView(Piece piece) throws NotFoundException {
         for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
             if (piece.toString().equals(entry.getValue().toString())) {
                 return entry.getKey();
             }
         }
-        return null; //TODO Exception?
+        throw new NotFoundException("No ImageView found");
     }
 
     /**
