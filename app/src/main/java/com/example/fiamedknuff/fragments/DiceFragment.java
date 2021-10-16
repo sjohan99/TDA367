@@ -128,6 +128,7 @@ public class DiceFragment extends Fragment {
         try {
             diceImage.setImageResource(diceImages.get(roll - 1));
         } catch (IndexOutOfBoundsException e) {
+            // FIXME: 2021-10-16 This error gets triggered when starting the game and possibly other times as well, investigate
             Log.d(TAG, "setDiceImage: encountered error: \n" + Arrays.toString(e.getStackTrace()));
             System.out.println("setDiceImage: encountered error: \n" + Arrays.toString(e.getStackTrace()));
             diceImage.setImageResource(diceImages.get(0));
