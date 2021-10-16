@@ -63,6 +63,12 @@ public class GameViewModel extends ViewModel {
             //checks if the clicked piece is movable
             if(movablePieces.contains(clickedPiece)) {
                 movePiece(clickedPiece);
+                knockoutHandling(clickedPiece);
+                try {
+                    handleKnockout(clickedPiece);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -75,7 +81,19 @@ public class GameViewModel extends ViewModel {
         try {
             List<Position> positionPath = game.move(piece);
             movingPath.setValue(positionPath);
-            handleKnockout(piece);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Tries to call the method handleKnockout which handles a possible knockout.
+     *
+     * @param clickedPiece is the piece that might knock out another piece.
+     */
+    private void knockoutHandling(Piece clickedPiece) {
+        try {
+            handleKnockout(clickedPiece);
         } catch (Exception e) {
             e.printStackTrace();
         }
