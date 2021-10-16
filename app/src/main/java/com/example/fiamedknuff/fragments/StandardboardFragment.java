@@ -417,7 +417,7 @@ public class StandardboardFragment extends Fragment {
         gameViewModel.knockedPiece.observe(getActivity(), new Observer<>() {
             @Override
             public void onChanged(Piece piece) {
-                Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
+                Position target = gameViewModel.getPosition(piece);
                 List<Position> movingPath = new ArrayList<>();
                 movingPath.add(target);
                 move(getPieceImageView(piece), movingPath);
