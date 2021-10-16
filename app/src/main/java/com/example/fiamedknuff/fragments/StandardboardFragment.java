@@ -37,7 +37,7 @@ import java.util.Map;
 
 /**
  * A class standardboardFragment that handles the view of the standardboard and its
- * pieces, positions and dice.
+ * pieces and positions.
  *
  * Created by
  * @author Emma Stålberg
@@ -75,14 +75,10 @@ public class StandardboardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_standardboard, container, false);
 
-        gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
-
-        constraintLayout = view.findViewById(R.id.sbConstraintLayout);
-
-
+        setView(inflater, container);
+        setGameViewModel();
+        setConstraintLayout();
         initPositions();
         initPieces();
         // TODO: 2021-10-13 Check if everything should be inside if-clause
@@ -93,8 +89,20 @@ public class StandardboardFragment extends Fragment {
 
         reInitPieces();
 
-
         return view;
+    }
+
+    private void setView(LayoutInflater inflater, ViewGroup container) {
+        // Inflate the layout for this fragment
+        view = inflater.inflate(R.layout.fragment_standardboard, container, false);
+    }
+
+    private void setGameViewModel() {
+        gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
+    }
+
+    private void setConstraintLayout() {
+        constraintLayout = view.findViewById(R.id.sbConstraintLayout);
     }
 
     @Override
