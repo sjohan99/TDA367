@@ -19,7 +19,6 @@ import com.example.fiamedknuff.R;
  * UI controller for the side bar layout.
  * @author Philip Winsnes
  */
-
 public class GameSideBarFragment extends Fragment {
 
     private NavController navController;
@@ -31,9 +30,10 @@ public class GameSideBarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        navController = NavHostFragment.findNavController(this);
 
         View view = inflater.inflate(R.layout.fragment_game_side_bar, container, false);
+
+        navController = NavHostFragment.findNavController(this);
 
         initButtons(view);
         specifyOnClickActions();
@@ -50,56 +50,40 @@ public class GameSideBarFragment extends Fragment {
     }
 
     private void specifyOnClickActions() {
-        homeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO
-            }
+        homeBtn.setOnClickListener(view -> new ExitGameDialogFragment().show(
+                getChildFragmentManager(), ExitGameDialogFragment.TAG));
+
+        settingsBtn.setOnClickListener(view -> {
+            // TODO
         });
 
-        settingsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO
-            }
+        rulebookBtn.setOnClickListener(view -> {
+            // TODO
+            navController.navigate(
+                    R.id.action_gameView_to_RulebookFragment,
+                    null,
+                    new NavOptions.Builder()
+                            .setEnterAnim(android.R.animator.fade_in)
+                            .setExitAnim(android.R.animator.fade_out)
+                            .build()
+            );
         });
 
-        rulebookBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO
-                navController.navigate(
-                        R.id.action_gameView_to_RulebookFragment,
-                        null,
-                        new NavOptions.Builder()
-                                .setEnterAnim(android.R.animator.fade_in)
-                                .setExitAnim(android.R.animator.fade_out)
-                                .build()
-                );
+        soundBtn.setOnClickListener(view -> {
+            if (soundMuted) {
+                initBackgroundMusic();
+                soundBtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_mute_btn, 0, 0);
             }
+            else {
+                mediaPlayer.stop();
+                soundBtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_mute2_btn, 0, 0);
+            }
+            soundMuted = !soundMuted;
         });
 
-        soundBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (soundMuted) {
-                    initBackgroundMusic();
-                    soundBtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_mute_btn, 0, 0);
-                }
-                else {
-                    mediaPlayer.stop();
-                    soundBtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_mute2_btn, 0, 0);
-                }
-                soundMuted = !soundMuted;
-            }
-        });
+        replayBtn.setOnClickListener(view -> new ReplayDialogFragment().show(
+                getChildFragmentManager(), ReplayDialogFragment.TAG));
 
-        replayBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO
-            }
-        });
     }
 
     private void initButtons(View view) {
@@ -109,4 +93,5 @@ public class GameSideBarFragment extends Fragment {
         soundBtn = view.findViewById(R.id.soundBtn);
         replayBtn = view.findViewById(R.id.replayBtn);
     }
+
 }

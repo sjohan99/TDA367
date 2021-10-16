@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.exceptions.NotFoundException;
+import com.example.fiamedknuff.exceptions.NotImplementedException;
 import com.example.fiamedknuff.model.CPU;
 import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.model.Game;
@@ -64,13 +65,12 @@ public class GameViewModel extends ViewModel {
             if(movablePieces.contains(clickedPiece)) {
                 movePiece(clickedPiece);
                 knockoutHandling(clickedPiece);
-                try {
-                    handleKnockout(clickedPiece);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
         }
+    }
+
+    public String getCurrentPlayerName() {
+        return game.getCurrentPlayerName();
     }
 
     /**
@@ -81,7 +81,7 @@ public class GameViewModel extends ViewModel {
         try {
             List<Position> positionPath = game.move(piece);
             movingPath.setValue(positionPath);
-        } catch (Exception e) {
+        } catch (NotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -94,7 +94,7 @@ public class GameViewModel extends ViewModel {
     private void knockoutHandling(Piece clickedPiece) {
         try {
             handleKnockout(clickedPiece);
-        } catch (Exception e) {
+        } catch (NotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -103,9 +103,9 @@ public class GameViewModel extends ViewModel {
      * Checks if the move of a piece results in a knockout. In that case, knockout
      * the piece.
      * @param piece is the moved piece that might knock out another piece
-     * @throws Exception if the method is called incorrectly
+     * @throws NotFoundException if the method is called incorrectly
      */
-    private void handleKnockout(Piece piece) throws Exception {
+    private void handleKnockout(Piece piece) throws NotFoundException {
         if (game.isKnockout(piece)) {
             knockedPiece.setValue(game.knockoutWithPiece(piece));
         }

@@ -16,4 +16,10 @@
         <item>4</item>
     </string-array>
     <string name="player_name_input">Namn of player</string>
+
+    <!-- Popups -->
+    <string name="exit_game_popup_message">Do you wish to exit this game?</string>
+    <string name="replay_popup_message">Replay game?</string>
+    <string name="popup_proceed_option">Yes</string>
+    <string name="popup_cancel_option">No</string>
 </resources>

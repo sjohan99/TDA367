@@ -19,7 +19,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.exceptions.NotImplementedException;
 import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.model.Color;
 import com.example.fiamedknuff.viewModels.GameViewModel;
@@ -141,7 +141,8 @@ public class GameSetupFragment extends Fragment {
 
     private List<Boolean> getSelectedCPU() {
         ArrayList<Boolean> isCPUs = new ArrayList<>();
-        for (int i = 0; i < selectedPlayerCount; i++) {
+        isCPUs.add(false);
+        for (int i = 1; i < selectedPlayerCount; i++) {
             //isCPUs.add(true);
             isCPUs.add(CPUCheckBoxes.get(i).isChecked());
         }

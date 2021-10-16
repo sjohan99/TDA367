@@ -17,4 +17,10 @@
         <item>3</item>
         <item>4</item>
     </string-array>
+
+    <!-- Popups -->
+    <string name="exit_game_popup_message">Är du säker på att du vill avsluta?</string>
+    <string name="replay_popup_message">Starta om spelet?</string>
+    <string name="popup_proceed_option">Ja</string>
+    <string name="popup_cancel_option">Nej</string>
 </resources>

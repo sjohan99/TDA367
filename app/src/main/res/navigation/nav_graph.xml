@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_gameView_to_RulebookFragment"
             app:destination="@id/RulebookFragment" />
+        <action
+            android:id="@+id/action_gameView_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
     </fragment>
 
 </navigation>

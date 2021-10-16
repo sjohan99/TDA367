@@ -1,14 +1,13 @@
 package com.example.fiamedknuff.model;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 import static org.assertj.core.api.Assertions.*;
 
 
-import com.example.fiamedknuff.NotImplementedException;
+import com.example.fiamedknuff.exceptions.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +78,7 @@ public class BoardUnitTest {
     }
 
     @Test
-    public void testMovePieceType1ToMiddlePath() throws Exception {
+    public void testMovePieceType1ToMiddlePath() {
         Piece cp = pieces.get(0);
         cp.setIndex(40);
         board4p.movePiece(cp);
@@ -88,7 +87,7 @@ public class BoardUnitTest {
     }
 
     @Test
-    public void testMovePieceType2ToMiddlePath() throws Exception {
+    public void testMovePieceType2ToMiddlePath() {
         Piece cp = pieces.get(4);
         cp.setIndex(40);
         board4p.movePiece(cp);
@@ -97,7 +96,7 @@ public class BoardUnitTest {
     }
 
     @Test
-    public void testMovePieceType3ToMiddlePath() throws Exception {
+    public void testMovePieceType3ToMiddlePath() {
         Piece cp = pieces.get(8);
         cp.setIndex(40);
         board4p.movePiece(cp);
@@ -106,7 +105,7 @@ public class BoardUnitTest {
     }
 
     @Test
-    public void testMovePieceType4ToMiddlePath() throws Exception {
+    public void testMovePieceType4ToMiddlePath() {
         Piece cp = pieces.get(12);
         cp.setIndex(40);
         board4p.movePiece(cp);

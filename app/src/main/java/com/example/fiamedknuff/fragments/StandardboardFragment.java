@@ -1,5 +1,7 @@
 package com.example.fiamedknuff.fragments;
 
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -8,6 +10,7 @@ import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
@@ -84,10 +87,11 @@ public class StandardboardFragment extends Fragment {
         initPieces();
         // TODO: 2021-10-13 Check if everything should be inside if-clause
         if (!alreadyInitialized) {
-
             initObservers();
             alreadyInitialized = true;
         }
+
+        reInitPieces();
 
 
         return view;
@@ -354,7 +358,6 @@ public class StandardboardFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void pieceClicked(ImageView piece) {
-        unMarkAllPieces();
         setPiecesClickable(false);
         latestClickedPiece = piece;
         gameViewModel.move(imageViewPieceHashMap.get(piece));
@@ -376,9 +379,11 @@ public class StandardboardFragment extends Fragment {
           set to used (this is done in the diceFragment).
          */
         gameViewModel.movingPath.observe(getActivity(), new Observer<>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onChanged(List<Position> movingPath) {
                 if (movingPath.size() != 0) {
+                    unMarkAllPieces();
                     isMoved(movingPath);
                 }
             }
@@ -401,15 +406,22 @@ public class StandardboardFragment extends Fragment {
         gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onChanged(Player player) {
+            public void onChanged(Player player) throws IllegalStateException {
                 if (gameViewModel.isCPU(player)) {
                     gameViewModel.CPUdiceRoll(true);
                     Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(gameViewModel.getDiceValue());
                     if (piece != null) {
-                        ImageView pieceImageView = getPieceImageView(piece);
+                        ImageView pieceImageView = null;
+                        try {
+                            pieceImageView = getPieceImageView(piece);
+                        } catch (IllegalStateException e) {
+                            e.printStackTrace();
+                        }
                         pieceClicked(pieceImageView);
                     }
-                    gameViewModel.selectNextPlayer();
+                    else {
+                        gameViewModel.selectNextPlayer();
+                    }
                 }
             }
         });
@@ -435,13 +447,13 @@ public class StandardboardFragment extends Fragment {
         gameViewModel.setDiceIsUsed();
     }
 
-    private ImageView getPieceImageView(Piece piece) {
+    private ImageView getPieceImageView(Piece piece) throws IllegalStateException {
         for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
             if (piece.toString().equals(entry.getValue().toString())) {
                 return entry.getKey();
             }
         }
-        return null; //TODO Exception?
+        throw new IllegalStateException("Did not find ImageView for Piece");
     }
 
     /**
@@ -449,8 +461,8 @@ public class StandardboardFragment extends Fragment {
      */
     private void markMovablePieces() {
         for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
-            // TODO: Change to something fancy
-            entry.getValue().setBackgroundColor(R.drawable.background); // Highlight the movable piece
+            Animation anim = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.bounce);
+            entry.getValue().startAnimation(anim);
         }
     }
 
@@ -460,7 +472,7 @@ public class StandardboardFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void unMarkAllPieces() {
         imageViewPieceHashMap.forEach((imageView, piece) -> {
-            imageView.setBackgroundColor(0); // Remove the background.
+            imageView.clearAnimation();
         });
     }
 
@@ -494,6 +506,13 @@ public class StandardboardFragment extends Fragment {
     private void move(ImageView piece, List<Position> targets) {
 
         for (Position target : targets) {
+            moveImageView(piece, imageViewPositionHashMap.get(target));
+        }
+    }
+
+    private void reInitPieces() {
+        for (ImageView piece : piecesImageViews) {
+            Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
             moveImageView(piece, imageViewPositionHashMap.get(target));
         }
     }
