@@ -6,16 +6,20 @@
     <string name="rulebook_button">RULES</string>
     <string name="leaderboard_title">LEADERBOARD</string>
     <string name="rulebook_title">RULES</string>
+    <string name="gamesetup_new_game_title">NEW GAME</string>
+    <string name="gamesetup_play_button">PLAY</string>
     <string name="player1Label">Player 1</string>
     <string name="player2Label">Player 2</string>
     <string name="player3Label">Player 3</string>
     <string name="player4Label">Player 4</string>
+    <string name="player_name_input">Namn of player</string>
+    <string name="cpu_name">CPU</string>
+    <string name="player_amount">Player Amount:</string>
     <string-array name="spinner_player_amount">
         <item>2</item>
         <item>3</item>
         <item>4</item>
     </string-array>
-    <string name="player_name_input">Namn of player</string>
 
     <!-- Popups -->
     <string name="exit_game_popup_message">Do you wish to exit this game?</string>

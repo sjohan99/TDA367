@@ -7,11 +7,15 @@
     <string name="rulebook_button">REGLER</string>
     <string name="leaderboard_title">TOPPLISTA</string>
     <string name="rulebook_title">REGLER</string>
+    <string name="gamesetup_new_game_title">NYTT SPEL</string>
+    <string name="gamesetup_play_button">SPELA</string>
     <string name="player1Label">Spelare 1</string>
     <string name="player2Label">Spelare 2</string>
     <string name="player3Label">Spelare 3</string>
     <string name="player4Label">Spelare 4</string>
     <string name="player_name_input">Namn på spelare</string>
+    <string name="cpu_name">CPU</string>
+    <string name="player_amount">Antal spelare:</string>
     <string-array name="spinner_player_amount">
         <item>2</item>
         <item>3</item>
