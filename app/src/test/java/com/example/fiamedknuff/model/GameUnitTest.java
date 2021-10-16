@@ -4,11 +4,12 @@ import com.example.fiamedknuff.exceptions.NotFoundException;
 import com.example.fiamedknuff.exceptions.NotImplementedException;
 
 import org.apache.commons.lang3.SerializationUtils;
-import org.assertj.core.condition.Not;
 import org.junit.Before;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,16 +18,34 @@ import java.util.List;
 public class GameUnitTest {
 
     Game game;
-    ArrayList<Player> players;
+    int playerCount;
+    List<Player> players;
+    int firstPos;
 
     @Before
     public void createGame() throws NotImplementedException {
-        players = new ArrayList<>();
-        players.add(new Player("1", Color.BLUE));
-        players.add(new Player("2", Color.RED));
-        players.add(new Player("3", Color.YELLOW));
-        players.add(new Player("4", Color.GREEN));
-        game = new Game(players);
+        playerCount = 4;
+
+        List<String> playerNames = new ArrayList<>();
+        for (int i = 1; i <= playerCount; i++) {
+            String s = Integer.toString(i);
+            playerNames.add(s);
+        }
+
+        List<Color> colors = new ArrayList<>();
+        colors.add(Color.YELLOW);
+        colors.add(Color.RED);
+        colors.add(Color.GREEN);
+        colors.add(Color.BLUE);
+
+        List<Boolean> selectedCPU = new ArrayList<>();
+        for (int i = 0; i < playerCount; i++) {
+            selectedCPU.add(false);
+        }
+
+        game = GameFactory.createNewGame(playerNames, colors, selectedCPU);
+        players = game.getActivePlayers();
+        firstPos = game.getBoard().getFirstPositionIndexInLap();
     }
 
     @Test
@@ -38,7 +57,15 @@ public class GameUnitTest {
     }
 
     @Test
-    public void testDiceRoll() {
+    public void testRollDice() {
+        for (int i = 0; i < 50; i++) {
+            game.rollDice();
+            assertThat(game.getDice().getRolledValue()).isBetween(0, 6);
+        }
+    }
+
+    @Test
+    public void testRollAndGetDiceValue() {
         for (int i = 0; i < 50; i++) {
             assertThat(game.rollAndGetDiceValue()).isBetween(0, 6);
         }
@@ -92,6 +119,19 @@ public class GameUnitTest {
         pieces.get(1).setIndex(11);
         assertEquals(2, game.getMovablePieces(player, 1).size());
         assertEquals(4, game.getMovablePieces(player, 6).size());
+    }
+
+    @Test
+    public void testRemovePieceIfFinishedFalse() throws NotFoundException {
+        Player currentPlayer = players.get(0);
+        Piece piece = currentPlayer.getPieces().get(0);
+        for (int i = 0; i < game.getBoard().getLapLength(); i++) {
+            piece.setIndex(i);
+            game.move(piece);
+            game.removePieceIfFinished(piece);
+            game.removePlayerIfFinished();
+        }
+        assertThat(currentPlayer.getPieces().size()).isEqualTo(4);
     }
 
     @Test
@@ -177,6 +217,8 @@ public class GameUnitTest {
 
     @Test
     public void testMovePieceAndMoveBackwardsAfterMiddle() throws NotFoundException {
+        var hMap = game.getBoard().getPiecePositionHashMap();
+
         Board board = game.getBoard();
         HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
         Piece piece = players.get(0).getPieces().get(0);
@@ -186,12 +228,106 @@ public class GameUnitTest {
 
         game.move(3, piece);
         assertThat(piece.getIndex()).isEqualTo(board.getFinishIndex() - 2);
-        assertThat(piecePositionHashMap.get(piece).getPos()).isEqualTo(board.getFinishIndex() - 2);
+        assertThat(hMap.get(piece).getPos()).isEqualTo(board.getFinishIndex() - 2);
+    }
+
+    @Test
+    public void testIsKnockoutFalse() {
+        var hMap = game.getBoard().getPiecePositionHashMap();
+
+        Piece piece = players.get(0).getPieces().get(0);
+        piece.setIndex(12);
+        Position pos = game.getBoard().getPositions().get(firstPos+11);
+        hMap.put(piece, pos);
+
+        assertFalse(game.isKnockout(piece));
+        assertThat(hMap.get(piece)).isEqualTo(game.getBoard().getPositions().get(firstPos+11));
+    }
+
+    @Test
+    public void testIsKnockoutTrue() {
+        var hMap = game.getBoard().getPiecePositionHashMap();
+
+        // Initialize position and index for piece to knockout another piece
+        Piece piece = players.get(0).getPieces().get(0);
+        piece.setIndex(12);
+        Position pos = game.getBoard().getPositions().get(firstPos+11);
+        hMap.put(piece, pos);
+
+        // Initialize position and index for piece to be knocked out
+        Piece pieceToBeKnockedOut = players.get(1).getPieces().get(0);
+        pieceToBeKnockedOut.setIndex(2);
+        Position secondPos = game.getBoard().getPositions().get(firstPos+11);
+        hMap.put(pieceToBeKnockedOut, secondPos);
+
+        assertTrue(game.isKnockout(piece));
+        assertThat(hMap.get(piece)).isEqualTo(game.getBoard().getPositions().get(firstPos+11));
+    }
+
+    @Test
+    public void testKnockoutWithPiece() throws NotFoundException {
+        var hMap = game.getBoard().getPiecePositionHashMap();
+
+        // Initialize position and index for piece to knockout another piece
+        Piece piece = players.get(0).getPieces().get(0);
+        piece.setIndex(22);
+        Position pos = game.getBoard().getPositions().get(firstPos+21);
+        hMap.put(piece, pos);
+
+        // Initialize position and index for piece to be knocked out
+        Piece pieceToBeKnockedOut = players.get(1).getPieces().get(0);
+        pieceToBeKnockedOut.setIndex(12);
+        Position secondPos = game.getBoard().getPositions().get(firstPos+21);
+        hMap.put(pieceToBeKnockedOut, secondPos);
+
+        assertThat(game.knockoutWithPiece(piece)).isEqualTo(pieceToBeKnockedOut);
+        assertThat(pieceToBeKnockedOut.getIndex()).isEqualTo(0);
+        assertThat(hMap.get(piece)).isEqualTo(game.getBoard().getPositions().get(firstPos+21));
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void testKnockoutWithPieceException() throws NotFoundException {
+        var hMap = game.getBoard().getPiecePositionHashMap();
+        Piece piece = players.get(0).getPieces().get(0);
+        piece.setIndex(22);
+        Position pos = game.getBoard().getPositions().get(firstPos+21);
+        hMap.put(piece, pos);
+        game.getBoard().knockoutWithPiece(piece);
     }
 
     @Test
     public void testGetPlayerCount(){
         assertThat(game.getPlayerCount()).isEqualTo(players.size());
+    }
+
+    @Test
+    public void testGetCurrentPlayerName() {
+        for (int i = 1; i <= players.size(); i++) {
+            assertThat(game.getCurrentPlayerName()).isEqualTo(Integer.toString(i));
+            game.selectNextPlayer();
+        }
+    }
+
+    @Test
+    public void testGetPositions() {
+        assertThat(game.getPositions().size()).isEqualTo(57 + 16);
+    }
+
+    @Test
+    public void testGetPosition() {
+        var hMap = game.getBoard().getPiecePositionHashMap();
+        Piece piece = players.get(0).getPieces().get(0);
+        piece.setIndex(22);
+        Position pos = game.getBoard().getPositions().get(firstPos+21);
+        hMap.put(piece, pos);
+        assertThat(game.getPosition(piece)).isEqualTo(hMap.get(piece));
+    }
+
+    @Test
+    public void testSetDiceIsUsed() {
+        game.getDice().setIsUsed(false);
+        game.setDiceIsUsed();
+        assertTrue(game.getDice().getIsUsed());
     }
 
 }
