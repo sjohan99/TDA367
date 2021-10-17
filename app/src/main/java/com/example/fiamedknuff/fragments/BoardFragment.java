@@ -46,10 +46,31 @@ public abstract class BoardFragment extends Fragment {
 
     protected abstract void setConstraintLayout();
 
+    /**
+     * Initiates the pieces by connecting the pieces ids, initiates the list of the pieces,
+     * initiates the hashmap with the pieces, makes the inactive pieces invisible and adds
+     * onClickListeners to the pieces.
+     */
+    protected void initPieces() {
+        connectPiecesIds();
+        initListOfAllPieces();
+        initPiecesHashmap();
+        makeInactivePiecesInvisible();
+        addPiecesOnClickListeners();
+    }
+
+    protected abstract void connectPiecesIds();
+
+    protected abstract void initListOfAllPieces();
+
+    protected abstract void initPiecesHashmap();
+
+    protected abstract void makeInactivePiecesInvisible();
+
+    protected abstract void addPiecesOnClickListeners();
+
     protected abstract void initPositions();
-
-    protected abstract void initPieces();
-
+    
     protected abstract void initObservers();
 
     protected abstract void reInit();
