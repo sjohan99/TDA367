@@ -39,6 +39,7 @@ public class DiceFragment extends Fragment {
     ImageView diceImage;
     List<Integer> diceImages;
     private boolean alreadyInitialized;
+    private Animation rotationAnimation;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +78,7 @@ public class DiceFragment extends Fragment {
                 rollDice();
             }
         });
+        initDiceAnimationListener();
     }
 
     private void initObservers() {
@@ -110,8 +112,27 @@ public class DiceFragment extends Fragment {
         // the method diceRolled should be called.
         if (rolledValue != -1) {
             rotateDice(rolledValue);
-            gameViewModel.diceRolled();
         }
+    }
+
+    private void initDiceAnimationListener() {
+        rotationAnimation = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.rotate);
+        rotationAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                gameViewModel.diceRolled();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 
     /**
@@ -119,8 +140,7 @@ public class DiceFragment extends Fragment {
      * @param rolledValue is the rolled value
      */
     private void rotateDice(int rolledValue) {
-        Animation anim = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.rotate);
-        diceImage.startAnimation(anim); // animate the roll of the dice
+        diceImage.startAnimation(rotationAnimation); // animate the roll of the dice
         setDiceImage(rolledValue); // sets the rolled value
     }
 
