@@ -156,6 +156,9 @@ public class Board implements Serializable {
         else if (pieceAboutToLap(piece)) {
             pos = getFirstPositionInLap();
         }
+        else if (pieceOneStepBeforeGoal(piece)) {
+            pos = getGoalPosition();
+        }
         else { // Move as per usual
             pos = IncrementPositionOf(piece);
         }
@@ -178,12 +181,19 @@ public class Board implements Serializable {
         if (pieceAboutToExitMiddlePath(piece)) {
             pos = getPieceLastPositionBeforeMiddlePath(piece);
         }
+        else if (piece.getIndex() == getFinishIndex()) {
+            pos = getPiecePositionBeforeGoal(piece);
+        }
         else {
             pos = decrementPositionOf(piece);
         }
         piecePositionHashMap.put(piece, pos); // Updates value of key
         piece.decrementIndex();
         return pos;
+    }
+
+    private boolean pieceOneStepBeforeGoal(Piece piece) {
+        return piece.getIndex() == getFinishIndex() - 1;
     }
 
     private Position getPieceLastPositionBeforeMiddlePath(Piece piece) {
@@ -197,6 +207,12 @@ public class Board implements Serializable {
         return pos;
     }
 
+    private Position getPiecePositionBeforeGoal(Piece piece) {
+        Position p = getFirstInwardPositionOf(piece);
+        p = positions.get(positions.indexOf(p) + 3);
+        return p;
+    }
+
     private boolean pieceAboutToExitMiddlePath(Piece piece) {
         return piece.getIndex() == lapLength[playerCount - 1] + 1;
     }
@@ -207,6 +223,11 @@ public class Board implements Serializable {
 
     private Position IncrementPositionOf(Piece piece) {
         return positions.get((4 * playerCount) + piecePositionHashMap.get(piece).getPos() + 1);
+    }
+
+
+    private Position getGoalPosition() {
+        return positions.get(positions.size()-1);
     }
 
     /**
@@ -334,6 +355,10 @@ public class Board implements Serializable {
     boolean isKnockout(Piece piece) {
         boolean isKnockout = false;
         Position pos = piecePositionHashMap.get(piece);
+
+        // FIXME: 2021-10-16 pos is null if piece is removed in step before, ugly quick fix
+        if (pos == null) return false;
+
         piecePositionHashMap.remove(piece);
         if (isOccupied(pos)) {
             isKnockout = true;

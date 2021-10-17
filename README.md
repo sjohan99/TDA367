@@ -6,6 +6,12 @@
   <img src="https://i.imgur.com/IAXD4nu.png" alt="Game image" width="500" height="355"/>
 </p>
 
+
+
+<h2 id="continuous integration"> Kontinuerlig Integration </h2>
+
+[![CircleCI](https://circleci.com/gh/sjohan99/TDA367/tree/master.svg?style=svg)](https://circleci.com/gh/sjohan99/TDA367/tree/master)
+
 <!-- TABLE OF CONTENTS -->
 <h2 id="table-of-contents"> Innehållsförteckning </h2>
 
