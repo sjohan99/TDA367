@@ -434,7 +434,11 @@ public class StandardboardFragment extends Fragment {
                 Position target = gameViewModel.getPosition(piece);
                 List<Position> movingPath = new ArrayList<>();
                 movingPath.add(target);
-                move(getPieceImageView(piece), movingPath);
+                try {
+                    move(getPieceImageView(piece), movingPath);
+                } catch (NotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

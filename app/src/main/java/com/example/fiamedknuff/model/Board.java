@@ -182,7 +182,7 @@ public class Board implements Serializable {
             pos = getPieceLastPositionBeforeMiddlePath(piece);
         }
         else if (piece.getIndex() == getFinishIndex()) {
-            p = getPiecePositionBeforeGoal(piece);
+            pos = getPiecePositionBeforeGoal(piece);
         }
         else {
             pos = decrementPositionOf(piece);
