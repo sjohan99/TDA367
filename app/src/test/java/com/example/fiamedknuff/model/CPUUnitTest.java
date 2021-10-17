@@ -181,6 +181,24 @@ public class CPUUnitTest {
     }
 
     @Test
+    public void testChooseLeadingPieceToMove2() {
+        HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
+        // Set position for first CPU-piece
+        Piece cpuFirstPiece = CPU.getPieces().get(0);
+        cpuFirstPiece.setIndex(43);
+        Position cpuFirstPos = board.getPositions().get(16+52);
+        piecePositionHashMap.put(cpuFirstPiece, cpuFirstPos);
+
+        // Set position for second cpu-piece (leading piece)
+        Piece cpuSecondPiece = CPU.getPieces().get(1);
+        cpuSecondPiece.setIndex(21);
+        Position cpuSecondPos= board.getPositions().get(16+30);
+        piecePositionHashMap.put(cpuSecondPiece, cpuSecondPos);
+
+        assertThat(CPU.choosePieceToMove(4)).isEqualTo(cpuSecondPiece);
+    }
+
+    @Test
     public void testChoosePieceToMoveInMiddlePath() {
         // Set position for a CPU-piece
         Piece cpuFirstPiece = CPU.getPieces().get(0);

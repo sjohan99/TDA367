@@ -83,9 +83,9 @@ public class CPU extends Player {
         for (Piece p : movablePieces) {
             // If piece is in the middle path, don't prioritize moving this piece
             if (p.getIndex() > board.getLapLength() + 1) {
-                continue;
+                tmpIndex = 0;
             }
-            if (p.getIndex() > tmpIndex) {
+            else if (p.getIndex() > tmpIndex) {
                 tmpIndex = p.getIndex();
                 piece = p;
             }
