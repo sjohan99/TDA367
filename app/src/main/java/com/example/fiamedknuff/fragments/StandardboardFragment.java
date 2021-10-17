@@ -86,22 +86,9 @@ public class StandardboardFragment extends BoardFragment {
     }
 
     /**
-     * Initiates the pieces by connecting the pieces ids, initiates the list of the pieces,
-     * initiates the hashmap with the pieces, makes the inactive pieces invisible and adds
-     * onClickListeners to the pieces.
-     */
-    protected void initPieces() {
-        connectPiecesIds();
-        initListOfAllPieces();
-        initPiecesHashmap();
-        makeInactivePiecesInvisible();
-        addPiecesOnClickListeners();
-    }
-
-    /**
      * Connects the pieces id:s with its equivalent imageview.
      */
-    private void connectPiecesIds() {
+    protected void connectPiecesIds() {
         yellowpiece0 = view.findViewById(R.id.yellowpiece0);
         yellowpiece1 = view.findViewById(R.id.yellowpiece1);
         yellowpiece2 = view.findViewById(R.id.yellowpiece2);
@@ -123,7 +110,7 @@ public class StandardboardFragment extends BoardFragment {
     /**
      * Initiates the list piecesImageViews with all ImageViews of the pieces.
      */
-    private void initListOfAllPieces() {
+    protected void initListOfAllPieces() {
         piecesImageViews = new ArrayList<>();
         piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
                 yellowpiece0, yellowpiece1, yellowpiece2, yellowpiece3)));
@@ -139,7 +126,7 @@ public class StandardboardFragment extends BoardFragment {
      * Initiates the hashmap imageViewPieceHashMap. Gets the active pieces from gameViewModel
      * and connects them with the equivalent imageView.
      */
-    private void initPiecesHashmap() {
+    protected void initPiecesHashmap() {
         imageViewPieceHashMap = new HashMap<>();
         List<Piece> activePieces = gameViewModel.getPieces();
         for (int i = 0; i < activePieces.size(); i++) {
@@ -152,7 +139,7 @@ public class StandardboardFragment extends BoardFragment {
      * rest of the pieces in the list piecesImageViews should be invisible, and that is
      * what happens in this method.
      */
-    private void makeInactivePiecesInvisible() {
+    protected void makeInactivePiecesInvisible() {
         for (int i = imageViewPieceHashMap.size(); i < piecesImageViews.size(); i++) {
             piecesImageViews.get(i).setVisibility(View.INVISIBLE);
         }
@@ -326,7 +313,7 @@ public class StandardboardFragment extends BoardFragment {
      * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
      * should be called. The pieces should be non-clickable when the method makeTurn is called.
      */
-    private void addPiecesOnClickListeners() {
+    protected void addPiecesOnClickListeners() {
         for (ImageView piece : piecesImageViews) {
             piece.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.N)
