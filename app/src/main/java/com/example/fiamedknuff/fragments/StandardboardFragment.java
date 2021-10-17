@@ -94,6 +94,12 @@ public class StandardboardFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        alreadyInitialized = false;
+    }
+
     private void setView(LayoutInflater inflater, ViewGroup container) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_standardboard, container, false);
@@ -105,12 +111,6 @@ public class StandardboardFragment extends Fragment {
 
     private void setConstraintLayout() {
         constraintLayout = view.findViewById(R.id.sbConstraintLayout);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        alreadyInitialized = false;
     }
 
     /**
