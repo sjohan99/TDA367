@@ -1,6 +1,9 @@
 package com.example.fiamedknuff.fragments;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -17,6 +21,7 @@ import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -33,6 +38,7 @@ public class DiceFragment extends Fragment {
 
     ImageView diceImage;
     List<Integer> diceImages;
+    private boolean alreadyInitialized;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,16 +48,29 @@ public class DiceFragment extends Fragment {
 
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
 
-        initDice();
-        initObservers();
+        if (!alreadyInitialized) {
+            initDiceImages();
+            initObservers();
+            alreadyInitialized = true;
+        }
 
+        initDice();
+        reInitDiceImageValue();
         return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        alreadyInitialized = false;
+    }
+
+    private void reInitDiceImageValue() {
+        setDiceImage(gameViewModel.getDiceValue());
     }
 
     private void initDice() {
         diceImage = view.findViewById(R.id.diceImage);
-        initDiceImages();
-
         diceImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,7 +121,17 @@ public class DiceFragment extends Fragment {
     private void rotateDice(int rolledValue) {
         Animation anim = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.rotate);
         diceImage.startAnimation(anim); // animate the roll of the dice
-        diceImage.setImageResource(diceImages.get(rolledValue - 1)); // sets the rolled value
+        setDiceImage(rolledValue); // sets the rolled value
     }
 
+    private void setDiceImage(int roll) {
+        try {
+            diceImage.setImageResource(diceImages.get(roll - 1));
+        } catch (IndexOutOfBoundsException e) {
+            // FIXME: 2021-10-16 This error gets triggered when starting the game and possibly other times as well, investigate
+            Log.d(TAG, "setDiceImage: encountered error: \n" + Arrays.toString(e.getStackTrace()));
+            System.out.println("setDiceImage: encountered error: \n" + Arrays.toString(e.getStackTrace()));
+            diceImage.setImageResource(diceImages.get(0));
+        }
+    }
 }

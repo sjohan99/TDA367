@@ -24,6 +24,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
+import com.example.fiamedknuff.exceptions.NotFoundException;
+import com.example.fiamedknuff.model.Dice;
 import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 import com.example.fiamedknuff.model.Piece;
@@ -91,7 +93,7 @@ public class StandardboardFragment extends Fragment {
             alreadyInitialized = true;
         }
 
-        reInitPieces();
+        reInit();
 
 
         return view;
@@ -406,7 +408,7 @@ public class StandardboardFragment extends Fragment {
         gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onChanged(Player player) throws IllegalStateException {
+            public void onChanged(Player player) {
                 if (gameViewModel.isCPU(player)) {
                     gameViewModel.CPUdiceRoll(true);
                     Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(gameViewModel.getDiceValue());
@@ -414,7 +416,7 @@ public class StandardboardFragment extends Fragment {
                         ImageView pieceImageView = null;
                         try {
                             pieceImageView = getPieceImageView(piece);
-                        } catch (IllegalStateException e) {
+                        } catch (NotFoundException e) {
                             e.printStackTrace();
                         }
                         pieceClicked(pieceImageView);
@@ -437,6 +439,7 @@ public class StandardboardFragment extends Fragment {
         });
     }
 
+
     private void isMoved(List<Position> movingPath) {
         move(latestClickedPiece, movingPath);
         boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
@@ -447,13 +450,13 @@ public class StandardboardFragment extends Fragment {
         gameViewModel.setDiceIsUsed();
     }
 
-    private ImageView getPieceImageView(Piece piece) throws IllegalStateException {
+    private ImageView getPieceImageView(Piece piece) throws NotFoundException {
         for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
             if (piece.toString().equals(entry.getValue().toString())) {
                 return entry.getKey();
             }
         }
-        throw new IllegalStateException("Did not find ImageView for Piece");
+        throw new NotFoundException("No ImageView found for given piece");
     }
 
     /**
@@ -511,10 +514,16 @@ public class StandardboardFragment extends Fragment {
     }
 
     private void reInitPieces() {
-        for (ImageView piece : piecesImageViews) {
+        for (int i = 0; i < gameViewModel.getPlayerCount() * 4; i++) {
+            ImageView piece = piecesImageViews.get(i);
             Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
             moveImageView(piece, imageViewPositionHashMap.get(target));
         }
+    }
+
+    private void reInit() {
+        reInitPieces();
+        markMovablePieces();
     }
 
     /**

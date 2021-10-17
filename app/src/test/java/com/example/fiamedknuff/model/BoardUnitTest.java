@@ -91,38 +91,66 @@ public class BoardUnitTest {
 
     @Test
     public void testMovePieceType1ToMiddlePath() {
-        Piece piece = pieces.get(0);
-        piece.setIndex(40);
-        board4p.movePiece(piece);
-        assertThat(piece.getIndex()).isEqualTo(41);
-        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(firstPos+40));
+        Piece cp = pieces.get(0);
+        cp.setIndex(40);
+        board4p.movePiece(cp);
+        assertThat(cp.getIndex()).isEqualTo(41);
+        assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+40));
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePieceBackwards(cp);
+        board4p.movePieceBackwards(cp);
+        assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+42));
     }
 
     @Test
     public void testMovePieceType2ToMiddlePath() {
-        Piece piece = pieces.get(4);
-        piece.setIndex(40);
-        board4p.movePiece(piece);
-        assertThat(piece.getIndex()).isEqualTo(41);
-        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(firstPos+40+4));
+        Piece cp = pieces.get(4);
+        cp.setIndex(40);
+        board4p.movePiece(cp);
+        assertThat(cp.getIndex()).isEqualTo(41);
+        assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+40+4));
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePieceBackwards(cp);
+        board4p.movePieceBackwards(cp);
+        assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+42+4));
     }
 
     @Test
     public void testMovePieceType3ToMiddlePath() {
-        Piece piece = pieces.get(8);
-        piece.setIndex(40);
-        board4p.movePiece(piece);
-        assertThat(piece.getIndex()).isEqualTo(41);
-        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(firstPos+40+8));
+        Piece cp = pieces.get(8);
+        cp.setIndex(40);
+        board4p.movePiece(cp);
+        assertThat(cp.getIndex()).isEqualTo(41);
+        assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+40+8));
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePieceBackwards(cp);
+        board4p.movePieceBackwards(cp);
+        assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+42+8));
     }
 
     @Test
     public void testMovePieceType4ToMiddlePath() {
-        Piece piece = pieces.get(12);
-        piece.setIndex(40);
-        board4p.movePiece(piece);
-        assertThat(piece.getIndex()).isEqualTo(41);
-        assertThat(board4p.getPiecePositionHashMap().get(piece)).isEqualTo(board4p.getPositions().get(firstPos+40+12));
+        Piece cp = pieces.get(12);
+        cp.setIndex(40);
+        board4p.movePiece(cp);
+        assertThat(cp.getIndex()).isEqualTo(41);
+        assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+40+12));
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePiece(cp);
+        board4p.movePieceBackwards(cp);
+        board4p.movePieceBackwards(cp);
+        assertThat(board4p.getPiecePositionHashMap().get(cp)).isEqualTo(board4p.getPositions().get(16+42+12));
     }
 
     @Test
