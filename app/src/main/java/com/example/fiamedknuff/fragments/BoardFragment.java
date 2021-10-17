@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -52,5 +53,11 @@ public abstract class BoardFragment extends Fragment {
     protected abstract void initObservers();
 
     protected abstract void reInit();
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        alreadyInitialized = false;
+    }
 
 }
