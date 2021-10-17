@@ -45,8 +45,7 @@ import java.util.Map;
  * @author Emma Stålberg
  */
 
-public class StandardboardFragment extends Fragment {
-    View view;
+public class StandardboardFragment extends BoardFragment {
     ImageView pos0, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10;
     ImageView pos11, pos12, pos13, pos14, pos15, pos16, pos17, pos18, pos19, pos20;
     ImageView pos21, pos22, pos23, pos24, pos25, pos26, pos27, pos28, pos29, pos30;
@@ -72,44 +71,17 @@ public class StandardboardFragment extends Fragment {
     GameViewModel gameViewModel;
 
     ImageView latestClickedPiece;
-    boolean alreadyInitialized;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        setView(inflater, container);
-        setGameViewModel();
-        setConstraintLayout();
-        initPositions();
-        initPieces();
-        // TODO: 2021-10-13 Check if everything should be inside if-clause
-        if (!alreadyInitialized) {
-            initObservers();
-            alreadyInitialized = true;
-        }
-
-        reInit();
-
-        return view;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        alreadyInitialized = false;
-    }
-
-    private void setView(LayoutInflater inflater, ViewGroup container) {
+    protected void setView(LayoutInflater inflater, ViewGroup container) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_standardboard, container, false);
     }
 
-    private void setGameViewModel() {
+    protected void setGameViewModel() {
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
     }
 
-    private void setConstraintLayout() {
+    protected void setConstraintLayout() {
         constraintLayout = view.findViewById(R.id.sbConstraintLayout);
     }
 
@@ -118,7 +90,7 @@ public class StandardboardFragment extends Fragment {
      * initiates the hashmap with the pieces, makes the inactive pieces invisible and adds
      * onClickListeners to the pieces.
      */
-    private void initPieces() {
+    protected void initPieces() {
         connectPiecesIds();
         initListOfAllPieces();
         initPiecesHashmap();
@@ -189,7 +161,7 @@ public class StandardboardFragment extends Fragment {
     /**
      * Calls the methods connectPositionIds and initListOfPositions.
      */
-    private void initPositions() {
+    protected void initPositions() {
         connectPositionIds();
         initListsOfPositions();
         initPositionsHashmap();
@@ -374,7 +346,7 @@ public class StandardboardFragment extends Fragment {
         setPiecesClickable(true);
     }
 
-    private void initObservers() {
+    protected void initObservers() {
 
         // TODO - some of the logic which is going to be implemented is right now just comments
         //  or not written here at all
@@ -533,7 +505,7 @@ public class StandardboardFragment extends Fragment {
         }
     }
 
-    private void reInit() {
+    protected void reInit() {
         reInitPieces();
         markMovablePieces();
     }
