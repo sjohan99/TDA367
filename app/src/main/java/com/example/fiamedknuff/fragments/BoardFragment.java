@@ -34,6 +34,7 @@ public abstract class BoardFragment extends Fragment {
     ImageView latestClickedPiece;
     GameViewModel gameViewModel;
     HashMap<ImageView, Piece> imageViewPieceHashMap;
+    HashMap<Position, ImageView> imageViewPositionHashMap;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +64,8 @@ public abstract class BoardFragment extends Fragment {
     protected abstract void setConstraintLayout();
 
     protected abstract List<ImageView> getListOfPiecesImageViews();
+
+
 
     /**
      * Initiates the pieces by connecting the pieces ids, initiates the list of the pieces,
@@ -174,11 +177,33 @@ public abstract class BoardFragment extends Fragment {
         initListOfHomePositions();
     }
 
+    /**
+     * Initiates the List with all positions on the board.
+     */
     protected abstract void initListOfBoardPositions();
 
+    /**
+     * Initiates the List with all positions in the homes.
+     */
     protected abstract void initListOfHomePositions();
 
-    protected abstract void initPositionsHashmap();
+    /**
+     * Initiates the hashmap imageViewPositionHashMap. Gets the positions from gameViewModel
+     * and connects them with the equivalent imageView. The first ones are for the positions
+     * in the homes.
+     */
+    private void initPositionsHashmap() {
+        imageViewPositionHashMap = new HashMap<>();
+        List<Position> positionsModel = gameViewModel.getPositions();
+        int nrOfHomePositions = gameViewModel.getPlayerCount() * 4;
+        for (int i = 0; i < nrOfHomePositions; i++) {
+            imageViewPositionHashMap.put(positionsModel.get(i), homePositions.get(i));
+        }
+
+        for (int i = nrOfHomePositions; i < positionsModel.size(); i++) {
+            imageViewPositionHashMap.put(positionsModel.get(i), boardPositions.get(i - nrOfHomePositions));
+        }
+    }
 
     protected abstract void initObservers();
 
