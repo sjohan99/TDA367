@@ -235,20 +235,39 @@ public abstract class BoardFragment extends Fragment {
 
     }
 
-    private void initKnockedPieceObserver() {
-        gameViewModel.knockedPiece.observe(getActivity(), new Observer<>() {
+    /**
+     * Observes the variable movingPath in GameViewModel, which is set to a position path
+     * when a piece is moved in the model.
+     * Unmarks all pieces and calls for method isMoved which handles the logic for when
+     * a piece is moved.
+     */
+    private void initMovingPathObserver() {
+        gameViewModel.movingPath.observe(getActivity(), new Observer<>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onChanged(Piece piece) {
-                Position target = gameViewModel.getPosition(piece);
-                List<Position> movingPath = new ArrayList<>();
-                movingPath.add(target);
-                try {
-                    move(getPieceImageView(piece), movingPath);
-                } catch (NotFoundException e) {
-                    e.printStackTrace();
+            public void onChanged(List<Position> movingPath) {
+                if (movingPath.size() != 0) {
+                    unMarkAllPieces();
+                    isMoved(movingPath);
                 }
             }
         });
+    }
+
+    /**
+     * Observes the variable movesArePossibleToMake, which is set to true when the rolled
+     * dicevalue is able to use.
+     */
+    private void initMovesArePossibleToMakeObserver() {
+        gameViewModel.movesArePossibleToMake.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    markMovablePieces();
+                }
+            }
+        });
+
     }
 
     private void initCurrentPlayerObserver() {
@@ -276,36 +295,17 @@ public abstract class BoardFragment extends Fragment {
         });
     }
 
-    /**
-     * Observes the variable movesArePossibleToMake, which is set to true when the rolled
-     * dicevalue is able to use.
-     */
-    private void initMovesArePossibleToMakeObserver() {
-        gameViewModel.movesArePossibleToMake.observe(getActivity(), new Observer<>() {
+    private void initKnockedPieceObserver() {
+        gameViewModel.knockedPiece.observe(getActivity(), new Observer<>() {
             @Override
-            public void onChanged(Boolean aBoolean) {
-                if (aBoolean) {
-                    markMovablePieces();
-                }
-            }
-        });
-
-    }
-
-    /**
-     * Observes the variable movingPath in GameViewModel, which is set to a position path
-     * when a piece is moved in the model.
-     * Unmarks all pieces and calls for method isMoved which handles the logic for when
-     * a piece is moved.
-     */
-    private void initMovingPathObserver() {
-        gameViewModel.movingPath.observe(getActivity(), new Observer<>() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onChanged(List<Position> movingPath) {
-                if (movingPath.size() != 0) {
-                    unMarkAllPieces();
-                    isMoved(movingPath);
+            public void onChanged(Piece piece) {
+                Position target = gameViewModel.getPosition(piece);
+                List<Position> movingPath = new ArrayList<>();
+                movingPath.add(target);
+                try {
+                    move(getPieceImageView(piece), movingPath);
+                } catch (NotFoundException e) {
+                    e.printStackTrace();
                 }
             }
         });
