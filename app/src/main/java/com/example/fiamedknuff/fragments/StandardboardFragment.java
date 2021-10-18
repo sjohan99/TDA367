@@ -27,27 +27,33 @@ public class StandardboardFragment extends BoardFragment {
 
     ConstraintLayout constraintLayout;
 
+    @Override
     protected void setView(LayoutInflater inflater, ViewGroup container) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_standardboard, container, false);
     }
 
+    @Override
     protected void setConstraintLayout() {
         constraintLayout = view.findViewById(R.id.sbConstraintLayout);
     }
 
+    @Override
     protected List<ImageView> getListOfPiecesImageViews() {
         return piecesImageViews;
     }
 
+    @Override
     protected List<ImageView> getListOfBoardPositions() {
         return boardPositions;
     }
 
+    @Override
     protected List<ImageView> getListOfHomePositions() {
         return homePositions;
     }
 
+    @Override
     protected ConstraintLayout getConstraintLayout() {
         return constraintLayout;
     }
@@ -57,6 +63,7 @@ public class StandardboardFragment extends BoardFragment {
      * The first four ones are the pieces that belongs to player 1.
      * Then comes the pieces for player 2, and so on.
      */
+    @Override
     protected void initListOfAllPieces() {
         piecesImageViews = new ArrayList<>();
 
@@ -86,6 +93,7 @@ public class StandardboardFragment extends BoardFragment {
      * The first four ones belongs to player 1.
      * Then comes the homepositions for player 2, and so on.
      */
+    @Override
     protected void initListOfHomePositions() {
         homePositions = new ArrayList<>();
 
@@ -113,6 +121,7 @@ public class StandardboardFragment extends BoardFragment {
     /**
      * Initiates the List with all positions on the board.
      */
+    @Override
     protected void initListOfBoardPositions() {
         boardPositions = new ArrayList<>();
 
