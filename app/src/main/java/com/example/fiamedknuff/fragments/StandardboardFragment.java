@@ -417,12 +417,12 @@ public class StandardboardFragment extends BoardFragment {
      * @param piece is the piece that should be checked
      * @return true if the player has finished, and false otherwise
      */
-    private boolean removePieceAndPlayerIfFinished(ImageView piece) {
+    /*private boolean removePieceAndPlayerIfFinished(ImageView piece) {
         if (removePieceIfFinished(piece)) {
             return removePlayerIfFinished();
         }
         return false;
-    }
+    }*/
 
     /**
      * If the selected piece is finished, it is removed in the model and also in the view (it is
@@ -430,31 +430,33 @@ public class StandardboardFragment extends BoardFragment {
      * @param piece is the piece that should be checked
      * @return true if the piece is finished, and false otherwise
      */
-    private boolean removePieceIfFinished(ImageView piece) {
+    /*private boolean removePieceIfFinished(ImageView piece) {
         if (pieceIsFinished(piece)) {
             animateFinishedPiece(piece);
             piece.setVisibility(View.INVISIBLE);
             return true;
         }
         return false;
-    }
+    }*/
 
     /**
      * Checks if piece is finished.
      * @param piece is the piece that is checked
      * @return true if the piece is finished, false otherwise.
      */
-    private boolean pieceIsFinished(ImageView piece) {
+    /*private boolean pieceIsFinished(ImageView piece) {
         return gameViewModel.removePieceIfFinished(imageViewPieceHashMap.get(piece));
-    }
+    }*/
 
     /**
      * Checks if the current player is finished.
      * @return true if the player is finished, false otherwise.
      */
+/*
     private boolean removePlayerIfFinished() {
         return gameViewModel.removePlayerIfFinished();
     }
+*/
 
     /**
      * Either sets all the pieces to clickable, or to non-clickable, depending on the param
@@ -493,7 +495,7 @@ public class StandardboardFragment extends BoardFragment {
         movingImageView.bringToFront();
     }*/
 
-    private void animateFinishedPiece(ImageView piece) {
+   /* private void animateFinishedPiece(ImageView piece) {
         Animation rotate = AnimationUtils.loadAnimation(
                 requireActivity().getApplicationContext(), R.anim.rotate);
         Animation fadeout = AnimationUtils.loadAnimation(
@@ -508,6 +510,6 @@ public class StandardboardFragment extends BoardFragment {
         piece.setAnimation(animation);
 
         piece.animate();
-    }
+    }*/
 
 }
