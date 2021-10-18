@@ -15,10 +15,10 @@ import java.util.List;
  */
 public class Game implements Serializable {
 
-    private Board board; // The board in the current game round
+    private final Board board; // The board in the current game round
     private List<Player> activePlayers; // List of active players, an active player is a player who has one or several pieces left
     private int currentPlayerIndex = 0; // A variable to hold the index of the current player
-    private Dice dice; // The dice in the current game round
+    private final Dice dice; // The dice in the current game round
     private List<Player> finishedPlayers = new ArrayList<>(); // List of finished players, a finished player is a player who has no pieces left
 
     /**
