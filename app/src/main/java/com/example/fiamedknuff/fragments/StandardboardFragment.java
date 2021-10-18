@@ -227,15 +227,15 @@ public class StandardboardFragment extends BoardFragment {
     /**
      * Initiates the lists for the positions in the homes and on the board.
      */
-    protected void initListsOfPositions() {
+    /*protected void initListsOfPositions() {
         initListOfBoardPositions();
         initListOfHomePositions();
-    }
+    }*/
 
     /**
      * Initiates the List with all positions in the homes.
      */
-    private void initListOfHomePositions() {
+    protected void initListOfHomePositions() {
         homePositions = new ArrayList<>();
 
         homePositions.addAll(new ArrayList<>(Arrays.asList(
@@ -251,7 +251,7 @@ public class StandardboardFragment extends BoardFragment {
     /**
      * Initiates the List with all positions on the board.
      */
-    private void initListOfBoardPositions() {
+    protected void initListOfBoardPositions() {
         boardPositions = new ArrayList<>();
 
         boardPositions.addAll(new ArrayList<>(Arrays.asList
