@@ -335,14 +335,14 @@ public class StandardboardFragment extends BoardFragment {
         gameViewModel.setDiceIsUsed();
     }*/
 
-    private ImageView getPieceImageView(Piece piece) throws NotFoundException {
+    /*private ImageView getPieceImageView(Piece piece) throws NotFoundException {
         for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
             if (piece.toString().equals(entry.getValue().toString())) {
                 return entry.getKey();
             }
         }
         throw new NotFoundException("No ImageView found for given piece");
-    }
+    }*/
 
     /**
      * Gets the current player's movable pieces marked on the GUI.
