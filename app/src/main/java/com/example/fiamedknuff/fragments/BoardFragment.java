@@ -1,5 +1,6 @@
 package com.example.fiamedknuff.fragments;
 
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,7 +25,8 @@ public abstract class BoardFragment extends Fragment {
 
     View view;
     boolean alreadyInitialized;
-    
+    ImageView latestClickedPiece;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -104,6 +106,31 @@ public abstract class BoardFragment extends Fragment {
             });
         }
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    protected void pieceClicked(ImageView piece) {
+        setPiecesClickable(false);
+        latestClickedPiece = piece;
+        gameViewModel.move(imageViewPieceHashMap.get(piece));
+        setPiecesClickable(true);
+    }
+
+    /**
+     * Either sets all the pieces to clickable, or to non-clickable, depending on the param
+     * @param isClickable is true if the pieces should be set to clickable, and
+     *                    false if the pieces should be set to non-clickable
+     */
+    private void setPiecesClickable(Boolean isClickable) {
+        for (ImageView piece : getListOfPiecesImageViews()) {
+            piece.setClickable(isClickable);
+        }
+    }
+
+    /**
+     * Should move the piece in the model, through the viewmodel.
+     * @param piece
+     */
+    protected abstract void moveInModel(ImageView piece);
 
     /**
      * Initiates the positions.
