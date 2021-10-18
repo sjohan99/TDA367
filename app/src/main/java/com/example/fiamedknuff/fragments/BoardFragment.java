@@ -1,6 +1,5 @@
 package com.example.fiamedknuff.fragments;
 
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,13 +17,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.exceptions.NotFoundException;
 import com.example.fiamedknuff.model.Piece;
-import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.model.Position;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 
@@ -34,8 +31,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * TODO write better comment
- * An abstract class BoardFragment. Superclass to our fragments of boards.
+ * An abstract class BoardFragment. Superclass to fragments of boards.
+ * Holds the common behavior for all boardfragments. Implements the methods
+ * that all boardfragments have. Some methods are declared abstract and should be
+ * implemented by the specific boardfragments that extends this class.
  *
  * Created by
  * @author Emma Stålberg
