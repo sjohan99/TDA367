@@ -68,17 +68,12 @@ public class StandardboardFragment extends BoardFragment {
     List<ImageView> piecesImageViews;
 
     ConstraintLayout constraintLayout;
-    GameViewModel gameViewModel;
 
     //ImageView latestClickedPiece;
 
     protected void setView(LayoutInflater inflater, ViewGroup container) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_standardboard, container, false);
-    }
-
-    protected void setGameViewModel() {
-        gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
     }
 
     protected void setConstraintLayout() {

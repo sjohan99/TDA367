@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.fiamedknuff.viewModels.GameViewModel;
 
 import java.util.List;
 
@@ -26,6 +29,7 @@ public abstract class BoardFragment extends Fragment {
     View view;
     boolean alreadyInitialized;
     ImageView latestClickedPiece;
+    GameViewModel gameViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,8 +53,9 @@ public abstract class BoardFragment extends Fragment {
 
     protected abstract void setView(LayoutInflater inflater, ViewGroup container);
 
-    protected abstract void setGameViewModel();
-
+    private void setGameViewModel() {
+        gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
+    }
     protected abstract void setConstraintLayout();
 
     protected abstract List<ImageView> getListOfPiecesImageViews();
