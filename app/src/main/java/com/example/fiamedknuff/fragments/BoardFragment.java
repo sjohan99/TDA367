@@ -166,7 +166,17 @@ public abstract class BoardFragment extends Fragment {
 
     protected abstract void connectHomePositionsIds();
 
-    protected abstract void initListsOfPositions();
+    /**
+     * Initiates the lists for the positions in the homes and on the board.
+     */
+    private void initListsOfPositions() {
+        initListOfBoardPositions();
+        initListOfHomePositions();
+    }
+
+    protected abstract void initListOfBoardPositions();
+
+    protected abstract void initListOfHomePositions();
 
     protected abstract void initPositionsHashmap();
 
