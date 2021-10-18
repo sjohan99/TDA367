@@ -231,7 +231,11 @@ public abstract class BoardFragment extends Fragment {
         initMovingPathObserver();
         initMovesArePossibleToMakeObserver();
         initCurrentPlayerObserver();
+        initKnockedPieceObserver();
 
+    }
+
+    private void initKnockedPieceObserver() {
         gameViewModel.knockedPiece.observe(getActivity(), new Observer<>() {
             @Override
             public void onChanged(Piece piece) {
