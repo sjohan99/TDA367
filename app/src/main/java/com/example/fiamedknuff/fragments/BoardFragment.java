@@ -335,10 +335,6 @@ public abstract class BoardFragment extends Fragment {
                 movingImageView.getId(), ConstraintSet.BOTTOM, target.getId(), ConstraintSet.BOTTOM);
         constraintSet.applyTo(getConstraintLayout());
 
-        if (getListOfPiecesImageViews().contains(movingImageView)) {
-            //TODO a piece should have a margin in the bottom to make it look more real
-        }
-
         movingImageView.bringToFront();
     }
 

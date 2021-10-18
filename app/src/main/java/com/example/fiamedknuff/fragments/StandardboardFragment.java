@@ -21,16 +21,8 @@ import java.util.List;
  */
 
 public class StandardboardFragment extends BoardFragment {
-    ImageView pos0, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10;
-    ImageView pos11, pos12, pos13, pos14, pos15, pos16, pos17, pos18, pos19, pos20;
-    ImageView pos21, pos22, pos23, pos24, pos25, pos26, pos27, pos28, pos29, pos30;
-    ImageView pos31, pos32, pos33, pos34, pos35, pos36, pos37, pos38, pos39, pos40;
-    ImageView pos41, pos42, pos43, pos44, pos45, pos46, pos47, pos48, pos49, pos50;
-    ImageView pos51, pos52, pos53, pos54, pos55, pos56;
-
     List<ImageView> boardPositions;
     List<ImageView> homePositions;
-
     List<ImageView> piecesImageViews;
 
     ConstraintLayout constraintLayout;
@@ -124,76 +116,63 @@ public class StandardboardFragment extends BoardFragment {
     protected void initListOfBoardPositions() {
         boardPositions = new ArrayList<>();
 
-        pos0 = view.findViewById(R.id.pos0);
-        pos1 = view.findViewById(R.id.pos1);
-        pos2 = view.findViewById(R.id.pos2);
-        pos3 = view.findViewById(R.id.pos3);
-        pos4 = view.findViewById(R.id.pos4);
-        pos5 = view.findViewById(R.id.pos5);
-        pos6 = view.findViewById(R.id.pos6);
-        pos7 = view.findViewById(R.id.pos7);
-        pos8 = view.findViewById(R.id.pos8);
-        pos9 = view.findViewById(R.id.pos9);
-        pos10 = view.findViewById(R.id.pos10);
-        pos11 = view.findViewById(R.id.pos11);
-        pos12 = view.findViewById(R.id.pos12);
-        pos13 = view.findViewById(R.id.pos13);
-        pos14 = view.findViewById(R.id.pos14);
-        pos15 = view.findViewById(R.id.pos15);
-        pos16 = view.findViewById(R.id.pos16);
-        pos17 = view.findViewById(R.id.pos17);
-        pos18 = view.findViewById(R.id.pos18);
-        pos19 = view.findViewById(R.id.pos19);
-        pos20 = view.findViewById(R.id.pos20);
-        pos21 = view.findViewById(R.id.pos21);
-        pos22 = view.findViewById(R.id.pos22);
-        pos23 = view.findViewById(R.id.pos23);
-        pos24 = view.findViewById(R.id.pos24);
-        pos25 = view.findViewById(R.id.pos25);
-        pos26 = view.findViewById(R.id.pos26);
-        pos27 = view.findViewById(R.id.pos27);
-        pos28 = view.findViewById(R.id.pos28);
-        pos29 = view.findViewById(R.id.pos29);
-        pos30 = view.findViewById(R.id.pos30);
-        pos31 = view.findViewById(R.id.pos31);
-        pos32 = view.findViewById(R.id.pos32);
-        pos33 = view.findViewById(R.id.pos33);
-        pos34 = view.findViewById(R.id.pos34);
-        pos35 = view.findViewById(R.id.pos35);
-        pos36 = view.findViewById(R.id.pos36);
-        pos37 = view.findViewById(R.id.pos37);
-        pos38 = view.findViewById(R.id.pos38);
-        pos39 = view.findViewById(R.id.pos39);
-        pos40 = view.findViewById(R.id.pos40);
-        pos41 = view.findViewById(R.id.pos41);
-        pos42 = view.findViewById(R.id.pos42);
-        pos43 = view.findViewById(R.id.pos43);
-        pos44 = view.findViewById(R.id.pos44);
-        pos45 = view.findViewById(R.id.pos45);
-        pos46 = view.findViewById(R.id.pos46);
-        pos47 = view.findViewById(R.id.pos47);
-        pos48 = view.findViewById(R.id.pos48);
-        pos49 = view.findViewById(R.id.pos49);
-        pos50 = view.findViewById(R.id.pos50);
-        pos51 = view.findViewById(R.id.pos51);
-        pos52 = view.findViewById(R.id.pos52);
-        pos53 = view.findViewById(R.id.pos53);
-        pos54 = view.findViewById(R.id.pos54);
-        pos55 = view.findViewById(R.id.pos55);
-        pos56 = view.findViewById(R.id.pos56);
-
-        boardPositions.addAll(new ArrayList<>(Arrays.asList
-                (pos0, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10)));
-        boardPositions.addAll(new ArrayList<>(Arrays.asList
-                (pos11, pos12, pos13, pos14, pos15, pos16, pos17, pos18, pos19, pos20)));
-        boardPositions.addAll(new ArrayList<>(Arrays.asList
-                (pos21, pos22, pos23, pos24, pos25, pos26, pos27, pos28, pos29, pos30)));
-        boardPositions.addAll(new ArrayList<>(Arrays.asList
-                (pos31, pos32, pos33, pos34, pos35, pos36, pos37, pos38, pos39, pos40)));
-        boardPositions.addAll(new ArrayList<>(Arrays.asList
-                (pos41, pos42, pos43, pos44, pos45, pos46, pos47, pos48, pos49, pos50)));
-        boardPositions.addAll(new ArrayList<>(Arrays.asList
-                (pos51, pos52, pos53, pos54, pos55, pos56)));
+        boardPositions.add(view.findViewById(R.id.pos0));
+        boardPositions.add(view.findViewById(R.id.pos1));
+        boardPositions.add(view.findViewById(R.id.pos2));
+        boardPositions.add(view.findViewById(R.id.pos3));
+        boardPositions.add(view.findViewById(R.id.pos4));
+        boardPositions.add(view.findViewById(R.id.pos5));
+        boardPositions.add(view.findViewById(R.id.pos6));
+        boardPositions.add(view.findViewById(R.id.pos7));
+        boardPositions.add(view.findViewById(R.id.pos8));
+        boardPositions.add(view.findViewById(R.id.pos9));
+        boardPositions.add(view.findViewById(R.id.pos10));
+        boardPositions.add(view.findViewById(R.id.pos11));
+        boardPositions.add(view.findViewById(R.id.pos12));
+        boardPositions.add(view.findViewById(R.id.pos13));
+        boardPositions.add(view.findViewById(R.id.pos14));
+        boardPositions.add(view.findViewById(R.id.pos15));
+        boardPositions.add(view.findViewById(R.id.pos16));
+        boardPositions.add(view.findViewById(R.id.pos17));
+        boardPositions.add(view.findViewById(R.id.pos18));
+        boardPositions.add(view.findViewById(R.id.pos19));
+        boardPositions.add(view.findViewById(R.id.pos20));
+        boardPositions.add(view.findViewById(R.id.pos21));
+        boardPositions.add(view.findViewById(R.id.pos22));
+        boardPositions.add(view.findViewById(R.id.pos23));
+        boardPositions.add(view.findViewById(R.id.pos24));
+        boardPositions.add(view.findViewById(R.id.pos25));
+        boardPositions.add(view.findViewById(R.id.pos26));
+        boardPositions.add(view.findViewById(R.id.pos27));
+        boardPositions.add(view.findViewById(R.id.pos28));
+        boardPositions.add(view.findViewById(R.id.pos29));
+        boardPositions.add(view.findViewById(R.id.pos30));
+        boardPositions.add(view.findViewById(R.id.pos31));
+        boardPositions.add(view.findViewById(R.id.pos32));
+        boardPositions.add(view.findViewById(R.id.pos33));
+        boardPositions.add(view.findViewById(R.id.pos34));
+        boardPositions.add(view.findViewById(R.id.pos35));
+        boardPositions.add(view.findViewById(R.id.pos36));
+        boardPositions.add(view.findViewById(R.id.pos37));
+        boardPositions.add(view.findViewById(R.id.pos38));
+        boardPositions.add(view.findViewById(R.id.pos39));
+        boardPositions.add(view.findViewById(R.id.pos40));
+        boardPositions.add(view.findViewById(R.id.pos41));
+        boardPositions.add(view.findViewById(R.id.pos42));
+        boardPositions.add(view.findViewById(R.id.pos43));
+        boardPositions.add(view.findViewById(R.id.pos44));
+        boardPositions.add(view.findViewById(R.id.pos45));
+        boardPositions.add(view.findViewById(R.id.pos46));
+        boardPositions.add(view.findViewById(R.id.pos47));
+        boardPositions.add(view.findViewById(R.id.pos48));
+        boardPositions.add(view.findViewById(R.id.pos49));
+        boardPositions.add(view.findViewById(R.id.pos50));
+        boardPositions.add(view.findViewById(R.id.pos51));
+        boardPositions.add(view.findViewById(R.id.pos52));
+        boardPositions.add(view.findViewById(R.id.pos53));
+        boardPositions.add(view.findViewById(R.id.pos54));
+        boardPositions.add(view.findViewById(R.id.pos55));
+        boardPositions.add(view.findViewById(R.id.pos56));
     }
 
 }
