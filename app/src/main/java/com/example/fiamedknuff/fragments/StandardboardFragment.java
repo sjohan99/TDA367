@@ -27,10 +27,7 @@ public class StandardboardFragment extends BoardFragment {
     ImageView pos31, pos32, pos33, pos34, pos35, pos36, pos37, pos38, pos39, pos40;
     ImageView pos41, pos42, pos43, pos44, pos45, pos46, pos47, pos48, pos49, pos50;
     ImageView pos51, pos52, pos53, pos54, pos55, pos56;
-    ImageView yellowHomePos0, yellowHomePos1, yellowHomePos2, yellowHomePos3;
-    ImageView redHomePos0, redHomePos1, redHomePos2, redHomePos3;
-    ImageView greenHomePos0, greenHomePos1, greenHomePos2, greenHomePos3;
-    ImageView blueHomePos0, blueHomePos1, blueHomePos2, blueHomePos3;
+
     List<ImageView> boardPositions;
     List<ImageView> homePositions;
 
@@ -70,18 +67,22 @@ public class StandardboardFragment extends BoardFragment {
      */
     protected void initListOfAllPieces() {
         piecesImageViews = new ArrayList<>();
+
         piecesImageViews.add(view.findViewById(R.id.yellowpiece0));
         piecesImageViews.add(view.findViewById(R.id.yellowpiece1));
         piecesImageViews.add(view.findViewById(R.id.yellowpiece2));
         piecesImageViews.add(view.findViewById(R.id.yellowpiece3));
+
         piecesImageViews.add(view.findViewById(R.id.redpiece0));
         piecesImageViews.add(view.findViewById(R.id.redpiece1));
         piecesImageViews.add(view.findViewById(R.id.redpiece2));
         piecesImageViews.add(view.findViewById(R.id.redpiece3));
+
         piecesImageViews.add(view.findViewById(R.id.greenpiece0));
         piecesImageViews.add(view.findViewById(R.id.greenpiece1));
         piecesImageViews.add(view.findViewById(R.id.greenpiece2));
         piecesImageViews.add(view.findViewById(R.id.greenpiece3));
+
         piecesImageViews.add(view.findViewById(R.id.bluepiece0));
         piecesImageViews.add(view.findViewById(R.id.bluepiece1));
         piecesImageViews.add(view.findViewById(R.id.bluepiece2));
@@ -153,28 +154,31 @@ public class StandardboardFragment extends BoardFragment {
 
     /**
      * Initiates the List with all positions in the homes.
+     * The first four ones belongs to player 1.
+     * Then comes the homepositions for player 2, and so on.
      */
     protected void initListOfHomePositions() {
         homePositions = new ArrayList<>();
 
+        homePositions.add(view.findViewById(R.id.yellowHomepos0));
+        homePositions.add(view.findViewById(R.id.yellowHomepos1));
+        homePositions.add(view.findViewById(R.id.yellowHomepos2));
+        homePositions.add(view.findViewById(R.id.yellowHomepos3));
 
-        yellowHomePos0 = view.findViewById(R.id.yellowHomepos0);
-        yellowHomePos1 = view.findViewById(R.id.yellowHomepos1);
-        yellowHomePos2 = view.findViewById(R.id.yellowHomepos2);
-        yellowHomePos3 = view.findViewById(R.id.yellowHomepos3);
-        redHomePos0 = view.findViewById(R.id.redHomepos0);
-        redHomePos1 = view.findViewById(R.id.redHomepos1);
-        redHomePos2 = view.findViewById(R.id.redHomepos2);
-        redHomePos3 = view.findViewById(R.id.redHomepos3);
-        greenHomePos0 = view.findViewById(R.id.greenHomepos0);
-        greenHomePos1 = view.findViewById(R.id.greenHomepos1);
-        greenHomePos2 = view.findViewById(R.id.greenHomepos2);
-        greenHomePos3 = view.findViewById(R.id.greenHomepos3);
-        blueHomePos0 = view.findViewById(R.id.blueHomepos0);
-        blueHomePos1 = view.findViewById(R.id.blueHomepos1);
-        blueHomePos2 = view.findViewById(R.id.blueHomepos2);
-        blueHomePos3 = view.findViewById(R.id.blueHomepos3);
+        homePositions.add(view.findViewById(R.id.redHomepos0));
+        homePositions.add(view.findViewById(R.id.redHomepos1));
+        homePositions.add(view.findViewById(R.id.redHomepos2));
+        homePositions.add(view.findViewById(R.id.redHomepos3));
 
+        homePositions.add(view.findViewById(R.id.greenHomepos0));
+        homePositions.add(view.findViewById(R.id.greenHomepos1));
+        homePositions.add(view.findViewById(R.id.greenHomepos2));
+        homePositions.add(view.findViewById(R.id.greenHomepos3));
+
+        homePositions.add(view.findViewById(R.id.blueHomepos0));
+        homePositions.add(view.findViewById(R.id.blueHomepos1));
+        homePositions.add(view.findViewById(R.id.blueHomepos2));
+        homePositions.add(view.findViewById(R.id.blueHomepos3));
     }
 
     /**
