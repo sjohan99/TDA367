@@ -162,20 +162,9 @@ public abstract class BoardFragment extends Fragment {
      * Initiates the positions.
      */
     protected void initPositions() {
-        connectPositionIds();
         initListsOfPositions();
         initPositionsHashmap();
     }
-
-    /**
-     * Connects every position to its equivalent ImageView.
-     * Both the positions on the board and in the homes.
-     */
-    private void connectPositionIds() {
-        connectBoardPositionsIds();
-    }
-
-    protected abstract void connectBoardPositionsIds();
 
     /**
      * Initiates the lists for the positions in the homes and on the board.

@@ -90,9 +90,40 @@ public class StandardboardFragment extends BoardFragment {
     }
 
     /**
-     * Connects every position on the board to its equivalent ImageView
+     * Initiates the List with all positions in the homes.
+     * The first four ones belongs to player 1.
+     * Then comes the homepositions for player 2, and so on.
      */
-    protected void connectBoardPositionsIds() {
+    protected void initListOfHomePositions() {
+        homePositions = new ArrayList<>();
+
+        homePositions.add(view.findViewById(R.id.yellowHomepos0));
+        homePositions.add(view.findViewById(R.id.yellowHomepos1));
+        homePositions.add(view.findViewById(R.id.yellowHomepos2));
+        homePositions.add(view.findViewById(R.id.yellowHomepos3));
+
+        homePositions.add(view.findViewById(R.id.redHomepos0));
+        homePositions.add(view.findViewById(R.id.redHomepos1));
+        homePositions.add(view.findViewById(R.id.redHomepos2));
+        homePositions.add(view.findViewById(R.id.redHomepos3));
+
+        homePositions.add(view.findViewById(R.id.greenHomepos0));
+        homePositions.add(view.findViewById(R.id.greenHomepos1));
+        homePositions.add(view.findViewById(R.id.greenHomepos2));
+        homePositions.add(view.findViewById(R.id.greenHomepos3));
+
+        homePositions.add(view.findViewById(R.id.blueHomepos0));
+        homePositions.add(view.findViewById(R.id.blueHomepos1));
+        homePositions.add(view.findViewById(R.id.blueHomepos2));
+        homePositions.add(view.findViewById(R.id.blueHomepos3));
+    }
+
+    /**
+     * Initiates the List with all positions on the board.
+     */
+    protected void initListOfBoardPositions() {
+        boardPositions = new ArrayList<>();
+
         pos0 = view.findViewById(R.id.pos0);
         pos1 = view.findViewById(R.id.pos1);
         pos2 = view.findViewById(R.id.pos2);
@@ -150,42 +181,6 @@ public class StandardboardFragment extends BoardFragment {
         pos54 = view.findViewById(R.id.pos54);
         pos55 = view.findViewById(R.id.pos55);
         pos56 = view.findViewById(R.id.pos56);
-    }
-
-    /**
-     * Initiates the List with all positions in the homes.
-     * The first four ones belongs to player 1.
-     * Then comes the homepositions for player 2, and so on.
-     */
-    protected void initListOfHomePositions() {
-        homePositions = new ArrayList<>();
-
-        homePositions.add(view.findViewById(R.id.yellowHomepos0));
-        homePositions.add(view.findViewById(R.id.yellowHomepos1));
-        homePositions.add(view.findViewById(R.id.yellowHomepos2));
-        homePositions.add(view.findViewById(R.id.yellowHomepos3));
-
-        homePositions.add(view.findViewById(R.id.redHomepos0));
-        homePositions.add(view.findViewById(R.id.redHomepos1));
-        homePositions.add(view.findViewById(R.id.redHomepos2));
-        homePositions.add(view.findViewById(R.id.redHomepos3));
-
-        homePositions.add(view.findViewById(R.id.greenHomepos0));
-        homePositions.add(view.findViewById(R.id.greenHomepos1));
-        homePositions.add(view.findViewById(R.id.greenHomepos2));
-        homePositions.add(view.findViewById(R.id.greenHomepos3));
-
-        homePositions.add(view.findViewById(R.id.blueHomepos0));
-        homePositions.add(view.findViewById(R.id.blueHomepos1));
-        homePositions.add(view.findViewById(R.id.blueHomepos2));
-        homePositions.add(view.findViewById(R.id.blueHomepos3));
-    }
-
-    /**
-     * Initiates the List with all positions on the board.
-     */
-    protected void initListOfBoardPositions() {
-        boardPositions = new ArrayList<>();
 
         boardPositions.addAll(new ArrayList<>(Arrays.asList
                 (pos0, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10)));
