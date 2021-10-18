@@ -304,22 +304,6 @@ public class StandardboardFragment extends BoardFragment {
         }
     }
 
-    /**
-     * Adds OnClickListeners on all pieces. When a piece is clicked, the method pieceClicked
-     * should be called.
-     */
-    protected void addPiecesOnClickListeners() {
-        for (ImageView piece : piecesImageViews) {
-            piece.setOnClickListener(new View.OnClickListener() {
-                @RequiresApi(api = Build.VERSION_CODES.N)
-                @Override
-                public void onClick(View view) {
-                    pieceClicked(piece);
-                }
-            });
-        }
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void pieceClicked(ImageView piece) {
         setPiecesClickable(false);

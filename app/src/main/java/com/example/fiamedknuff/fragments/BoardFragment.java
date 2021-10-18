@@ -1,5 +1,6 @@
 package com.example.fiamedknuff.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import java.util.List;
@@ -88,10 +90,20 @@ public abstract class BoardFragment extends Fragment {
     protected abstract void makeInactivePiecesInvisible();
 
     /**
-     * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
-     * should be called. The pieces should be non-clickable when the method makeTurn is called.
+     * Adds OnClickListeners on all pieces. When a piece is clicked, the method pieceClicked
+     * should be called.
      */
-    protected abstract void addPiecesOnClickListeners();
+    protected void addPiecesOnClickListeners() {
+        for (ImageView piece : getListOfPiecesImageViews()) {
+            piece.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onClick(View view) {
+                    pieceClicked(piece);
+                }
+            });
+        }
+    }
 
     /**
      * Initiates the positions.
