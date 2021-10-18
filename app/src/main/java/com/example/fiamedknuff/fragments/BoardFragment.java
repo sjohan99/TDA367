@@ -454,6 +454,15 @@ public abstract class BoardFragment extends Fragment {
         return map;
     }
 
+    private ImageView getPieceImageView(Piece piece) throws NotFoundException {
+        for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
+            if (piece.toString().equals(entry.getValue().toString())) {
+                return entry.getKey();
+            }
+        }
+        throw new NotFoundException("No ImageView found for given piece");
+    }
+
     protected abstract void reInit();
 
     @Override
