@@ -84,6 +84,10 @@ public class StandardboardFragment extends BoardFragment {
         return piecesImageViews;
     }
 
+    protected HashMap<ImageView, Piece> getImageViewPieceHashMap() {
+        return imageViewPieceHashMap;
+    }
+
     /**
      * Connects the pieces id:s with its equivalent imageview.
      */

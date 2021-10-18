@@ -13,8 +13,11 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.fiamedknuff.model.Piece;
+import com.example.fiamedknuff.model.Position;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -59,6 +62,8 @@ public abstract class BoardFragment extends Fragment {
     protected abstract void setConstraintLayout();
 
     protected abstract List<ImageView> getListOfPiecesImageViews();
+
+    protected abstract HashMap<ImageView, Piece> getImageViewPieceHashMap();
 
     /**
      * Initiates the pieces by connecting the pieces ids, initiates the list of the pieces,
@@ -116,7 +121,7 @@ public abstract class BoardFragment extends Fragment {
     protected void pieceClicked(ImageView piece) {
         setPiecesClickable(false);
         latestClickedPiece = piece;
-        gameViewModel.move(imageViewPieceHashMap.get(piece));
+        gameViewModel.move(getImageViewPieceHashMap().get(piece));
         setPiecesClickable(true);
     }
 
