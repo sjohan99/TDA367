@@ -11,6 +11,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -48,8 +49,9 @@ public abstract class BoardFragment extends Fragment {
     HashMap<ImageView, Piece> imageViewPieceHashMap;
     HashMap<Position, ImageView> imageViewPositionHashMap;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         setView(inflater, container);
@@ -88,6 +90,7 @@ public abstract class BoardFragment extends Fragment {
      * initiates the hashmap with the pieces, makes the inactive pieces invisible and adds
      * onClickListeners to the pieces.
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     protected void initPieces() {
         connectPiecesIds();
         initListOfAllPieces();
@@ -128,19 +131,15 @@ public abstract class BoardFragment extends Fragment {
             getListOfPiecesImageViews().get(i).setVisibility(View.INVISIBLE);
         }
     }
+
     /**
      * Adds OnClickListeners on all pieces. When a piece is clicked, the method pieceClicked
      * should be called.
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     protected void addPiecesOnClickListeners() {
         for (ImageView piece : getListOfPiecesImageViews()) {
-            piece.setOnClickListener(new View.OnClickListener() {
-                @RequiresApi(api = Build.VERSION_CODES.N)
-                @Override
-                public void onClick(View view) {
-                    pieceClicked(piece);
-                }
-            });
+            piece.setOnClickListener(view -> pieceClicked(piece));
         }
     }
 
@@ -226,6 +225,7 @@ public abstract class BoardFragment extends Fragment {
      * Initiates the observers for variables movingPath, movesArePossibleToMake
      * currentPlayer and knockedPiece.
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void initObservers() {
 
         initMovingPathObserver();
@@ -241,15 +241,12 @@ public abstract class BoardFragment extends Fragment {
      * Unmarks all pieces and calls for method isMoved which handles the logic for when
      * a piece is moved.
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void initMovingPathObserver() {
-        gameViewModel.movingPath.observe(getActivity(), new Observer<>() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onChanged(List<Position> movingPath) {
-                if (movingPath.size() != 0) {
-                    unMarkAllPieces();
-                    isMoved(movingPath);
-                }
+        gameViewModel.movingPath.observe(getActivity(), movingPath -> {
+            if (movingPath.size() != 0) {
+                unMarkAllPieces();
+                isMoved(movingPath);
             }
         });
     }
@@ -259,54 +256,45 @@ public abstract class BoardFragment extends Fragment {
      * dicevalue is able to use.
      */
     private void initMovesArePossibleToMakeObserver() {
-        gameViewModel.movesArePossibleToMake.observe(getActivity(), new Observer<>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                if (aBoolean) {
-                    markMovablePieces();
-                }
+        gameViewModel.movesArePossibleToMake.observe(getActivity(), aBoolean -> {
+            if (aBoolean) {
+                markMovablePieces();
             }
         });
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void initCurrentPlayerObserver() {
-        gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onChanged(Player player) {
-                if (gameViewModel.isCPU(player)) {
-                    gameViewModel.CPUdiceRoll(true);
-                    Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(gameViewModel.getDiceValue());
-                    if (piece != null) {
-                        ImageView pieceImageView = null;
-                        try {
-                            pieceImageView = getPieceImageView(piece);
-                        } catch (NotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        pieceClicked(pieceImageView);
+        gameViewModel.currentPlayer.observe(getActivity(), player -> {
+            if (gameViewModel.isCPU(player)) {
+                gameViewModel.CPUdiceRoll(true);
+                Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(gameViewModel.getDiceValue());
+                if (piece != null) {
+                    ImageView pieceImageView = null;
+                    try {
+                        pieceImageView = getPieceImageView(piece);
+                    } catch (NotFoundException e) {
+                        e.printStackTrace();
                     }
-                    else {
-                        gameViewModel.selectNextPlayer();
-                    }
+                    pieceClicked(pieceImageView);
+                }
+                else {
+                    gameViewModel.selectNextPlayer();
                 }
             }
         });
     }
 
     private void initKnockedPieceObserver() {
-        gameViewModel.knockedPiece.observe(getActivity(), new Observer<>() {
-            @Override
-            public void onChanged(Piece piece) {
-                Position target = gameViewModel.getPosition(piece);
-                List<Position> movingPath = new ArrayList<>();
-                movingPath.add(target);
-                try {
-                    move(getPieceImageView(piece), movingPath);
-                } catch (NotFoundException e) {
-                    e.printStackTrace();
-                }
+        gameViewModel.knockedPiece.observe(getActivity(), piece -> {
+            Position target = gameViewModel.getPosition(piece);
+            List<Position> movingPath = new ArrayList<>();
+            movingPath.add(target);
+            try {
+                move(getPieceImageView(piece), movingPath);
+            } catch (NotFoundException e) {
+                e.printStackTrace();
             }
         });
     }
