@@ -11,12 +11,16 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.fiamedknuff.exceptions.NotFoundException;
 import com.example.fiamedknuff.model.Piece;
+import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.model.Position;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -208,8 +212,84 @@ public abstract class BoardFragment extends Fragment {
         }
     }
 
-    protected abstract void initObservers();
+    /**
+     * Initiates the observers for variables movingPath, movesArePossibleToMake
+     * currentPlayer and knockedPiece.
+     */
+    private void initObservers() {
 
+        /*
+          Observes the variable movingPath in GameViewModel, which is set to a position path
+          when a piece is moved in the model.
+          Moves the piece in the view. If the piece is finished it is removed from the
+          model and view. If a player rolls a six and is not finished, it is their turn again.
+          Otherwise, the next player is selected.
+          If the game is finished, another method should be called here (not implemented yet).
+          If not, the dice in the view is moved to the next player and the dice´s value is
+          set to used (this is done in the diceFragment).
+         */
+        gameViewModel.movingPath.observe(getActivity(), new Observer<>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onChanged(List<Position> movingPath) {
+                if (movingPath.size() != 0) {
+                    unMarkAllPieces();
+                    isMoved(movingPath);
+                }
+            }
+        });
+
+        /*
+            Observes the variable movesArePossibleToMake, which is set to true when the rolled
+            dicevalue is able to use.
+            When the variable is set to true, the movable pieces should be highlighted.
+         */
+        gameViewModel.movesArePossibleToMake.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    markMovablePieces();
+                }
+            }
+        });
+
+        gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onChanged(Player player) {
+                if (gameViewModel.isCPU(player)) {
+                    gameViewModel.CPUdiceRoll(true);
+                    Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(gameViewModel.getDiceValue());
+                    if (piece != null) {
+                        ImageView pieceImageView = null;
+                        try {
+                            pieceImageView = getPieceImageView(piece);
+                        } catch (NotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        pieceClicked(pieceImageView);
+                    }
+                    else {
+                        gameViewModel.selectNextPlayer();
+                    }
+                }
+            }
+        });
+
+        gameViewModel.knockedPiece.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Piece piece) {
+                Position target = gameViewModel.getPosition(piece);
+                List<Position> movingPath = new ArrayList<>();
+                movingPath.add(target);
+                try {
+                    move(getPieceImageView(piece), movingPath);
+                } catch (NotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
     protected abstract void reInit();
 
     @Override

@@ -249,11 +249,9 @@ public class StandardboardFragment extends BoardFragment {
                 (pos51, pos52, pos53, pos54, pos55, pos56)));
     }
 
-    protected void initObservers() {
+/*    protected void initObservers() {
 
-        // TODO - some of the logic which is going to be implemented is right now just comments
-        //  or not written here at all
-        /*
+        *//*
           Observes the variable movingPath in GameViewModel, which is set to a position path
           when a piece is moved in the model.
           Moves the piece in the view. If the piece is finished it is removed from the
@@ -262,7 +260,7 @@ public class StandardboardFragment extends BoardFragment {
           If the game is finished, another method should be called here (not implemented yet).
           If not, the dice in the view is moved to the next player and the dice´s value is
           set to used (this is done in the diceFragment).
-         */
+         *//*
         gameViewModel.movingPath.observe(getActivity(), new Observer<>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -274,11 +272,11 @@ public class StandardboardFragment extends BoardFragment {
             }
         });
 
-        /*
+        *//*
             Observes the variable movesArePossibleToMake, which is set to true when the rolled
             dicevalue is able to use.
             When the variable is set to true, the movable pieces should be highlighted.
-         */
+         *//*
         gameViewModel.movesArePossibleToMake.observe(getActivity(), new Observer<>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -324,7 +322,7 @@ public class StandardboardFragment extends BoardFragment {
                 }
             }
         });
-    }
+    }*/
 
     private void isMoved(List<Position> movingPath) {
         move(latestClickedPiece, movingPath);
