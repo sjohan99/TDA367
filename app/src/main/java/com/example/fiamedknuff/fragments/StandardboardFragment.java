@@ -64,7 +64,6 @@ public class StandardboardFragment extends BoardFragment {
     ImageView redpiece0, redpiece1, redpiece2, redpiece3;
     ImageView bluepiece0, bluepiece1, bluepiece2, bluepiece3;
     ImageView greenpiece0, greenpiece1, greenpiece2, greenpiece3;
-    HashMap<ImageView, Piece> imageViewPieceHashMap;
     List<ImageView> piecesImageViews;
 
     ConstraintLayout constraintLayout;
@@ -82,10 +81,6 @@ public class StandardboardFragment extends BoardFragment {
 
     protected List<ImageView> getListOfPiecesImageViews() {
         return piecesImageViews;
-    }
-
-    protected HashMap<ImageView, Piece> getImageViewPieceHashMap() {
-        return imageViewPieceHashMap;
     }
 
     /**
@@ -123,18 +118,6 @@ public class StandardboardFragment extends BoardFragment {
                 greenpiece0, greenpiece1, greenpiece2, greenpiece3)));
         piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
                 bluepiece0, bluepiece1, bluepiece2, bluepiece3)));
-    }
-
-    /**
-     * Initiates the hashmap imageViewPieceHashMap. Gets the active pieces from gameViewModel
-     * and connects them with the equivalent imageView.
-     */
-    protected void initPiecesHashmap() {
-        imageViewPieceHashMap = new HashMap<>();
-        List<Piece> activePieces = gameViewModel.getPieces();
-        for (int i = 0; i < activePieces.size(); i++) {
-            imageViewPieceHashMap.put(piecesImageViews.get(i), activePieces.get(i));
-        }
     }
 
     /**
