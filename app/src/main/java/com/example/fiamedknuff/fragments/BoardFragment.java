@@ -463,7 +463,18 @@ public abstract class BoardFragment extends Fragment {
         throw new NotFoundException("No ImageView found for given piece");
     }
 
-    protected abstract void reInit();
+    protected void reInit() {
+        reInitPieces();
+        markMovablePieces();
+    }
+
+    private void reInitPieces() {
+        for (int i = 0; i < gameViewModel.getPlayerCount() * 4; i++) {
+            ImageView piece = getListOfPiecesImageViews().get(i);
+            Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
+            moveImageView(piece, imageViewPositionHashMap.get(target));
+        }
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
