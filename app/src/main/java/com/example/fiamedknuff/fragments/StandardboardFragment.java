@@ -134,15 +134,15 @@ public class StandardboardFragment extends BoardFragment {
     /**
      * Connects every position to its equivalent ImageView.
      */
-    protected void connectPositionIds() {
+    /*protected void connectPositionIds() {
         connectBoardPositionsIds();
         connectHomePositionsIds();
-    }
+    }*/
 
     /**
      * Connects every position on the board to its equivalent ImageView
      */
-    private void connectBoardPositionsIds() {
+    protected void connectBoardPositionsIds() {
         pos0 = view.findViewById(R.id.pos0);
         pos1 = view.findViewById(R.id.pos1);
         pos2 = view.findViewById(R.id.pos2);
@@ -205,7 +205,7 @@ public class StandardboardFragment extends BoardFragment {
     /**
      * Connects every position in the homes to its equivalent ImageView.
      */
-    private void connectHomePositionsIds() {
+    protected void connectHomePositionsIds() {
         yellowHomePos0 = view.findViewById(R.id.yellowHomepos0);
         yellowHomePos1 = view.findViewById(R.id.yellowHomepos1);
         yellowHomePos2 = view.findViewById(R.id.yellowHomepos2);
