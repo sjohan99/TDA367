@@ -398,7 +398,7 @@ public class StandardboardFragment extends BoardFragment {
         }
     }*/
 
-    private void reInitPieces() {
+    /*private void reInitPieces() {
         for (int i = 0; i < gameViewModel.getPlayerCount() * 4; i++) {
             ImageView piece = piecesImageViews.get(i);
             Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
@@ -409,7 +409,7 @@ public class StandardboardFragment extends BoardFragment {
     protected void reInit() {
         reInitPieces();
         markMovablePieces();
-    }
+    }*/
 
     /**
      * Checks if either the piece or the player is finished. If they are, they are removed
