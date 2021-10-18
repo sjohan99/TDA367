@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import java.util.List;
 
 /**
  * TODO write better comment
@@ -46,6 +49,8 @@ public abstract class BoardFragment extends Fragment {
 
     protected abstract void setConstraintLayout();
 
+    protected abstract List<ImageView> getListOfPiecesImageViews();
+
     /**
      * Initiates the pieces by connecting the pieces ids, initiates the list of the pieces,
      * initiates the hashmap with the pieces, makes the inactive pieces invisible and adds
@@ -59,14 +64,33 @@ public abstract class BoardFragment extends Fragment {
         addPiecesOnClickListeners();
     }
 
+    /**
+     * Connects the pieces id:s with its equivalent imageview.
+     */
     protected abstract void connectPiecesIds();
 
+    /**
+     * Initiates the list piecesImageViews with all ImageViews of the pieces.
+     */
     protected abstract void initListOfAllPieces();
 
+    /**
+     * Initiates the hashmap imageViewPieceHashMap. Gets the active pieces from gameViewModel
+     * and connects them with the equivalent imageView.
+     */
     protected abstract void initPiecesHashmap();
 
+    /**
+     * The pieces that should be visible are connected in the imageViewPieceHashMap. The
+     * rest of the pieces in the list piecesImageViews should be invisible, and that is
+     * what happens in this method.
+     */
     protected abstract void makeInactivePiecesInvisible();
 
+    /**
+     * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
+     * should be called. The pieces should be non-clickable when the method makeTurn is called.
+     */
     protected abstract void addPiecesOnClickListeners();
 
     /**
