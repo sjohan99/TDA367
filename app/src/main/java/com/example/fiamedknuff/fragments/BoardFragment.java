@@ -317,7 +317,7 @@ public abstract class BoardFragment extends Fragment {
         if (gameViewModel.isNextPlayer(playerIsFinished)) {
             gameViewModel.selectNextPlayer();
         }
-        // check if game is finished --> finish...
+        // TODO check if game is finished --> finish...
         gameViewModel.setDiceIsUsed();
     }
 
