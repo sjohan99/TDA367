@@ -69,8 +69,21 @@ public abstract class BoardFragment extends Fragment {
 
     protected abstract void addPiecesOnClickListeners();
 
-    protected abstract void initPositions();
-    
+    /**
+     * Initiates the positions.
+     */
+    protected void initPositions() {
+        connectPositionIds();
+        initListsOfPositions();
+        initPositionsHashmap();
+    }
+
+    protected abstract void connectPositionIds();
+
+    protected abstract void initListsOfPositions();
+
+    protected abstract void initPositionsHashmap();
+
     protected abstract void initObservers();
 
     protected abstract void reInit();
