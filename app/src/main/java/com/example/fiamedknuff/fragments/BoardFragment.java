@@ -285,13 +285,8 @@ public abstract class BoardFragment extends Fragment {
     /**
      * Observes the variable movingPath in GameViewModel, which is set to a position path
      * when a piece is moved in the model.
-     * Moves the piece in the view. If the piece is finished it is removed from the
-     * model and view. If a player rolls a six and is not finished, it is their turn again.
-     * Otherwise, the next player is selected.
-     * If the game is finished, another method should be called here (not implemented yet).
-     * If not, the dice in the view is moved to the next player and the dice´s value is
-     * set to used (this is done in the diceFragment).
-     * TODO rewrite
+     * Unmarks all pieces and calls for method isMoved which handles the logic for when
+     * a piece is moved.
      */
     private void initMovingPathObserver() {
         gameViewModel.movingPath.observe(getActivity(), new Observer<>() {
