@@ -56,8 +56,8 @@ public class StandardboardFragment extends BoardFragment {
     ImageView redHomePos0, redHomePos1, redHomePos2, redHomePos3;
     ImageView greenHomePos0, greenHomePos1, greenHomePos2, greenHomePos3;
     ImageView blueHomePos0, blueHomePos1, blueHomePos2, blueHomePos3;
-    // List<ImageView> boardPositions;
-    // List<ImageView> homePositions;
+    List<ImageView> boardPositions;
+    List<ImageView> homePositions;
     //HashMap<Position, ImageView> imageViewPositionHashMap;
 
     ImageView yellowpiece0, yellowpiece1, yellowpiece2, yellowpiece3;
@@ -82,6 +82,15 @@ public class StandardboardFragment extends BoardFragment {
     protected List<ImageView> getListOfPiecesImageViews() {
         return piecesImageViews;
     }
+
+    protected List<ImageView> getListOfBoardPositions() {
+        return boardPositions;
+    }
+
+    protected List<ImageView> getListOfHomePositions() {
+        return homePositions;
+    }
+
 
     /**
      * Connects the pieces id:s with its equivalent imageview.

@@ -65,7 +65,9 @@ public abstract class BoardFragment extends Fragment {
 
     protected abstract List<ImageView> getListOfPiecesImageViews();
 
+    protected abstract List<ImageView> getListOfBoardPositions();
 
+    protected abstract List<ImageView> getListOfHomePositions();
 
     /**
      * Initiates the pieces by connecting the pieces ids, initiates the list of the pieces,
@@ -197,11 +199,12 @@ public abstract class BoardFragment extends Fragment {
         List<Position> positionsModel = gameViewModel.getPositions();
         int nrOfHomePositions = gameViewModel.getPlayerCount() * 4;
         for (int i = 0; i < nrOfHomePositions; i++) {
-            imageViewPositionHashMap.put(positionsModel.get(i), homePositions.get(i));
+            imageViewPositionHashMap.put(positionsModel.get(i), getListOfHomePositions().get(i));
         }
 
         for (int i = nrOfHomePositions; i < positionsModel.size(); i++) {
-            imageViewPositionHashMap.put(positionsModel.get(i), boardPositions.get(i - nrOfHomePositions));
+            imageViewPositionHashMap.put(
+                    positionsModel.get(i), getListOfBoardPositions().get(i - nrOfHomePositions));
         }
     }
 
