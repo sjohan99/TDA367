@@ -1,7 +1,4 @@
 package com.example.fiamedknuff.model;
-
-import android.content.res.Resources;
-
 import com.example.fiamedknuff.exceptions.NotFoundException;
 import com.example.fiamedknuff.exceptions.NotImplementedException;
 
