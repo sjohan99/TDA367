@@ -33,6 +33,8 @@ public abstract class BoardFragment extends Fragment {
     boolean alreadyInitialized;
     ImageView latestClickedPiece;
     GameViewModel gameViewModel;
+    HashMap<ImageView, Piece> imageViewPieceHashMap;
+    List<ImageView> piecesImageViews;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,8 +65,6 @@ public abstract class BoardFragment extends Fragment {
 
     protected abstract List<ImageView> getListOfPiecesImageViews();
 
-    protected abstract HashMap<ImageView, Piece> getImageViewPieceHashMap();
-
     /**
      * Initiates the pieces by connecting the pieces ids, initiates the list of the pieces,
      * initiates the hashmap with the pieces, makes the inactive pieces invisible and adds
@@ -73,6 +73,7 @@ public abstract class BoardFragment extends Fragment {
     protected void initPieces() {
         connectPiecesIds();
         initListOfAllPieces();
+        setListOfAllPiecesImageViews();
         initPiecesHashmap();
         makeInactivePiecesInvisible();
         addPiecesOnClickListeners();
@@ -88,11 +89,21 @@ public abstract class BoardFragment extends Fragment {
      */
     protected abstract void initListOfAllPieces();
 
+    private void setListOfAllPiecesImageViews() {
+        piecesImageViews = getListOfPiecesImageViews();
+    }
+
     /**
      * Initiates the hashmap imageViewPieceHashMap. Gets the active pieces from gameViewModel
      * and connects them with the equivalent imageView.
      */
-    protected abstract void initPiecesHashmap();
+    protected void initPiecesHashmap() {
+        imageViewPieceHashMap = new HashMap<>();
+        List<Piece> activePieces = gameViewModel.getPieces();
+        for (int i = 0; i < activePieces.size(); i++) {
+            imageViewPieceHashMap.put(piecesImageViews.get(i), activePieces.get(i));
+        }
+    }
 
     /**
      * The pieces that should be visible are connected in the imageViewPieceHashMap. The
@@ -135,12 +146,6 @@ public abstract class BoardFragment extends Fragment {
             piece.setClickable(isClickable);
         }
     }
-
-    /**
-     * Should move the piece in the model, through the viewmodel.
-     * @param piece
-     */
-    protected abstract void moveInModel(ImageView piece);
 
     /**
      * Initiates the positions.
