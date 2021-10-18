@@ -196,15 +196,15 @@ public abstract class BoardFragment extends Fragment {
      */
     private void initPositionsHashmap() {
         imageViewPositionHashMap = new HashMap<>();
-        List<Position> positionsModel = gameViewModel.getPositions();
+        List<Position> positionsInModel = gameViewModel.getPositions();
         int nrOfHomePositions = gameViewModel.getPlayerCount() * 4;
         for (int i = 0; i < nrOfHomePositions; i++) {
-            imageViewPositionHashMap.put(positionsModel.get(i), getListOfHomePositions().get(i));
+            imageViewPositionHashMap.put(positionsInModel.get(i), getListOfHomePositions().get(i));
         }
 
-        for (int i = nrOfHomePositions; i < positionsModel.size(); i++) {
+        for (int i = nrOfHomePositions; i < positionsInModel.size(); i++) {
             imageViewPositionHashMap.put(
-                    positionsModel.get(i), getListOfBoardPositions().get(i - nrOfHomePositions));
+                    positionsInModel.get(i), getListOfBoardPositions().get(i - nrOfHomePositions));
         }
     }
 
