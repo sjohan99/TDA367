@@ -17,7 +17,7 @@ public class Piece implements Serializable {
     private int offset; // The offset which represents how many positions above zero the piece gets when leaving its home
 
     /**
-     * Constructor that creates a piece of the color supplied.
+     * Sole constructor for the class. Creates a piece of the color supplied.
      *
      * @param color the color the Piece is supposed to have.
      */
@@ -66,7 +66,7 @@ public class Piece implements Serializable {
     }
 
     /**
-     * Get if the piece is at home or not.
+     * Returns if the piece is at home or not.
      *
      * @return true if the piece is at home, otherwise false.
      */
@@ -75,7 +75,7 @@ public class Piece implements Serializable {
     }
 
     /**
-     * Get the home number of the piece
+     * Returns the home number of the piece
      *
      * @return the home number of the piece.
      */
@@ -84,7 +84,7 @@ public class Piece implements Serializable {
     }
 
     /**
-     * Set the home number of the piece
+     * Sets the home number of the piece
      *
      * @param homeNumber the home number of the piece.
      */
@@ -93,7 +93,7 @@ public class Piece implements Serializable {
     }
 
     /**
-     * Set the offset of the the piece.
+     * Sets the offset of the the piece.
      *
      * @param offset the offset of the the piece.
      */
@@ -102,7 +102,7 @@ public class Piece implements Serializable {
     }
 
     /**
-     * Get the offset of the the piece.
+     * Returns the offset of the the piece.
      *
      * @return the offset of the the piece.
      */

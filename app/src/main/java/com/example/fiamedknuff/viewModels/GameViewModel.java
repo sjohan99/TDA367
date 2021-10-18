@@ -245,8 +245,8 @@ public class GameViewModel extends ViewModel {
         // next player in the view and the dice should be set to used. Also, the next
         // player should be selected.
         if (!isPossibleToUseDicevalue()) {
-            selectNextPlayer();
             setDiceIsUsed();
+            selectNextPlayer();
         } else {
             // The player can make a turn and the player's pieces will be highlighted
             // through the observer.
