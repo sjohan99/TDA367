@@ -230,7 +230,24 @@ public abstract class BoardFragment extends Fragment {
 
         initMovingPathObserver();
         initMovesArePossibleToMakeObserver();
+        initCurrentPlayerObserver();
 
+        gameViewModel.knockedPiece.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Piece piece) {
+                Position target = gameViewModel.getPosition(piece);
+                List<Position> movingPath = new ArrayList<>();
+                movingPath.add(target);
+                try {
+                    move(getPieceImageView(piece), movingPath);
+                } catch (NotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void initCurrentPlayerObserver() {
         gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -250,20 +267,6 @@ public abstract class BoardFragment extends Fragment {
                     else {
                         gameViewModel.selectNextPlayer();
                     }
-                }
-            }
-        });
-
-        gameViewModel.knockedPiece.observe(getActivity(), new Observer<>() {
-            @Override
-            public void onChanged(Piece piece) {
-                Position target = gameViewModel.getPosition(piece);
-                List<Position> movingPath = new ArrayList<>();
-                movingPath.add(target);
-                try {
-                    move(getPieceImageView(piece), movingPath);
-                } catch (NotFoundException e) {
-                    e.printStackTrace();
                 }
             }
         });
