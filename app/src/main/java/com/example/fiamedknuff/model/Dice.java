@@ -9,8 +9,6 @@ import java.util.Random;
  * Created by
  * @author Emma Stålberg
  */
-
-
 public class Dice implements Serializable{
 
     private int valueMax; // The maximum value the dice can have
@@ -37,7 +35,7 @@ public class Dice implements Serializable{
     }
 
     /**
-     * Gets the isUsed boolean value.
+     * Returns the isUsed boolean value.
      *
      * @return true if dice has been used, else false.
      */
@@ -74,6 +72,5 @@ public class Dice implements Serializable{
         rolledValue = rand.nextInt(valueMax) + 1;
         return rolledValue;
     }
-
 
 }

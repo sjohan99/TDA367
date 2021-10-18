@@ -142,7 +142,7 @@ public class GameplayUnitTest {
             p = game.getActivePlayers().get(x).getName();
             x++;
             for (Piece piece : player.getPieces()) {
-                System.out.println(p + ": " + "Index: " + piece.getIndex() + ", Position: " + game.getBoard().getPositionOutsideHomeOf(piece).getPos() + ", Home: " + piece.getHomeNumber());
+                System.out.println(p + ": " + "Index: " + piece.getIndex() + ", Position: " + game.getBoard().getPosition(piece).getPos() + ", Home: " + piece.getHomeNumber());
             }
         }
     }

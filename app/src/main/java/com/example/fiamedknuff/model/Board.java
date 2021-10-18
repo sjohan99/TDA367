@@ -63,22 +63,12 @@ public class Board implements Serializable {
     }
 
     /**
-     * Gets the list of all positions.
+     * Returns the list of all positions.
      *
      * @return the list of all positions.
      */
     public List<Position> getPositions() {
         return positions;
-    }
-
-    /**
-     * For testing purposes only.
-     *
-     * @param piece
-     * @return
-     */
-    public Position getPositionOutsideHomeOf(Piece piece) {
-        return piecePositionHashMap.get(piece);
     }
 
     /**
