@@ -34,10 +34,6 @@ public class StandardboardFragment extends BoardFragment {
     List<ImageView> boardPositions;
     List<ImageView> homePositions;
 
-    ImageView yellowpiece0, yellowpiece1, yellowpiece2, yellowpiece3;
-    ImageView redpiece0, redpiece1, redpiece2, redpiece3;
-    ImageView bluepiece0, bluepiece1, bluepiece2, bluepiece3;
-    ImageView greenpiece0, greenpiece1, greenpiece2, greenpiece3;
     List<ImageView> piecesImageViews;
 
     ConstraintLayout constraintLayout;
@@ -68,40 +64,28 @@ public class StandardboardFragment extends BoardFragment {
     }
 
     /**
-     * Connects the pieces id:s with its equivalent imageview.
-     */
-    protected void connectPiecesIds() {
-        yellowpiece0 = view.findViewById(R.id.yellowpiece0);
-        yellowpiece1 = view.findViewById(R.id.yellowpiece1);
-        yellowpiece2 = view.findViewById(R.id.yellowpiece2);
-        yellowpiece3 = view.findViewById(R.id.yellowpiece3);
-        redpiece0 = view.findViewById(R.id.redpiece0);
-        redpiece1 = view.findViewById(R.id.redpiece1);
-        redpiece2 = view.findViewById(R.id.redpiece2);
-        redpiece3 = view.findViewById(R.id.redpiece3);
-        greenpiece0 = view.findViewById(R.id.greenpiece0);
-        greenpiece1 = view.findViewById(R.id.greenpiece1);
-        greenpiece2 = view.findViewById(R.id.greenpiece2);
-        greenpiece3 = view.findViewById(R.id.greenpiece3);
-        bluepiece0 = view.findViewById(R.id.bluepiece0);
-        bluepiece1 = view.findViewById(R.id.bluepiece1);
-        bluepiece2 = view.findViewById(R.id.bluepiece2);
-        bluepiece3 = view.findViewById(R.id.bluepiece3);
-    }
-
-    /**
      * Initiates the list piecesImageViews with all ImageViews of the pieces.
+     * The first four ones are the pieces that belongs to player 1.
+     * Then comes the pieces for player 2, and so on.
      */
     protected void initListOfAllPieces() {
         piecesImageViews = new ArrayList<>();
-        piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
-                yellowpiece0, yellowpiece1, yellowpiece2, yellowpiece3)));
-        piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
-                redpiece0, redpiece1, redpiece2, redpiece3)));
-        piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
-                greenpiece0, greenpiece1, greenpiece2, greenpiece3)));
-        piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
-                bluepiece0, bluepiece1, bluepiece2, bluepiece3)));
+        piecesImageViews.add(view.findViewById(R.id.yellowpiece0));
+        piecesImageViews.add(view.findViewById(R.id.yellowpiece1));
+        piecesImageViews.add(view.findViewById(R.id.yellowpiece2));
+        piecesImageViews.add(view.findViewById(R.id.yellowpiece3));
+        piecesImageViews.add(view.findViewById(R.id.redpiece0));
+        piecesImageViews.add(view.findViewById(R.id.redpiece1));
+        piecesImageViews.add(view.findViewById(R.id.redpiece2));
+        piecesImageViews.add(view.findViewById(R.id.redpiece3));
+        piecesImageViews.add(view.findViewById(R.id.greenpiece0));
+        piecesImageViews.add(view.findViewById(R.id.greenpiece1));
+        piecesImageViews.add(view.findViewById(R.id.greenpiece2));
+        piecesImageViews.add(view.findViewById(R.id.greenpiece3));
+        piecesImageViews.add(view.findViewById(R.id.bluepiece0));
+        piecesImageViews.add(view.findViewById(R.id.bluepiece1));
+        piecesImageViews.add(view.findViewById(R.id.bluepiece2));
+        piecesImageViews.add(view.findViewById(R.id.bluepiece3));
     }
 
     /**

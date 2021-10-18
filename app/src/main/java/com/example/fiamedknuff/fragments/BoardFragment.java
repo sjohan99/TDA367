@@ -92,7 +92,6 @@ public abstract class BoardFragment extends Fragment {
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     protected void initPieces() {
-        connectPiecesIds();
         initListOfAllPieces();
         initPiecesHashmap();
         makeInactivePiecesInvisible();
@@ -100,12 +99,9 @@ public abstract class BoardFragment extends Fragment {
     }
 
     /**
-     * Connects the pieces id:s with its equivalent imageview.
-     */
-    protected abstract void connectPiecesIds();
-
-    /**
      * Initiates the list piecesImageViews with all ImageViews of the pieces.
+     * The first four ones are the pieces that belongs to player 1.
+     * Then comes the pieces for player 2, and so on.
      */
     protected abstract void initListOfAllPieces();
 
