@@ -41,32 +41,16 @@
         app:layout_constraintStart_toStartOf="@+id/gamesetup_title"
         app:layout_constraintTop_toTopOf="@+id/gamesetup_title" />
 
-    <Button
-        android:id="@+id/createGameBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/gamesetup_play_button_margin_bottom"
-        android:text="@string/gamesetup_play_button"
-        android:textColor="#604027"
-        android:textSize="@dimen/gamesetup_play_button_text"
-        android:fontFamily="@font/titlefont"
-        android:backgroundTint="#D9BCA3"
-        app:cornerRadius="30dp"
-        app:strokeWidth="1.5dp"
-        app:strokeColor="#B6A392"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <LinearLayout
         android:layout_width="350dp"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_marginTop="140dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/gamesetup_title">
+        app:layout_constraintTop_toTopOf="@+id/gamesetup_title"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -99,10 +83,10 @@
                 android:drawableStart="@drawable/ic_yellowpiece_icon"
                 android:drawablePadding="15dp"
                 android:ems="10"
+                android:hint="@string/player_name_input"
+                android:imeOptions="actionNext"
                 android:inputType="text"
                 android:maxLines="1"
-                android:imeOptions="actionNext"
-                android:hint="@string/player_name_input"
                 android:paddingStart="25dp"
                 android:textSize="25sp" />
 
@@ -112,7 +96,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="false"
-                android:text="@string/cpu_name" />
+                android:fontFamily="@font/uncialantiqua_regular"
+                android:text="@string/cpu_name"
+                android:textSize="10sp" />
         </LinearLayout>
 
 
@@ -129,10 +115,10 @@
                 android:drawableStart="@drawable/ic_redpiece_icon"
                 android:drawablePadding="15dp"
                 android:ems="10"
+                android:hint="@string/player_name_input"
+                android:imeOptions="actionNext"
                 android:inputType="text"
                 android:maxLines="1"
-                android:imeOptions="actionNext"
-                android:hint="@string/player_name_input"
                 android:paddingStart="25dp"
                 android:textSize="25sp" />
 
@@ -141,7 +127,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/cpu_name" />
+                android:fontFamily="@font/uncialantiqua_regular"
+                android:text="@string/cpu_name"
+                android:textSize="10sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -157,10 +145,10 @@
                 android:drawableStart="@drawable/ic_greenpiece_icon"
                 android:drawablePadding="15dp"
                 android:ems="10"
+                android:hint="@string/player_name_input"
+                android:imeOptions="actionNext"
                 android:inputType="text"
                 android:maxLines="1"
-                android:imeOptions="actionNext"
-                android:hint="@string/player_name_input"
                 android:paddingStart="25dp"
                 android:textSize="25sp" />
 
@@ -169,7 +157,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/cpu_name" />
+                android:fontFamily="@font/uncialantiqua_regular"
+                android:text="@string/cpu_name"
+                android:textSize="10sp" />
         </LinearLayout>
 
 
@@ -186,10 +176,10 @@
                 android:drawableStart="@drawable/ic_bluepiece_icon"
                 android:drawablePadding="15dp"
                 android:ems="10"
+                android:hint="@string/player_name_input"
+                android:imeOptions="actionDone"
                 android:inputType="text"
                 android:maxLines="1"
-                android:imeOptions="actionDone"
-                android:hint="@string/player_name_input"
                 android:paddingStart="25dp"
                 android:textSize="25sp" />
 
@@ -198,11 +188,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/cpu_name" />
+                android:fontFamily="@font/uncialantiqua_regular"
+                android:text="@string/cpu_name"
+                android:textSize="10sp" />
         </LinearLayout>
 
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/createGameBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/gamesetup_play_button_margin_bottom"
+        android:backgroundTint="#D9BCA3"
+        android:fontFamily="@font/titlefont"
+        android:paddingStart="70dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="70dp"
+        android:paddingBottom="10dp"
+        android:text="@string/gamesetup_play_button"
+        android:textColor="#604027"
+        android:textSize="@dimen/gamesetup_play_button_text"
+        app:cornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="#B6A392"
+        app:strokeWidth="1.5dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
