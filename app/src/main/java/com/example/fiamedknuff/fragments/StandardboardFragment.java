@@ -70,7 +70,7 @@ public class StandardboardFragment extends BoardFragment {
     ConstraintLayout constraintLayout;
     GameViewModel gameViewModel;
 
-    ImageView latestClickedPiece;
+    //ImageView latestClickedPiece;
 
     protected void setView(LayoutInflater inflater, ViewGroup container) {
         // Inflate the layout for this fragment
@@ -304,13 +304,15 @@ public class StandardboardFragment extends BoardFragment {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    /*@RequiresApi(api = Build.VERSION_CODES.N)
     private void pieceClicked(ImageView piece) {
         setPiecesClickable(false);
         latestClickedPiece = piece;
         gameViewModel.move(imageViewPieceHashMap.get(piece));
         setPiecesClickable(true);
-    }
+    }*/
+
+
 
     protected void initObservers() {
 
@@ -525,11 +527,11 @@ public class StandardboardFragment extends BoardFragment {
      * @param isClickable is true if the pieces should be set to clickable, and
      *                    false if the pieces should be set to non-clickable
      */
-    private void setPiecesClickable(Boolean isClickable) {
+    /*private void setPiecesClickable(Boolean isClickable) {
         for (ImageView piece : piecesImageViews) {
             piece.setClickable(isClickable);
         }
-    }
+    }*/
 
     /**
      * Makes the first parameter, movingImageView, have the same constraints as the second
