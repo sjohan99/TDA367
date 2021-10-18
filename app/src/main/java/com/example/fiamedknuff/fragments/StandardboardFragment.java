@@ -421,9 +421,6 @@ public class StandardboardFragment extends Fragment {
                         }
                         pieceClicked(pieceImageView);
                     }
-                    else {
-                        gameViewModel.selectNextPlayer();
-                    }
                 }
             }
         });
