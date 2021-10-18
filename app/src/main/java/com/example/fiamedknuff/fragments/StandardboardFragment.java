@@ -146,18 +146,9 @@ public class StandardboardFragment extends BoardFragment {
     }
 
     /**
-     * Calls the methods connectPositionIds and initListOfPositions.
-     */
-    protected void initPositions() {
-        connectPositionIds();
-        initListsOfPositions();
-        initPositionsHashmap();
-    }
-
-    /**
      * Connects every position to its equivalent ImageView.
      */
-    private void connectPositionIds() {
+    protected void connectPositionIds() {
         connectBoardPositionsIds();
         connectHomePositionsIds();
     }
@@ -250,7 +241,7 @@ public class StandardboardFragment extends BoardFragment {
     /**
      * Initiates the lists for the positions in the homes and on the board.
      */
-    private void initListsOfPositions() {
+    protected void initListsOfPositions() {
         initListOfBoardPositions();
         initListOfHomePositions();
     }
@@ -296,7 +287,7 @@ public class StandardboardFragment extends BoardFragment {
      * and connects them with the equivalent imageView. The first ones are for the positions
      * in the homes.
      */
-    private void initPositionsHashmap() {
+    protected void initPositionsHashmap() {
         imageViewPositionHashMap = new HashMap<>();
         List<Position> positionsModel = gameViewModel.getPositions();
         int nrOfHomePositions = gameViewModel.getPlayerCount() * 4;
