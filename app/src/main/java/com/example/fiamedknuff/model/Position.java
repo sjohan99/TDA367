@@ -8,13 +8,13 @@ import java.io.Serializable;
  * Created by
  * @author Emma Stålberg
  */
-
 public class Position implements Serializable {
 
     private final int pos; // Variable to hold the position
 
     /**
-     * Constructor that creates a position.
+     * Sole constructor for the class. Creates a position which has a variable pos.
+     *
      * @param x is the position.
      */
     public Position(int x) {
