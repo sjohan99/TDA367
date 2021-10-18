@@ -85,6 +85,10 @@ public class StandardboardFragment extends BoardFragment {
         constraintLayout = view.findViewById(R.id.sbConstraintLayout);
     }
 
+    protected List<ImageView> getListOfPiecesImageViews() {
+        return piecesImageViews;
+    }
+
     /**
      * Connects the pieces id:s with its equivalent imageview.
      */
@@ -301,8 +305,8 @@ public class StandardboardFragment extends BoardFragment {
     }
 
     /**
-     * Adds OnClickListeners on all pieces. When a piece is clicked, the method makeTurn
-     * should be called. The pieces should be non-clickable when the method makeTurn is called.
+     * Adds OnClickListeners on all pieces. When a piece is clicked, the method pieceClicked
+     * should be called.
      */
     protected void addPiecesOnClickListeners() {
         for (ImageView piece : piecesImageViews) {
@@ -400,7 +404,6 @@ public class StandardboardFragment extends BoardFragment {
             }
         });
     }
-
 
     private void isMoved(List<Position> movingPath) {
         move(latestClickedPiece, movingPath);
