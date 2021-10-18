@@ -152,9 +152,12 @@ public class StandardboardFragment extends BoardFragment {
     }
 
     /**
-     * Connects every position in the homes to its equivalent ImageView.
+     * Initiates the List with all positions in the homes.
      */
-    protected void connectHomePositionsIds() {
+    protected void initListOfHomePositions() {
+        homePositions = new ArrayList<>();
+
+
         yellowHomePos0 = view.findViewById(R.id.yellowHomepos0);
         yellowHomePos1 = view.findViewById(R.id.yellowHomepos1);
         yellowHomePos2 = view.findViewById(R.id.yellowHomepos2);
@@ -171,22 +174,7 @@ public class StandardboardFragment extends BoardFragment {
         blueHomePos1 = view.findViewById(R.id.blueHomepos1);
         blueHomePos2 = view.findViewById(R.id.blueHomepos2);
         blueHomePos3 = view.findViewById(R.id.blueHomepos3);
-    }
 
-    /**
-     * Initiates the List with all positions in the homes.
-     */
-    protected void initListOfHomePositions() {
-        homePositions = new ArrayList<>();
-
-        homePositions.addAll(new ArrayList<>(Arrays.asList(
-                yellowHomePos0, yellowHomePos1, yellowHomePos2, yellowHomePos3)));
-        homePositions.addAll(new ArrayList<>(Arrays.asList(
-                redHomePos0, redHomePos1, redHomePos2, redHomePos3)));
-        homePositions.addAll(new ArrayList<>(Arrays.asList(
-                greenHomePos0, greenHomePos1, greenHomePos2, greenHomePos3)));
-        homePositions.addAll(new ArrayList<>(Arrays.asList(
-                blueHomePos0, blueHomePos1, blueHomePos2, blueHomePos3)));
     }
 
     /**

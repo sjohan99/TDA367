@@ -173,7 +173,6 @@ public abstract class BoardFragment extends Fragment {
      */
     private void connectPositionIds() {
         connectBoardPositionsIds();
-        connectHomePositionsIds();
     }
 
     protected abstract void connectBoardPositionsIds();
