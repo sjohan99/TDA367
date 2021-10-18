@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -16,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.exceptions.NotFoundException;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Player;
@@ -327,6 +331,7 @@ public abstract class BoardFragment extends Fragment {
         for (Position target : targets) {
             moveImageView(piece, imageViewPositionHashMap.get(target));
         }
+
     }
 
     /**
@@ -355,6 +360,67 @@ public abstract class BoardFragment extends Fragment {
         movingImageView.bringToFront();
     }
 
+    /**
+     * Checks if either the piece or the player is finished. If they are, they are removed
+     * from the board.
+     * @param piece is the piece that should be checked
+     * @return true if the player has finished, and false otherwise
+     */
+    private boolean removePieceAndPlayerIfFinished(ImageView piece) {
+        if (removePieceIfFinished(piece)) {
+            return removePlayerIfFinished();
+        }
+        return false;
+    }
+
+    /**
+     * If the selected piece is finished, it is removed in the model and also in the view (it is
+     * made invisible).
+     * @param piece is the piece that should be checked
+     * @return true if the piece is finished, and false otherwise
+     */
+    private boolean removePieceIfFinished(ImageView piece) {
+        if (pieceIsFinished(piece)) {
+            animateFinishedPiece(piece);
+            piece.setVisibility(View.INVISIBLE);
+            return true;
+        }
+        return false;
+    }
+
+    private void animateFinishedPiece(ImageView piece) {
+        Animation rotate = AnimationUtils.loadAnimation(
+                requireActivity().getApplicationContext(), R.anim.rotate);
+        Animation fadeout = AnimationUtils.loadAnimation(
+                requireActivity().getApplicationContext(), R.anim.fadeout);
+
+        int duration = 750;
+        rotate.setDuration(duration);
+
+        AnimationSet animation = new AnimationSet(false);
+        animation.addAnimation(rotate);
+        animation.addAnimation(fadeout);
+        piece.setAnimation(animation);
+
+        piece.animate();
+    }
+
+    /**
+     * Checks if the current player is finished.
+     * @return true if the player is finished, false otherwise.
+     */
+    private boolean removePlayerIfFinished() {
+        return gameViewModel.removePlayerIfFinished();
+    }
+
+    /**
+     * Checks if piece is finished.
+     * @param piece is the piece that is checked
+     * @return true if the piece is finished, false otherwise.
+     */
+    private boolean pieceIsFinished(ImageView piece) {
+        return gameViewModel.removePieceIfFinished(imageViewPieceHashMap.get(piece));
+    }
 
     protected abstract void reInit();
 
