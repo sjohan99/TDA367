@@ -153,7 +153,18 @@ public abstract class BoardFragment extends Fragment {
         initPositionsHashmap();
     }
 
-    protected abstract void connectPositionIds();
+    /**
+     * Connects every position to its equivalent ImageView.
+     * Both the positions on the board and in the homes.
+     */
+    private void connectPositionIds() {
+        connectBoardPositionsIds();
+        connectHomePositionsIds();
+    }
+
+    protected abstract void connectBoardPositionsIds();
+
+    protected abstract void connectHomePositionsIds();
 
     protected abstract void initListsOfPositions();
 
