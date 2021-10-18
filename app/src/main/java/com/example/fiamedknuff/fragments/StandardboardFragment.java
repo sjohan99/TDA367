@@ -347,12 +347,12 @@ public class StandardboardFragment extends BoardFragment {
     /**
      * Gets the current player's movable pieces marked on the GUI.
      */
-    private void markMovablePieces() {
+    /*private void markMovablePieces() {
         for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
             Animation anim = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.bounce);
             entry.getValue().startAnimation(anim);
         }
-    }
+    }*/
 
     /**
      * Removes the background of all piece's ImageView.
@@ -369,7 +369,7 @@ public class StandardboardFragment extends BoardFragment {
      * Method used to help identify ImageViews for affecting pliancy on the current player's pieces.
      * @return Returns a HashMap with the current player's piece's ImageViews.
      */
-    public HashMap<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
+    /*public HashMap<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
         // For each of the player's movable pieces, iterate through all pieces in the HashMap
         // and find the corresponding ImageView that is connected to the movable piece.
         HashMap<Piece, ImageView> map = new HashMap<>();
@@ -382,7 +382,7 @@ public class StandardboardFragment extends BoardFragment {
             }
         }
         return map;
-    }
+    }*/
 
     /**
      * Should move the piece in the view to the positions sent in as a parameter.

@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -29,6 +30,7 @@ import com.example.fiamedknuff.viewModels.GameViewModel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * TODO write better comment
@@ -420,6 +422,36 @@ public abstract class BoardFragment extends Fragment {
      */
     private boolean pieceIsFinished(ImageView piece) {
         return gameViewModel.removePieceIfFinished(imageViewPieceHashMap.get(piece));
+    }
+
+    /**
+     * Gets the current player's movable pieces marked on the GUI.
+     */
+    private void markMovablePieces() {
+        for (Map.Entry<Piece, ImageView> entry : getCurrentPlayersMovablePiecesImageViews().entrySet()) {
+            Animation anim = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.bounce);
+            entry.getValue().startAnimation(anim);
+        }
+    }
+
+    /**
+     * TODO Make more slim
+     * Method used to help identify ImageViews for affecting pliancy on the current player's pieces.
+     * @return Returns a HashMap with the current player's piece's ImageViews.
+     */
+    public HashMap<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
+        // For each of the player's movable pieces, iterate through all pieces in the HashMap
+        // and find the corresponding ImageView that is connected to the movable piece.
+        HashMap<Piece, ImageView> map = new HashMap<>();
+        LiveData<List<Piece>> movablePieces = gameViewModel.getMovablePiecesForCurrentPlayer();
+        for (Piece piece : movablePieces.getValue()) {
+            for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
+                if (piece.toString().equals(entry.getValue().toString())) {
+                    map.put(entry.getValue(), entry.getKey());
+                }
+            }
+        }
+        return map;
     }
 
     protected abstract void reInit();
