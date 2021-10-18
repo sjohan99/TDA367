@@ -349,14 +349,4 @@ public class BoardUnitTest {
         assertThat(board4p.getFirstPositionIndexInLap()).isEqualTo(16);
     }
 
-    @Test
-    public void testGetPositionOutsideHomeOf() {
-        var hMap = board4p.getPiecePositionHashMap();
-        Piece piece = pieces.get(0);
-        piece.setIndex(11);
-        pos = board4p.getPositions().get(firstPos+10);
-        hMap.put(piece, pos);
-        assertThat(board4p.getPositionOutsideHomeOf(piece)).isEqualTo(board4p.getPositions().get(firstPos+10));
-    }
-
 }
