@@ -1,41 +1,16 @@
 package com.example.fiamedknuff.fragments;
 
-import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
-import android.os.Build;
-import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.fragment.app.Fragment;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.fiamedknuff.R;
-import com.example.fiamedknuff.exceptions.NotFoundException;
-import com.example.fiamedknuff.model.Dice;
-import com.example.fiamedknuff.model.Player;
-import com.example.fiamedknuff.viewModels.GameViewModel;
-import com.example.fiamedknuff.model.Piece;
-import com.example.fiamedknuff.model.Position;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * A class standardboardFragment that handles the view of the standardboard and its
