@@ -125,11 +125,11 @@ public class StandardboardFragment extends BoardFragment {
      * rest of the pieces in the list piecesImageViews should be invisible, and that is
      * what happens in this method.
      */
-    protected void makeInactivePiecesInvisible() {
+    /*protected void makeInactivePiecesInvisible() {
         for (int i = imageViewPieceHashMap.size(); i < piecesImageViews.size(); i++) {
             piecesImageViews.get(i).setVisibility(View.INVISIBLE);
         }
-    }
+    }*/
 
     /**
      * Connects every position to its equivalent ImageView.

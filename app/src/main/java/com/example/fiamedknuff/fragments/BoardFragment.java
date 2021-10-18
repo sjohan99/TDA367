@@ -34,7 +34,6 @@ public abstract class BoardFragment extends Fragment {
     ImageView latestClickedPiece;
     GameViewModel gameViewModel;
     HashMap<ImageView, Piece> imageViewPieceHashMap;
-    List<ImageView> piecesImageViews;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,7 +72,6 @@ public abstract class BoardFragment extends Fragment {
     protected void initPieces() {
         connectPiecesIds();
         initListOfAllPieces();
-        setListOfAllPiecesImageViews();
         initPiecesHashmap();
         makeInactivePiecesInvisible();
         addPiecesOnClickListeners();
@@ -89,19 +87,15 @@ public abstract class BoardFragment extends Fragment {
      */
     protected abstract void initListOfAllPieces();
 
-    private void setListOfAllPiecesImageViews() {
-        piecesImageViews = getListOfPiecesImageViews();
-    }
-
     /**
      * Initiates the hashmap imageViewPieceHashMap. Gets the active pieces from gameViewModel
      * and connects them with the equivalent imageView.
      */
-    protected void initPiecesHashmap() {
+    private void initPiecesHashmap() {
         imageViewPieceHashMap = new HashMap<>();
         List<Piece> activePieces = gameViewModel.getPieces();
         for (int i = 0; i < activePieces.size(); i++) {
-            imageViewPieceHashMap.put(piecesImageViews.get(i), activePieces.get(i));
+            imageViewPieceHashMap.put(getListOfPiecesImageViews().get(i), activePieces.get(i));
         }
     }
 
@@ -110,8 +104,11 @@ public abstract class BoardFragment extends Fragment {
      * rest of the pieces in the list piecesImageViews should be invisible, and that is
      * what happens in this method.
      */
-    protected abstract void makeInactivePiecesInvisible();
-
+    private void makeInactivePiecesInvisible() {
+        for (int i = imageViewPieceHashMap.size(); i < getListOfPiecesImageViews().size(); i++) {
+            getListOfPiecesImageViews().get(i).setVisibility(View.INVISIBLE);
+        }
+    }
     /**
      * Adds OnClickListeners on all pieces. When a piece is clicked, the method pieceClicked
      * should be called.
@@ -132,7 +129,7 @@ public abstract class BoardFragment extends Fragment {
     protected void pieceClicked(ImageView piece) {
         setPiecesClickable(false);
         latestClickedPiece = piece;
-        gameViewModel.move(getImageViewPieceHashMap().get(piece));
+        gameViewModel.move(imageViewPieceHashMap.get(piece));
         setPiecesClickable(true);
     }
 
