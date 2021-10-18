@@ -229,20 +229,7 @@ public abstract class BoardFragment extends Fragment {
     private void initObservers() {
 
         initMovingPathObserver();
-
-        /*
-            Observes the variable movesArePossibleToMake, which is set to true when the rolled
-            dicevalue is able to use.
-            When the variable is set to true, the movable pieces should be highlighted.
-         */
-        gameViewModel.movesArePossibleToMake.observe(getActivity(), new Observer<>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                if (aBoolean) {
-                    markMovablePieces();
-                }
-            }
-        });
+        initMovesArePossibleToMakeObserver();
 
         gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -280,6 +267,22 @@ public abstract class BoardFragment extends Fragment {
                 }
             }
         });
+    }
+
+    /**
+     * Observes the variable movesArePossibleToMake, which is set to true when the rolled
+     * dicevalue is able to use.
+     */
+    private void initMovesArePossibleToMakeObserver() {
+        gameViewModel.movesArePossibleToMake.observe(getActivity(), new Observer<>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    markMovablePieces();
+                }
+            }
+        });
+
     }
 
     /**
