@@ -10,6 +10,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -72,6 +74,8 @@ public abstract class BoardFragment extends Fragment {
     protected abstract List<ImageView> getListOfBoardPositions();
 
     protected abstract List<ImageView> getListOfHomePositions();
+
+    protected abstract ConstraintLayout getConstraintLayout();
 
     /**
      * Initiates the pieces by connecting the pieces ids, initiates the list of the pieces,
@@ -290,6 +294,68 @@ public abstract class BoardFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * Clears the animations of all pieces imageviews.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void unMarkAllPieces() {
+        imageViewPieceHashMap.forEach((imageView, piece) -> {
+            imageView.clearAnimation();
+        });
+    }
+
+    private void isMoved(List<Position> movingPath) {
+        move(latestClickedPiece, movingPath);
+        boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
+        if (gameViewModel.isNextPlayer(playerIsFinished)) {
+            gameViewModel.selectNextPlayer();
+        }
+        // check if game is finished --> finish...
+        gameViewModel.setDiceIsUsed();
+    }
+
+    /**
+     * Should move the piece in the view to the positions sent in as a parameter.
+     * This positions is usually the positions that the piece has moved through in the model,
+     * and it stops on the piece´s target position.
+     * @param piece is the piece that should be moved
+     * @param targets is the positions that the piece should be moved to
+     */
+    private void move(ImageView piece, List<Position> targets) {
+
+        for (Position target : targets) {
+            moveImageView(piece, imageViewPositionHashMap.get(target));
+        }
+    }
+
+    /**
+     * Makes the first parameter, movingImageView, have the same constraints as the second
+     * parameter, target. I.e. it moves the "movingImageView" to the same place as the "target".
+     * @param movingImageView is the ImageView that should be moved
+     * @param target is the place where the movingImageView should be moved to
+     */
+    private void moveImageView(ImageView movingImageView, ImageView target) {
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(getConstraintLayout());
+        constraintSet.connect(
+                movingImageView.getId(), ConstraintSet.START, target.getId(), ConstraintSet.START);
+        constraintSet.connect(
+                movingImageView.getId(), ConstraintSet.END, target.getId(), ConstraintSet.END);
+        constraintSet.connect(
+                movingImageView.getId(), ConstraintSet.TOP, target.getId(), ConstraintSet.TOP);
+        constraintSet.connect(
+                movingImageView.getId(), ConstraintSet.BOTTOM, target.getId(), ConstraintSet.BOTTOM);
+        constraintSet.applyTo(getConstraintLayout());
+
+        if (getListOfPiecesImageViews().contains(movingImageView)) {
+            //TODO a piece should have a margin in the bottom to make it look more real
+        }
+
+        movingImageView.bringToFront();
+    }
+
+
     protected abstract void reInit();
 
     @Override
