@@ -67,8 +67,6 @@ public class StandardboardFragment extends BoardFragment {
 
     ConstraintLayout constraintLayout;
 
-    //ImageView latestClickedPiece;
-
     protected void setView(LayoutInflater inflater, ViewGroup container) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_standardboard, container, false);
@@ -90,6 +88,9 @@ public class StandardboardFragment extends BoardFragment {
         return homePositions;
     }
 
+    protected ConstraintLayout getConstraintLayout() {
+        return constraintLayout;
+    }
 
     /**
      * Connects the pieces id:s with its equivalent imageview.
@@ -324,7 +325,7 @@ public class StandardboardFragment extends BoardFragment {
         });
     }*/
 
-    private void isMoved(List<Position> movingPath) {
+    /*private void isMoved(List<Position> movingPath) {
         move(latestClickedPiece, movingPath);
         boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
         if (gameViewModel.isNextPlayer(playerIsFinished)) {
@@ -332,7 +333,7 @@ public class StandardboardFragment extends BoardFragment {
         }
         // check if game is finished --> finish...
         gameViewModel.setDiceIsUsed();
-    }
+    }*/
 
     private ImageView getPieceImageView(Piece piece) throws NotFoundException {
         for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
@@ -356,12 +357,12 @@ public class StandardboardFragment extends BoardFragment {
     /**
      * Removes the background of all piece's ImageView.
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    /*@RequiresApi(api = Build.VERSION_CODES.N)
     private void unMarkAllPieces() {
         imageViewPieceHashMap.forEach((imageView, piece) -> {
             imageView.clearAnimation();
         });
-    }
+    }*/
 
     /**
      * TODO Make more slim
@@ -390,12 +391,12 @@ public class StandardboardFragment extends BoardFragment {
      * @param piece is the piece that should be moved
      * @param targets is the positions that the piece should be moved to
      */
-    private void move(ImageView piece, List<Position> targets) {
+    /*private void move(ImageView piece, List<Position> targets) {
 
         for (Position target : targets) {
             moveImageView(piece, imageViewPositionHashMap.get(target));
         }
-    }
+    }*/
 
     private void reInitPieces() {
         for (int i = 0; i < gameViewModel.getPlayerCount() * 4; i++) {
@@ -472,7 +473,7 @@ public class StandardboardFragment extends BoardFragment {
      * @param movingImageView is the ImageView that should be moved
      * @param target is the place where the movingImageView should be moved to
      */
-    private void moveImageView(ImageView movingImageView, ImageView target) {
+    /*private void moveImageView(ImageView movingImageView, ImageView target) {
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(constraintLayout);
         constraintSet.connect(
@@ -490,7 +491,7 @@ public class StandardboardFragment extends BoardFragment {
         }
 
         movingImageView.bringToFront();
-    }
+    }*/
 
     private void animateFinishedPiece(ImageView piece) {
         Animation rotate = AnimationUtils.loadAnimation(
