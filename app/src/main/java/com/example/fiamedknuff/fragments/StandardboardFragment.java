@@ -56,9 +56,9 @@ public class StandardboardFragment extends BoardFragment {
     ImageView redHomePos0, redHomePos1, redHomePos2, redHomePos3;
     ImageView greenHomePos0, greenHomePos1, greenHomePos2, greenHomePos3;
     ImageView blueHomePos0, blueHomePos1, blueHomePos2, blueHomePos3;
-    List<ImageView> boardPositions;
-    List<ImageView> homePositions;
-    HashMap<Position, ImageView> imageViewPositionHashMap;
+    // List<ImageView> boardPositions;
+    // List<ImageView> homePositions;
+    //HashMap<Position, ImageView> imageViewPositionHashMap;
 
     ImageView yellowpiece0, yellowpiece1, yellowpiece2, yellowpiece3;
     ImageView redpiece0, redpiece1, redpiece2, redpiece3;
@@ -273,7 +273,7 @@ public class StandardboardFragment extends BoardFragment {
      * and connects them with the equivalent imageView. The first ones are for the positions
      * in the homes.
      */
-    protected void initPositionsHashmap() {
+    /*protected void initPositionsHashmap() {
         imageViewPositionHashMap = new HashMap<>();
         List<Position> positionsModel = gameViewModel.getPositions();
         int nrOfHomePositions = gameViewModel.getPlayerCount() * 4;
@@ -284,7 +284,7 @@ public class StandardboardFragment extends BoardFragment {
         for (int i = nrOfHomePositions; i < positionsModel.size(); i++) {
             imageViewPositionHashMap.put(positionsModel.get(i), boardPositions.get(i - nrOfHomePositions));
         }
-    }
+    }*/
 
     /*@RequiresApi(api = Build.VERSION_CODES.N)
     private void pieceClicked(ImageView piece) {
