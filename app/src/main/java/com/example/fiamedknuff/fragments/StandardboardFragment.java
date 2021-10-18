@@ -58,7 +58,6 @@ public class StandardboardFragment extends BoardFragment {
     ImageView blueHomePos0, blueHomePos1, blueHomePos2, blueHomePos3;
     List<ImageView> boardPositions;
     List<ImageView> homePositions;
-    //HashMap<Position, ImageView> imageViewPositionHashMap;
 
     ImageView yellowpiece0, yellowpiece1, yellowpiece2, yellowpiece3;
     ImageView redpiece0, redpiece1, redpiece2, redpiece3;
@@ -128,25 +127,6 @@ public class StandardboardFragment extends BoardFragment {
         piecesImageViews.addAll(new ArrayList<>(Arrays.asList(
                 bluepiece0, bluepiece1, bluepiece2, bluepiece3)));
     }
-
-    /**
-     * The pieces that should be visible are connected in the imageViewPieceHashMap. The
-     * rest of the pieces in the list piecesImageViews should be invisible, and that is
-     * what happens in this method.
-     */
-    /*protected void makeInactivePiecesInvisible() {
-        for (int i = imageViewPieceHashMap.size(); i < piecesImageViews.size(); i++) {
-            piecesImageViews.get(i).setVisibility(View.INVISIBLE);
-        }
-    }*/
-
-    /**
-     * Connects every position to its equivalent ImageView.
-     */
-    /*protected void connectPositionIds() {
-        connectBoardPositionsIds();
-        connectHomePositionsIds();
-    }*/
 
     /**
      * Connects every position on the board to its equivalent ImageView
@@ -234,14 +214,6 @@ public class StandardboardFragment extends BoardFragment {
     }
 
     /**
-     * Initiates the lists for the positions in the homes and on the board.
-     */
-    /*protected void initListsOfPositions() {
-        initListOfBoardPositions();
-        initListOfHomePositions();
-    }*/
-
-    /**
      * Initiates the List with all positions in the homes.
      */
     protected void initListOfHomePositions() {
@@ -276,34 +248,6 @@ public class StandardboardFragment extends BoardFragment {
         boardPositions.addAll(new ArrayList<>(Arrays.asList
                 (pos51, pos52, pos53, pos54, pos55, pos56)));
     }
-
-    /**
-     * Initiates the hashmap imageViewPositionHashMap. Gets the positions from gameViewModel
-     * and connects them with the equivalent imageView. The first ones are for the positions
-     * in the homes.
-     */
-    /*protected void initPositionsHashmap() {
-        imageViewPositionHashMap = new HashMap<>();
-        List<Position> positionsModel = gameViewModel.getPositions();
-        int nrOfHomePositions = gameViewModel.getPlayerCount() * 4;
-        for (int i = 0; i < nrOfHomePositions; i++) {
-            imageViewPositionHashMap.put(positionsModel.get(i), homePositions.get(i));
-        }
-
-        for (int i = nrOfHomePositions; i < positionsModel.size(); i++) {
-            imageViewPositionHashMap.put(positionsModel.get(i), boardPositions.get(i - nrOfHomePositions));
-        }
-    }*/
-
-    /*@RequiresApi(api = Build.VERSION_CODES.N)
-    private void pieceClicked(ImageView piece) {
-        setPiecesClickable(false);
-        latestClickedPiece = piece;
-        gameViewModel.move(imageViewPieceHashMap.get(piece));
-        setPiecesClickable(true);
-    }*/
-
-
 
     protected void initObservers() {
 
