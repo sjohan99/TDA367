@@ -82,7 +82,7 @@ public class DiceFragment extends Fragment {
     }
 
     private void initObservers() {
-        gameViewModel.CPUdiceRoll.observe(getActivity(), new Observer<>() {
+        gameViewModel.CPUDiceRoll.observe(getActivity(), new Observer<>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
