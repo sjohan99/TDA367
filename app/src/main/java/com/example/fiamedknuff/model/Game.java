@@ -349,4 +349,12 @@ public class Game implements Serializable {
     public boolean getDiceIsUsed() {
         return dice.getIsUsed();
     }
+
+    /**
+     * Returns the last rolled number of the dice
+     * @return the last rolled number of the dice
+     */
+    public int getDiceValue() {
+        return dice.getRolledValue();
+    }
 }

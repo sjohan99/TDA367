@@ -59,7 +59,7 @@ public class GameViewModel extends ViewModel {
     public void move(Piece clickedPiece) {
         // if the rolled dice is already used, we can´t move any piece before another roll has
         // been made
-        if (!game.getDice().getIsUsed()) {
+        if (!game.getDiceIsUsed()) {
             List<Piece> movablePieces = game.getMovablePieces(game.getCurrentPlayer());
             //checks if the clicked piece is movable
             if(movablePieces.contains(clickedPiece)) {
@@ -161,7 +161,7 @@ public class GameViewModel extends ViewModel {
      * @return the dicevalue.
      */
     public int getDiceValue() {
-        return game.getDice().getRolledValue();
+        return game.getDiceValue();
     }
 
     /**
@@ -234,9 +234,9 @@ public class GameViewModel extends ViewModel {
      */
     public int rollDice() {
         // if the dice is used, you may roll again
-        if (game.getDice().getIsUsed()) {
+        if (game.getDiceIsUsed()) {
             game.rollDice();
-            return game.getDice().getRolledValue();
+            return game.getDiceValue();
             //return 1; //for testing
         }
         return -1;
