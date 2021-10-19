@@ -49,7 +49,7 @@ public class CPU extends Player {
      */
     public Piece choosePieceToMove(int roll) {
         List<Piece> movablePieces = getMovablePieces(getPieces(), roll);
-        if (movablePieces.size() == 0) {
+        if (movablePieces.isEmpty()) {
            return null;
         }
         for (Piece piece : movablePieces) {
