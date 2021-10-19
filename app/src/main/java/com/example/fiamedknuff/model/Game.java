@@ -342,6 +342,10 @@ public class Game implements Serializable {
         dice.setIsUsed(true);
     }
 
+    /**
+     * Returns whether the dice has been used
+     * @return whether the dice has been used
+     */
     public boolean getDiceIsUsed() {
         return dice.getIsUsed();
     }
