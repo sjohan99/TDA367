@@ -27,13 +27,8 @@ import java.util.List;
 public class GameViewModel extends ViewModel {
 
     private Game game;
-    private int playerCount;
-    private int diceValue;
-    private Collection<Piece> movablePieces;
-    private Piece selectedPiece;
     private List<String> playerNames;
-    private Color[] colors;
-  
+
     public MutableLiveData<List<Position>> movingPath = new MutableLiveData<>();
     public MutableLiveData<Player> currentPlayer = new MutableLiveData<>();
     public MutableLiveData<Boolean> movesArePossibleToMake = new MutableLiveData<>();
@@ -214,7 +209,7 @@ public class GameViewModel extends ViewModel {
      * @return true if it is the next player´s turn, otherwise false.
      */
     public boolean isNextPlayer(boolean playerIsFinished) {
-        return !((getDiceValue() == 6) && !playerIsFinished);
+        return game.isNextPlayer(playerIsFinished);
     }
 
     public LiveData<List<Piece>> getMovablePiecesForCurrentPlayer() {
@@ -237,7 +232,6 @@ public class GameViewModel extends ViewModel {
         }
         return -1;
     }
-
 
     public void diceRolled() {
         // If the rolled value is not possible to use, i.e. the player can´t move
