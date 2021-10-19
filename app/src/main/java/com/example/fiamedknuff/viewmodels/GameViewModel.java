@@ -180,6 +180,10 @@ public class GameViewModel extends ViewModel {
         game.setDiceIsUsed();
     }
 
+    public boolean isDiceUsed() {
+        return game.getDiceIsUsed();
+    }
+
     /**
      * Returns number of active players in the game.
      * @return number of active players.

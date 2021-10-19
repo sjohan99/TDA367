@@ -452,7 +452,9 @@ public abstract class BoardFragment extends Fragment {
 
     protected void reInit() {
         reInitPieces();
-        markMovablePieces();
+        if (!gameViewModel.isDiceUsed()) {
+            markMovablePieces();
+        }
     }
 
     private void reInitPieces() {

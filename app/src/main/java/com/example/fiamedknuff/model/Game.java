@@ -341,4 +341,8 @@ public class Game implements Serializable {
     public void setDiceIsUsed() {
         dice.setIsUsed(true);
     }
+
+    public boolean getDiceIsUsed() {
+        return dice.getIsUsed();
+    }
 }
