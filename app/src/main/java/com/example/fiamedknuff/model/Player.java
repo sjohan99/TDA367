@@ -10,7 +10,7 @@ import java.util.List;
  * Implements Serializable to handle data.
  *
  * Created by
- * @author Amanda Cyrén
+ * @author Amanda Cyrén, Hanna Boquist
  */
 public class Player implements Serializable {
 

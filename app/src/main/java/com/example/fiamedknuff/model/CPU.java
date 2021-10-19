@@ -8,7 +8,7 @@ import java.util.List;
  * attributes. A CPU also has some logic of its own which it uses to determine which move to make.
  *
  * Created by
- * @author Amanda Cyrén
+ * @author Amanda Cyrén, Hanna Boquist
  */
 public class CPU extends Player {
 

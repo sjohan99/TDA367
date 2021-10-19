@@ -7,6 +7,9 @@ import java.util.List;
 
 /**
  * Class for instantiating new games of different kinds.
+ *
+ *  * Created by
+ *  * @author Philip Winsnes, Hanna Boquist, Amanda Cyrén
  */
 public class GameFactory {
 

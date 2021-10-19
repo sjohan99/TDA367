@@ -6,8 +6,7 @@ import java.io.Serializable;
  * A class representing a Piece in the game. Implements Serializable to handle data.
  *
  * Created by
- * TODO add author
- * @author Unknown
+ * @author Hanna Boquist
  */
 public class Piece implements Serializable {
 

@@ -37,7 +37,7 @@ import java.util.Map;
  * implemented by the specific boardfragments that extends this class.
  *
  * Created by
- * @author Emma Stålberg
+ * @author Emma Stålberg, Hanna Boquist, Amanda Cyrén
  */
 public abstract class BoardFragment extends Fragment {
 
