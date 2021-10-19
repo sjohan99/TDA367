@@ -206,6 +206,27 @@ public class Game implements Serializable {
         return positionPath;
     }
 
+    /**
+     * Mock method, only used for testing purposes.
+     * Moves the piece according to diceValue.
+     *
+     * @param diceValue amount of steps to be taken.
+     * @param piece the piece to be moved.
+     * @throws Exception if a piece is to be knocked out but can't be found.
+     * @return returns a list of positions the piece has passed including where it ends.
+     */
+    // TODO: 2021-10-14 Separate behavior into calculating path and moving??
+    public List<Position> move(int diceValue, Piece piece) throws NotFoundException {
+        List<Position> positionPath;
+        if (pieceWillMovePastGoal(diceValue, piece)) {
+            positionPath = movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
+        }
+        else {
+            positionPath = movePieceNormally(diceValue, piece);
+        }
+        board.knockOutPieceIfOccupied(piece);
+        return positionPath;
+    }
 
     /**
      * Checks if the position of a piece is also occupied by another piece. If occupied,
@@ -228,28 +249,6 @@ public class Game implements Serializable {
      */
     public Piece knockoutWithPiece(Piece piece) throws NotFoundException {
         return board.knockoutWithPiece(piece);
-    }
-
-    /**
-     * Mock method, only used for testing purposes.
-     * Moves the piece according to diceValue.
-     *
-     * @param diceValue amount of steps to be taken.
-     * @param piece the piece to be moved.
-     * @throws Exception if a piece is to be knocked out but can't be found.
-     * @return returns a list of positions the piece has passed including where it ends.
-     */
-    // TODO: 2021-10-14 Separate behavior into calculating path and moving??
-    public List<Position> move(int diceValue, Piece piece) throws NotFoundException {
-        List<Position> positionPath;
-        if (pieceWillMovePastGoal(diceValue, piece)) {
-            positionPath = movePieceAndMoveBackwardsAfterMiddle(diceValue, piece);
-        }
-        else {
-            positionPath = movePieceNormally(diceValue, piece);
-        }
-        board.knockOutPieceIfOccupied(piece);
-        return positionPath;
     }
 
     /**
