@@ -89,16 +89,6 @@
                 android:maxLines="1"
                 android:paddingStart="25dp"
                 android:textSize="25sp" />
-
-            <CheckBox
-                android:id="@+id/CPUCheckBox1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:clickable="false"
-                android:fontFamily="@font/uncialantiqua_regular"
-                android:text="@string/cpu_name"
-                android:textSize="10sp" />
         </LinearLayout>
 
 
@@ -123,7 +113,7 @@
                 android:textSize="25sp" />
 
             <CheckBox
-                android:id="@+id/CPUCheckBox2"
+                android:id="@+id/CPUCheckBox1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -153,7 +143,7 @@
                 android:textSize="25sp" />
 
             <CheckBox
-                android:id="@+id/CPUCheckBox3"
+                android:id="@+id/CPUCheckBox2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -184,7 +174,7 @@
                 android:textSize="25sp" />
 
             <CheckBox
-                android:id="@+id/CPUCheckBox4"
+                android:id="@+id/CPUCheckBox3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
