@@ -414,7 +414,7 @@ public abstract class BoardFragment extends Fragment {
      * Method used to help identify ImageViews for affecting pliancy on the current player's pieces.
      * @return Returns a HashMap with the current player's piece's ImageViews.
      */
-    public HashMap<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
+    private HashMap<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
         // For each of the player's movable pieces, iterate through all pieces in the HashMap
         // and find the corresponding ImageView that is connected to the movable piece.
         HashMap<Piece, ImageView> map = new HashMap<>();
