@@ -260,9 +260,6 @@ public abstract class BoardFragment extends Fragment {
                     }
                     pieceClicked(pieceImageView);
                 }
-                else {
-                    gameViewModel.selectNextPlayer();
-                }
             }
         });
     }
