@@ -1,7 +1,4 @@
 package com.example.fiamedknuff.model;
-
-import android.content.res.Resources;
-
 import com.example.fiamedknuff.exceptions.NotFoundException;
 import com.example.fiamedknuff.exceptions.NotImplementedException;
 
@@ -18,14 +15,16 @@ import java.util.List;
  */
 public class Game implements Serializable {
 
-    private Board board; // The board in the current game round
+    private final Board board; // The board in the current game round
     private List<Player> activePlayers; // List of active players, an active player is a player who has one or several pieces left
     private int currentPlayerIndex = 0; // A variable to hold the index of the current player
-    private Dice dice; // The dice in the current game round
+    private final Dice dice; // The dice in the current game round
     private List<Player> finishedPlayers = new ArrayList<>(); // List of finished players, a finished player is a player who has no pieces left
 
     /**
-     * Constructor that creates a game.
+     * Sole constructor for the class. Creates a game with an incoming list of players. All players
+     * are added to the list of activePlayers from the start. A new Board corresponding to the
+     * player count is initialized and a new dice is created.
      *
      * @param players is a list of the players who will play the game.
      * @throws NotImplementedException if an unsupported amount of players is given.
@@ -37,7 +36,7 @@ public class Game implements Serializable {
     }
 
     /**
-     * Get the board.
+     * Returns the board.
      *
      * @return the board.
      */
@@ -46,7 +45,7 @@ public class Game implements Serializable {
     }
 
     /**
-     * Get the current player.
+     * Returns the current player.
      *
      * @return the current player.
      */
@@ -54,12 +53,17 @@ public class Game implements Serializable {
         return activePlayers.get(currentPlayerIndex);
     }
 
+    /**
+     * Returns the current player's name.
+     *
+     * @return the current player's name
+     */
     public String getCurrentPlayerName() {
         return getCurrentPlayer().getName();
     }
 
     /**
-     * Get the dice.
+     * Returns the dice.
      *
      * @return the dice.
      */
@@ -84,7 +88,7 @@ public class Game implements Serializable {
     }
 
     /**
-     * Get the list of active players.
+     * Returns the list of active players.
      *
      * @return a list of all active players.
      */
@@ -93,7 +97,7 @@ public class Game implements Serializable {
     }
 
     /**
-     * Get the current players index. For testing purposes only.
+     * Returns the current players index. For testing purposes only.
      *
      * @return the current players index.
      */
@@ -102,7 +106,7 @@ public class Game implements Serializable {
     }
 
     /**
-     * Get the current players pieces.
+     * Returns the current players pieces.
      *
      * @param player specifies the current player.
      * @return the current players pieces.
@@ -112,7 +116,7 @@ public class Game implements Serializable {
     }
 
     /**
-     * Get all the players pieces.
+     * Returns all the players pieces.
      *
      * @return all the players pieces in a list.
      */
@@ -125,7 +129,7 @@ public class Game implements Serializable {
     }
 
     /**
-     * Get the current players movable pieces.
+     * Returns the current players movable pieces.
      *
      * @param player gets the movable pieces of this player.
      * @return all the players movable pieces in a collection.
@@ -136,7 +140,7 @@ public class Game implements Serializable {
 
     /**
      * Mock method, only used for testing purposes.
-     * Get the current players movable pieces.
+     * Returns the current players movable pieces.
      *
      * @param player      gets the movable pieces of this player.
      * @param rolledValue the rolled value.
@@ -153,12 +157,8 @@ public class Game implements Serializable {
         dice.rollDice();
     }
 
-    public int getDiceValue() {
-        return dice.getRolledValue();
-    }
-
     /**
-     * Getter for the dice's rolled value. Only used for testing purposes.
+     * Rolls the dice and returns the rolled value. Only used for testing purposes.
      *
      * @return the dice's rolled value.
      */
@@ -171,12 +171,11 @@ public class Game implements Serializable {
         finishedPlayers.add(player);
     }
 
-
     /**
      * Removes the given piece from the piece-position hashmap and the current player's piece list,
      * effectively removing it from the game.
      *
-     * @param piece The piece to be removed.
+     * @param piece the piece to be removed.
      */
     private void removeFinishedPiece(Piece piece) {
         board.removePieceFromBoard(piece);
@@ -190,9 +189,9 @@ public class Game implements Serializable {
     /**
      * Moves the piece according to diceValue.
      *
-     * @param piece the piece to be moved
-     * @throws Exception if a piece is to be knocked out but can't be found
-     * @return a list of positions the piece has passed including where it ends
+     * @param piece the piece to be moved.
+     * @throws Exception if a piece is to be knocked out but can't be found.
+     * @return a list of positions the piece has passed including where it ends.
      */
     // TODO: 2021-10-14 Separate behavior into calculating path and moving??
     public List<Position> move(Piece piece) throws NotFoundException {
@@ -211,8 +210,9 @@ public class Game implements Serializable {
     /**
      * Checks if the position of a piece is also occupied by another piece. If occupied,
      * the method returns true. Otherwise it returns false.
-     * @param piece the piece you want to check if it shares a position with another
-     * @return true if a piece should be knocked out, and false otherwise
+     *
+     * @param piece the piece you want to check if it shares a position with another.
+     * @return true if a piece should be knocked out, and false otherwise.
      */
     public boolean isKnockout(Piece piece) {
         return board.isKnockout(piece);
@@ -221,9 +221,10 @@ public class Game implements Serializable {
     /**
      * Knocks out the piece that is standing on the same position as the piece which
      * is sent in as a parameter.
-     * @param piece is the piece that is knocking out another piece
-     * @return the piece that is knocked out
-     * @throws NotFoundException if the method is called incorrectly
+     *
+     * @param piece is the piece that is knocking out another piece.
+     * @return the piece that is knocked out.
+     * @throws NotFoundException if the method is called incorrectly.
      */
     public Piece knockoutWithPiece(Piece piece) throws NotFoundException {
         return board.knockoutWithPiece(piece);
@@ -255,7 +256,7 @@ public class Game implements Serializable {
      * Removes the given piece from the game if it is at the goal-index.
      *
      * @param piece the piece to be checked.
-     * @return True if the piece was removed, else False.
+     * @return true if the piece was removed, else false.
      */
     public boolean removePieceIfFinished(Piece piece) {
         if (piece.getIndex() == board.getFinishIndex()) {
@@ -268,7 +269,7 @@ public class Game implements Serializable {
     /**
      * Removes the current player from the game if it has no more active pieces.
      *
-     * @return True if the player was removed, else False.
+     * @return true if the player was removed, else false.
      */
     public boolean removePlayerIfFinished() {
         if (isFinishedPlayer(getCurrentPlayer())) {
@@ -307,13 +308,9 @@ public class Game implements Serializable {
         return positionPath;
     }
 
-   /*
-    //private move(Piece piece) {
-        //board.move(piece);
-   */
-
     /**
      * Returns the positions from the board.
+     *
      * @return the positions from the board.
      */
     public List<Position> getPositions () {
@@ -322,6 +319,7 @@ public class Game implements Serializable {
 
     /**
      * Returns number of active players.
+     *
      * @return number of active players.
      */
     public int getPlayerCount() {
@@ -330,6 +328,7 @@ public class Game implements Serializable {
 
     /**
      * Returns the position of the piece given as a parameter.
+     *
      * @param piece is the piece from which you want to know the position.
      * @return the position of the given piece.
      */
