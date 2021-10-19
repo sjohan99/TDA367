@@ -58,7 +58,7 @@ public class CPU extends Player {
             }
         }
         for (Piece piece : movablePieces) {
-            if (!piece.isHome() && isOnBoardAndCanKnockout(piece, roll)) {
+            if (!piece.isHome() && piece.getIndex() < board.getLapLength() && isOnBoardAndCanKnockout(piece, roll)) {
                 return piece;
             }
         }
@@ -107,7 +107,7 @@ public class CPU extends Player {
     private boolean isOnBoardAndCanKnockout(Piece piece, int roll) {
         HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
         int indexNewPos = board.getFirstPositionIndexInLap() + piecePositionHashMap.get(piece).getPos() + roll;
-        Position newPos = board.getPositions().get(indexNewPos);
+        Position newPos = board.getPositions().get(indexNewPos); // IndexOutOfBoundException
         return board.isOccupied(newPos);
     }
 }
