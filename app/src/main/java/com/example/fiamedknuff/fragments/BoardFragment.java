@@ -250,7 +250,7 @@ public abstract class BoardFragment extends Fragment {
         gameViewModel.currentPlayer.observe(getActivity(), player -> {
             if (gameViewModel.isCPU(player)) {
                 gameViewModel.CPUdiceRoll(true);
-                Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(gameViewModel.getDiceValue());
+                Piece piece = gameViewModel.getPieceForCPUMove();
                 if (piece != null) {
                     ImageView pieceImageView = null;
                     try {

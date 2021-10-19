@@ -263,4 +263,8 @@ public class GameViewModel extends ViewModel {
         return (CPU) game.getCurrentPlayer();
     }
 
+    public Piece getPieceForCPUMove() {
+        return getCPUPlayer().choosePieceToMove(getDiceValue());
+    }
+
 }
