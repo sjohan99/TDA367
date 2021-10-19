@@ -27,4 +27,5 @@
     <string name="replay_popup_message">Starta om spelet?</string>
     <string name="popup_proceed_option">Ja</string>
     <string name="popup_cancel_option">Nej</string>
+    <string name="save_this_game">Spara spelet?</string>
 </resources>
