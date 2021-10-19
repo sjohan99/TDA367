@@ -37,7 +37,7 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<List<Position>> movingPath = new MutableLiveData<>();
     public MutableLiveData<Player> currentPlayer = new MutableLiveData<>();
     public MutableLiveData<Boolean> movesArePossibleToMake = new MutableLiveData<>();
-    public MutableLiveData<Boolean> CPUdiceRoll = new MutableLiveData<>();
+    public MutableLiveData<Boolean> CPUDiceRoll = new MutableLiveData<>();
     public MutableLiveData<Piece> knockedPiece = new MutableLiveData<>();
 
     public void init(List<String> playerNames, List<Color> colors, List<Boolean> selectedCPU) throws NotImplementedException {
@@ -111,8 +111,8 @@ public class GameViewModel extends ViewModel {
         }
     }
 
-    public void CPUdiceRoll(Boolean b) {
-        CPUdiceRoll.setValue(b);
+    public void CPUDiceRoll(Boolean b) {
+        CPUDiceRoll.setValue(b);
     }
 
     /**
@@ -254,15 +254,29 @@ public class GameViewModel extends ViewModel {
         }
     }
 
+    /**
+     * Checks if the incoming parameter of player is an instance of the class CPU.
+     *
+     * @return true if the player is a CPU, otherwise false.
+     */
     public boolean isCPU(Player player) {
         return player instanceof CPU;
-        //return player.getClass() == CPU.class;
     }
 
+    /**
+     * Returns the current CPU player.
+     *
+     * @return the current CPU player.
+     */
     public CPU getCPUPlayer() {
         return (CPU) game.getCurrentPlayer();
     }
 
+    /**
+     * Returns the piece which a CPU player wants to make a move with.
+     *
+     * @return the piece which a CPU player wants to make a move with.
+     */
     public Piece getPieceForCPUMove() {
         return getCPUPlayer().choosePieceToMove(getDiceValue());
     }
