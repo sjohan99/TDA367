@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.fragments;
+package com.example.fiamedknuff.fragments.menufragments;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.fiamedknuff.exceptions.NotImplementedException;
 import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.model.Color;
-import com.example.fiamedknuff.viewModels.GameViewModel;
+import com.example.fiamedknuff.viewmodels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

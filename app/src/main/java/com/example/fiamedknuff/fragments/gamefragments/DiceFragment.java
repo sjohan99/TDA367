@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.fragments;
+package com.example.fiamedknuff.fragments.gamefragments;
 
 import static android.content.ContentValues.TAG;
 
@@ -12,13 +12,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fiamedknuff.R;
-import com.example.fiamedknuff.viewModels.GameViewModel;
+import com.example.fiamedknuff.viewmodels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;

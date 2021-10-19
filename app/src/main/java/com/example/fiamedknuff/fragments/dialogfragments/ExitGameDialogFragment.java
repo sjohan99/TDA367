@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.fragments;
+package com.example.fiamedknuff.fragments.dialogfragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

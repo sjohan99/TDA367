@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="@dimen/replay_popup_width"
     android:layout_height="@dimen/replay_popup_height"
-    tools:context=".fragments.ReplayDialogFragment"
+    tools:context=".fragments.dialogfragments.ReplayDialogFragment"
     android:background="@drawable/popup_window"
     android:padding="50dp"
     android:layout_gravity="center">

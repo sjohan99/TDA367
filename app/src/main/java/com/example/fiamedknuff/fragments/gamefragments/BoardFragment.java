@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.fragments;
+package com.example.fiamedknuff.fragments.gamefragments;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.exceptions.NotFoundException;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Position;
-import com.example.fiamedknuff.viewModels.GameViewModel;
+import com.example.fiamedknuff.viewmodels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;

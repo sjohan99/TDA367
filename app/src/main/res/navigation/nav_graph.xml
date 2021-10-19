@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainMenuFragment"
-        android:name="com.example.fiamedknuff.fragments.MainMenuFragment"
+        android:name="com.example.fiamedknuff.fragments.menufragments.MainMenuFragment"
         android:label="fragment_main_menu"
         tools:layout="@layout/fragment_main_menu" >
         <action
@@ -22,22 +22,22 @@
     </fragment>
     <fragment
         android:id="@+id/leaderboardFragment"
-        android:name="com.example.fiamedknuff.fragments.LeaderboardFragment"
+        android:name="com.example.fiamedknuff.fragments.menufragments.LeaderboardFragment"
         android:label="fragment_leaderboard"
         tools:layout="@layout/fragment_leaderboard" />
 
     <fragment
         android:id="@+id/standardboardFragment"
-        android:name="com.example.fiamedknuff.fragments.StandardboardFragment"
+        android:name="com.example.fiamedknuff.fragments.gamefragments.StandardboardFragment"
         android:label="fragment_standardboard"
         tools:layout="@layout/fragment_standardboard" />
     <fragment
         android:id="@+id/RulebookFragment"
-        android:name="com.example.fiamedknuff.fragments.RulebookFragment"
+        android:name="com.example.fiamedknuff.fragments.menufragments.RulebookFragment"
         android:label="RulebookFragment" />
     <fragment
         android:id="@+id/gameSetupFragment"
-        android:name="com.example.fiamedknuff.fragments.GameSetupFragment"
+        android:name="com.example.fiamedknuff.fragments.menufragments.GameSetupFragment"
         android:label="GameSetupFragment" >
         <action
             android:id="@+id/action_gameSetupFragment_to_gameView"
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameView"
-        android:name="com.example.fiamedknuff.fragments.GameViewFragment"
+        android:name="com.example.fiamedknuff.fragments.gamefragments.GameViewFragment"
         android:label="fragment_game_view"
         tools:layout="@layout/fragment_game_view" >
         <action

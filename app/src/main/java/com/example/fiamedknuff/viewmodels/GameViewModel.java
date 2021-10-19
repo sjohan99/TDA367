@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.viewModels;
+package com.example.fiamedknuff.viewmodels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

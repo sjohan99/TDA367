@@ -1,19 +1,15 @@
-package com.example.fiamedknuff.fragments;
+package com.example.fiamedknuff.fragments.dialogfragments;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.fiamedknuff.R;
 
@@ -22,7 +18,7 @@ import com.example.fiamedknuff.R;
  * For more information: <a href="https://developer.android.com/guide/fragments/dialogs"> Displaying dialogs with DialogFragment </a>
  * @author Philip Winsnes
  */
-public class ReplayDialogFragment extends DialogFragment {
+public class PodiumDialogFragment extends DialogFragment {
 
     /**
      * Creates a Dialog to display as part of the DialogFragment.
@@ -31,16 +27,15 @@ public class ReplayDialogFragment extends DialogFragment {
      * @param savedInstanceState is the savedInstanceState
      * @return a new AlertDialog
      */
-    @SuppressLint("ResourceType")
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         setCancelable(true);
         return new AlertDialog.Builder(requireContext())
-                .setView(R.layout.fragment_replay_dialog)
+                // TODO: 2021-10-15 Add more functionality
                 .create();
     }
 
-    public static String TAG = "ReplayDialogFragment";
+    public static String TAG = "PodiumDialogFragment";
 
 }
