@@ -53,6 +53,11 @@ public class Game implements Serializable {
         return activePlayers.get(currentPlayerIndex);
     }
 
+    /**
+     * Returns the current player's name.
+     *
+     * @return the current player's name
+     */
     public String getCurrentPlayerName() {
         return getCurrentPlayer().getName();
     }
