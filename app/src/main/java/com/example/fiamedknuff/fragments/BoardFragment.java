@@ -287,7 +287,7 @@ public abstract class BoardFragment extends Fragment {
         });
     }
 
-    private void isMoved(List<Position> movingPath) {
+    private synchronized void isMoved(List<Position> movingPath) {
         move(latestClickedPiece, movingPath);
         boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
         if (gameViewModel.isNextPlayer(playerIsFinished)) {
@@ -304,12 +304,27 @@ public abstract class BoardFragment extends Fragment {
      * @param piece is the piece that should be moved
      * @param targets is the positions that the piece should be moved to
      */
-    private void move(ImageView piece, List<Position> targets) {
-
-        for (Position target : targets) {
-            moveImageView(piece, imageViewPositionHashMap.get(target));
-        }
-
+    private synchronized void move(ImageView piece, List<Position> targets) {
+        Runnable walk = new Runnable() {
+            @Override
+            public void run() {
+                for (Position target : targets) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            moveImageView(piece, imageViewPositionHashMap.get(target));
+                        }
+                    });
+                    try {
+                        Thread.sleep(175);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        Thread t = new Thread(walk);
+        t.start();
     }
 
     /**
