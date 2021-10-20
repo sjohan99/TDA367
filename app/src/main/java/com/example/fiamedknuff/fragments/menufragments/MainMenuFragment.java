@@ -14,6 +14,15 @@ import android.widget.Button;
 
 import com.example.fiamedknuff.R;
 
+/**
+ * Responsibility: TODO
+ *
+ * Used by: -
+ * Uses: -
+ *
+ * Created by
+ * @author TODO unknown
+ */
 public class MainMenuFragment extends Fragment {
 
     private NavController navController;
@@ -30,47 +39,32 @@ public class MainMenuFragment extends Fragment {
         leaderboardBtn = view.findViewById(R.id.leaderboardBtn);
         rulebookBtn = view.findViewById(R.id.rulebookBtn);
 
-        newGameBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navController.navigate(
-                        R.id.action_mainMenuFragment_to_gameSetupFragment,
-                        null,
-                        new NavOptions.Builder()
-                                .setEnterAnim(android.R.animator.fade_in)
-                                .setExitAnim(android.R.animator.fade_out)
-                                .build()
-                );
+        newGameBtn.setOnClickListener(view1 -> navController.navigate(
+                R.id.action_mainMenuFragment_to_gameSetupFragment,
+                null,
+                new NavOptions.Builder()
+                        .setEnterAnim(android.R.animator.fade_in)
+                        .setExitAnim(android.R.animator.fade_out)
+                        .build()
+        ));
 
-            }
-        });
-
-        leaderboardBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        leaderboardBtn.setOnClickListener(view12 ->
                 navController.navigate(R.id.action_mainMenuFragment_to_leaderboardFragment,
-                        null,
-                        new NavOptions.Builder()
-                                .setEnterAnim(android.R.animator.fade_in)
-                                .setExitAnim(android.R.animator.fade_out)
-                                .build()
-                );
-            }
-        });
+                null,
+                new NavOptions.Builder()
+                        .setEnterAnim(android.R.animator.fade_in)
+                        .setExitAnim(android.R.animator.fade_out)
+                        .build()
+        ));
 
-        rulebookBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navController.navigate(
-                        R.id.action_mainMenuFragment_to_rulebookFragment,
-                        null,
-                        new NavOptions.Builder()
-                                .setEnterAnim(android.R.animator.fade_in)
-                                .setExitAnim(android.R.animator.fade_out)
-                                .build()
-                );
-            }
-        });
+        rulebookBtn.setOnClickListener(view13 -> navController.navigate(
+                R.id.action_mainMenuFragment_to_rulebookFragment,
+                null,
+                new NavOptions.Builder()
+                        .setEnterAnim(android.R.animator.fade_in)
+                        .setExitAnim(android.R.animator.fade_out)
+                        .build()
+        ));
 
         return view;
     }
