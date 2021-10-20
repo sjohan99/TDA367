@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.fragments;
+package com.example.fiamedknuff.fragments.gamefragments;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import com.example.fiamedknuff.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -91,7 +90,7 @@ public class StandardboardFragment extends BoardFragment {
     /**
      * Initiates the List with all positions in the homes.
      * The first four ones belongs to player 1.
-     * Then comes the homepositions for player 2, and so on.
+     * Then comes the home positions for player 2, and so on.
      */
     @Override
     protected void initListOfHomePositions() {

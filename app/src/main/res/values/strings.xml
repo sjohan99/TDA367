@@ -26,4 +26,5 @@
     <string name="replay_popup_message">Replay game?</string>
     <string name="popup_proceed_option">Yes</string>
     <string name="popup_cancel_option">No</string>
+    <string name="save_this_game">Save this game?</string>
 </resources>

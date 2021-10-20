@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.fragments;
+package com.example.fiamedknuff.fragments.menufragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

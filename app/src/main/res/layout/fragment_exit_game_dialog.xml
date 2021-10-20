@@ -1,19 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- TODO: Set dynamic values -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="@dimen/exit_game_popup_width"
     android:layout_height="@dimen/exit_game_popup_height"
-    tools:context=".fragments.ExitGameDialogFragment"
-    android:background="@color/light_brown_2"
-    android:padding="5dp"
+    android:orientation="vertical"
+    tools:context=".fragments.dialogfragments.ReplayDialogFragment"
+    android:background="@drawable/popup_window"
+    android:padding="50dp"
     android:layout_gravity="center">
 
     <TextView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:text="@string/replay_popup_message"/>
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:textSize="@dimen/popup_message_text_size"
+        android:text="@string/exit_game_popup_message"
+        android:fontFamily="@font/uncialantiqua_regular"
+        android:textColor="@color/dark_brown"
+        android:layout_gravity="center_horizontal"/>
 
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="@color/dark_brown"
+        android:buttonTint="@color/dark_brown"
+        android:text="@string/save_this_game"
+        android:fontFamily="@font/uncialantiqua_regular"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/replayDialogBtn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/uncialantiqua_regular"
+            android:text="@string/popup_proceed_option"
+            android:textColor="@color/brown"
+            app:cornerRadius="30dp"
+            app:strokeColor="#B6A392"
+            app:strokeWidth="1.5dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/popup_cancel_option"
+            android:fontFamily="@font/uncialantiqua_regular"
+            android:textColor="@color/brown"
+            app:cornerRadius="30dp"
+            app:strokeWidth="1.5dp"
+            app:strokeColor="#B6A392"
+            android:backgroundTint="@color/light_brown_3"
+            style="?android:attr/buttonBarButtonStyle" />
+
+    </LinearLayout>
 
 </LinearLayout>
+

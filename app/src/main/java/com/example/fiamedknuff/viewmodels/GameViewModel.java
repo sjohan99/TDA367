@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.viewModels;
+package com.example.fiamedknuff.viewmodels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -32,7 +32,7 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<List<Position>> movingPath = new MutableLiveData<>();
     public MutableLiveData<Player> currentPlayer = new MutableLiveData<>();
     public MutableLiveData<Boolean> movesArePossibleToMake = new MutableLiveData<>();
-    public MutableLiveData<Boolean> CPUdiceRoll = new MutableLiveData<>();
+    public MutableLiveData<Boolean> CPUDiceRoll = new MutableLiveData<>();
     public MutableLiveData<Piece> knockedPiece = new MutableLiveData<>();
 
     public void init(List<String> playerNames, List<Color> colors, List<Boolean> selectedCPU) throws NotImplementedException {
@@ -54,7 +54,7 @@ public class GameViewModel extends ViewModel {
     public void move(Piece clickedPiece) {
         // if the rolled dice is already used, we can´t move any piece before another roll has
         // been made
-        if (!game.getDice().getIsUsed()) {
+        if (!game.getDiceIsUsed()) {
             List<Piece> movablePieces = game.getMovablePieces(game.getCurrentPlayer());
             //checks if the clicked piece is movable
             if(movablePieces.contains(clickedPiece)) {
@@ -106,8 +106,8 @@ public class GameViewModel extends ViewModel {
         }
     }
 
-    public void CPUdiceRoll(Boolean b) {
-        CPUdiceRoll.setValue(b);
+    public void CPUDiceRoll(Boolean b) {
+        CPUDiceRoll.setValue(b);
     }
 
     /**
@@ -156,7 +156,7 @@ public class GameViewModel extends ViewModel {
      * @return the dicevalue.
      */
     public int getDiceValue() {
-        return game.getDice().getRolledValue();
+        return game.getDiceValue();
     }
 
     /**
@@ -173,6 +173,10 @@ public class GameViewModel extends ViewModel {
      */
     public void setDiceIsUsed() {
         game.setDiceIsUsed();
+    }
+
+    public boolean isDiceUsed() {
+        return game.getDiceIsUsed();
     }
 
     /**
@@ -225,9 +229,9 @@ public class GameViewModel extends ViewModel {
      */
     public int rollDice() {
         // if the dice is used, you may roll again
-        if (game.getDice().getIsUsed()) {
+        if (game.getDiceIsUsed()) {
             game.rollDice();
-            return game.getDice().getRolledValue();
+            return game.getDiceValue();
             //return 1; //for testing
         }
         return -1;
@@ -239,8 +243,8 @@ public class GameViewModel extends ViewModel {
         // next player in the view and the dice should be set to used. Also, the next
         // player should be selected.
         if (!isPossibleToUseDicevalue()) {
-            selectNextPlayer();
             setDiceIsUsed();
+            selectNextPlayer();
         } else {
             // The player can make a turn and the player's pieces will be highlighted
             // through the observer.
@@ -248,13 +252,31 @@ public class GameViewModel extends ViewModel {
         }
     }
 
+    /**
+     * Checks if the incoming parameter of player is an instance of the class CPU.
+     *
+     * @return true if the player is a CPU, otherwise false.
+     */
     public boolean isCPU(Player player) {
         return player instanceof CPU;
-        //return player.getClass() == CPU.class;
     }
 
+    /**
+     * Returns the current CPU player.
+     *
+     * @return the current CPU player.
+     */
     public CPU getCPUPlayer() {
         return (CPU) game.getCurrentPlayer();
+    }
+
+    /**
+     * Returns the piece which a CPU player wants to make a move with.
+     *
+     * @return the piece which a CPU player wants to make a move with.
+     */
+    public Piece getPieceForCPUMove() {
+        return getCPUPlayer().choosePieceToMove(getDiceValue());
     }
 
 }

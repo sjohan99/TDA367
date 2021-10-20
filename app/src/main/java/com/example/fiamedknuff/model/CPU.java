@@ -49,7 +49,7 @@ public class CPU extends Player {
      */
     public Piece choosePieceToMove(int roll) {
         List<Piece> movablePieces = getMovablePieces(getPieces(), roll);
-        if (movablePieces.size() == 0) {
+        if (movablePieces.isEmpty()) {
            return null;
         }
         for (Piece piece : movablePieces) {
@@ -58,7 +58,7 @@ public class CPU extends Player {
             }
         }
         for (Piece piece : movablePieces) {
-            if (!piece.isHome() && isOnBoardAndCanKnockout(piece, roll)) {
+            if (!piece.isHome() && piece.getIndex() < board.getLapLength() && isOnBoardAndCanKnockout(piece, roll)) {
                 return piece;
             }
         }
@@ -83,9 +83,9 @@ public class CPU extends Player {
         for (Piece p : movablePieces) {
             // If piece is in the middle path, don't prioritize moving this piece
             if (p.getIndex() > board.getLapLength() + 1) {
-                continue;
+                tmpIndex = 0;
             }
-            if (p.getIndex() > tmpIndex) {
+            else if (p.getIndex() > tmpIndex) {
                 tmpIndex = p.getIndex();
                 piece = p;
             }
@@ -107,7 +107,7 @@ public class CPU extends Player {
     private boolean isOnBoardAndCanKnockout(Piece piece, int roll) {
         HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
         int indexNewPos = board.getFirstPositionIndexInLap() + piecePositionHashMap.get(piece).getPos() + roll;
-        Position newPos = board.getPositions().get(indexNewPos);
+        Position newPos = board.getPositions().get(indexNewPos); // IndexOutOfBoundException
         return board.isOccupied(newPos);
     }
 }

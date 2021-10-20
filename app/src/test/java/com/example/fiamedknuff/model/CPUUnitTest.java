@@ -104,7 +104,34 @@ public class CPUUnitTest {
         assertThat(CPU.choosePieceToMove(2)).isEqualTo(cpuSecondPiece);
     }
 
-   @Test
+    @Test
+    public void testChoosePieceToMoveKnockout2() {
+        HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
+        Player player1 = players.get(0);
+
+        // Set position for piece to be knockout
+        Piece knockoutPiece = player1.getPieces().get(0);
+        knockoutPiece.setIndex(20);
+        Position knockoutPos = board.getPositions().get(16+19);
+        piecePositionHashMap.put(knockoutPiece, knockoutPos);
+
+        // Set position for first CPU-piece, would cause an IndexOutOfBoundException if there where
+        // no check for the piece's position before calculating the new position in CPU
+        Piece cpuFirstPiece = CPU.getPieces().get(0);
+        cpuFirstPiece.setIndex(42);
+        Position cpuFirstPos = board.getPositions().get(16+51);
+        piecePositionHashMap.put(cpuFirstPiece, cpuFirstPos);
+
+        // Set position for second CPU-piece
+        Piece cpuSecondPiece = CPU.getPieces().get(1);
+        cpuSecondPiece.setIndex(4);
+        Position cpuSecondPos = board.getPositions().get(16+13);
+        piecePositionHashMap.put(cpuSecondPiece, cpuSecondPos);
+
+        assertThat(CPU.choosePieceToMove(6)).isEqualTo(cpuSecondPiece);
+    }
+
+    @Test
    public void testChoosePieceToMoveFinishPiece() {
        HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
 
@@ -176,6 +203,24 @@ public class CPUUnitTest {
         cpuThirdPiece.setIndex(43);
         Position cpuThirdPos = board.getPositions().get(16+52);
         piecePositionHashMap.put(cpuThirdPiece, cpuThirdPos);
+
+        assertThat(CPU.choosePieceToMove(4)).isEqualTo(cpuSecondPiece);
+    }
+
+    @Test
+    public void testChooseLeadingPieceToMove2() {
+        HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
+        // Set position for first CPU-piece
+        Piece cpuFirstPiece = CPU.getPieces().get(0);
+        cpuFirstPiece.setIndex(43);
+        Position cpuFirstPos = board.getPositions().get(16+52);
+        piecePositionHashMap.put(cpuFirstPiece, cpuFirstPos);
+
+        // Set position for second cpu-piece (leading piece)
+        Piece cpuSecondPiece = CPU.getPieces().get(1);
+        cpuSecondPiece.setIndex(21);
+        Position cpuSecondPos= board.getPositions().get(16+30);
+        piecePositionHashMap.put(cpuSecondPiece, cpuSecondPos);
 
         assertThat(CPU.choosePieceToMove(4)).isEqualTo(cpuSecondPiece);
     }

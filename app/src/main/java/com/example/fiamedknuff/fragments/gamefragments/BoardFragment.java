@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.fragments;
+package com.example.fiamedknuff.fragments.gamefragments;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.exceptions.NotFoundException;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Position;
-import com.example.fiamedknuff.viewModels.GameViewModel;
+import com.example.fiamedknuff.viewmodels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -249,8 +249,8 @@ public abstract class BoardFragment extends Fragment {
     private void initCurrentPlayerObserver() {
         gameViewModel.currentPlayer.observe(getActivity(), player -> {
             if (gameViewModel.isCPU(player)) {
-                gameViewModel.CPUdiceRoll(true);
-                Piece piece = gameViewModel.getCPUPlayer().choosePieceToMove(gameViewModel.getDiceValue());
+                gameViewModel.CPUDiceRoll(true);
+                Piece piece = gameViewModel.getPieceForCPUMove();
                 if (piece != null) {
                     ImageView pieceImageView = null;
                     try {
@@ -259,9 +259,6 @@ public abstract class BoardFragment extends Fragment {
                         e.printStackTrace();
                     }
                     pieceClicked(pieceImageView);
-                }
-                else {
-                    gameViewModel.selectNextPlayer();
                 }
             }
         });
@@ -290,7 +287,7 @@ public abstract class BoardFragment extends Fragment {
         });
     }
 
-    private void isMoved(List<Position> movingPath) {
+    private synchronized void isMoved(List<Position> movingPath) {
         move(latestClickedPiece, movingPath);
         boolean playerIsFinished = removePieceAndPlayerIfFinished(latestClickedPiece);
         if (gameViewModel.isNextPlayer(playerIsFinished)) {
@@ -307,12 +304,27 @@ public abstract class BoardFragment extends Fragment {
      * @param piece is the piece that should be moved
      * @param targets is the positions that the piece should be moved to
      */
-    private void move(ImageView piece, List<Position> targets) {
-
-        for (Position target : targets) {
-            moveImageView(piece, imageViewPositionHashMap.get(target));
-        }
-
+    private synchronized void move(ImageView piece, List<Position> targets) {
+        Runnable walk = new Runnable() {
+            @Override
+            public void run() {
+                for (Position target : targets) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            moveImageView(piece, imageViewPositionHashMap.get(target));
+                        }
+                    });
+                    try {
+                        Thread.sleep(175);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        Thread t = new Thread(walk);
+        t.start();
     }
 
     /**
@@ -440,7 +452,9 @@ public abstract class BoardFragment extends Fragment {
 
     protected void reInit() {
         reInitPieces();
-        markMovablePieces();
+        if (!gameViewModel.isDiceUsed()) {
+            markMovablePieces();
+        }
     }
 
     private void reInitPieces() {

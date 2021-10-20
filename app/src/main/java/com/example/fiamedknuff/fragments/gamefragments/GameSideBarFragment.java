@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.fragments;
+package com.example.fiamedknuff.fragments.gamefragments;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.fiamedknuff.R;
+import com.example.fiamedknuff.fragments.dialogfragments.ExitGameDialogFragment;
+import com.example.fiamedknuff.fragments.dialogfragments.ReplayDialogFragment;
 
 /**
  * UI controller for the side bar layout.

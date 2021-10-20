@@ -1,15 +1,19 @@
-package com.example.fiamedknuff.fragments;
+package com.example.fiamedknuff.fragments.dialogfragments;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.fiamedknuff.R;
 
@@ -27,14 +31,13 @@ public class ReplayDialogFragment extends DialogFragment {
      * @param savedInstanceState is the savedInstanceState
      * @return a new AlertDialog
      */
+    @SuppressLint("ResourceType")
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         setCancelable(true);
         return new AlertDialog.Builder(requireContext())
-                .setMessage(getString(R.string.replay_popup_message))
-                .setPositiveButton(getString(R.string.popup_cancel_option), (dialog, which) -> {})
-                .setNeutralButton(getString(R.string.popup_proceed_option), (dialog, which) -> {})
+                .setView(R.layout.fragment_replay_dialog)
                 .create();
     }
 

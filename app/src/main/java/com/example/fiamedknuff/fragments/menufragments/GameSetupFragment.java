@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.fragments;
+package com.example.fiamedknuff.fragments.menufragments;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.fiamedknuff.exceptions.NotImplementedException;
 import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.model.Color;
-import com.example.fiamedknuff.viewModels.GameViewModel;
+import com.example.fiamedknuff.viewmodels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class GameSetupFragment extends Fragment {
     private Button createGameBtn;
     private Spinner playerAmountSpinner;
     private EditText player1Name, player2Name, player3Name, player4Name;
-    private CheckBox CPUCheckBox1, CPUCheckBox2, CPUCheckBox3, CPUCheckBox4;
+    private CheckBox CPUCheckBox1, CPUCheckBox2, CPUCheckBox3;
     private GameViewModel gameViewModel;
     ArrayList<EditText> players = new ArrayList<>();
     ArrayList<CheckBox> CPUCheckBoxes = new ArrayList<>();
@@ -93,7 +93,7 @@ public class GameSetupFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object item = parent.getItemAtPosition(position);
                 selectedPlayerCount = Integer.parseInt(item.toString());
-                for (int i = 0; i < selectedPlayerCount; i++) {
+                for (int i = 0; i < selectedPlayerCount-1; i++) {
                     players.get(i).setVisibility(View.VISIBLE);
                     CPUCheckBoxes.get(i).setVisibility(View.VISIBLE);
                 }
@@ -118,7 +118,7 @@ public class GameSetupFragment extends Fragment {
         CPUCheckBoxes.add(CPUCheckBox1);
         CPUCheckBoxes.add(CPUCheckBox2);
         CPUCheckBoxes.add(CPUCheckBox3);
-        CPUCheckBoxes.add(CPUCheckBox4);
+
     }
 
     private void populateColors() {
@@ -142,7 +142,7 @@ public class GameSetupFragment extends Fragment {
     private List<Boolean> getSelectedCPU() {
         ArrayList<Boolean> isCPUs = new ArrayList<>();
         isCPUs.add(false);
-        for (int i = 1; i < selectedPlayerCount; i++) {
+        for (int i = 0; i < selectedPlayerCount-1; i++) {
             //isCPUs.add(true);
             isCPUs.add(CPUCheckBoxes.get(i).isChecked());
         }
@@ -169,7 +169,7 @@ public class GameSetupFragment extends Fragment {
         CPUCheckBox1 = view.findViewById(R.id.CPUCheckBox1);
         CPUCheckBox2 = view.findViewById(R.id.CPUCheckBox2);
         CPUCheckBox3 = view.findViewById(R.id.CPUCheckBox3);
-        CPUCheckBox4 = view.findViewById(R.id.CPUCheckBox4);
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

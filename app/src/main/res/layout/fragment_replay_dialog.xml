@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- TODO: Set dynamic values -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="@dimen/replay_popup_width"
     android:layout_height="@dimen/replay_popup_height"
-    tools:context=".fragments.ReplayDialogFragment"
+    tools:context=".fragments.dialogfragments.ReplayDialogFragment"
     android:background="@drawable/popup_window"
     android:padding="50dp"
     android:layout_gravity="center">
@@ -30,16 +29,17 @@
         android:gravity="center_horizontal">
 
         <Button
+            android:id="@+id/replayDialogBtn"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/popup_proceed_option"
             android:fontFamily="@font/uncialantiqua_regular"
+            android:text="@string/popup_proceed_option"
             android:textColor="@color/brown"
             app:cornerRadius="30dp"
-            app:strokeWidth="1.5dp"
             app:strokeColor="#B6A392"
-            style="?android:attr/buttonBarButtonStyle" />
+            app:strokeWidth="1.5dp" />
 
         <Button
             android:layout_width="wrap_content"

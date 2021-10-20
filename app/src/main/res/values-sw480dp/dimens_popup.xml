@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="exit_game_popup_width">490dp</dimen>
-    <dimen name="exit_game_popup_height">340dp</dimen>
+    <dimen name="exit_game_popup_height">300dp</dimen>
     <dimen name="replay_popup_width">@dimen/exit_game_popup_width</dimen>
     <dimen name="replay_popup_height">240dp</dimen>
     <dimen name="popup_message_text_size">30sp</dimen>
