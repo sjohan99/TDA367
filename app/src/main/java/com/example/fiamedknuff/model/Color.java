@@ -6,8 +6,7 @@ import java.io.Serializable;
  * Class representing a color
  *
  * Created by
- * TODO Add author
- * @author Unknown
+ * @author Hanna Boquist
  */
 public enum Color implements Serializable {
     BLUE, RED, GREEN, YELLOW, PINK, BLACK

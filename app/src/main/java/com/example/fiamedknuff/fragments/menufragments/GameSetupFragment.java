@@ -28,7 +28,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-// TODO: 2021-10-11 Disable being able to choose only one player
+/**
+ * A class GameSetupFragment that handles the GUI for the page to set up a game.
+ *
+ * Created by
+ * @author Philip Winsnes, Hanna Boquist
+ */
+
 public class GameSetupFragment extends Fragment {
 
     private NavController navController;
