@@ -97,9 +97,11 @@ public class GameSetupFragment extends Fragment {
                     players.get(i).setVisibility(View.VISIBLE);
                     CPUCheckBoxes.get(i).setVisibility(View.VISIBLE);
                 }
-                for (int j = selectedPlayerCount; j < players.size(); j++) {
-                    players.get(j).setVisibility(View.INVISIBLE);
-                    CPUCheckBoxes.get(j).setVisibility(View.INVISIBLE);
+                for (int i = selectedPlayerCount; i < players.size(); i++) {
+                    players.get(i).setVisibility(View.INVISIBLE);
+                }
+                for (int i = selectedPlayerCount - 1; i < players.size() - 1; i++) {
+                    CPUCheckBoxes.get(i).setVisibility(View.INVISIBLE);
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
