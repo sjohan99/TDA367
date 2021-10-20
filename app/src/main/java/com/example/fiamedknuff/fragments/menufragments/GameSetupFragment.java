@@ -91,6 +91,7 @@ public class GameSetupFragment extends Fragment {
         });
     }
 
+    // TODO: 2021-10-20 Fix CheckBox-problem with indexOfOutBounds 
     private void initPlayerAmountSpinner(View view) {
         playerAmountSpinner = view.findViewById(R.id.playerAmountSpinner);
         populateSpinner();
