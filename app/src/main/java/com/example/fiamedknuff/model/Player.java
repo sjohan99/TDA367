@@ -83,8 +83,12 @@ public class Player implements Serializable {
      * @return true if the piece is able to make a move, otherwise false.
      */
     boolean isMovable (Piece piece, int roll) {
-        if (targetPositionOccupiedBySelf(piece.getIndex() + roll)) return false;
-        if (piece.isHome()) return roll == 1 || roll == 6;
+        if (targetPositionOccupiedBySelf(piece.getIndex() + roll)) {
+            return false;
+        }
+        if (piece.isHome()) {
+            return roll == 1 || roll == 6;
+        }
         return true;
     }
 
@@ -96,7 +100,9 @@ public class Player implements Serializable {
      */
     private boolean targetPositionOccupiedBySelf(int targetIndex) {
         for (Piece piece : pieces) {
-            if (targetIndex == piece.getIndex()) return true;
+            if (targetIndex == piece.getIndex()) {
+                return true;
+            }
         }
         return false;
     }

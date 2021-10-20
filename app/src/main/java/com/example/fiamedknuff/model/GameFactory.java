@@ -8,16 +8,10 @@ import java.util.List;
 /**
  * Class for instantiating new games of different kinds.
  */
-public class GameFactory {
+public abstract class GameFactory {
 
     /**
-     * Creates a game according to given arguments. The arrays need to correspond 1 to 1.
-     *
-     * Example: To create a player with name = p1, color = YELLOW and who is not a CPU then the
-     * first value of each array has to be (in order)
-     * playerNames[0] = "p1"
-     * colors[0] = Color.BLACK
-     * CPUSelection[0] = false
+     * Creates a game according to given arguments. The lists need to correspond 1 to 1.
      *
      * @param playerNames The name of each player in corresponding order.
      * @param colors the color of the player's pieces in corresponding order.
