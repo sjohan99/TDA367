@@ -343,4 +343,14 @@ public class Game implements Serializable {
     public void setDiceIsUsed() {
         dice.setIsUsed(true);
     }
+
+    /**
+     * If a player rolls a six and is not finished, it is their turn again. Otherwise,
+     * it is the next player´s turn.
+     * @param playerIsFinished is true if the player is finished, otherwise false.
+     * @return true if it is the next player´s turn, otherwise false.
+     */
+    public boolean isNextPlayer(boolean playerIsFinished) {
+        return !((getDiceValue() == 6) && !playerIsFinished);
+    }
 }
