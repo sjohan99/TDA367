@@ -6,11 +6,14 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * A class Player that creates a player. A player has a name and a list of pieces.
- * Implements Serializable to handle data.
+ * Responsibility: A class Player that creates a player. A player has a name and a list of pieces.
+ *  Implements Serializable to handle data.
+ *
+ * Used by: GameViewFragment, CPU, Game, GameFactory, GameViewModel
+ * Uses: Piece, Color
  *
  * Created by
- * @author Amanda Cyrén
+ * @author Amanda Cyrén, Hanna Boquist, Emma Stålberg, Johan Selin, Philip Winsnes
  */
 public class Player implements Serializable {
 
