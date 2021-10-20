@@ -4,11 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * A class CPU that creates a CPU object. A CPU is a subclass to Player and inherits all of Player's
- * attributes. A CPU also has some logic of its own which it uses to determine which move to make.
+ * Responsibility: A class CPU that creates a CPU object. A CPU is a subclass to Player and
+ *  inherits all of Player's attributes. A CPU also has some logic of its own which it uses
+ *  to determine which move to make.
+ *
+ * Used by: GameFactory, GameViewModel
+ * Uses: Board, Color, Piece, Position, Player TODO player correct?
  *
  * Created by
- * @author Amanda Cyrén
+ * @author Amanda Cyrén, Hanna Boquist
  */
 public class CPU extends Player {
 
@@ -110,4 +114,5 @@ public class CPU extends Player {
         Position newPos = board.getPositions().get(indexNewPos); // IndexOutOfBoundException
         return board.isOccupied(newPos);
     }
+
 }
