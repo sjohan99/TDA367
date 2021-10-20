@@ -22,13 +22,23 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.fiamedknuff.exceptions.NotImplementedException;
 import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.model.Color;
-import com.example.fiamedknuff.viewmodels.GameViewModel;
+import com.example.fiamedknuff.viewModels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
 // TODO: 2021-10-11 Disable being able to choose only one player
+
+/**
+ * Responsibility: TODO
+ *
+ * Used by: -
+ * Uses: NotImplementedException, Color, GameViewModel
+ *
+ * Created by
+ * @author Philip Winsnes TODO
+ */
 public class GameSetupFragment extends Fragment {
 
     private NavController navController;
@@ -143,7 +153,6 @@ public class GameSetupFragment extends Fragment {
         ArrayList<Boolean> isCPUs = new ArrayList<>();
         isCPUs.add(false);
         for (int i = 0; i < selectedPlayerCount-1; i++) {
-            //isCPUs.add(true);
             isCPUs.add(CPUCheckBoxes.get(i).isChecked());
         }
         return isCPUs;
