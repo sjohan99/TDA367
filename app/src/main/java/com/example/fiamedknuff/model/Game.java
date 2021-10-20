@@ -7,8 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class responsible for tying together the different components of the game and using them to
- * simulate the game. Implements Serializable to handle data.
+ * Responsibility: Class responsible for tying together the different components of the
+ *  game and using them to simulate the game. Implements Serializable to handle data.
+ *
+ * Used by: GameFactory, GameViewModel
+ * Uses: Board, Player, Dice, Piece, Position
  *
  * Created by
  * @author Amanda Cyrén, Emma Stålberg, Hanna Boquist, Johan Selin, Philip Winsnes
@@ -190,7 +193,7 @@ public class Game implements Serializable {
      * Moves the piece according to diceValue.
      *
      * @param piece the piece to be moved.
-     * @throws Exception if a piece is to be knocked out but can't be found.
+     * @throws NotFoundException if a piece is to be knocked out but can't be found.
      * @return a list of positions the piece has passed including where it ends.
      */
     // TODO: 2021-10-14 Separate behavior into calculating path and moving??
@@ -212,7 +215,7 @@ public class Game implements Serializable {
      *
      * @param diceValue amount of steps to be taken.
      * @param piece the piece to be moved.
-     * @throws Exception if a piece is to be knocked out but can't be found.
+     * @throws NotFoundException if a piece is to be knocked out but can't be found.
      * @return returns a list of positions the piece has passed including where it ends.
      */
     // TODO: 2021-10-14 Separate behavior into calculating path and moving??
@@ -367,4 +370,5 @@ public class Game implements Serializable {
     public boolean isNextPlayer(boolean playerIsFinished) {
         return !((getDiceValue() == 6) && !playerIsFinished);
     }
+
 }
