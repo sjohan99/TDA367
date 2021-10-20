@@ -6,7 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class for instantiating new games of different kinds.
+ * Responsibility: An abstract class GameFactory for instantiating new games of different kinds.
+ *
+ * Used by: GameViewModel
+ * Uses: Game, Player, CPU, Color
+ *
+ * Created by
+ * @author Philip Winsnes, Hanna Boquist, Amanda Cyrén, Johan Selin, Emma Stålberg
  */
 public abstract class GameFactory {
 
