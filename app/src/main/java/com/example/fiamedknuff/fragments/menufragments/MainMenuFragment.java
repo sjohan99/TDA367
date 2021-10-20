@@ -21,7 +21,7 @@ import com.example.fiamedknuff.R;
  * Uses: -
  *
  * Created by
- * @author TODO unknown
+ * @author Philip Winsnes, Hanna Boquist, Amanda Cyrén, Emma Stålberg, Johan Selin
  */
 public class MainMenuFragment extends Fragment {
 

@@ -37,7 +37,7 @@ import java.util.regex.Pattern;
  * Uses: NotImplementedException, Color, GameViewModel
  *
  * Created by
- * @author Philip Winsnes TODO
+ * @author Philip Winsnes, Hanna Boquist
  */
 public class GameSetupFragment extends Fragment {
 
@@ -82,7 +82,8 @@ public class GameSetupFragment extends Fragment {
             // GameFactory.createNewGame(getPlayerNames(), getColors(), getSelectedCPU());
             if (readyToCreateGame) {
                 try {
-                    gameViewModel.init(GameSetupFragment.this.getPlayerNames(), GameSetupFragment.this.getColors(), GameSetupFragment.this.getSelectedCPU());
+                    gameViewModel.init(
+                            GameSetupFragment.this.getPlayerNames(), GameSetupFragment.this.getColors(), GameSetupFragment.this.getSelectedCPU());
                 } catch (NotImplementedException e) {
                     e.printStackTrace();
                 }

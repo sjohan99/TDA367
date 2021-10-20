@@ -8,7 +8,6 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 
 import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.fragments.dialogfragments.PodiumDialogFragment;
-import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 
 import java.util.ArrayList;
