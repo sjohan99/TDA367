@@ -12,7 +12,7 @@ import java.util.List;
  * Class representing the board on which pieces move. Implements Serializable to handle data.
  *
  * Created by
- * @author Johan Selin
+ * @author Johan Selin, Hanna Boquist, Amanda Cyrén
  */
 public class Board implements Serializable {
 

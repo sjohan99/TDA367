@@ -27,7 +27,7 @@ import java.util.List;
  * A class DiceFragment that handles the dice visually.
  *
  * Created by
- * @author Emma Stålberg
+ * @author Emma Stålberg, Hanna Boquist, Amanda Cyrén
  */
 
 public class DiceFragment extends Fragment {
