@@ -23,7 +23,7 @@ import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.exceptions.NotFoundException;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Position;
-import com.example.fiamedknuff.viewmodels.GameViewModel;
+import com.example.fiamedknuff.viewModels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,13 +31,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * An abstract class BoardFragment. Superclass to fragments of boards.
- * Holds the common behavior for all boardfragments. Implements the methods
- * that all boardfragments have. Some methods are declared abstract and should be
- * implemented by the specific boardfragments that extends this class.
+ * Responsibility: An abstract class BoardFragment. Superclass to fragments of boards.
+ *  Holds the common behavior for all boardfragments. Implements the methods
+ *  that all boardfragments have. Some methods are declared abstract and should be
+ *  implemented by the specific boardfragments that extends this class.
+ *
+ * Used by: StandardBoardFragment TODO correct?
+ * Uses: GameViewModel, NotFoundException, Piece, Position
  *
  * Created by
- * @author Emma Stålberg
+ * @author Emma Stålberg, Amanda Cyrén, Hanna Boquist
  */
 public abstract class BoardFragment extends Fragment {
 
@@ -48,6 +51,7 @@ public abstract class BoardFragment extends Fragment {
     HashMap<ImageView, Piece> imageViewPieceHashMap;
     HashMap<Position, ImageView> imageViewPositionHashMap;
 
+    //TODO javadoc
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -465,6 +469,7 @@ public abstract class BoardFragment extends Fragment {
         }
     }
 
+    //TODO javadoc
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
