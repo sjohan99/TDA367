@@ -13,7 +13,7 @@ import com.example.fiamedknuff.R;
  * Uses: TODO
  *
  * Created by
- * @author TODO unknown
+ * @author Emma Stålberg, Hanna Boquist, Amanda Cyrén, Philip Winsnes, Johan Selin
  */
 
 public class MainActivity extends AppCompatActivity {
