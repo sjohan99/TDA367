@@ -11,12 +11,15 @@ import android.view.ViewGroup;
 import com.example.fiamedknuff.R;
 
 /**
- * A class leaderboardFragment that ...
+ * Responsibility: A class leaderboard that should handle the leaderboard. Not implemented
+ *  yet. TODO
+ *
+ * Used by: -
+ * Uses: -
  *
  * Created by
  * @author Emma Stålberg
  */
-
 public class LeaderboardFragment extends Fragment {
 
     @Override
