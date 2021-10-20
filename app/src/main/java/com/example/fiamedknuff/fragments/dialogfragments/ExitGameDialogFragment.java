@@ -2,21 +2,24 @@ package com.example.fiamedknuff.fragments.dialogfragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.navigation.NavController;
-import androidx.navigation.NavOptions;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.fiamedknuff.R;
 
 /**
- * A DialogFragment container, designed for creating and hosting dialogs (popups).
- * For more information: <a href="https://developer.android.com/guide/fragments/dialogs"> Displaying dialogs with DialogFragment </a>
+ * TODO delete link or not?
+ * Responsibility: A DialogFragment container, designed for creating and hosting dialogs (popups).
+ * For more information: <a href="https://developer.android.com/guide/fragments/dialogs">
+ *     Displaying dialogs with DialogFragment </a>
+ *
+ * Used by: GameSideBarFragment
+ * Uses: -
+ *
+ * Created by
  * @author Philip Winsnes
  */
 public class ExitGameDialogFragment extends DialogFragment {
@@ -37,6 +40,8 @@ public class ExitGameDialogFragment extends DialogFragment {
                 .create();
     }
 
+
+    //TODO write javadoc
     public static String TAG = "ExitGameDialogFragment";
 
 }
