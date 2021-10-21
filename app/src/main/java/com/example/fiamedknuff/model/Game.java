@@ -32,7 +32,7 @@ public class Game implements Serializable {
      * @param players is a list of the players who will play the game.
      * @throws NotImplementedException if an unsupported amount of players is given.
      */
-    public Game(List<Player> players) throws NotImplementedException {
+    Game(List<Player> players) throws NotImplementedException {
         activePlayers = players;
         board = new Board(players.size(), getAllPlayerPieces());
         dice = new Dice();
@@ -70,7 +70,7 @@ public class Game implements Serializable {
      *
      * @return the dice.
      */
-    public Dice getDice() {
+    Dice getDice() {
         return dice;
     }
 
@@ -104,7 +104,7 @@ public class Game implements Serializable {
      *
      * @return the current players index.
      */
-    public int getCurrentPlayerIndex() {
+    int getCurrentPlayerIndex() {
         return currentPlayerIndex;
     }
 
@@ -149,7 +149,7 @@ public class Game implements Serializable {
      * @param rolledValue the rolled value.
      * @return all the players movable pieces in a collection.
      */
-    public ArrayList<Piece> getMovablePieces(Player player, int rolledValue) {
+    ArrayList<Piece> getMovablePieces(Player player, int rolledValue) {
         return player.getMovablePieces(player.getPieces(), rolledValue);
     }
 

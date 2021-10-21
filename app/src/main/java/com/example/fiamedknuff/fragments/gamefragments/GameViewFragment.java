@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.fragments.dialogfragments.PodiumDialogFragment;
+import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.viewModels.GameViewModel;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class GameViewFragment extends Fragment {
     private List<TextView> playerLabels = new ArrayList<>();
 
     private GameSideBarFragment sideBarFragment;
-    private StandardboardFragment boardFragment;
+    private BoardFragment boardFragment;
     private DiceFragment diceFragment;
 
     private FragmentManager fragmentManager;

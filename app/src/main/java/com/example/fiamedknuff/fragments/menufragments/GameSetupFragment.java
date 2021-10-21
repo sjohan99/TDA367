@@ -29,9 +29,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 // TODO: 2021-10-11 Disable being able to choose only one player
-
 /**
- * Responsibility: TODO
+ * Responsibility: A class GameSetupFragment that handles the GUI for the page 
+ *    to set up a game.
  *
  * Used by: -
  * Uses: NotImplementedException, Color, GameViewModel
@@ -108,9 +108,11 @@ public class GameSetupFragment extends Fragment {
                     players.get(i).setVisibility(View.VISIBLE);
                     CPUCheckBoxes.get(i).setVisibility(View.VISIBLE);
                 }
-                for (int j = selectedPlayerCount; j < players.size(); j++) {
-                    players.get(j).setVisibility(View.INVISIBLE);
-                    CPUCheckBoxes.get(j).setVisibility(View.INVISIBLE);
+                for (int i = selectedPlayerCount; i < players.size(); i++) {
+                    players.get(i).setVisibility(View.INVISIBLE);
+                }
+                for (int i = selectedPlayerCount - 1; i < players.size() - 1; i++) {
+                    CPUCheckBoxes.get(i).setVisibility(View.INVISIBLE);
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
