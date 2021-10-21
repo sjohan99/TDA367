@@ -1,24 +1,25 @@
 package com.example.fiamedknuff.model;
 
-
 import com.example.fiamedknuff.exceptions.NotFoundException;
 import com.example.fiamedknuff.exceptions.NotImplementedException;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class GameplayUnitTest {
 
-    static Game game;
+    Game game;
     Player currentPlayer;
+    int pc = 4;
     List<Piece> currentPlayerPieces;
 
-    @BeforeClass
-    public static void setup() throws NotImplementedException {
+    @Before
+    public void setup() throws NotImplementedException {
         ArrayList<String> names = new ArrayList<>();
         names.add("Player one");
         names.add("Player two");
@@ -41,92 +42,163 @@ public class GameplayUnitTest {
     }
 
     @Test
-    public void moveFirstPieceWithDiceRoll1() throws NotFoundException {
+    public void testPlayerOneWalks() throws NotFoundException {
+        int roll = 6;
+        int moved = 0;
+        var movablePieces = getPlayersMovablePieces(roll);
+        var currentPiece = movablePieces.get(0);
+        var pphm = game.getBoard().getPiecePositionHashMap();
+        var positions = game.getBoard().getPositions();
 
-        // Test that all pieces are movable when home and then move one piece and check that it moved
-        int diceRoll = 1;
-        var movablePieces = getPlayersMovablePieces(diceRoll);
-        assertThat(movablePieces.size()).isEqualTo(getPlayersPieces().size());
-        assertThat(movablePieces.get(0).getIndex()).isEqualTo(0);
+        game.move(roll, currentPiece);
+        moved += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
-        game.move(diceRoll, movablePieces.get(0));
-        assertThat(movablePieces.get(0).getIndex()).isEqualTo(1);
-        var ppHashMap = game.getBoard().getPiecePositionHashMap();
-        assertThat(ppHashMap.get(movablePieces.get(0)).getPos()).isEqualTo(game.getBoard().getPositions().get(15+1).getPos());
+        game.move(roll, currentPiece);
+        moved += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
+        game.move(roll, currentPiece);
+        moved += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
-        // Test if there's only one movable piece when 3 are home and one is at the first position
-        diceRoll = 1;
-        movablePieces = getPlayersMovablePieces(diceRoll);
-        assertThat(movablePieces.size()).isEqualTo(1);
+        game.move(roll, currentPiece);
+        moved += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
+        game.move(roll, currentPiece);
+        moved += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
-        // Test that a player can move a piece out of home with a 6 and that the piece gets index
-        // 6 after being moved
-        game.selectNextPlayer();
-        diceRoll = 6;
-        movablePieces = getPlayersMovablePieces(diceRoll);
-        assertThat(movablePieces.size()).isEqualTo(getPlayersPieces().size());
-        game.move(diceRoll, movablePieces.get(0));
-        assertThat(movablePieces.get(0).getIndex()).isEqualTo(6);
-        assertThat(ppHashMap.get(movablePieces.get(0)).getPos()).isEqualTo(game.getBoard().getPositions().get(10+15+6).getPos());
+        game.move(roll, currentPiece);
+        moved += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
-        // Test that only the already moved piece is movable, since the pieces at home will
-        // otherwise end up at the same position
-        movablePieces = getPlayersMovablePieces(diceRoll);
-        assertThat(movablePieces.size()).isEqualTo(1);
-
-
-        //
-        game.selectNextPlayer();
-        diceRoll = 6;
-        movablePieces = getPlayersMovablePieces(diceRoll);
-        game.move(diceRoll, movablePieces.get(1));
-
-
-        // Test if piece laps correctly and knocks out player one's piece at position 0.
-        game.selectNextPlayer();
-        movablePieces = getPlayersMovablePieces(diceRoll);
-        game.move(diceRoll, movablePieces.get(0));
-        game.move(5, movablePieces.get(0));
-        Piece currentPiece = movablePieces.get(0);
-        assertThat(game.getBoard().getPiecePositionHashMap().get(currentPiece).getPos()).isEqualTo(0);
-        game.selectNextPlayer();
-        assertThat(getPlayersPieces().get(0).getIndex()).isEqualTo(0);
-        Piece pieceThatShouldBeKnockedOut = getPlayersPieces().get(0);
-        assertThat(game.getBoard().getPiecePositionHashMap().get(pieceThatShouldBeKnockedOut).getPos()).isEqualTo(pieceThatShouldBeKnockedOut.getHomeNumber());
+        roll = 4;
+        game.move(roll, currentPiece);
+        moved += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
 
-        // TODO: 2021-10-04 Add asserts below 
-        game.selectNextPlayer();
-        game.selectNextPlayer();
-        movablePieces = getPlayersMovablePieces(6);
-        game.move(6, movablePieces.get(0));
-        game.move(6, movablePieces.get(0));
-        game.move(6, movablePieces.get(0));
-        game.move(6, movablePieces.get(0));
-        game.move(6, movablePieces.get(0));
-        game.move(6, movablePieces.get(0));
+        // Walk toward middle
+        roll = 1;
+        game.move(roll, currentPiece);
+        moved += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
+        // One step before middle path
+        roll = 3;
+        game.move(roll, currentPiece);
+        moved += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
-        game.selectNextPlayer();
-        movablePieces = getPlayersMovablePieces(6);
-        game.move(6, movablePieces.get(0));
-        game.move(6, movablePieces.get(0));
-        game.move(6, movablePieces.get(0));
-        game.move(6, movablePieces.get(0));
-        game.move(6, movablePieces.get(0));
+        // Walk out to entry before middle path
+        roll = 6;
+        game.move(roll, currentPiece);
+        moved += 1;
+        moved -= 5;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
         //printAllPieceLocations();
-        game.move(6, movablePieces.get(0));
-        game.move(1, movablePieces.get(0));
-        game.move(6, movablePieces.get(0));
+    }
+
+    @Test
+    public void testPlayerTwoWalks() throws NotFoundException {
+        game.selectNextPlayer();
+        int roll = 6;
+        int moved = 0;
+        var movablePieces = getPlayersMovablePieces(roll);
+        var currentPiece = movablePieces.get(0);
+        var pphm = game.getBoard().getPiecePositionHashMap();
+        var positions = game.getBoard().getPositions();
+
+        game.move(roll, currentPiece);
+        moved += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1 + currentPiece.getOffset()));
+
+
+        game.move(roll, currentPiece);
+        moved += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1 + currentPiece.getOffset()));
+
+        game.move(roll, currentPiece);
+        moved += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1 + currentPiece.getOffset()));
+
+        game.move(roll, currentPiece);
+        moved += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1 + currentPiece.getOffset()));
+
+        game.move(roll, currentPiece);
+        moved += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1 + currentPiece.getOffset()));
+
+        game.move(roll, currentPiece);
+        moved += roll;
+        int pos = moved + -40 + currentPiece.getOffset();
+        System.out.println(moved - 1 - 40);
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + pos - 1));
+
+        roll = 4;
+        game.move(roll, currentPiece);
+        moved += roll;
+        pos += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + pos - 1));
+
+        // Walk toward middle path
+        roll = 1;
+        game.move(roll, currentPiece);
+        moved += roll;
+        pos = 44;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + pos));
+
+        // One step before middle path
+        roll = 3;
+        game.move(roll, currentPiece);
+        moved += roll;
+        pos += roll;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + pos));
+
+        // Walk out to entry before middle path
+        roll = 6;
+        game.move(roll, currentPiece);
+        moved += 1;
+        moved -= 5;
+        pos = 9;
+        assertThat(currentPiece.getIndex()).isEqualTo(moved);
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + pos));
 
         //printAllPieceLocations();
-
     }
 
 
-    // Helper methods below
+
+
+
+
+
+
+    // Helper methods
+
+
     private ArrayList<Piece> getPlayersMovablePieces(int roll) {
         return game.getMovablePieces(game.getCurrentPlayer(), roll);
     }
@@ -145,35 +217,6 @@ public class GameplayUnitTest {
                 System.out.println(p + ": " + "Index: " + piece.getIndex() + ", Position: " + game.getBoard().getPosition(piece).getPos() + ", Home: " + piece.getHomeNumber());
             }
         }
-    }
-
-
-    // TODO: 2021-09-29 Remove everything below or find how to not test everything in one method.
-    // Current problem is that the data is not persistent, inconsistent and seemingly not called
-    // in deterministic order. Hard to test a series of events with those problems.
-
-    public void initTestAttributes() {
-        currentPlayer = game.getCurrentPlayer();
-        currentPlayerPieces = game.getCurrentPlayer().getPieces();
-    }
-
-    public void testIfOnlyOneMovablePieceWithRoll1() {
-        var diceRoll = 1;
-        var movablePieces = game.getMovablePieces(currentPlayer, diceRoll);
-        assertThat(movablePieces.size()).isEqualTo(1);
-    }
-
-    public void moveSecondPieceWithDiceRoll6() throws NotFoundException {
-        game.selectNextPlayer();
-        int diceRoll = 6;
-        var movablePieces = game.getMovablePieces(currentPlayer, diceRoll);
-        assertThat(movablePieces.size()).isEqualTo(currentPlayerPieces.size());
-        game.move(diceRoll, movablePieces.get(0));
-        assertThat(movablePieces.get(0).getIndex()).isEqualTo(6);
-    }
-
-    public void t2() {
-        System.out.println(currentPlayer.getName());
     }
 
 }

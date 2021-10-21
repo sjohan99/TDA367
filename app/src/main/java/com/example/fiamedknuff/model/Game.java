@@ -29,7 +29,7 @@ public class Game implements Serializable {
      * @param players is a list of the players who will play the game.
      * @throws NotImplementedException if an unsupported amount of players is given.
      */
-    public Game(List<Player> players) throws NotImplementedException {
+    Game(List<Player> players) throws NotImplementedException {
         activePlayers = players;
         board = new Board(players.size(), getAllPlayerPieces());
         dice = new Dice();

@@ -21,7 +21,7 @@ public class Dice implements Serializable{
      *
      * @param valueMax the highest number the dice can roll.
      */
-    public Dice(int valueMax) {
+    Dice(int valueMax) {
         this.valueMax = valueMax;
         this.isUsed = true;
     }

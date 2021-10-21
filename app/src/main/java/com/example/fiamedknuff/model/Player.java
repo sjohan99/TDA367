@@ -23,7 +23,7 @@ public class Player implements Serializable {
      * @param name is the name of the player.
      * @param color is the player's color.
      */
-    public Player(String name, Color color) {
+    Player(String name, Color color) {
         this.name = name;
         pieces = new ArrayList<>(4);
         for (int i = 0; i < 4; i++) {
