@@ -21,7 +21,7 @@ public class Position implements Serializable {
      *
      * @param x is the position.
      */
-    public Position(int x) {
+    Position(int x) {
         pos = x;
     }
 
@@ -30,7 +30,7 @@ public class Position implements Serializable {
      *
      * @return the position.
      */
-    public int getPos() {
+    int getPos() {
         return pos;
     }
 

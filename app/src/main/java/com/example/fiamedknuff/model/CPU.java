@@ -24,7 +24,7 @@ public class CPU extends Player {
      * @param name is the name of the CPU.
      * @param color is the CPU's color.
      * */
-    public CPU(String name, Color color) {
+    CPU(String name, Color color) {
         super(name, color);
     }
 

@@ -24,7 +24,7 @@ import java.util.List;
  *      NotImplementedException
  *
  * Created by
- * @author Emma Stålberg
+ * @author Emma Stålberg, Hanna Boquist, Amanda Cyrén
  */
 public class GameViewModel extends ViewModel {
 
