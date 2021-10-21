@@ -8,7 +8,6 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -28,8 +27,13 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * UI controller for the game view layout.
- * @author Philip Winsnes
+ * Responsibility: UI controller for the game view layout.
+ *
+ * Used by: TODO ??
+ * Uses: PodiumDialogFragment, Player, GameViewModel
+ *
+ * Created by
+ * @author Philip Winsnes, Emma Stålberg
  */
 public class GameViewFragment extends Fragment {
 
@@ -136,12 +140,9 @@ public class GameViewFragment extends Fragment {
     }
 
     private void initObservers() {
-        gameViewModel.currentPlayer.observe(getActivity(), new Observer<>() {
-            @Override
-            public void onChanged(Player player) {
-                ImageView target = playerToDicespaceHashMap.get(player.getName());
-                moveDice(target);
-            }
+        gameViewModel.currentPlayer.observe(getActivity(), player -> {
+            ImageView target = playerToDicespaceHashMap.get(player.getName());
+            moveDice(target);
         });
     }
 

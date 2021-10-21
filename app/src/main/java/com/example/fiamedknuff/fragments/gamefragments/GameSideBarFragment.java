@@ -18,7 +18,12 @@ import com.example.fiamedknuff.fragments.dialogfragments.ExitGameDialogFragment;
 import com.example.fiamedknuff.fragments.dialogfragments.ReplayDialogFragment;
 
 /**
- * UI controller for the side bar layout.
+ * Responsibility: UI controller for the side bar layout.
+ *
+ * Used by: GameViewFrament
+ * Uses: ExitGameDialogFragment, ReplayDialogFragment
+ *
+ * Created by
  * @author Philip Winsnes
  */
 public class GameSideBarFragment extends Fragment {
@@ -29,6 +34,7 @@ public class GameSideBarFragment extends Fragment {
     private MediaPlayer mediaPlayer;
     private boolean soundMuted;
 
+    //TODO javadoc
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

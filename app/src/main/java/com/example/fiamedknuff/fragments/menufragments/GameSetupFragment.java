@@ -28,13 +28,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+// TODO: 2021-10-11 Disable being able to choose only one player
 /**
- * A class GameSetupFragment that handles the GUI for the page to set up a game.
+ * Responsibility: A class GameSetupFragment that handles the GUI for the page 
+ *    to set up a game.
+ *
+ * Used by: -
+ * Uses: NotImplementedException, Color, GameViewModel
  *
  * Created by
  * @author Philip Winsnes, Hanna Boquist
  */
-
 public class GameSetupFragment extends Fragment {
 
     private NavController navController;
@@ -78,7 +82,8 @@ public class GameSetupFragment extends Fragment {
             // GameFactory.createNewGame(getPlayerNames(), getColors(), getSelectedCPU());
             if (readyToCreateGame) {
                 try {
-                    gameViewModel.init(GameSetupFragment.this.getPlayerNames(), GameSetupFragment.this.getColors(), GameSetupFragment.this.getSelectedCPU());
+                    gameViewModel.init(
+                            GameSetupFragment.this.getPlayerNames(), GameSetupFragment.this.getColors(), GameSetupFragment.this.getSelectedCPU());
                 } catch (NotImplementedException e) {
                     e.printStackTrace();
                 }
@@ -151,7 +156,6 @@ public class GameSetupFragment extends Fragment {
         ArrayList<Boolean> isCPUs = new ArrayList<>();
         isCPUs.add(false);
         for (int i = 0; i < selectedPlayerCount-1; i++) {
-            //isCPUs.add(true);
             isCPUs.add(CPUCheckBoxes.get(i).isChecked());
         }
         return isCPUs;

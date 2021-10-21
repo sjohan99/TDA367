@@ -1,12 +1,20 @@
 package com.example.fiamedknuff.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
 import com.example.fiamedknuff.R;
+
+/**
+ * TODO
+ * Responsibility: Creates the main activity.
+ *
+ * Used by: -
+ * Uses: -
+ *
+ * Created by
+ * @author Emma Stålberg, Hanna Boquist, Amanda Cyrén, Philip Winsnes, Johan Selin
+ */
 
 public class MainActivity extends AppCompatActivity {
 

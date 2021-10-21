@@ -9,20 +9,37 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Class representing the board on which pieces move. Implements Serializable to handle data.
+ * Responsibility: A class representing the board on which pieces move. Implements
+ *  Serializable to handle data.
+ *
+ * Used by: CPU, Game
+ * Uses: Piece, Position
  *
  * Created by
- * @author Johan Selin, Hanna Boquist, Amanda Cyrén
+ * @author Johan Selin, Amanda Cyrén, Hanna Boquist, Emma Stålberg
  */
 public class Board implements Serializable {
 
-    private List<Position> positions; // List of all positions on the board including home-positions
-    private HashMap<Piece, Position> piecePositionHashMap; // Maps the pieces to their positions
-    private final int[] numberOfPositions = {0, 57, 57, 57, 0, 0, 0}; // Number of positions for each board size
-    private final int[] walkOutOffset = {0, 10, 10, 10, 0, 0, 0}; // Walk out offset-multiplier for the pieces for each board size
-    private final int[] lapLength = {0, 40, 40, 40, 0, 0, 0}; // The amount of steps to walk around the path
-    private final int[] finishIndex = {0, 45, 45, 45, 0, 0, 0}; // Index for last square where a piece finishes and disappears
-    private final int playerCount; // Amount of players
+    // List of all positions on the board including home-positions
+    private List<Position> positions;
+
+    // Maps the pieces to their positions
+    private HashMap<Piece, Position> piecePositionHashMap;
+
+    // Number of positions for each board size
+    private final int[] numberOfPositions = {0, 57, 57, 57, 0, 0, 0};
+
+    // Walk out offset-multiplier for the pieces for each board size
+    private final int[] walkOutOffset = {0, 10, 10, 10, 0, 0, 0};
+
+    // The amount of steps to walk around the path
+    private final int[] lapLength = {0, 40, 40, 40, 0, 0, 0};
+
+    // Index for last square where a piece finishes and disappears
+    private final int[] finishIndex = {0, 45, 45, 45, 0, 0, 0};
+
+    // Amount of players
+    private final int playerCount;
 
     /**
      * Sole constructor for the class. Creates a board according to the number of players and the

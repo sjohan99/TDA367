@@ -1,7 +1,13 @@
 package com.example.fiamedknuff.exceptions;
 
 /**
- * Exception for when iterating an iterative searching for a certain value but it cannot be found
+ * Responsibility: Exception for when iterating an iterative searching for a 
+ *      certain value but it cannot be found.
+ *
+ * Used by: BoardFragment, Board, Game, GameViewModel
+ * Uses: Exception
+ *
+ * Created by
  * @author Johan Selin
  */
 public class NotFoundException extends Exception {
