@@ -20,7 +20,7 @@ public class Piece implements Serializable {
      *
      * @param color the color the Piece is supposed to have.
      */
-    public Piece(Color color) {
+    Piece(Color color) {
         this.color = color;
         index = 0;      // index = 0 innebär att pjäsen sätts i boet
     }

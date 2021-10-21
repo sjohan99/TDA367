@@ -17,7 +17,7 @@ public class Position implements Serializable {
      *
      * @param x is the position.
      */
-    public Position(int x) {
+    Position(int x) {
         pos = x;
     }
 

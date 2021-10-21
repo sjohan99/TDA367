@@ -33,7 +33,7 @@ public class Board implements Serializable {
      * @param pieces all pieces to be involved in the game.
      * @throws NotImplementedException if given amount of players is not yet supported.
      */
-    public Board(int playerCount, List<Piece> pieces) throws NotImplementedException {
+    Board(int playerCount, List<Piece> pieces) throws NotImplementedException {
         if (playerCount >= 2 && playerCount <= 4) {
             this.playerCount = playerCount;
             this.positions = createPositionsList();
