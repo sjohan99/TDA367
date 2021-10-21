@@ -11,10 +11,7 @@ import androidx.fragment.app.DialogFragment;
 import com.example.fiamedknuff.R;
 
 /**
- * TODO delete link or not?
  * Responsibility: A DialogFragment container, designed for creating and hosting dialogs (popups).
- * For more information: <a href="https://developer.android.com/guide/fragments/dialogs">
- *     Displaying dialogs with DialogFragment </a>
  *
  * Used by: GameSideBarFragment
  * Uses: -

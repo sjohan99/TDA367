@@ -9,7 +9,7 @@ import java.util.List;
  *  to determine which move to make.
  *
  * Used by: GameFactory, GameViewModel
- * Uses: Board, Color, Piece, Position, Player TODO player correct?
+ * Uses: Board, Color, Piece, Position, Player
  *
  * Created by
  * @author Amanda Cyrén, Hanna Boquist

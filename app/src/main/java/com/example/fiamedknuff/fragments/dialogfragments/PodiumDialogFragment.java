@@ -9,10 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 /**
- * TODO delete link?
  * Responsibility: A DialogFragment container, designed for creating and hosting dialogs (popups).
- *  For more information: <a href="https://developer.android.com/guide/fragments/dialogs">
- *      Displaying dialogs with DialogFragment </a>
  *
  * Used by: GameViewFragment
  * Uses: -
@@ -26,6 +23,7 @@ public class PodiumDialogFragment extends DialogFragment {
      * Creates a Dialog to display as part of the DialogFragment.
      * The DialogFragment handles displaying the Dialog at appropriate
      * states in the fragment's lifecycle.
+     *
      * @param savedInstanceState is the savedInstanceState
      * @return a new AlertDialog
      */

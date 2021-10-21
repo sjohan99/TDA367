@@ -10,7 +10,7 @@ import com.example.fiamedknuff.R;
  * Responsibility: Creates the main activity.
  *
  * Used by: -
- * Uses: TODO
+ * Uses: -
  *
  * Created by
  * @author Emma Stålberg, Hanna Boquist, Amanda Cyrén, Philip Winsnes, Johan Selin

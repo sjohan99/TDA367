@@ -4,7 +4,7 @@ package com.example.fiamedknuff.exceptions;
  * Responsibility: TODO
  *
  * Used by: BoardFragment, Board, Game, GameViewModel
- * Uses: TODO
+ * Uses: Exception
  *
  * Created by
  * @author Johan Selin
