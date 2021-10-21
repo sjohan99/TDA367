@@ -38,7 +38,7 @@ public class GameViewFragment extends Fragment {
     private List<TextView> playerLabels = new ArrayList<>();
 
     private GameSideBarFragment sideBarFragment;
-    private StandardboardFragment boardFragment;
+    private BoardFragment boardFragment;
     private DiceFragment diceFragment;
 
     private FragmentManager fragmentManager;
