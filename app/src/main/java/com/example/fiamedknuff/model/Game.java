@@ -67,7 +67,7 @@ public class Game implements Serializable {
      *
      * @return the dice.
      */
-    public Dice getDice() {
+    Dice getDice() {
         return dice;
     }
 
@@ -101,7 +101,7 @@ public class Game implements Serializable {
      *
      * @return the current players index.
      */
-    public int getCurrentPlayerIndex() {
+    int getCurrentPlayerIndex() {
         return currentPlayerIndex;
     }
 
@@ -146,7 +146,7 @@ public class Game implements Serializable {
      * @param rolledValue the rolled value.
      * @return all the players movable pieces in a collection.
      */
-    public ArrayList<Piece> getMovablePieces(Player player, int rolledValue) {
+    ArrayList<Piece> getMovablePieces(Player player, int rolledValue) {
         return player.getMovablePieces(player.getPieces(), rolledValue);
     }
 
