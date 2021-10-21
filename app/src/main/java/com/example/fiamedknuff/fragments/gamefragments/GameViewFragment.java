@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.fragments.dialogfragments.PodiumDialogFragment;
 import com.example.fiamedknuff.model.Player;
-import com.example.fiamedknuff.viewmodels.GameViewModel;
+import com.example.fiamedknuff.viewModels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;

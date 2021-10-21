@@ -20,7 +20,7 @@ public class Piece implements Serializable {
      *
      * @param color the color the Piece is supposed to have.
      */
-    public Piece(Color color) {
+    Piece(Color color) {
         this.color = color;
         index = 0;      // index = 0 innebär att pjäsen sätts i boet
     }
@@ -30,7 +30,7 @@ public class Piece implements Serializable {
      *
      * @return the piece's current index.
      */
-    public int getIndex() {
+    int getIndex() {
         return index;
     }
 
@@ -39,7 +39,7 @@ public class Piece implements Serializable {
      *
      * @param index the index the piece will receive.
      */
-    public void setIndex(int index) {
+    void setIndex(int index) {
         this.index = index;
     }
 
@@ -78,7 +78,7 @@ public class Piece implements Serializable {
      *
      * @return the home number of the piece.
      */
-    public int getHomeNumber() {
+    int getHomeNumber() {
         return homeNumber;
     }
 
@@ -96,7 +96,7 @@ public class Piece implements Serializable {
      *
      * @param offset the offset of the the piece.
      */
-    public void setOffset(int offset) {
+    void setOffset(int offset) {
         this.offset = offset;
     }
 
@@ -105,7 +105,7 @@ public class Piece implements Serializable {
      *
      * @return the offset of the the piece.
      */
-    public int getOffset() {
+    int getOffset() {
         return this.offset;
     }
 }

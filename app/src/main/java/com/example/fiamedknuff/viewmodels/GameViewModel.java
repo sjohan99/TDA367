@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.viewmodels;
+package com.example.fiamedknuff.viewModels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -21,7 +21,7 @@ import java.util.List;
  * A class responsible for communicating the model to whatever view is interested.
  *
  * Created by
- * @author Emma Stålberg
+ * @author Emma Stålberg, Hanna Boquist, Amanda Cyrén
  */
 
 public class GameViewModel extends ViewModel {

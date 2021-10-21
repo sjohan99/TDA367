@@ -36,7 +36,7 @@ public class Player implements Serializable {
      *
      * @param name the name of the player.
      */
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
@@ -54,7 +54,7 @@ public class Player implements Serializable {
      *
      * @return a list of the player's pieces.
      */
-    public List<Piece> getPieces() {
+    List<Piece> getPieces() {
         return pieces;
     }
 

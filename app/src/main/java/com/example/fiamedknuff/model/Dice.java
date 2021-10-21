@@ -39,7 +39,7 @@ public class Dice implements Serializable{
      *
      * @return true if dice has been used, else false.
      */
-    public Boolean getIsUsed() {
+    Boolean getIsUsed() {
         return this.isUsed;
     }
 
@@ -48,7 +48,7 @@ public class Dice implements Serializable{
      *
      * @param isUsed the boolean value isUsed variable to be changed to.
      */
-    public void setIsUsed(Boolean isUsed) {
+    void setIsUsed(Boolean isUsed) {
         this.isUsed = isUsed;
     }
 
@@ -57,7 +57,7 @@ public class Dice implements Serializable{
      *
      * @return rolled number.
      */
-    public int getRolledValue() {
+    int getRolledValue() {
         return rolledValue;
     }
 
