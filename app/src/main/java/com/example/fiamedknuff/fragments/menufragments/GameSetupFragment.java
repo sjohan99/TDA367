@@ -99,6 +99,7 @@ public class GameSetupFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object item = parent.getItemAtPosition(position);
                 selectedPlayerCount = Integer.parseInt(item.toString());
+                // TODO: 2021-10-22 Probably change selectedPlayerCount-1 to just selectedPlayerCount
                 for (int i = 0; i < selectedPlayerCount-1; i++) {
                     players.get(i).setVisibility(View.VISIBLE);
                     CPUCheckBoxes.get(i).setVisibility(View.VISIBLE);
@@ -136,6 +137,7 @@ public class GameSetupFragment extends Fragment {
         colors.add(Color.BLUE);
         colors.add(Color.BLACK);
         colors.add(Color.PINK);
+        colors.add(Color.WHITE);
     }
 
     private List<Color> getColors() {
