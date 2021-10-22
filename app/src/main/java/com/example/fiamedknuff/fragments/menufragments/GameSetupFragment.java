@@ -37,7 +37,7 @@ import java.util.regex.Pattern;
  * Uses: NotImplementedException, Color, GameViewModel
  *
  * Created by
- * @author Philip Winsnes, Hanna Boquist
+ * @author Philip Winsnes, Hanna Boquist, Amanda Cyrén
  */
 public class GameSetupFragment extends Fragment {
 
@@ -104,9 +104,11 @@ public class GameSetupFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object item = parent.getItemAtPosition(position);
                 selectedPlayerCount = Integer.parseInt(item.toString());
-                for (int i = 0; i < selectedPlayerCount-1; i++) {
+                for (int i = 0; i < selectedPlayerCount; i++) {
+                    if (i < CPUCheckBoxes.size() && i >= 1) {
+                        CPUCheckBoxes.get(i).setVisibility(View.VISIBLE);
+                    }
                     players.get(i).setVisibility(View.VISIBLE);
-                    CPUCheckBoxes.get(i).setVisibility(View.VISIBLE);
                 }
                 for (int i = selectedPlayerCount; i < players.size(); i++) {
                     players.get(i).setVisibility(View.INVISIBLE);
