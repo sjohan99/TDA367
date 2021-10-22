@@ -33,10 +33,6 @@
   Projektet ämnar att skapa en Android-applikation av brädspelet Fia med knuff, som tillåter en eller flera spelare att spela mot en dator eller mot varandra. Applikationen ska tillhandahålla spelaren ett konventionellt Fia med knuff i digitalt format men också erbjuda extra funktionalitet såsom lokalt flerspelarläge och anpassningsbart spelarantal.
 </p>
 
-<!-- Projektfilsbeskrivning -->
-<h2 id="project-files-description"> Projektfilsbeskrivning </h2>
-WIP
-
 <!-- Setup -->
 <h2 id="getting-started"> Kör programmet på din maskin </h2>
 För att köra appen på datorn är det lättaste sättet att använda android studio.
@@ -59,7 +55,6 @@ För att köra appen på datorn är det lättaste sättet att använda android s
 
 <!-- Lista över medverkande -->
 <h2 id="credits"> Lista över medverkande </h2>
-WIP
 
 <div class="attribution-block">Musik: <a href="http://dig.ccmixter.org/files/Milky_Blue/63912">Lights Writing</a> by Milky_Blue (c) copyright 2021 Licensed under a Creative Commons <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution Noncommercial  (3.0)</a> license. </div>
 
