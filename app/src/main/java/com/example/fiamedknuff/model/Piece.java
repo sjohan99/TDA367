@@ -18,7 +18,7 @@ public class Piece implements Serializable {
     private int index;
 
     // The color of the piece
-    private Color color;
+    private final Color color;
 
     // The index which represents where the pieces home is
     private int homeNumber;

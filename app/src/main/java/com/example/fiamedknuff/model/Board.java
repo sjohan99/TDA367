@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Responsibility: A class representing the board on which pieces move. Implements
@@ -21,10 +22,10 @@ import java.util.List;
 public class Board implements Serializable {
 
     // List of all positions on the board including home-positions
-    private List<Position> positions;
+    private final List<Position> positions;
 
     // Maps the pieces to their positions
-    private HashMap<Piece, Position> piecePositionHashMap;
+    private final HashMap<Piece, Position> piecePositionHashMap;
 
     // Number of positions for each board size
     private final int[] numberOfPositions = {0, 57, 57, 57, 0, 0, 0};
@@ -225,11 +226,13 @@ public class Board implements Serializable {
     }
 
     private Position decrementPositionOf(Piece piece) {
-        return positions.get(4 * playerCount + piecePositionHashMap.get(piece).getPos() - 1);
+        return positions.get(4 * playerCount +
+                Objects.requireNonNull(piecePositionHashMap.get(piece)).getPos() - 1);
     }
 
     private Position IncrementPositionOf(Piece piece) {
-        return positions.get(4 * playerCount + piecePositionHashMap.get(piece).getPos() + 1);
+        return positions.get(4 * playerCount +
+                Objects.requireNonNull(piecePositionHashMap.get(piece)).getPos() + 1);
     }
 
 
