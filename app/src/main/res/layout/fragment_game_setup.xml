@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
-                android:text="Player Amount:"
+                android:text="@string/player_amount"
                 android:textSize="30sp" />
 
             <Spinner
