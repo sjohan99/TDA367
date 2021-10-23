@@ -19,12 +19,12 @@ import android.widget.TextView;
 
 import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.fragments.dialogfragments.PodiumDialogFragment;
-import com.example.fiamedknuff.model.Player;
-import com.example.fiamedknuff.viewModels.GameViewModel;
+import com.example.fiamedknuff.viewmodels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Responsibility: UI controller for the game view layout.
@@ -33,32 +33,28 @@ import java.util.List;
  * Uses: PodiumDialogFragment, Player, GameViewModel
  *
  * Created by
- * @author Philip Winsnes, Emma Stålberg
+ * @author Philip Winsnes, Emma Stålberg, Johan Selin
  */
 public class GameViewFragment extends Fragment {
 
     private boolean alreadyInitialized;
     private TextView player1Label, player2Label, player3Label, player4Label;
-    private List<TextView> playerLabels = new ArrayList<>();
+    private final List<TextView> playerLabels = new ArrayList<>();
 
     private GameSideBarFragment sideBarFragment;
     private BoardFragment boardFragment;
     private DiceFragment diceFragment;
 
-    private FragmentManager fragmentManager;
-    private FragmentTransaction fragmentTransaction;
-
     private GameViewModel gameViewModel;
 
     private ConstraintLayout gameViewConstraintLayout;
     private FrameLayout diceFrame;
-    private FrameLayout boardFrame;
 
     private ImageView spacePlayer1Dice;
     private ImageView spacePlayer2Dice;
     private ImageView spacePlayer3Dice;
     private ImageView spacePlayer4Dice;
-    private HashMap<String, ImageView> playerToDicespaceHashMap;
+    private Map<String, ImageView> playerToDicespaceHashMap;
     private List<ImageView> diceSpaces;
 
     @Override
@@ -68,7 +64,6 @@ public class GameViewFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_game_view, container, false);
         gameViewConstraintLayout = view.findViewById(R.id.gameViewConstraintLayout);
 
-        // TODO: 2021-10-13 Check if everything should be inside here
         if (!alreadyInitialized) {
             initLabels(view);
             initFrames(view);
@@ -76,8 +71,6 @@ public class GameViewFragment extends Fragment {
             populatePlayerLabelList();
             setLabelNames();
             initFragments();
-
-            //TODO refactor
             initDiceSpacesList();
             initPlayerToDicespaceHashMap();
             initObservers();
@@ -95,48 +88,10 @@ public class GameViewFragment extends Fragment {
         super.onCreate(savedInstanceState);
         //gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
         alreadyInitialized = false;
-        System.out.println("GMF onCreate");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        System.out.println("GMF onStop");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        System.out.println("GMF onResume");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        System.out.println("GMF onPause");
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        System.out.println("GMF onStart");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        System.out.println("GMF onDestroy");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        System.out.println("GMF onDestroyView");
     }
 
     private void initFrames(View view) {
         diceFrame = view.findViewById(R.id.diceFrame);
-        boardFrame = view.findViewById(R.id.boardFrame);
     }
 
     private void initObservers() {
@@ -227,8 +182,8 @@ public class GameViewFragment extends Fragment {
     }
 
     private <T extends Fragment> void showFragment(int frameLayoutId, T fragment) {
-        fragmentManager = getChildFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentManager fragmentManager = getChildFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(frameLayoutId, fragment);
         fragmentTransaction.commit();
     }

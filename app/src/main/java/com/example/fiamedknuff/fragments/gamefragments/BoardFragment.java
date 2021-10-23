@@ -23,7 +23,7 @@ import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.exceptions.NotFoundException;
 import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Position;
-import com.example.fiamedknuff.viewModels.GameViewModel;
+import com.example.fiamedknuff.viewmodels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,8 +48,8 @@ public abstract class BoardFragment extends Fragment {
     boolean alreadyInitialized;
     ImageView latestClickedPiece;
     GameViewModel gameViewModel;
-    HashMap<ImageView, Piece> imageViewPieceHashMap;
-    HashMap<Position, ImageView> imageViewPositionHashMap;
+    Map<ImageView, Piece> imageViewPieceHashMap;
+    Map<Position, ImageView> imageViewPositionHashMap;
 
     //TODO javadoc
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -430,7 +430,7 @@ public abstract class BoardFragment extends Fragment {
      * Method used to help identify ImageViews for affecting pliancy on the current player's pieces.
      * @return Returns a HashMap with the current player's piece's ImageViews.
      */
-    private HashMap<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
+    private Map<Piece, ImageView> getCurrentPlayersMovablePiecesImageViews() {
         // For each of the player's movable pieces, iterate through all pieces in the HashMap
         // and find the corresponding ImageView that is connected to the movable piece.
         HashMap<Piece, ImageView> map = new HashMap<>();
