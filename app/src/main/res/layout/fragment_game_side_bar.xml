@@ -26,7 +26,7 @@
             android:layout_weight="1"
             android:background="#00FFFFFF"
             android:drawableTop="@drawable/ic_home_btn"
-            android:text="Home"
+            android:text="@string/home_button"
             android:textColor="#000000"
             android:textSize="10sp" />
 
@@ -37,7 +37,7 @@
             android:layout_weight="1"
             android:background="#00FFFFFF"
             android:drawableTop="@drawable/ic_settings_btn"
-            android:text="Settings"
+            android:text="@string/settings_button"
             android:textColor="#000000"
             android:textSize="10sp" />
 
@@ -48,7 +48,7 @@
             android:layout_weight="1"
             android:background="#00FFFFFF"
             android:drawableTop="@drawable/ic_rules_btn"
-            android:text="Rules"
+            android:text="@string/rulebook_button"
             android:textColor="#000000"
             android:textSize="10sp" />
 
@@ -59,7 +59,7 @@
             android:layout_weight="1"
             android:background="#00FFFFFF"
             android:drawableTop="@drawable/ic_mute_btn"
-            android:text="Sound"
+            android:text="@string/mute_button"
             android:textColor="#000000"
             android:textSize="10sp" />
 
@@ -70,7 +70,7 @@
             android:layout_weight="1"
             android:background="#00FFFFFF"
             android:drawableTop="@drawable/ic_replay_btn"
-            android:text="Replay"
+            android:text="@string/replay_button"
             android:textColor="#000000"
             android:textSize="10sp"
             android:paddingBottom="40dp"

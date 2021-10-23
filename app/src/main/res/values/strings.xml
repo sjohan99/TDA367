@@ -27,4 +27,10 @@
     <string name="popup_proceed_option">Yes</string>
     <string name="popup_cancel_option">No</string>
     <string name="save_this_game">Save this game?</string>
+
+    <!-- SideBar -->
+    <string name="home_button">Home</string>
+    <string name="settings_button">Settings</string>
+    <string name="mute_button">Sound</string>
+    <string name="replay_button">Replay</string>
 </resources>
