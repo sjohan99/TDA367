@@ -6,11 +6,14 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * A class Player that creates a player. A player has a name and a list of pieces.
- * Implements Serializable to handle data.
+ * Responsibility: A class Player that creates a player. A player has a name and a list of pieces.
+ *  Implements Serializable to handle data.
+ *
+ * Used by: GameViewFragment, CPU, Game, GameFactory, GameViewModel
+ * Uses: Piece, Color
  *
  * Created by
- * @author Amanda Cyrén, Hanna Boquist
+ * @author Amanda Cyrén, Hanna Boquist, Emma Stålberg, Johan Selin, Philip Winsnes
  */
 public class Player implements Serializable {
 
@@ -23,7 +26,7 @@ public class Player implements Serializable {
      * @param name is the name of the player.
      * @param color is the player's color.
      */
-    public Player(String name, Color color) {
+    Player(String name, Color color) {
         this.name = name;
         pieces = new ArrayList<>(4);
         for (int i = 0; i < 4; i++) {
@@ -36,7 +39,7 @@ public class Player implements Serializable {
      *
      * @param name the name of the player.
      */
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
@@ -54,7 +57,7 @@ public class Player implements Serializable {
      *
      * @return a list of the player's pieces.
      */
-    public List<Piece> getPieces() {
+    List<Piece> getPieces() {
         return pieces;
     }
 

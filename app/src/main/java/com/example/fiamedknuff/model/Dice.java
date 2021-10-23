@@ -4,24 +4,35 @@ import java.io.Serializable;
 import java.util.Random;
 
 /**
- * A class Dice that creates a dice. A Dice may be rolled. Implements Serializable to handle data.
+ * Responsibility: A class Dice that creates a dice. A Dice may be rolled. Implements
+ *  Serializable to handle data.
+ *
+ * Used by: Game
+ * Uses: -
  *
  * Created by
  * @author Emma Stålberg
  */
 public class Dice implements Serializable{
 
-    private int valueMax; // The maximum value the dice can have
-    private final Random rand = new Random(); // A variable Random to acquire a random number for the dice roll
-    private Boolean isUsed; // Set to true when used and are waiting to be rolled, false if it is rolled and not used yet
-    private int rolledValue; // A variable to hold the value of the rolled dice
+    // The maximum value the dice can have
+    private int valueMax;
+
+    // A variable Random to acquire a random number for the dice roll
+    private final Random rand = new Random();
+
+    // Set to true when used and are waiting to be rolled, false if it is rolled and not used yet
+    private Boolean isUsed;
+
+    // A variable to hold the value of the rolled dice
+    private int rolledValue;
 
     /**
      * Constructor that creates a dice with possible numbers from 1 to valueMax value.
      *
      * @param valueMax the highest number the dice can roll.
      */
-    public Dice(int valueMax) {
+    Dice(int valueMax) {
         this.valueMax = valueMax;
         this.isUsed = true;
     }
@@ -39,7 +50,7 @@ public class Dice implements Serializable{
      *
      * @return true if dice has been used, else false.
      */
-    public Boolean getIsUsed() {
+    Boolean getIsUsed() {
         return this.isUsed;
     }
 
@@ -48,7 +59,7 @@ public class Dice implements Serializable{
      *
      * @param isUsed the boolean value isUsed variable to be changed to.
      */
-    public void setIsUsed(Boolean isUsed) {
+    void setIsUsed(Boolean isUsed) {
         this.isUsed = isUsed;
     }
 
@@ -57,7 +68,7 @@ public class Dice implements Serializable{
      *
      * @return rolled number.
      */
-    public int getRolledValue() {
+    int getRolledValue() {
         return rolledValue;
     }
 

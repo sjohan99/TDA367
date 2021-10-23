@@ -13,23 +13,24 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fiamedknuff.R;
-import com.example.fiamedknuff.viewmodels.GameViewModel;
+import com.example.fiamedknuff.viewModels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * A class DiceFragment that handles the dice visually.
+ * Responsibility: A class DiceFragment that handles the dice visually.
+ *
+ * Used by: GameViewFragment
+ * Uses: GameViewModel
  *
  * Created by
- * @author Emma Stålberg, Hanna Boquist, Amanda Cyrén
+ * @author Emma Stålberg, Amanda Cyrén, Hanna Boquist
  */
-
 public class DiceFragment extends Fragment {
 
     View view;
@@ -71,22 +72,14 @@ public class DiceFragment extends Fragment {
 
     private void initDice() {
         diceImage = view.findViewById(R.id.diceImage);
-        diceImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rollDice();
-            }
-        });
+        diceImage.setOnClickListener(view -> rollDice());
         initDiceAnimationListener();
     }
 
     private void initObservers() {
-        gameViewModel.CPUDiceRoll.observe(getActivity(), new Observer<>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                if (aBoolean) {
-                    rollDice();
-                }
+        gameViewModel.CPUDiceRoll.observe(getActivity(), aBoolean -> {
+            if (aBoolean) {
+                rollDice();
             }
         });
     }

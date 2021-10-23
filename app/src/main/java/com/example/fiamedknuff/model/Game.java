@@ -7,8 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class responsible for tying together the different components of the game and using them to
- * simulate the game. Implements Serializable to handle data.
+ * Responsibility: Class responsible for tying together the different components of the
+ *  game and using them to simulate the game. Implements Serializable to handle data.
+ *
+ * Used by: GameFactory, GameViewModel
+ * Uses: Board, Player, Dice, Piece, Position
  *
  * Created by
  * @author Amanda Cyrén, Emma Stålberg, Hanna Boquist, Johan Selin, Philip Winsnes
@@ -29,7 +32,7 @@ public class Game implements Serializable {
      * @param players is a list of the players who will play the game.
      * @throws NotImplementedException if an unsupported amount of players is given.
      */
-    public Game(List<Player> players) throws NotImplementedException {
+    Game(List<Player> players) throws NotImplementedException {
         activePlayers = players;
         board = new Board(players.size(), getAllPlayerPieces());
         dice = new Dice();
@@ -67,7 +70,7 @@ public class Game implements Serializable {
      *
      * @return the dice.
      */
-    public Dice getDice() {
+    Dice getDice() {
         return dice;
     }
 
@@ -101,7 +104,7 @@ public class Game implements Serializable {
      *
      * @return the current players index.
      */
-    public int getCurrentPlayerIndex() {
+    int getCurrentPlayerIndex() {
         return currentPlayerIndex;
     }
 
@@ -146,7 +149,7 @@ public class Game implements Serializable {
      * @param rolledValue the rolled value.
      * @return all the players movable pieces in a collection.
      */
-    public ArrayList<Piece> getMovablePieces(Player player, int rolledValue) {
+    ArrayList<Piece> getMovablePieces(Player player, int rolledValue) {
         return player.getMovablePieces(player.getPieces(), rolledValue);
     }
 
@@ -190,7 +193,7 @@ public class Game implements Serializable {
      * Moves the piece according to diceValue.
      *
      * @param piece the piece to be moved.
-     * @throws Exception if a piece is to be knocked out but can't be found.
+     * @throws NotFoundException if a piece is to be knocked out but can't be found.
      * @return a list of positions the piece has passed including where it ends.
      */
     // TODO: 2021-10-14 Separate behavior into calculating path and moving??
@@ -212,7 +215,7 @@ public class Game implements Serializable {
      *
      * @param diceValue amount of steps to be taken.
      * @param piece the piece to be moved.
-     * @throws Exception if a piece is to be knocked out but can't be found.
+     * @throws NotFoundException if a piece is to be knocked out but can't be found.
      * @return returns a list of positions the piece has passed including where it ends.
      */
     // TODO: 2021-10-14 Separate behavior into calculating path and moving??
@@ -357,4 +360,15 @@ public class Game implements Serializable {
     public int getDiceValue() {
         return dice.getRolledValue();
     }
+
+    /**
+     * If a player rolls a six and is not finished, it is their turn again. Otherwise,
+     * it is the next player´s turn.
+     * @param playerIsFinished is true if the player is finished, otherwise false.
+     * @return true if it is the next player´s turn, otherwise false.
+     */
+    public boolean isNextPlayer(boolean playerIsFinished) {
+        return !((getDiceValue() == 6) && !playerIsFinished);
+    }
+
 }

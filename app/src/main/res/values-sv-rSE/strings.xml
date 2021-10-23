@@ -28,4 +28,10 @@
     <string name="popup_proceed_option">Ja</string>
     <string name="popup_cancel_option">Nej</string>
     <string name="save_this_game">Spara spelet?</string>
+
+    <!-- SideBar -->
+    <string name="home_button">Hem</string>
+    <string name="settings_button">Inställningar</string>
+    <string name="mute_button">Ljud</string>
+    <string name="replay_button">Spela om</string>
 </resources>

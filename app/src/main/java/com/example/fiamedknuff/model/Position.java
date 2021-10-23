@@ -3,7 +3,11 @@ package com.example.fiamedknuff.model;
 import java.io.Serializable;
 
 /**
- * The class Position creates a position. Implements Serializable to handle data.
+ * Responsibility: A class Position that creates a position. Implements Serializable to
+ *  handle data.
+ *
+ * Used by: BoardFragment, Board, CPU, Game, GameViewModel
+ * Uses: -
  *
  * Created by
  * @author Emma Stålberg
@@ -17,7 +21,7 @@ public class Position implements Serializable {
      *
      * @param x is the position.
      */
-    public Position(int x) {
+    Position(int x) {
         pos = x;
     }
 
@@ -26,7 +30,7 @@ public class Position implements Serializable {
      *
      * @return the position.
      */
-    public int getPos() {
+    int getPos() {
         return pos;
     }
 

@@ -18,7 +18,10 @@ import java.util.Locale;
 import app.num.numandroidpagecurleffect.PageCurlView;
 
 /**
- * A class rulebookFragment that handles the GUI for the rule book
+ * Responsibility: A class rulebookFragment that handles the GUI for the rule book
+ *
+ * Used by: -
+ * Uses: -
  *
  * Created by
  * @author Amanda Cyrén

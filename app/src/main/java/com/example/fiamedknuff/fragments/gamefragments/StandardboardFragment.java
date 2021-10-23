@@ -12,13 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class standardboardFragment that handles the view of the standardboard and its
- * pieces and positions.
+ * Responsibility: A class standardboardFragment that handles the view of the
+ *  standardboard and its pieces and positions.
+ *
+ * Used by: GameViewFragment
+ * Uses: -
  *
  * Created by
  * @author Emma Stålberg
  */
-
 public class StandardboardFragment extends BoardFragment {
     List<ImageView> boardPositions;
     List<ImageView> homePositions;

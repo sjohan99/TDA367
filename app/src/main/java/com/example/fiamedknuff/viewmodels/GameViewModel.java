@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.viewmodels;
+package com.example.fiamedknuff.viewModels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -14,26 +14,23 @@ import com.example.fiamedknuff.model.Piece;
 import com.example.fiamedknuff.model.Player;
 import com.example.fiamedknuff.model.Position;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
- * A class responsible for communicating the model to whatever view is interested.
+ * Responsibility: A class responsible for communicating the model to whatever view is interested.
+ *
+ * Used by: BoardFragment, DiceFragment, GameViewFragment, GameSetupFragment
+ * Uses: Game, Position, Player, Piece, GameFactory, CPU, Color, NotFoundException,
+ *      NotImplementedException
  *
  * Created by
- * @author Emma Stålberg
+ * @author Emma Stålberg, Hanna Boquist, Amanda Cyrén
  */
-
 public class GameViewModel extends ViewModel {
 
     private Game game;
-    private int playerCount;
-    private int diceValue;
-    private Collection<Piece> movablePieces;
-    private Piece selectedPiece;
     private List<String> playerNames;
-    private Color[] colors;
-  
+
     public MutableLiveData<List<Position>> movingPath = new MutableLiveData<>();
     public MutableLiveData<Player> currentPlayer = new MutableLiveData<>();
     public MutableLiveData<Boolean> movesArePossibleToMake = new MutableLiveData<>();
@@ -54,6 +51,7 @@ public class GameViewModel extends ViewModel {
 
     /**
      * Moves the clicked piece.
+     *
      * @param clickedPiece is the clicked piece
      */
     public void move(Piece clickedPiece) {
@@ -75,6 +73,7 @@ public class GameViewModel extends ViewModel {
 
     /**
      * Moves the piece. Sets the value of the mutable livedata "isMoved" to true.
+     *
      * @param piece is the piece that should be moved
      */
     private void movePiece(Piece piece) {
@@ -102,6 +101,7 @@ public class GameViewModel extends ViewModel {
     /**
      * Checks if the move of a piece results in a knockout. In that case, knockout
      * the piece.
+     *
      * @param piece is the moved piece that might knock out another piece
      * @throws NotFoundException if the method is called incorrectly
      */
@@ -117,6 +117,7 @@ public class GameViewModel extends ViewModel {
 
     /**
      * Removes the piece from the model if it is finished.
+     *
      * @param piece is the piece that might be finished
      * @return true if the piece is finished, false if it is not
      */
@@ -126,6 +127,7 @@ public class GameViewModel extends ViewModel {
 
     /**
      * Removes the current player from the model if it is finished.
+     *
      * @return true if the player is finished, and false otherwise.
      */
     public boolean removePlayerIfFinished() {
@@ -140,24 +142,25 @@ public class GameViewModel extends ViewModel {
 
     /**
      * Returns all player pieces from game.
+     *
      * @return all player pieces
      */
-
     public List<Piece> getPieces() {
         return game.getAllPlayerPieces();
     }
 
     /**
      * Returns the positions from the board.
+     *
      * @return the positions from the board.
      */
-
     public List<Position> getPositions() {
         return game.getPositions();
     }
   
     /**
      * Returns the dicevalue.
+     *
      * @return the dicevalue.
      */
     public int getDiceValue() {
@@ -180,12 +183,18 @@ public class GameViewModel extends ViewModel {
         game.setDiceIsUsed();
     }
 
+    /**
+     * Returns if the dice is used or not.
+     *
+     * @return True if dice is used, and False otherwise.
+     */
     public boolean isDiceUsed() {
         return game.getDiceIsUsed();
     }
 
     /**
      * Returns number of active players in the game.
+     *
      * @return number of active players.
      */
     public int getPlayerCount() {
@@ -194,6 +203,7 @@ public class GameViewModel extends ViewModel {
 
     /**
      * Returns the position of the piece given as a parameter.
+     *
      * @param piece is the piece from which you want to know the position
      * @return the position of the given piece
      */
@@ -204,6 +214,7 @@ public class GameViewModel extends ViewModel {
     /**
      * Checks if the current player can move any of their pieces with the rolled
      * dicevalue.
+     *
      * @return true if the current player can move any piece, and false otherwise
      */
     public boolean isPossibleToUseDicevalue() {
@@ -214,13 +225,19 @@ public class GameViewModel extends ViewModel {
     /**
      * If a player rolls a six and is not finished, it is their turn again. Otherwise,
      * it is the next player´s turn.
+     *
      * @param playerIsFinished is true if the player is finished, otherwise false.
      * @return true if it is the next player´s turn, otherwise false.
      */
     public boolean isNextPlayer(boolean playerIsFinished) {
-        return !((getDiceValue() == 6) && !playerIsFinished);
+        return game.isNextPlayer(playerIsFinished);
     }
 
+    /**
+     * Returns the movable pieces for the current player.
+     *
+     * @return the movable pieces for the current player.
+     */
     public LiveData<List<Piece>> getMovablePiecesForCurrentPlayer() {
         MutableLiveData<List<Piece>> data = new MutableLiveData<>();
         data.setValue(game.getMovablePieces(game.getCurrentPlayer()));
@@ -237,23 +254,23 @@ public class GameViewModel extends ViewModel {
         if (game.getDiceIsUsed()) {
             game.rollDice();
             return game.getDiceValue();
-            //return 1; //for testing
         }
         return -1;
     }
 
-
+    /**
+     * If the rolled value is not possible to use, i.e. the player can´t move
+     * any of their pieces with that value, the dice should be moved to the
+     * next player in the view and the dice should be set to used. Also, the next
+     * player should be selected.
+     * Otherwise, the player can make a turn and the player's pieces will be highlighted
+     * through the observer.
+     */
     public void diceRolled() {
-        // If the rolled value is not possible to use, i.e. the player can´t move
-        // any of their pieces with that value, the dice should be moved to the
-        // next player in the view and the dice should be set to used. Also, the next
-        // player should be selected.
         if (!isPossibleToUseDicevalue()) {
             setDiceIsUsed();
             selectNextPlayer();
         } else {
-            // The player can make a turn and the player's pieces will be highlighted
-            // through the observer.
             movesArePossibleToMake.setValue(true);
         }
     }

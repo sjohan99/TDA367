@@ -9,20 +9,37 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Class representing the board on which pieces move. Implements Serializable to handle data.
+ * Responsibility: A class representing the board on which pieces move. Implements
+ *  Serializable to handle data.
+ *
+ * Used by: CPU, Game
+ * Uses: Piece, Position
  *
  * Created by
- * @author Johan Selin, Hanna Boquist, Amanda Cyrén
+ * @author Johan Selin, Amanda Cyrén, Hanna Boquist, Emma Stålberg
  */
 public class Board implements Serializable {
 
-    private List<Position> positions; // List of all positions on the board including home-positions
-    private HashMap<Piece, Position> piecePositionHashMap; // Maps the pieces to their positions
-    private final int[] numberOfPositions = {0, 57, 57, 57, 0, 0, 0}; // Number of positions for each board size
-    private final int[] walkOutOffset = {0, 10, 10, 10, 0, 0, 0}; // Walk out offset-multiplier for the pieces for each board size
-    private final int[] lapLength = {0, 40, 40, 40, 0, 0, 0}; // The amount of steps to walk around the path
-    private final int[] finishIndex = {0, 45, 45, 45, 0, 0, 0}; // Index for last square where a piece finishes and disappears
-    private final int playerCount; // Amount of players
+    // List of all positions on the board including home-positions
+    private List<Position> positions;
+
+    // Maps the pieces to their positions
+    private HashMap<Piece, Position> piecePositionHashMap;
+
+    // Number of positions for each board size
+    private final int[] numberOfPositions = {0, 57, 57, 57, 0, 0, 0};
+
+    // Walk out offset-multiplier for the pieces for each board size
+    private final int[] walkOutOffset = {0, 10, 10, 10, 0, 0, 0};
+
+    // The amount of steps to walk around the path
+    private final int[] lapLength = {0, 40, 40, 40, 0, 0, 0};
+
+    // Index for last square where a piece finishes and disappears
+    private final int[] finishIndex = {0, 45, 45, 45, 0, 0, 0};
+
+    // Amount of players
+    private final int playerCount;
 
     /**
      * Sole constructor for the class. Creates a board according to the number of players and the
@@ -33,7 +50,7 @@ public class Board implements Serializable {
      * @param pieces all pieces to be involved in the game.
      * @throws NotImplementedException if given amount of players is not yet supported.
      */
-    public Board(int playerCount, List<Piece> pieces) throws NotImplementedException {
+    Board(int playerCount, List<Piece> pieces) throws NotImplementedException {
         if (playerCount >= 2 && playerCount <= 4) {
             this.playerCount = playerCount;
             this.positions = createPositionsList();
@@ -67,7 +84,7 @@ public class Board implements Serializable {
      *
      * @return the list of all positions.
      */
-    public List<Position> getPositions() {
+    List<Position> getPositions() {
         return positions;
     }
 
@@ -77,7 +94,7 @@ public class Board implements Serializable {
      * @param piece is the piece from which you want to know the position.
      * @return the position of the given piece.
      */
-    public Position getPosition(Piece piece) {
+    Position getPosition(Piece piece) {
         return piecePositionHashMap.get(piece);
     }
 
@@ -107,7 +124,7 @@ public class Board implements Serializable {
      *
      * @return the hashmap linking the pieces to a position.
      */
-    public HashMap<Piece, Position> getPiecePositionHashMap() {
+    HashMap<Piece, Position> getPiecePositionHashMap() {
         return piecePositionHashMap;
     }
 
@@ -116,7 +133,7 @@ public class Board implements Serializable {
      *
      * @return the lap length of the board.
      */
-    public int getLapLength() {
+    int getLapLength() {
         return lapLength[playerCount - 1];
     }
 
@@ -125,7 +142,7 @@ public class Board implements Serializable {
      *
      * @return the finish index of the board.
      */
-    public int getFinishIndex() {
+    int getFinishIndex() {
         return finishIndex[playerCount - 1];
     }
 
@@ -225,7 +242,7 @@ public class Board implements Serializable {
      *
      * @return the first position in the lap.
      */
-    public Position getFirstPositionInLap() {
+    private Position getFirstPositionInLap() {
         return positions.get(4*playerCount);
     }
 
@@ -234,7 +251,7 @@ public class Board implements Serializable {
      *
      * @return the index of the first position i the lap.
      */
-    public int getFirstPositionIndexInLap() {
+    int getFirstPositionIndexInLap() {
         return 4*playerCount;
     }
 
@@ -252,7 +269,7 @@ public class Board implements Serializable {
      * @param piece the piece to check the first position for.
      * @return the first position outside of the piece's home.
      */
-    public Position getFirstPositionOf(Piece piece) {
+    Position getFirstPositionOf(Piece piece) {
         return positions.get(4*playerCount + piece.getOffset());
     }
 

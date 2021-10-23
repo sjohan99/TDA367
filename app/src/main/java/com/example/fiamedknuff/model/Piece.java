@@ -3,24 +3,35 @@ package com.example.fiamedknuff.model;
 import java.io.Serializable;
 
 /**
- * A class representing a Piece in the game. Implements Serializable to handle data.
+ * Responsibility: A class Piece representing a Piece in the game. Implements Serializable
+ *  to handle data.
+ *
+ * Used by: BoardFragment, Board, CPU, Game, Player, GameViewModel
+ * Uses: Color
  *
  * Created by
- * @author Hanna Boquist
+ * @author Hanna Boquist, Amanda Cyrén, Emma Stålberg, Johan Selin, Philip Winsnes
  */
 public class Piece implements Serializable {
 
-    private int index; // Amount of steps the piece has taken towards its goal
-    private Color color; // The color of the piece
-    private int homeNumber; // The index which represents where the pieces home is
-    private int offset; // The offset which represents how many positions above zero the piece gets when leaving its home
+    // Amount of steps the piece has taken towards its goal
+    private int index;
+
+    // The color of the piece
+    private Color color;
+
+    // The index which represents where the pieces home is
+    private int homeNumber;
+
+    // The offset which represents how many positions above zero the piece gets when leaving its home
+    private int offset;
 
     /**
      * Sole constructor for the class. Creates a piece of the color supplied.
      *
      * @param color the color the Piece is supposed to have.
      */
-    public Piece(Color color) {
+    Piece(Color color) {
         this.color = color;
         index = 0;      // index = 0 innebär att pjäsen sätts i boet
     }
@@ -30,7 +41,7 @@ public class Piece implements Serializable {
      *
      * @return the piece's current index.
      */
-    public int getIndex() {
+    int getIndex() {
         return index;
     }
 
@@ -39,7 +50,7 @@ public class Piece implements Serializable {
      *
      * @param index the index the piece will receive.
      */
-    public void setIndex(int index) {
+    void setIndex(int index) {
         this.index = index;
     }
 
@@ -78,7 +89,7 @@ public class Piece implements Serializable {
      *
      * @return the home number of the piece.
      */
-    public int getHomeNumber() {
+    int getHomeNumber() {
         return homeNumber;
     }
 
@@ -96,7 +107,7 @@ public class Piece implements Serializable {
      *
      * @param offset the offset of the the piece.
      */
-    public void setOffset(int offset) {
+    void setOffset(int offset) {
         this.offset = offset;
     }
 
@@ -105,7 +116,7 @@ public class Piece implements Serializable {
      *
      * @return the offset of the the piece.
      */
-    public int getOffset() {
+    int getOffset() {
         return this.offset;
     }
 }
