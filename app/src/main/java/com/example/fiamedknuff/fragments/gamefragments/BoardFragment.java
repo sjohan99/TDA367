@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Responsibility: An abstract class BoardFragment. Superclass to fragments of boards.
@@ -36,7 +37,7 @@ import java.util.Map;
  *  that all boardfragments have. Some methods are declared abstract and should be
  *  implemented by the specific boardfragments that extends this class.
  *
- * Used by: StandardBoardFragment TODO correct?
+ * Used by: StandardBoardFragment
  * Uses: GameViewModel, NotFoundException, Piece, Position
  *
  * Created by
@@ -76,7 +77,7 @@ public abstract class BoardFragment extends Fragment {
     protected abstract void setView(LayoutInflater inflater, ViewGroup container);
 
     private void setGameViewModel() {
-        gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
+        gameViewModel = new ViewModelProvider(requireActivity()).get(GameViewModel.class);
     }
     protected abstract void setConstraintLayout();
 
@@ -228,7 +229,7 @@ public abstract class BoardFragment extends Fragment {
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void initMovingPathObserver() {
-        gameViewModel.movingPath.observe(getActivity(), movingPath -> {
+        gameViewModel.movingPath.observe(requireActivity(), movingPath -> {
             if (movingPath.size() != 0) {
                 unMarkAllPieces();
                 isMoved(movingPath);
@@ -241,7 +242,7 @@ public abstract class BoardFragment extends Fragment {
      * dicevalue is able to use.
      */
     private void initMovesArePossibleToMakeObserver() {
-        gameViewModel.movesArePossibleToMake.observe(getActivity(), aBoolean -> {
+        gameViewModel.movesArePossibleToMake.observe(requireActivity(), aBoolean -> {
             if (aBoolean) {
                 markMovablePieces();
             }
@@ -251,7 +252,7 @@ public abstract class BoardFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void initCurrentPlayerObserver() {
-        gameViewModel.currentPlayer.observe(getActivity(), player -> {
+        gameViewModel.currentPlayer.observe(requireActivity(), player -> {
             if (gameViewModel.isCPU(player)) {
                 gameViewModel.CPUDiceRoll(true);
                 Piece piece = gameViewModel.getPieceForCPUMove();
@@ -269,7 +270,7 @@ public abstract class BoardFragment extends Fragment {
     }
 
     private void initKnockedPieceObserver() {
-        gameViewModel.knockedPiece.observe(getActivity(), piece -> {
+        gameViewModel.knockedPiece.observe(requireActivity(), piece -> {
             Position target = gameViewModel.getPosition(piece);
             List<Position> movingPath = new ArrayList<>();
             movingPath.add(target);
@@ -286,9 +287,7 @@ public abstract class BoardFragment extends Fragment {
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void unMarkAllPieces() {
-        imageViewPieceHashMap.forEach((imageView, piece) -> {
-            imageView.clearAnimation();
-        });
+        imageViewPieceHashMap.forEach((imageView, piece) -> imageView.clearAnimation());
     }
 
     private synchronized void isMoved(List<Position> movingPath) {
@@ -309,21 +308,14 @@ public abstract class BoardFragment extends Fragment {
      * @param targets is the positions that the piece should be moved to
      */
     private synchronized void move(ImageView piece, List<Position> targets) {
-        Runnable walk = new Runnable() {
-            @Override
-            public void run() {
-                for (Position target : targets) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            moveImageView(piece, imageViewPositionHashMap.get(target));
-                        }
-                    });
-                    try {
-                        Thread.sleep(175);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        Runnable walk = () -> {
+            for (Position target : targets) {
+                requireActivity().runOnUiThread(() -> moveImageView(piece,
+                        Objects.requireNonNull(imageViewPositionHashMap.get(target))));
+                try {
+                    Thread.sleep(175);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         };
@@ -426,7 +418,6 @@ public abstract class BoardFragment extends Fragment {
     }
 
     /**
-     * TODO Make more slim
      * Method used to help identify ImageViews for affecting pliancy on the current player's pieces.
      * @return Returns a HashMap with the current player's piece's ImageViews.
      */
@@ -435,7 +426,7 @@ public abstract class BoardFragment extends Fragment {
         // and find the corresponding ImageView that is connected to the movable piece.
         HashMap<Piece, ImageView> map = new HashMap<>();
         LiveData<List<Piece>> movablePieces = gameViewModel.getMovablePiecesForCurrentPlayer();
-        for (Piece piece : movablePieces.getValue()) {
+        for (Piece piece : Objects.requireNonNull(movablePieces.getValue())) {
             for (Map.Entry<ImageView, Piece> entry : imageViewPieceHashMap.entrySet()) {
                 if (piece.toString().equals(entry.getValue().toString())) {
                     map.put(entry.getValue(), entry.getKey());
@@ -465,7 +456,7 @@ public abstract class BoardFragment extends Fragment {
         for (int i = 0; i < gameViewModel.getPlayerCount() * 4; i++) {
             ImageView piece = getListOfPiecesImageViews().get(i);
             Position target = gameViewModel.getPosition(imageViewPieceHashMap.get(piece));
-            moveImageView(piece, imageViewPositionHashMap.get(target));
+            moveImageView(piece, Objects.requireNonNull(imageViewPositionHashMap.get(target)));
         }
     }
 
