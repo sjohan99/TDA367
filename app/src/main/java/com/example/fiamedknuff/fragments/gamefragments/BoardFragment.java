@@ -41,7 +41,7 @@ import java.util.Objects;
  * Uses: GameViewModel, NotFoundException, Piece, Position
  *
  * Created by
- * @author Emma Stålberg, Amanda Cyrén, Hanna Boquist
+ * @author Emma Stålberg, Amanda Cyrén, Hanna Boquist, Johan Selin
  */
 public abstract class BoardFragment extends Fragment {
 

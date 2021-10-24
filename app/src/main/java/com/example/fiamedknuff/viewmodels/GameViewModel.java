@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.viewModels;
+package com.example.fiamedknuff.viewmodels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -24,7 +24,7 @@ import java.util.List;
  *      NotImplementedException
  *
  * Created by
- * @author Emma Stålberg, Hanna Boquist, Amanda Cyrén
+ * @author Emma Stålberg, Hanna Boquist, Amanda Cyrén, Johan Selin
  */
 public class GameViewModel extends ViewModel {
 

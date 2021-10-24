@@ -29,7 +29,7 @@ import java.util.List;
  * Uses: GameViewModel
  *
  * Created by
- * @author Emma Stålberg, Amanda Cyrén, Hanna Boquist
+ * @author Emma Stålberg, Amanda Cyrén, Hanna Boquist, Johan Selin
  */
 public class DiceFragment extends Fragment {
 
