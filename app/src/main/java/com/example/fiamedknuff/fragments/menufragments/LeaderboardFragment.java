@@ -12,7 +12,7 @@ import com.example.fiamedknuff.R;
 
 /**
  * Responsibility: A class leaderboard that should handle the leaderboard. Not implemented
- *  yet. TODO
+ *  yet.
  *
  * Used by: -
  * Uses: -

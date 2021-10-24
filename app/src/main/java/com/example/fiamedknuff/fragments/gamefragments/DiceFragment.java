@@ -47,7 +47,7 @@ public class DiceFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_dice, container, false);
 
-        gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
+        gameViewModel = new ViewModelProvider(requireActivity()).get(GameViewModel.class);
 
         if (!alreadyInitialized) {
             initDiceImages();
@@ -77,7 +77,7 @@ public class DiceFragment extends Fragment {
     }
 
     private void initObservers() {
-        gameViewModel.CPUDiceRoll.observe(getActivity(), aBoolean -> {
+        gameViewModel.CPUDiceRoll.observe(requireActivity(), aBoolean -> {
             if (aBoolean) {
                 rollDice();
             }

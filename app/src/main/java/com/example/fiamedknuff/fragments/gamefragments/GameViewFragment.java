@@ -20,16 +20,17 @@ import android.widget.TextView;
 import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.fragments.dialogfragments.PodiumDialogFragment;
 import com.example.fiamedknuff.viewmodels.GameViewModel;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
 
 /**
  * Responsibility: UI controller for the game view layout.
  *
- * Used by: TODO ??
+ * Used by: -
  * Uses: PodiumDialogFragment, Player, GameViewModel
  *
  * Created by
@@ -60,7 +61,7 @@ public class GameViewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         System.out.println("GMF onCreateView");
-        gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
+        gameViewModel = new ViewModelProvider(requireActivity()).get(GameViewModel.class);
         View view = inflater.inflate(R.layout.fragment_game_view, container, false);
         gameViewConstraintLayout = view.findViewById(R.id.gameViewConstraintLayout);
 
@@ -95,15 +96,15 @@ public class GameViewFragment extends Fragment {
     }
 
     private void initObservers() {
-        gameViewModel.currentPlayer.observe(getActivity(), player -> {
+        gameViewModel.currentPlayer.observe(requireActivity(), player -> {
             ImageView target = playerToDicespaceHashMap.get(player.getName());
-            moveDice(target);
+            moveDice(Objects.requireNonNull(target));
         });
     }
 
     private void reInitDice() {
         ImageView target = playerToDicespaceHashMap.get(gameViewModel.getCurrentPlayerName());
-        moveDice(target);
+        moveDice(Objects.requireNonNull(target));
     }
 
     private void moveDice(ImageView target) {

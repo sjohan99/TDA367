@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Responsibility: A class representing the board on which pieces move. Implements
@@ -226,11 +227,13 @@ public class Board implements Serializable {
     }
 
     private Position decrementPositionOf(Piece piece) {
-        return positions.get(4 * playerCount + piecePositionHashMap.get(piece).getPos() - 1);
+        return positions.get(4 * playerCount +
+                Objects.requireNonNull(piecePositionHashMap.get(piece)).getPos() - 1);
     }
 
     private Position IncrementPositionOf(Piece piece) {
-        return positions.get(4 * playerCount + piecePositionHashMap.get(piece).getPos() + 1);
+        return positions.get(4 * playerCount +
+                Objects.requireNonNull(piecePositionHashMap.get(piece)).getPos() + 1);
     }
 
 

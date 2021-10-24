@@ -40,7 +40,6 @@ public class ReplayDialogFragment extends DialogFragment {
                 .create();
     }
 
-    //TODO javadoc
     public static String TAG = "ReplayDialogFragment";
 
 }

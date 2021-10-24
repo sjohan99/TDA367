@@ -39,6 +39,7 @@ public class Player implements Serializable {
      *
      * @param name the name of the player.
      */
+    // TODO: 2021-10-21 the names are incorrectly set in gamesetup...
     void setName(String name) {
         this.name = name;
     }

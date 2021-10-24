@@ -6,8 +6,7 @@ import android.view.View;
 import com.example.fiamedknuff.R;
 
 /**
- * TODO
- * Responsibility: Creates the main activity.
+ * Responsibility: Handles the main activity.
  *
  * Used by: -
  * Uses: -

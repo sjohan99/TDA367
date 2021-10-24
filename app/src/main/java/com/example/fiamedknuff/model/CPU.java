@@ -2,6 +2,7 @@ package com.example.fiamedknuff.model;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Responsibility: A class CPU that creates a CPU object. A CPU is a subclass to Player and
@@ -110,7 +111,8 @@ public class CPU extends Player {
     // on another piece is possible.
     private boolean isOnBoardAndCanKnockout(Piece piece, int roll) {
         HashMap<Piece, Position> piecePositionHashMap = board.getPiecePositionHashMap();
-        int indexNewPos = board.getFirstPositionIndexInLap() + piecePositionHashMap.get(piece).getPos() + roll;
+        int indexNewPos = board.getFirstPositionIndexInLap() +
+                Objects.requireNonNull(piecePositionHashMap.get(piece)).getPos() + roll;
         Position newPos = board.getPositions().get(indexNewPos); // IndexOutOfBoundException
         return board.isOccupied(newPos);
     }
