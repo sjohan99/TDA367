@@ -36,7 +36,6 @@ public class PodiumDialogFragment extends DialogFragment {
                 .create();
     }
 
-    //TODO javadoc
     public static String TAG = "PodiumDialogFragment";
 
 }

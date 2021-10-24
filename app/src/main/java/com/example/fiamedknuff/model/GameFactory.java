@@ -27,6 +27,7 @@ public abstract class GameFactory {
      */
     static public Game createNewGame(List<String> playerNames, List<Color> colors, List<Boolean> CPUSelection) throws NotImplementedException {
         ArrayList<Player> players = new ArrayList<>();
+
         for (int i = 0; i < playerNames.size(); i++) {
             if (CPUSelection.get(i)) {
                 players.add(new CPU(playerNames.get(i), colors.get(i)));
@@ -34,6 +35,7 @@ public abstract class GameFactory {
                 players.add(new Player(playerNames.get(i), colors.get(i)));
             }
         }
+
         return new Game(players);
     }
 

@@ -37,8 +37,6 @@ public class ExitGameDialogFragment extends DialogFragment {
                 .create();
     }
 
-
-    //TODO write javadoc
     public static String TAG = "ExitGameDialogFragment";
 
 }

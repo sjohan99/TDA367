@@ -5,7 +5,7 @@ package com.example.fiamedknuff.exceptions;
  *    but the feature is not yet implemented.
  *
  * Used by: GameSetupFragment, Board, Game, GameFactory, GameViewModel
- * Uses: TODO
+ * Uses: Exception
  *
  * Created by
  * @author Johan Selin
