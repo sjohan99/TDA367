@@ -20,7 +20,7 @@ import com.example.fiamedknuff.fragments.dialogfragments.ReplayDialogFragment;
 /**
  * Responsibility: UI controller for the side bar layout.
  *
- * Used by: GameViewFrament
+ * Used by: GameViewFragment
  * Uses: ExitGameDialogFragment, ReplayDialogFragment
  *
  * Created by
