@@ -15,7 +15,7 @@ import android.widget.Button;
 import com.example.fiamedknuff.R;
 
 /**
- * Responsibility: TODO
+ * Responsibility: A class MainMenuFragment that handles the GUI for the main menu.
  *
  * Used by: -
  * Uses: -
