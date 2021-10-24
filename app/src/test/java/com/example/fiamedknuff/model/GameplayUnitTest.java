@@ -53,38 +53,38 @@ public class GameplayUnitTest {
         game.move(roll, currentPiece);
         moved += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
         game.move(roll, currentPiece);
         moved += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
         game.move(roll, currentPiece);
         moved += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
         game.move(roll, currentPiece);
         moved += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
         game.move(roll, currentPiece);
         moved += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
         game.move(roll, currentPiece);
         moved += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
         roll = 4;
         game.move(roll, currentPiece);
         moved += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
 
         // Walk toward middle
@@ -92,14 +92,14 @@ public class GameplayUnitTest {
         game.move(roll, currentPiece);
         moved += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
         // One step before middle path
         roll = 3;
         game.move(roll, currentPiece);
         moved += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
 
         // Walk out to entry before middle path
         roll = 6;
@@ -107,7 +107,7 @@ public class GameplayUnitTest {
         moved += 1;
         moved -= 5;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1));
         //printAllPieceLocations();
     }
 
@@ -124,42 +124,42 @@ public class GameplayUnitTest {
         game.move(roll, currentPiece);
         moved += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1 + currentPiece.getOffset()));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1 + currentPiece.getOffset()));
 
 
         game.move(roll, currentPiece);
         moved += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1 + currentPiece.getOffset()));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1 + currentPiece.getOffset()));
 
         game.move(roll, currentPiece);
         moved += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1 + currentPiece.getOffset()));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1 + currentPiece.getOffset()));
 
         game.move(roll, currentPiece);
         moved += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1 + currentPiece.getOffset()));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1 + currentPiece.getOffset()));
 
         game.move(roll, currentPiece);
         moved += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + moved - 1 + currentPiece.getOffset()));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + moved - 1 + currentPiece.getOffset()));
 
         game.move(roll, currentPiece);
         moved += roll;
         int pos = moved + -40 + currentPiece.getOffset();
         System.out.println(moved - 1 - 40);
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + pos - 1));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + pos - 1));
 
         roll = 4;
         game.move(roll, currentPiece);
         moved += roll;
         pos += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + pos - 1));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + pos - 1));
 
         // Walk toward middle path
         roll = 1;
@@ -167,7 +167,7 @@ public class GameplayUnitTest {
         moved += roll;
         pos = 44;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + pos));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + pos));
 
         // One step before middle path
         roll = 3;
@@ -175,7 +175,7 @@ public class GameplayUnitTest {
         moved += roll;
         pos += roll;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + pos));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + pos));
 
         // Walk out to entry before middle path
         roll = 6;
@@ -184,7 +184,7 @@ public class GameplayUnitTest {
         moved -= 5;
         pos = 9;
         assertThat(currentPiece.getIndex()).isEqualTo(moved);
-        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get(4*pc + pos));
+        assertThat(pphm.get(currentPiece)).isEqualTo(positions.get((4*pc) + pos));
 
         //printAllPieceLocations();
     }
@@ -196,10 +196,10 @@ public class GameplayUnitTest {
 
 
 
-    // ----------------Helper methods--------------------
+    // Helper methods
 
 
-    private List<Piece> getPlayersMovablePieces(int roll) {
+    private ArrayList<Piece> getPlayersMovablePieces(int roll) {
         return game.getMovablePieces(game.getCurrentPlayer(), roll);
     }
 

@@ -69,7 +69,7 @@ public class Player implements Serializable {
      * @param roll is the value from the latest dice roll.
      * @return the list of pieces which are able to make a move.
      */
-    List<Piece> getMovablePieces(Collection<Piece> pieces, int roll) {
+    ArrayList<Piece> getMovablePieces(Collection<Piece> pieces, int roll) {
         ArrayList<Piece> movablePieces = new ArrayList<>();
         for (Piece piece : pieces) {
             if (isMovable(piece, roll)) {

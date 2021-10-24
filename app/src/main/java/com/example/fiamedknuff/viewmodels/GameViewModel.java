@@ -1,4 +1,4 @@
-package com.example.fiamedknuff.viewmodels;
+package com.example.fiamedknuff.viewModels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -219,7 +219,7 @@ public class GameViewModel extends ViewModel {
      */
     public boolean isPossibleToUseDicevalue() {
         List<Piece> movablePieces = game.getMovablePieces(game.getCurrentPlayer());
-        return movablePieces.isEmpty();
+        return movablePieces.size() != 0;
     }
 
     /**
