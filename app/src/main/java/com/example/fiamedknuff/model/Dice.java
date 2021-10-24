@@ -16,7 +16,7 @@ import java.util.Random;
 public class Dice implements Serializable{
 
     // The maximum value the dice can have
-    private int valueMax;
+    private final int valueMax;
 
     // A variable Random to acquire a random number for the dice roll
     private final Random rand = new Random();
