@@ -22,7 +22,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.fiamedknuff.exceptions.NotImplementedException;
 import com.example.fiamedknuff.R;
 import com.example.fiamedknuff.model.Color;
-import com.example.fiamedknuff.viewModels.GameViewModel;
+import com.example.fiamedknuff.viewmodels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,14 +42,13 @@ import java.util.regex.Pattern;
 public class GameSetupFragment extends Fragment {
 
     private NavController navController;
-    private Button createGameBtn;
     private Spinner playerAmountSpinner;
     private EditText player1Name, player2Name, player3Name, player4Name;
     private CheckBox CPUCheckBox1, CPUCheckBox2, CPUCheckBox3;
     private GameViewModel gameViewModel;
-    ArrayList<EditText> players = new ArrayList<>();
-    ArrayList<CheckBox> CPUCheckBoxes = new ArrayList<>();
-    ArrayList<Color> colors = new ArrayList<>();
+    List<EditText> players = new ArrayList<>();
+    List<CheckBox> CPUCheckBoxes = new ArrayList<>();
+    List<Color> colors = new ArrayList<>();
     private int selectedPlayerCount = 4;
     private boolean readyToCreateGame = false;
 
@@ -77,13 +76,12 @@ public class GameSetupFragment extends Fragment {
     }
 
     private void initCreateGameButton(View view) {
-        createGameBtn = view.findViewById(R.id.createGameBtn);
+        Button createGameBtn = view.findViewById(R.id.createGameBtn);
         createGameBtn.setOnClickListener(view1 -> {
             // GameFactory.createNewGame(getPlayerNames(), getColors(), getSelectedCPU());
             if (readyToCreateGame) {
                 try {
-                    gameViewModel.init(
-                            GameSetupFragment.this.getPlayerNames(), GameSetupFragment.this.getColors(), GameSetupFragment.this.getSelectedCPU());
+                    gameViewModel.init(getPlayerNames(), getColors(), getSelectedCPU());
                 } catch (NotImplementedException e) {
                     e.printStackTrace();
                 }
@@ -117,8 +115,7 @@ public class GameSetupFragment extends Fragment {
                     CPUCheckBoxes.get(i).setVisibility(View.INVISIBLE);
                 }
             }
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
+            public void onNothingSelected(AdapterView<?> parent) { }
         });
     }
 

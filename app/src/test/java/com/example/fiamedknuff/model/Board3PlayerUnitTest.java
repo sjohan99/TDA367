@@ -19,7 +19,7 @@ import java.util.List;
 public class Board3PlayerUnitTest {
 
     Board board3p;
-    ArrayList<Piece> pieces;
+    List<Piece> pieces;
     int pc = 3;
 
     @Before
@@ -81,7 +81,7 @@ public class Board3PlayerUnitTest {
         cp.setIndex(40);
         board3p.movePiece(cp);
         assertThat(cp.getIndex()).isEqualTo(41);
-        assertThat(board3p.getPiecePositionHashMap().get(cp)).isEqualTo(board3p.getPositions().get((pc*4)+40));
+        assertThat(board3p.getPiecePositionHashMap().get(cp)).isEqualTo(board3p.getPositions().get(pc*4+40));
     }
 
     @Test
@@ -90,7 +90,7 @@ public class Board3PlayerUnitTest {
         cp.setIndex(40);
         board3p.movePiece(cp);
         assertThat(cp.getIndex()).isEqualTo(41);
-        assertThat(board3p.getPiecePositionHashMap().get(cp)).isEqualTo(board3p.getPositions().get((pc*4)+40+4));
+        assertThat(board3p.getPiecePositionHashMap().get(cp)).isEqualTo(board3p.getPositions().get(pc*4+40+4));
     }
 
     @Test
@@ -99,6 +99,6 @@ public class Board3PlayerUnitTest {
         cp.setIndex(40);
         board3p.movePiece(cp);
         assertThat(cp.getIndex()).isEqualTo(41);
-        assertThat(board3p.getPiecePositionHashMap().get(cp)).isEqualTo(board3p.getPositions().get((pc*4)+40+8));
+        assertThat(board3p.getPiecePositionHashMap().get(cp)).isEqualTo(board3p.getPositions().get(pc*4+40+8));
     }
 }
