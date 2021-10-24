@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fiamedknuff.R;
-import com.example.fiamedknuff.viewmodels.GameViewModel;
+import com.example.fiamedknuff.viewModels.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -111,7 +111,9 @@ public class DiceFragment extends Fragment {
         rotationAnimation = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.rotate);
         rotationAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void onAnimationStart(Animation animation) { }
+            public void onAnimationStart(Animation animation) {
+
+            }
 
             @Override
             public void onAnimationEnd(Animation animation) {
@@ -119,7 +121,9 @@ public class DiceFragment extends Fragment {
             }
 
             @Override
-            public void onAnimationRepeat(Animation animation) { }
+            public void onAnimationRepeat(Animation animation) {
+
+            }
         });
     }
 

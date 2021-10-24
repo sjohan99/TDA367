@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -71,7 +70,7 @@ public class Board implements Serializable {
      *
      * @return list with Positions with indices (-4 * playerCount) to (numberOfPositions - 1).
      */
-    private List<Position> createPositionsList() {
+    private ArrayList<Position> createPositionsList() {
         int negativeIndices = playerCount * -4;
         int positiveIndices = numberOfPositions[playerCount - 1];
         ArrayList<Position> positionArrayList = new ArrayList<>();
@@ -334,7 +333,7 @@ public class Board implements Serializable {
      */
     private int indexOfHomeNumber(Piece piece) throws NotFoundException {
         for (Position pos : positions) {
-            if (pos.getPos() == piece.getHomeNumber()) {
+            if (pos.getPos() == (piece.getHomeNumber())) {
                 return positions.indexOf(pos);
             }
         }

@@ -137,7 +137,7 @@ public class Game implements Serializable {
      * @param player gets the movable pieces of this player.
      * @return all the players movable pieces in a collection.
      */
-    public List<Piece> getMovablePieces(Player player) {
+    public ArrayList<Piece> getMovablePieces(Player player) {
         return player.getMovablePieces(player.getPieces(), dice.getRolledValue());
     }
 
@@ -149,7 +149,7 @@ public class Game implements Serializable {
      * @param rolledValue the rolled value.
      * @return all the players movable pieces in a collection.
      */
-    List<Piece> getMovablePieces(Player player, int rolledValue) {
+    ArrayList<Piece> getMovablePieces(Player player, int rolledValue) {
         return player.getMovablePieces(player.getPieces(), rolledValue);
     }
 
@@ -368,7 +368,7 @@ public class Game implements Serializable {
      * @return true if it is the next player´s turn, otherwise false.
      */
     public boolean isNextPlayer(boolean playerIsFinished) {
-        return !(getDiceValue() == 6 && !playerIsFinished);
+        return !((getDiceValue() == 6) && !playerIsFinished);
     }
 
 }
