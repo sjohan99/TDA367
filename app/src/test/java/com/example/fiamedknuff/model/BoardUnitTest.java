@@ -11,6 +11,7 @@ import com.example.fiamedknuff.exceptions.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Class for testing Board.java
@@ -62,7 +63,7 @@ public class BoardUnitTest {
         var hMap = board4p.getPiecePositionHashMap();
         int i = -16;
         for (Piece piece : pieces) {
-            assertEquals(hMap.get(piece).getPos(), i++);
+            assertEquals(Objects.requireNonNull(hMap.get(piece)).getPos(), i++);
         }
     }
 

@@ -17,7 +17,8 @@ import java.util.Objects;
  */
 public class CPU extends Player {
 
-    private Board board; // A CPU must have a board to access the game logic
+    // A CPU must have a board to access the game logic
+    private Board board;
 
     /**
      * Sole constructor for the class CPU which calls the superclass Player's constructor.

@@ -24,7 +24,7 @@ public class PieceUnitTest {
     }
 
     @Test
-    public void testIncremetIndex() {
+    public void testIncrementIndex() {
         assertThat(piece.getIndex()).isEqualTo(0);
         for (int i = 0; i < 10; i++) {
             piece.incrementIndex();
@@ -33,7 +33,7 @@ public class PieceUnitTest {
     }
 
     @Test
-    public void testDecremetIndex() {
+    public void testDecrementIndex() {
         piece.setIndex(10);
         assertThat(piece.getIndex()).isEqualTo(10);
         for (int i = 10; i >= 0; i--) {

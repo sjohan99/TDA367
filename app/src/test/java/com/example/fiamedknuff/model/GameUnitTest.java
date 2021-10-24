@@ -14,6 +14,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class GameUnitTest {
 
@@ -228,7 +229,7 @@ public class GameUnitTest {
 
         game.move(3, piece);
         assertThat(piece.getIndex()).isEqualTo(board.getFinishIndex() - 2);
-        assertThat(hMap.get(piece).getPos()).isEqualTo(board.getFinishIndex() - 3);
+        assertThat(Objects.requireNonNull(hMap.get(piece)).getPos()).isEqualTo(board.getFinishIndex() - 3);
     }
 
     @Test

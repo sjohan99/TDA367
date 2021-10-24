@@ -18,11 +18,20 @@ import java.util.List;
  */
 public class Game implements Serializable {
 
-    private final Board board; // The board in the current game round
-    private final List<Player> activePlayers; // List of active players, an active player is a player who has one or several pieces left
-    private int currentPlayerIndex = 0; // A variable to hold the index of the current player
-    private final Dice dice; // The dice in the current game round
-    private final List<Player> finishedPlayers = new ArrayList<>(); // List of finished players, a finished player is a player who has no pieces left
+    // The board in the current game round
+    private final Board board;
+
+    // List of active players, an active player is a player who has one or several pieces left
+    private final List<Player> activePlayers;
+
+    // A variable to hold the index of the current player
+    private int currentPlayerIndex = 0;
+
+    // The dice in the current game round
+    private final Dice dice;
+
+    // List of finished players, a finished player is a player who has no pieces left
+    private final List<Player> finishedPlayers = new ArrayList<>();
 
     /**
      * Sole constructor for the class. Creates a game with an incoming list of players. All players
@@ -163,7 +172,7 @@ public class Game implements Serializable {
     /**
      * Rolls the dice and returns the rolled value. Only used for testing purposes.
      *
-     * @return the dice's rolled value.
+     * @return the rolled value of the dice.
      */
     public int rollAndGetDiceValue() {
         return dice.rollDice();
@@ -196,7 +205,6 @@ public class Game implements Serializable {
      * @throws NotFoundException if a piece is to be knocked out but can't be found.
      * @return a list of positions the piece has passed including where it ends.
      */
-    // TODO: 2021-10-14 Separate behavior into calculating path and moving??
     public List<Position> move(Piece piece) throws NotFoundException {
         List<Position> positionPath;
         int diceValue = dice.getRolledValue();
@@ -218,7 +226,6 @@ public class Game implements Serializable {
      * @throws NotFoundException if a piece is to be knocked out but can't be found.
      * @return returns a list of positions the piece has passed including where it ends.
      */
-    // TODO: 2021-10-14 Separate behavior into calculating path and moving??
     public List<Position> move(int diceValue, Piece piece) throws NotFoundException {
         List<Position> positionPath;
         if (pieceWillMovePastGoal(diceValue, piece)) {

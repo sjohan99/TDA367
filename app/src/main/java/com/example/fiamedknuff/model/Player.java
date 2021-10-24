@@ -17,8 +17,11 @@ import java.util.List;
  */
 public class Player implements Serializable {
 
-    private String name; // A variable for the players name
-    private final List<Piece> pieces; // A list of the players pieces
+    // A variable for the players name
+    private String name;
+
+    // A list of the players pieces
+    private final List<Piece> pieces;
 
     /**
      * Sole constructor for the class. Creates a Player which has a name, color and a list of pieces.
