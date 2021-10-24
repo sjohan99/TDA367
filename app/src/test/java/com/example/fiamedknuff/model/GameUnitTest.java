@@ -328,7 +328,13 @@ public class GameUnitTest {
     public void testSetDiceIsUsed() {
         game.getDice().setIsUsed(false);
         game.setDiceIsUsed();
-        assertTrue(game.getDice().getIsUsed());
+        assertTrue(game.getDiceIsUsed());
+    }
+
+    @Test
+    public void getDiceValue() {
+        game.rollDice();
+        assertThat(game.getDiceValue()).isBetween(1,6);
     }
 
 }
