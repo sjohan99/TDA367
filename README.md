@@ -47,8 +47,6 @@ För att köra appen på datorn är det lättaste sättet att använda android s
 <!-- Länkar -->
 <h2 id="links"> Länkar </h2>
 <ol>
-  <li><a href="https://www.overleaf.com/read/ssnngrxdmbgz"> RAD (Krav- och analysdokumentation) </a></li>
-  <li><a href="https://www.overleaf.com/read/kxbnrzdmjtky"> SDD (Systemdesigndokumentation) </a></li>
   <li><a href="https://trello.com/b/Wb4UD4PO/user-stories"> Backlog (Trello) </a></li>
   <li><a href="https://lucid.app/documents/view/c85e2e2e-8e25-4b9f-bcd7-739c2ff37b49"> UML Diagram (Lucid Chart) (obs. sidflikar) </a></li>
 </ol>
