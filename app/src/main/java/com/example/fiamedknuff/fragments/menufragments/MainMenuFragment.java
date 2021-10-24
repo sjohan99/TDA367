@@ -26,7 +26,6 @@ import com.example.fiamedknuff.R;
 public class MainMenuFragment extends Fragment {
 
     private NavController navController;
-    private Button newGameBtn, leaderboardBtn, rulebookBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,9 +34,9 @@ public class MainMenuFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
 
-        newGameBtn = view.findViewById(R.id.newGameBtn);
-        leaderboardBtn = view.findViewById(R.id.leaderboardBtn);
-        rulebookBtn = view.findViewById(R.id.rulebookBtn);
+        Button newGameBtn = view.findViewById(R.id.newGameBtn);
+        Button leaderboardBtn = view.findViewById(R.id.leaderboardBtn);
+        Button rulebookBtn = view.findViewById(R.id.rulebookBtn);
 
         newGameBtn.setOnClickListener(view1 -> navController.navigate(
                 R.id.action_mainMenuFragment_to_gameSetupFragment,
